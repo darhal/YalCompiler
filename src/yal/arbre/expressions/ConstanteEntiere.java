@@ -8,10 +8,8 @@ public class ConstanteEntiere extends Constante {
 
     @Override
     public String toMIPS() {
-        return  "\t#constate entiere "+this.cste+"\n"+
-                "\taddi $sp, $sp, -4 \t# Reserving 4 bytes on the stack for the constant\n"+
-                "\tli $t8, "+this.cste+"\n"+
-                "\tsw $t8, -4($sp)\n"
+        return  "\n\t# Integer Constant '"+this.cste+"':\n"+
+                "\tli $v0, "+this.cste+"\n"
                 ;
     }
 

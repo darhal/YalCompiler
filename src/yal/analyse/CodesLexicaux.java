@@ -9,14 +9,16 @@ package yal.analyse;
 public class CodesLexicaux {
   /* terminals */
   public static final int ECRIRE = 6;
-  public static final int IDF = 7;
+  public static final int IDF = 9;
   public static final int DEBUT = 3;
   public static final int PROGRAMME = 2;
   public static final int POINTVIRGULE = 5;
+  public static final int EQUAL = 8;
   public static final int FIN = 4;
   public static final int EOF = 0;
+  public static final int TYPE = 7;
   public static final int error = 1;
-  public static final int CSTENTIERE = 8;
+  public static final int CSTENTIERE = 10;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
@@ -25,6 +27,8 @@ public class CodesLexicaux {
   "FIN",
   "POINTVIRGULE",
   "ECRIRE",
+  "TYPE",
+  "EQUAL",
   "IDF",
   "CSTENTIERE"
   };

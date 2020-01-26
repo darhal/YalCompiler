@@ -3,6 +3,7 @@ package yal.arbre;
 import yal.arbre.expressions.ConstanteEntiere;
 import yal.arbre.expressions.Expression;
 import yal.arbre.instructions.Ecrire;
+import yal.declaration.TDS;
 import yal.exceptions.AnalyseSemantiqueException;
 
 import java.util.ArrayList;
@@ -46,7 +47,12 @@ public class BlocDInstructions extends ArbreAbstrait {
                 ".data\n" +
                 ".text\n" +
                 "\n" +
-                "main:";
+                "main:\n"+
+                "\t# Begin stackframe:\n"+
+                "\tmove $s7, $sp\n"+
+                "\t# Allocate for the declared variables:\n"+
+                "\taddi $sp, $sp, "+-4 * TDS.Instance().getVariableZoneSize()+"\n"
+                ;
 
         for (ArbreAbstrait a : programme) {
             code_mips += a.toMIPS();

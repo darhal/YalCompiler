@@ -11,7 +11,6 @@ public abstract class Constante extends Expression {
     
     @Override
     public void verifier() {
-
     }
 
     @Override

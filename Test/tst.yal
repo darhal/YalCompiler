@@ -1,7 +1,13 @@
 programme test debut
-ecrire 102;
-ecrire 1;
-ecrire 2;
-ecrire 0;
+entier a;
+entier b;
+entier c;
+entier d;
+a = 2;
+b = 3;
+c = 4;
+ecrire a;
+ecrire b;
+ecrire c;
 fin
 

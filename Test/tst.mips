@@ -1,0 +1,63 @@
+.data
+.text
+
+main:
+	# Begin stackframe:
+	move $s7, $sp
+	# Allocate for the declared variables:
+	addi $sp, $sp, -16
+
+	# Integer Constant '2':
+	li $v0, 2
+
+	# Assignement for the variable 'a':
+	sw $v0, 0($sp)
+
+	# Integer Constant '3':
+	li $v0, 3
+
+	# Assignement for the variable 'b':
+	sw $v0, -4($sp)
+
+	# Integer Constant '4':
+	li $v0, 4
+
+	# Assignement for the variable 'c':
+	sw $v0, -8($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+
+	# Call write sys call:​
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Get value of the variable 'b':
+	lw $v0, -4($sp)
+
+	# Call write sys call:​
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Get value of the variable 'c':
+	lw $v0, -8($sp)
+
+	# Call write sys call:​
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+

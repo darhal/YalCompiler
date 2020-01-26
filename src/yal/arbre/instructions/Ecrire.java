@@ -19,11 +19,14 @@ public class Ecrire extends Instruction {
     @Override
     public String toMIPS() {
         return exp.toMIPS() +
-        "\t# ecrire​\n"+
+        "\n\t# Call write sys call:​\n"+
+        "\tmove $a0, $v0\n"+
         "\tli $v0, 1\n"+
-        "\tlw $a0, -4($sp)\n"+
         "\tsyscall\n"+
-        "\taddi $sp, $sp, 4";
+        "\t# Return to line:\n"+
+        "\tli $v0, 11 \t# Syscall code for printing one char\n"+
+        "\tli $a0, '\\n' \t# print new line char\n" +
+        "\tsyscall\n";
     }
 
     public Expression getExpression() {
