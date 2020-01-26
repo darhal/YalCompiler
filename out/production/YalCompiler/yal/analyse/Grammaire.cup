@@ -59,7 +59,7 @@ parser code {:
    
 /* Terminals (tokens returned by the scanner).  */
 
-terminal Symbol    PROGRAMME, DEBUT, FIN, POINTVIRGULE, ECRIRE, TYPE, EQUAL;
+terminal Symbol    PROGRAMME, DEBUT, FIN, POINTVIRGULE, LIRE, ECRIRE, TYPE, EQUAL;
 terminal String    IDF, CSTENTIERE ;
 
 /* Non terminals used in the grammar section.  */
@@ -73,17 +73,13 @@ non terminal DECL_LIST, DECL_VAR;
 start with PROG ;
 
 PROG    ::=     PROGRAMME  IDF  DEBUT DECL_LIST LINST:li  FIN
-                {:
-                    RESULT = li ;
-                :}
+                {: RESULT = li ; :}
                 ;
 
 DECL_LIST ::=   DECL_LIST DECL_VAR:d {::} | DECL_VAR:d {::};
 
 DECL_VAR ::=    TYPE IDF:idf POINTVIRGULE
-                {:
-                    TDS.Instance().AddEntry(new VariableEntry(idf), new IntSymbol());
-                :}
+                {: TDS.Instance().AddEntry(new VariableEntry(idf), new IntSymbol()); :}
                 ;
 
 LINST   ::=     LINST:li  INST:i
@@ -99,6 +95,10 @@ LINST   ::=     LINST:li  INST:i
 INST    ::=     IDF:idf EQUAL EXP:e POINTVIRGULE
                 {:  Variable var = new Variable(new VariableEntry(idf), idfleft + 1);
                     RESULT = new Affectation(var, e, eleft + 1); :}
+        |
+                LIRE IDF:idf POINTVIRGULE
+                {:  Variable var = new Variable(new VariableEntry(idf), idfleft + 1);
+                  RESULT = new Lire(var, idfleft + 1); :}
         |
                 ECRIRE EXP:e POINTVIRGULE
                 {: RESULT = new Ecrire(e, eleft + 1) ; :}

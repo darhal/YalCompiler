@@ -2,8 +2,8 @@ package yal.arbre.instructions;
 
 import yal.arbre.expressions.Expression;
 
-public class Ecrire extends Instruction {
-
+public class Ecrire extends Instruction
+{
     protected Expression exp ;
 
     public Ecrire (Expression e, int n) {

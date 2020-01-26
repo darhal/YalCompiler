@@ -9,5 +9,7 @@ c = 4;
 ecrire a;
 ecrire b;
 ecrire c;
+lire d;
+ecrire d;
 fin
 

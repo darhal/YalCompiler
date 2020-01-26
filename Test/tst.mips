@@ -60,4 +60,19 @@ main:
 	li $v0, 11 	# Syscall code for printing one char
 	li $a0, '\n' 	# print new line char
 	syscall
+# Reads an integer: 
+	li $v0, 5
+	syscall
+	sw $v0, -12($sp)
 
+	# Get value of the variable 'd':
+	lw $v0, -12($sp)
+
+	# Call write sys call:​
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
