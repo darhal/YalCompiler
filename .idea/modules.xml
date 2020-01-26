@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/yal.iml" filepath="$PROJECT_DIR$/.idea/yal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/YalCompiler.iml" filepath="$PROJECT_DIR$/.idea/YalCompiler.iml" />
     </modules>
   </component>
 </project>

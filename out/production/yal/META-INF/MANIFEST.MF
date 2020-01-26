@@ -1,4 +1,0 @@
-Manifest-Version: 1.0
-Class-Path: jflex-1.6.1.jar java-cup-11a.jar
-Main-Class: yal.Yal
-
