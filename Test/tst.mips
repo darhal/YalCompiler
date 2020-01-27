@@ -76,3 +76,4 @@ main:
 	li $v0, 11 	# Syscall code for printing one char
 	li $a0, '\n' 	# print new line char
 	syscall
+
