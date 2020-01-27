@@ -1,15 +1,5 @@
 programme test debut
 entier a;
-entier b;
-entier c;
-entier d;
-a = 2;
-b = 3;
-c = 4;
-ecrire a;
-ecrire b;
-ecrire c;
-lire d;
-ecrire d;
+ecrire 1;
 fin
 

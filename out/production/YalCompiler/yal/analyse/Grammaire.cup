@@ -59,9 +59,8 @@ parser code {:
    
 /* Terminals (tokens returned by the scanner).  */
 
-terminal Symbol    PROGRAMME, DEBUT, FIN, POINTVIRGULE, LIRE, ECRIRE, TYPE, EQUAL;
-terminal String    IDF, CSTENTIERE ;
-
+terminal Symbol    PROGRAMME, DEBUT, FIN, POINTVIRGULE, LIRE, ECRIRE, EQUAL;
+terminal String    IDF, CSTENTIERE, TYPE ;
 /* Non terminals used in the grammar section.  */
 
 non terminal ArbreAbstrait PROG, LINST, INST ;
@@ -76,7 +75,7 @@ PROG    ::=     PROGRAMME  IDF  DEBUT DECL_LIST LINST:li  FIN
                 {: RESULT = li ; :}
                 ;
 
-DECL_LIST ::=   DECL_LIST DECL_VAR:d {::} | DECL_VAR:d {::};
+DECL_LIST ::=   DECL_VAR | DECL_VAR DECL_LIST;
 
 DECL_VAR ::=    TYPE IDF:idf POINTVIRGULE
                 {: TDS.Instance().AddEntry(new VariableEntry(idf), new IntSymbol()); :}
@@ -105,8 +104,8 @@ INST    ::=     IDF:idf EQUAL EXP:e POINTVIRGULE
                 ;
     
 EXP    ::=     IDF:idf
-                {: RESULT = new Variable(new VariableEntry(idf), idfleft + 1); :}
+               {: RESULT = new Variable(new VariableEntry(idf), idfleft + 1); :}
        |
                CSTENTIERE:c
                {: RESULT = new ConstanteEntiere(c, cleft + 1); :}
-                ;
+               ;

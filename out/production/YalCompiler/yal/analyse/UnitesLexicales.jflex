@@ -38,6 +38,8 @@ csteE = [0-9]+
 finDeLigne = \r|\n
 espace = {finDeLigne}  | [ \t\f]
 
+declaration = ("entier"{espace}{idf})*
+
 %%
 
 "programme"            { return symbol(CodesLexicaux.PROGRAMME); }
@@ -58,6 +60,7 @@ espace = {finDeLigne}  | [ \t\f]
 
 {idf}      	           { return symbol(CodesLexicaux.IDF, yytext()); }
 
-{espace}               { }
+{espace}               {  }
+
 .                      { throw new AnalyseLexicaleException(yyline, yycolumn, yytext()) ; }
 
