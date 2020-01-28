@@ -27,7 +27,7 @@ public class Lire extends Instruction
         Symbol s = TDS.Instance().Identify(idf.getEntree());
         int offset = -4 * s.getOffset();
 
-        String mips = "# Reads an integer: ";
+        String mips = "\n\t# Reads an integer: ";
         mips += "\n\tli $v0, 5\n";
         mips += "\tsyscall\n";
         mips += "\tsw $v0, "+offset+"($sp)\n";

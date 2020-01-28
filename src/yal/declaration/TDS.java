@@ -2,6 +2,8 @@ package yal.declaration;
 
 import yal.declaration.entries.Entry;
 import yal.declaration.symbols.Symbol;
+import yal.exceptions.DoubleDeclarationException;
+import yal.exceptions.IdentifiantNonDeclarerException;
 
 import java.util.HashMap;
 
@@ -21,18 +23,22 @@ public class TDS
         return instance;
     }
 
-    public void AddEntry(Entry e, Symbol s)
+    public void AddEntry(Entry e, Symbol s, int line) throws DoubleDeclarationException
     {
         if (symbolMap.get(e) != null){
-            System.out.println("Erreur: Double declaration.");
+            throw new DoubleDeclarationException(line);
         }
 
         s.incrementOffset(getVariableZoneSize());
         symbolMap.put(e, s);
     }
 
-    public Symbol Identify(Entry e)
+    public Symbol Identify(Entry e) throws IdentifiantNonDeclarerException
     {
+        if (symbolMap.get(e) == null){
+            throw new IdentifiantNonDeclarerException();
+        }
+
         return symbolMap.get(e);
     }
 

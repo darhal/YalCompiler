@@ -1,0 +1,10 @@
+programme essai debut
+//Bonjour monsieur
+entier a;
+a = 42;
+ecrire a;
+a = a;
+ecrire a;
+//Encore un commentaire
+ecrire a;
+fin

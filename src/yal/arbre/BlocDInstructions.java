@@ -49,10 +49,14 @@ public class BlocDInstructions extends ArbreAbstrait {
                 "\n" +
                 "main:\n"+
                 "\t# Begin stackframe:\n"+
-                "\tmove $s7, $sp\n"+
-                "\t# Allocate for the declared variables:\n"+
-                "\taddi $sp, $sp, "+-4 * TDS.Instance().getVariableZoneSize()+"\n"
-                ;
+                "\tmove $s7, $sp\n";
+
+        if (TDS.Instance().getVariableZoneSize() != 0) {
+            code_mips +=
+                    "\t# Allocate for the declared variables:\n" +
+                    "\taddi $sp, $sp, " + -4 * TDS.Instance().getVariableZoneSize() + "\n"
+            ;
+        }
 
         for (ArbreAbstrait a : programme) {
             code_mips += a.toMIPS();

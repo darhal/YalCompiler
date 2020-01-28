@@ -63,7 +63,7 @@ terminal Symbol    PROGRAMME, DEBUT, FIN, POINTVIRGULE, LIRE, ECRIRE, EQUAL;
 terminal String    IDF, CSTENTIERE, TYPE ;
 /* Non terminals used in the grammar section.  */
 
-non terminal ArbreAbstrait PROG, LINST, INST ;
+non terminal ArbreAbstrait PROG_BODY, PROG, LINST, INST ;
 non terminal Expression EXP ;
 non terminal DECL_LIST, DECL_VAR;
 
@@ -71,41 +71,48 @@ non terminal DECL_LIST, DECL_VAR;
  
 start with PROG ;
 
-PROG    ::=     PROGRAMME  IDF  DEBUT DECL_LIST LINST:li  FIN
+PROG        ::=     PROGRAMME  IDF  DEBUT PROG_BODY:prog  FIN
+                {: RESULT = prog ; :}
+            ;
+
+PROG_BODY   ::=     DECL_LIST LINST: li
                 {: RESULT = li ; :}
-                ;
+            |       LINST: li
+                {: RESULT = li ; :}
+            ;
 
-DECL_LIST ::=   DECL_VAR | DECL_VAR DECL_LIST;
+LINST       ::=     LINST:li  INST:i
+                    {: ((BlocDInstructions)li).ajouter(i);
+                        RESULT = li ; :}
+            |
+                    INST:i
+                    {: BlocDInstructions b = new BlocDInstructions(ileft + 1);
+                       b.ajouter(i);
+                       RESULT = b; :}
+            ;
 
-DECL_VAR ::=    TYPE IDF:idf POINTVIRGULE
-                {: TDS.Instance().AddEntry(new VariableEntry(idf), new IntSymbol()); :}
-                ;
+DECL_LIST   ::=   DECL_VAR DECL_LIST | DECL_VAR ;
 
-LINST   ::=     LINST:li  INST:i
-                {: ((BlocDInstructions)li).ajouter(i);
-                   RESULT = li ; :}
-        |
-                INST:i
-                {: BlocDInstructions b = new BlocDInstructions(ileft + 1);
-                   b.ajouter(i);
-                   RESULT = b; :}
-                ;
+DECL_VAR    ::=   TYPE IDF:idf POINTVIRGULE
+                  {: TDS.Instance().AddEntry(new VariableEntry(idf),
+                     new IntSymbol(), idfleft + 1); :}
+            ;
 
-INST    ::=     IDF:idf EQUAL EXP:e POINTVIRGULE
-                {:  Variable var = new Variable(new VariableEntry(idf), idfleft + 1);
-                    RESULT = new Affectation(var, e, eleft + 1); :}
-        |
-                LIRE IDF:idf POINTVIRGULE
-                {:  Variable var = new Variable(new VariableEntry(idf), idfleft + 1);
-                  RESULT = new Lire(var, idfleft + 1); :}
-        |
-                ECRIRE EXP:e POINTVIRGULE
-                {: RESULT = new Ecrire(e, eleft + 1) ; :}
-                ;
+INST        ::=     IDF:idf EQUAL EXP:e POINTVIRGULE
+                    {:  Variable var = new Variable(new VariableEntry(idf), idfleft + 1);
+                        RESULT = new Affectation(var, e, eleft + 1); :}
+            |
+                    LIRE IDF:idf POINTVIRGULE
+                    {:  Variable var = new Variable(new VariableEntry(idf), idfleft + 1);
+                    RESULT = new Lire(var, idfleft + 1); :}
+            |
+                    ECRIRE EXP:e POINTVIRGULE
+                    {: RESULT = new Ecrire(e, eleft + 1) ; :}
+            ;
     
-EXP    ::=     IDF:idf
-               {: RESULT = new Variable(new VariableEntry(idf), idfleft + 1); :}
-       |
-               CSTENTIERE:c
-               {: RESULT = new ConstanteEntiere(c, cleft + 1); :}
-               ;
+EXP         ::=     IDF:idf
+                    {: RESULT = new Variable(new VariableEntry(idf), idfleft + 1); :}
+            |
+                    CSTENTIERE:c
+                    {: RESULT = new ConstanteEntiere(c, cleft + 1); :}
+            ;

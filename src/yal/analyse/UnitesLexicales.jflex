@@ -36,9 +36,9 @@ idf = [A-Za-z_][A-Za-z_0-9]*
 csteE = [0-9]+
 
 finDeLigne = \r|\n
-espace = {finDeLigne}  | [ \t\f]
+comment = \/\/.*{finDeLigne}
+espace = {finDeLigne}  | [ \t\f] | {comment}
 
-declaration = ("entier"{espace}{idf})*
 
 %%
 
