@@ -1,18 +1,12 @@
 package yal;
 
 import java.io.*;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import yal.analyse.AnalyseurLexical;
 import yal.analyse.AnalyseurSyntaxique;
 import yal.arbre.ArbreAbstrait;
-import yal.declaration.TDS;
-import yal.declaration.entries.Entry;
-import yal.declaration.symbols.Symbol;
 import yal.exceptions.AnalyseException;
 
 public class Yal {

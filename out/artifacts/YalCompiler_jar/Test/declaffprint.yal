@@ -1,0 +1,5 @@
+programme essai debut
+entier abc;
+abc = 42;
+ecrire abc;
+fin
