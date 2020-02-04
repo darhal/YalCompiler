@@ -1,0 +1,9 @@
+programme essai debut
+entier a;
+entier b;
+a = 2;
+ecrire a;
+si a alors
+a = 3;
+finsi
+fin

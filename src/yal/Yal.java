@@ -23,14 +23,11 @@ public class Yal {
             PrintWriter flot = new PrintWriter(new BufferedWriter(new FileWriter(nomSortie))) ;
             flot.println(arbre.toMIPS());
             flot.close() ;
-        }
-        catch (FileNotFoundException ex) {
+        } catch (FileNotFoundException ex) {
             System.err.println("Fichier " + nomFichier + " inexistant") ;
-        }
-        catch (AnalyseException ex) {
+        } catch (AnalyseException ex) {
             System.err.println(ex.getMessage());
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             Logger.getLogger(yal.Yal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

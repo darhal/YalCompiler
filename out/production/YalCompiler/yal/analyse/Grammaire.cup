@@ -59,26 +59,29 @@ parser code {:
    
 /* Terminals (tokens returned by the scanner).  */
 
-terminal Symbol    PROGRAMME, DEBUT, FIN, POINTVIRGULE, LIRE, ECRIRE, EQUAL;
+terminal Symbol    PROGRAMME, DEBUT, FIN, POINTVIRGULE, LIRE, ECRIRE, EQUAL,
+                   TANTQUE, REPETER, FINTANTQUE, SI, ALORS, FINSI;
 terminal String    IDF, CSTENTIERE, TYPE ;
+
+
 /* Non terminals used in the grammar section.  */
 
 non terminal ArbreAbstrait PROG_BODY, PROG, LINST, INST ;
 non terminal Expression EXP ;
-non terminal DECL_LIST, DECL_VAR;
+non terminal DECL_LIST, DECL_VAR, AFFECT, CONDITION, LOOP;
 
 /* ----------------------------Grammar Section-------------------- */
- 
+
 start with PROG ;
 
 PROG        ::=     PROGRAMME  IDF  DEBUT PROG_BODY:prog  FIN
-                {: RESULT = prog ; :}
+                    {: RESULT = prog ; :}
             ;
 
 PROG_BODY   ::=     DECL_LIST LINST: li
-                {: RESULT = li ; :}
+                    {: RESULT = li ; :}
             |       LINST: li
-                {: RESULT = li ; :}
+                    {: RESULT = li ; :}
             ;
 
 LINST       ::=     LINST:li  INST:i
@@ -98,10 +101,7 @@ DECL_VAR    ::=   TYPE IDF:idf POINTVIRGULE
                      new IntSymbol(), idfleft + 1); :}
             ;
 
-INST        ::=     IDF:idf EQUAL EXP:e POINTVIRGULE
-                    {:  Variable var = new Variable(new VariableEntry(idf), idfleft + 1);
-                        RESULT = new Affectation(var, e, eleft + 1); :}
-            |
+INST        ::=     AFFECT | CONDITION | LOOP |
                     LIRE IDF:idf POINTVIRGULE
                     {:  Variable var = new Variable(new VariableEntry(idf), idfleft + 1);
                     RESULT = new Lire(var, idfleft + 1); :}
@@ -109,7 +109,20 @@ INST        ::=     IDF:idf EQUAL EXP:e POINTVIRGULE
                     ECRIRE EXP:e POINTVIRGULE
                     {: RESULT = new Ecrire(e, eleft + 1) ; :}
             ;
-    
+
+AFFECT      ::=     IDF:idf EQUAL EXP:e POINTVIRGULE
+                    {:  Variable var = new Variable(new VariableEntry(idf), idfleft + 1);
+                         RESULT = new Affectation(var, e, eleft + 1); :}
+            ;
+
+CONDITION   ::=     SI EXP:e ALORS LINST:li FINSI
+                    {::}
+            ;
+
+LOOP        ::=    TANTQUE EXP:e REPETER LINST:li FINTANTQUE
+                   {::}
+            ;
+
 EXP         ::=     IDF:idf
                     {: RESULT = new Variable(new VariableEntry(idf), idfleft + 1); :}
             |

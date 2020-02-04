@@ -54,6 +54,18 @@ espace = {finDeLigne}  | [ \t\f] | {comment}
 
 "lire"                 { return symbol(CodesLexicaux.LIRE); }
 
+"tantque"              { return symbol(CodesLexicaux.TANTQUE); }
+
+"repeter"              { return symbol(CodesLexicaux.REPETER); }
+
+"fintantque"           { return symbol(CodesLexicaux.FINTANTQUE); }
+
+"si"                   { return symbol(CodesLexicaux.SI); }
+
+"alors"                { return symbol(CodesLexicaux.ALORS); }
+
+"finsi"                { return symbol(CodesLexicaux.FINSI); }
+
 ";"                    { return symbol(CodesLexicaux.POINTVIRGULE); }
 
 {csteE}      	       { return symbol(CodesLexicaux.CSTENTIERE, yytext()); }
