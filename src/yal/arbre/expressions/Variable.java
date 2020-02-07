@@ -2,7 +2,6 @@ package yal.arbre.expressions;
 
 import yal.declaration.TDS;
 import yal.declaration.entries.Entry;
-import yal.declaration.symbols.IntSymbol;
 import yal.declaration.symbols.Symbol;
 
 public class Variable extends Identifiant
