@@ -64,6 +64,8 @@ espace = {finDeLigne}  | [ \t\f] | {comment}
 
 "alors"                { return symbol(CodesLexicaux.ALORS); }
 
+"sinon"                { return symbol(CodesLexicaux.SINON); }
+
 "finsi"                { return symbol(CodesLexicaux.FINSI); }
 
 ";"                    { return symbol(CodesLexicaux.POINTVIRGULE); }

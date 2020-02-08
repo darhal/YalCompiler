@@ -60,15 +60,15 @@ parser code {:
 /* Terminals (tokens returned by the scanner).  */
 
 terminal Symbol    PROGRAMME, DEBUT, FIN, POINTVIRGULE, LIRE, ECRIRE, EQUAL,
-                   TANTQUE, REPETER, FINTANTQUE, SI, ALORS, FINSI;
+                   TANTQUE, REPETER, FINTANTQUE, SI, ALORS, SINON, FINSI;
 terminal String    IDF, CSTENTIERE, TYPE ;
 
 
 /* Non terminals used in the grammar section.  */
 
-non terminal ArbreAbstrait PROG_BODY, PROG, LINST, INST, CONDITION, LOOP;
+non terminal ArbreAbstrait PROG_BODY, PROG, LINST, INST, AFFECT, CONDITION, LOOP;
 non terminal Expression EXP;
-non terminal DECL_LIST, DECL_VAR, AFFECT;
+non terminal DECL_LIST, DECL_VAR;
 
 /* ----------------------------Grammar Section-------------------- */
 
@@ -85,23 +85,30 @@ PROG_BODY   ::=     DECL_LIST LINST: li
             ;
 
 LINST       ::=     LINST:li  INST:i
-                    {: ((BlocDInstructions)li).ajouter(i);
-                        RESULT = li ; :}
+                    {:
+                        ((BlocDInstructions)li).ajouter(i);
+                        RESULT = li ;
+                    :}
             |
                     INST:i
-                    {: BlocDInstructions b = new BlocDInstructions(ileft + 1);
-                       b.ajouter(i);
-                       RESULT = b; :}
+                    {:
+                        BlocDInstructions b = new BlocDInstructions(ileft + 1);
+                        b.ajouter(i);
+                        RESULT = b;
+                    :}
             ;
 
 DECL_LIST   ::=   DECL_VAR DECL_LIST | DECL_VAR ;
 
 DECL_VAR    ::=   TYPE IDF:idf POINTVIRGULE
-                  {: TDS.Instance().AddEntry(new VariableEntry(idf),
-                     new IntSymbol(), idfleft + 1); :}
+                  {:
+                    TDS.Instance().AddEntry(new VariableEntry(idf),
+                    new IntSymbol(), idfleft + 1);
+                  :}
             ;
 
-INST        ::=     AFFECT | CONDITION | LOOP |
+INST        ::=     AFFECT:aff {: RESULT = aff; :} | CONDITION:cond {: RESULT = cond; :} | LOOP:loop {: RESULT = loop; :}
+            |
                     LIRE IDF:idf POINTVIRGULE
                     {:  Variable var = new Variable(new VariableEntry(idf), idfleft + 1);
                         RESULT = new Lire(var, idfleft + 1); :}
@@ -111,20 +118,26 @@ INST        ::=     AFFECT | CONDITION | LOOP |
             ;
 
 AFFECT      ::=     IDF:idf EQUAL EXP:e POINTVIRGULE
-                    {:  Variable var = new Variable(new VariableEntry(idf), idfleft + 1);
+                    {:
+                        Variable var = new Variable(new VariableEntry(idf), idfleft + 1);
                         RESULT = new Affectation(var, e, eleft + 1); :}
             ;
 
-CONDITION   ::=     SI EXP:e ALORS LINST:li FINSI
+CONDITION   ::=     SI EXP:e ALORS LINST:li SINON LINST:oli FINSI
                     {:
-                        Condition condition = new Condition(e, li, eleft);
+                        Condition condition = new Condition(e, li, oli, eleft);
+                        RESULT = condition;
+                    :}
+            |       SI EXP:e ALORS LINST:li FINSI
+                    {:
+                        Condition condition = new Condition(e, li, null, eleft);
                         RESULT = condition;
                     :}
             ;
 
 LOOP        ::=    TANTQUE EXP:e REPETER LINST:li FINTANTQUE
                    {:
-                        Loop loop = new Loop((Expression)e, (BlocDInstructions)li, eleft);
+                        Loop loop = new Loop(e, li, eleft);
                         RESULT = loop;
                    :}
             ;
