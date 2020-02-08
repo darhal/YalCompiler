@@ -15,8 +15,8 @@ main:
 	# Get value of the variable 'a':
 	lw $v0, 0($sp)
 	# Branch Instruction:
-	beq $v0, $zero, end_loop_375
-start_loop_375:
+	beq $v0, $zero, end_loop_855
+start_loop_855:
 	# Loop instructions:
 	# Get value of the variable 'a':
 	lw $v0, 0($sp)
@@ -29,6 +29,6 @@ start_loop_375:
 	li $v0, 11 	# Syscall code for printing one char
 	li $a0, '\n' 	# print new line char
 	syscall
-	bne $v0, $zero, start_loop_375
-end_loop_375:
+	bne $v0, $zero, start_loop_855
+end_loop_855:
 

@@ -60,14 +60,17 @@ parser code {:
 /* Terminals (tokens returned by the scanner).  */
 
 terminal Symbol    PROGRAMME, DEBUT, FIN, POINTVIRGULE, LIRE, ECRIRE, EQUAL,
-                   TANTQUE, REPETER, FINTANTQUE, SI, ALORS, SINON, FINSI;
+                   TANTQUE, REPETER, FINTANTQUE, SI, ALORS, SINON, FINSI,
+                   OP_PLUS, OP_MINUS, OP_MULTIPLY, OP_DIVIDE, OP_GREATER,
+                   OP_LESS, OP_EQUAL, OP_NEQUAL, OP_AND, OP_OR, OP_NOT, PARA_OPEN,
+                   PARA_CLOSE, OPER;
 terminal String    IDF, CSTENTIERE, TYPE ;
 
 
 /* Non terminals used in the grammar section.  */
 
 non terminal ArbreAbstrait PROG_BODY, PROG, LINST, INST, AFFECT, CONDITION, LOOP;
-non terminal Expression EXP;
+non terminal Expression EXP, OPER_EXP;
 non terminal DECL_LIST, DECL_VAR;
 
 /* ----------------------------Grammar Section-------------------- */
@@ -144,7 +147,21 @@ LOOP        ::=    TANTQUE EXP:e REPETER LINST:li FINTANTQUE
 
 EXP         ::=     IDF:idf
                     {: RESULT = new Variable(new VariableEntry(idf), idfleft + 1); :}
-            |
-                    CSTENTIERE:c
+            |       CSTENTIERE:c
                     {: RESULT = new ConstanteEntiere(c, cleft + 1); :}
+            |       OP_NOT EXP:e
+                    {: /*RESULT = new PlusOp(e1, e2, e1left + 1);*/ :}
+            |       OP_MINUS EXP:e
+                    {: /*RESULT = new PlusOp(e1, e2, e1left + 1);*/ :}
+            |       PARA_OPEN EXP:e PARA_CLOSE
+                    {: /*RESULT = new PlusOp(e1, e2, e1left + 1);*/ :}
+            |       OPER_EXP:oexp
+                    {: /*RESULT = new Operation(e1, e2, op, opleft + 1);*/ :}
             ;
+
+OPER_EXP    ::=     OP_PLUS EXP:e1 OPER EXP:e2
+                    {: /*RESULT = new Operation(e1, e2, op, opleft + 1);*/ :}
+            ;
+
+OPER        ::=     OP_PLUS | OP_MINUS | OP_MULTIPLY | OP_DIVIDE | OP_GREATER |
+                    OP_LESS | OP_EQUAL | OP_NEQUAL | OP_AND | OP_OR;

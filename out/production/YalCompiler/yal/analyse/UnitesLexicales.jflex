@@ -70,6 +70,32 @@ espace = {finDeLigne}  | [ \t\f] | {comment}
 
 ";"                    { return symbol(CodesLexicaux.POINTVIRGULE); }
 
+"+"                    { return symbol(CodesLexicaux.OP_PLUS); }
+
+"-"                    { return symbol(CodesLexicaux.OP_MINUS); }
+
+"*"                    { return symbol(CodesLexicaux.OP_MULTIPLY); }
+
+"/"                    { return symbol(CodesLexicaux.OP_DIVIDE); }
+
+">"                    { return symbol(CodesLexicaux.OP_GREATER); }
+
+"<"                    { return symbol(CodesLexicaux.OP_LESS); }
+
+"=="                   { return symbol(CodesLexicaux.OP_EQUAL); }
+
+"!="                   { return symbol(CodesLexicaux.OP_NEQUAL); }
+
+"et"                   { return symbol(CodesLexicaux.OP_AND); }
+
+"ou"                   { return symbol(CodesLexicaux.OP_OR); }
+
+"non"                  { return symbol(CodesLexicaux.OP_NOT); }
+
+"("                    { return symbol(CodesLexicaux.PARA_OPEN); }
+
+")"                    { return symbol(CodesLexicaux.PARA_CLOSE); }
+
 {csteE}      	       { return symbol(CodesLexicaux.CSTENTIERE, yytext()); }
 
 {idf}      	           { return symbol(CodesLexicaux.IDF, yytext()); }
