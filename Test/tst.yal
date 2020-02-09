@@ -2,8 +2,10 @@ programme essai debut
 	entier a;
 	entier b;
 	lire a;
-	a = 5;
-	b = a;
-	a = 1; 
-	ecrire a + a;
+	ecrire a * 2;
+	
+	tantque a != 3 repeter
+		ecrire a;
+		a = a - 1;
+	fintantque
 fin

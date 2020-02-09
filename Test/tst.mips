@@ -12,21 +12,16 @@ main:
 	syscall
 	sw $v0, 0($sp)
 
-	# Integer Constant '5':
-	li $v0, 5
-
-	# Assignement for the variable 'a':
-	sw $v0, 0($sp)
-
 	# Get value of the variable 'a':
 	lw $v0, 0($sp)
+	addi $sp, $sp, -4
+	sw $v0, -8($sp)
 
-	# Assignement for the variable 'b':
-	sw $v0, -4($sp)
-
-	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	sub $v0, $zero, $v0
+	# Integer Constant '2':
+	li $v0, 2
+	lw $t8, -8($sp)
+	addi $sp, $sp, 4
+	mul $v0, $t8, $v0
 
 	# Call write sys call:​
 	move $a0, $v0
@@ -36,4 +31,46 @@ main:
 	li $v0, 11 	# Syscall code for printing one char
 	li $a0, '\n' 	# print new line char
 	syscall
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	addi $sp, $sp, -4
+	sw $v0, -8($sp)
+
+	# Integer Constant '3':
+	li $v0, 3
+	lw $t8, -8($sp)
+	addi $sp, $sp, 4
+	sub $v0, $t8, $v0
+	# Branch Instruction:
+	beq $v0, $zero, end_loop_278
+start_loop_278:
+	# Loop instructions:
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+
+	# Call write sys call:​
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	addi $sp, $sp, -4
+	sw $v0, -8($sp)
+
+	# Integer Constant '1':
+	li $v0, 1
+	lw $t8, -8($sp)
+	addi $sp, $sp, 4
+	sub $v0, $t8, $v0
+
+	# Assignement for the variable 'a':
+	sw $v0, 0($sp)
+	bne $v0, $zero, start_loop_278
+end_loop_278:
 

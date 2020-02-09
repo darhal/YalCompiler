@@ -28,9 +28,9 @@ public class BinaryOperation extends Expression
         int local_offset = TDS.Instance().getVariableZoneSize() * -4;
         String mips = exp1.toMIPS();
         mips += "\taddi $sp, $sp, -4\n"; // Reserve stack
-        mips += "\tsw $v0, "+ local_offset +"$(sp)\n";
+        mips += "\tsw $v0, "+ local_offset +"($sp)\n";
         mips += exp2.toMIPS(); // exp2 is in v0
-        mips += "\tlw $t8, "+ local_offset +"$(sp)\n"; // load exp1 to t8
+        mips += "\tlw $t8, "+ local_offset +"($sp)\n"; // load exp1 to t8
         mips += "\taddi $sp, $sp, 4\n"; // Clear stack
 
         // t8 and v0 now contain exp1 and exp2 respectively
