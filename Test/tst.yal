@@ -1,8 +1,9 @@
 programme essai debut
 	entier a;
+	entier b;
 	lire a;
-	
-	tantque a repeter
-		ecrire a;
-	fintantque
+	a = 5;
+	b = a;
+	a = 1; 
+	ecrire a + a;
 fin

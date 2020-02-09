@@ -5,21 +5,28 @@ main:
 	# Begin stackframe:
 	move $s7, $sp
 	# Allocate for the declared variables:
-	addi $sp, $sp, -4
+	addi $sp, $sp, -8
 
 	# Reads an integer: 
 	li $v0, 5
 	syscall
 	sw $v0, 0($sp)
 
+	# Integer Constant '5':
+	li $v0, 5
+
+	# Assignement for the variable 'a':
+	sw $v0, 0($sp)
+
 	# Get value of the variable 'a':
 	lw $v0, 0($sp)
-	# Branch Instruction:
-	beq $v0, $zero, end_loop_855
-start_loop_855:
-	# Loop instructions:
+
+	# Assignement for the variable 'b':
+	sw $v0, -4($sp)
+
 	# Get value of the variable 'a':
 	lw $v0, 0($sp)
+	sub $v0, $zero, $v0
 
 	# Call write sys call:​
 	move $a0, $v0
@@ -29,6 +36,4 @@ start_loop_855:
 	li $v0, 11 	# Syscall code for printing one char
 	li $a0, '\n' 	# print new line char
 	syscall
-	bne $v0, $zero, start_loop_855
-end_loop_855:
 
