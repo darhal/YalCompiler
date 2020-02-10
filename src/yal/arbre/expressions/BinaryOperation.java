@@ -55,17 +55,17 @@ public class BinaryOperation extends Expression
             case CodesLexicaux.OP_GREATER:
                 int random = (int)(Math.random() * 10000 + 1);
                 mips += "\t# Début comparaison supérieur\n";
-                mips += "Si"+ random +":\n";
+                mips += "si"+ random +":\n";
                 mips += "\t# Soustraction des 2 variables comparées\n";
                 mips += "\tsub $v0, $t8, $v0\n";
                 mips += "\t# Comparaison à 0 du résultat\n";
                 mips += "\tbgtz $v0, Alors" + random +"\n";
                 mips += "\t# Sinon inférieur ou égal à 0 renvoie false\n";
-                mips += "Sinon"+ random +":\n";
+                mips += "sinon"+ random +":\n";
                 mips += "\tli $v0, 0\n";
                 mips += "\tb Fin"+ random +"\n";
                 mips += "\t# Si supérieur à 0 renvoie true\n";
-                mips += "Alors"+ random +":\n";
+                mips += "alors"+ random +":\n";
                 mips += "\tli $v0, 1\n";
                 mips += "Fin"+ random +":\n";
                 break;
