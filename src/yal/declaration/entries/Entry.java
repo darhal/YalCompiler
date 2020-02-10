@@ -5,10 +5,12 @@ import java.util.Objects;
 public abstract class Entry
 {
     protected String idf;
+    protected int line;
 
-    protected Entry(String idf)
+    protected Entry(String idf, int line)
     {
         this.idf = idf;
+        this.line = line;
     }
 
     public String getIdentifier()
@@ -27,5 +29,9 @@ public abstract class Entry
     @Override
     public int hashCode() {
         return Objects.hash(idf);
+    }
+
+    public int getLine() {
+        return line;
     }
 }

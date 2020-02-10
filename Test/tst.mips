@@ -4,30 +4,38 @@
 main:
 	# Begin stackframe:
 	move $s7, $sp
-	# Allocate for the declared variables:
-	addi $sp, $sp, -8
 
-	# Reads an integer: 
+	# Integer Constant '5':
 	li $v0, 5
-	syscall
-	sw $v0, 0($sp)
-start_loop_112:
-
-	# Get value of the variable 'a':
-	lw $v0, 0($sp)
 	addi $sp, $sp, -4
-	sw $v0, -8($sp)
+	sw $v0, 0($sp)
 
-	# Integer Constant '3':
-	li $v0, 3
-	lw $t8, -8($sp)
+	# Integer Constant '6':
+	li $v0, 6
+	addi $sp, $sp, -4
+	sw $v0, 0($sp)
+
+	# Integer Constant '7':
+	li $v0, 7
+	lw $t8, 0($sp)
 	addi $sp, $sp, 4
-	sub $v0, $t8, $v0
-	# Branch Instruction:
-	beq $v0, $zero, end_loop_112
-	# Loop instructions:
-	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	# Division:
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, 0($sp)
+
+	# Integer Constant '8':
+	li $v0, 8
+	lw $t8, 0($sp)
+	addi $sp, $sp, 4
+	# Division:
+	div $t8, $v0
+	mflo $v0
+	lw $t8, 0($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
 
 	# Call write sys call:​
 	move $a0, $v0
@@ -37,20 +45,4 @@ start_loop_112:
 	li $v0, 11 	# Syscall code for printing one char
 	li $a0, '\n' 	# print new line char
 	syscall
-
-	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	addi $sp, $sp, -4
-	sw $v0, -8($sp)
-
-	# Integer Constant '1':
-	li $v0, 1
-	lw $t8, -8($sp)
-	addi $sp, $sp, 4
-	sub $v0, $t8, $v0
-
-	# Assignement for the variable 'a':
-	sw $v0, 0($sp)
-	bne $v0, $zero, start_loop_112
-end_loop_112:
 

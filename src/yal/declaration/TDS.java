@@ -36,7 +36,7 @@ public class TDS
     public Symbol Identify(Entry e) throws IdentifiantNonDeclarerException
     {
         if (symbolMap.get(e) == null){
-            throw new IdentifiantNonDeclarerException();
+            throw new IdentifiantNonDeclarerException(e.getLine());
         }
 
         return symbolMap.get(e);

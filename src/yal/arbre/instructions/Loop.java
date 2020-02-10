@@ -24,7 +24,7 @@ public class Loop extends Instruction
 
     public String toMIPS()
     {
-        int random = (int)(Math.random() * 1000 + 1);
+        int random = (int)(Math.random() * 10000 + 1);
         String start = "start_loop_"+random;
         String end = "end_loop_"+random;
         String mips = "";

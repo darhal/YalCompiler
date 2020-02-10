@@ -30,7 +30,7 @@ public class Condition extends Instruction
     public String toMIPS()
     {
         String mips = "\n\t# Condition Instruction:";
-        int random = (int)(Math.random() * 1000 + 1);
+        int random = (int)(Math.random() * 10000 + 1);
         String label_name = "sinon_"+random;
         String end_si = "fsi_"+random;
         mips += exp.toMIPS();

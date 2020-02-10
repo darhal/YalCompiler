@@ -112,7 +112,7 @@ DECL_LIST   ::=   DECL_VAR DECL_LIST | DECL_VAR ;
 
 DECL_VAR    ::=   TYPE IDF:idf POINTVIRGULE
                   {:
-                    TDS.Instance().AddEntry(new VariableEntry(idf),
+                    TDS.Instance().AddEntry(new VariableEntry(idf, idfleft + 1),
                     new IntSymbol(), idfleft + 1);
                   :}
             ;
@@ -122,7 +122,7 @@ INST        ::=     AFFECT:aff {: RESULT = aff; :}
             |       LOOP:loop {: RESULT = loop; :}
             |
                     LIRE IDF:idf POINTVIRGULE
-                    {:  Variable var = new Variable(new VariableEntry(idf), idfleft + 1);
+                    {:  Variable var = new Variable(new VariableEntry(idf, idfleft + 1), idfleft + 1);
                         RESULT = new Lire(var, idfleft + 1); :}
             |
                     ECRIRE EXP:e POINTVIRGULE
@@ -131,7 +131,7 @@ INST        ::=     AFFECT:aff {: RESULT = aff; :}
 
 AFFECT      ::=     IDF:idf EQUAL EXP:e POINTVIRGULE
                     {:
-                        Variable var = new Variable(new VariableEntry(idf), idfleft + 1);
+                        Variable var = new Variable(new VariableEntry(idf, idfleft + 1), idfleft + 1);
                         RESULT = new Affectation(var, e, eleft + 1); :}
             ;
 
@@ -155,7 +155,7 @@ LOOP        ::=    TANTQUE EXP:e REPETER LINST:li FINTANTQUE
             ;
 
 EXP         ::=
-            IDF:idf{: RESULT = new Variable(new VariableEntry(idf), idfleft + 1); :}
+            IDF:idf{: RESULT = new Variable(new VariableEntry(idf, idfleft + 1), idfleft + 1); :}
             |CSTENTIERE:c{: RESULT = new ConstanteEntiere(c, cleft + 1); :}
             |OP_NOT EXP:e{: RESULT = new UnaryOperation(e, CodesLexicaux.OP_NOT, eleft + 1); :}
             |OP_MINUS EXP:e{: RESULT = new UnaryOperation(e, CodesLexicaux.OP_MINUS, eleft + 1); :}
