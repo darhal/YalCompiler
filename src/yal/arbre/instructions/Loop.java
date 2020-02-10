@@ -28,10 +28,10 @@ public class Loop extends Instruction
         String start = "start_loop_"+random;
         String end = "end_loop_"+random;
         String mips = "";
+        mips += start+":\n";
         mips += exp.toMIPS();
         mips += "\t# Branch Instruction:\n";
         mips += "\tbeq $v0, $zero, "+end+"\n";
-        mips += start+":\n";
         mips += "\t# Loop instructions:";
         mips += inst.toMIPS();
         mips += "\tbne $v0, $zero, "+start+"\n";

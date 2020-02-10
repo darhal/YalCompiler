@@ -11,26 +11,7 @@ main:
 	li $v0, 5
 	syscall
 	sw $v0, 0($sp)
-
-	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	addi $sp, $sp, -4
-	sw $v0, -8($sp)
-
-	# Integer Constant '2':
-	li $v0, 2
-	lw $t8, -8($sp)
-	addi $sp, $sp, 4
-	mul $v0, $t8, $v0
-
-	# Call write sys call:​
-	move $a0, $v0
-	li $v0, 1
-	syscall
-	# Return to line:
-	li $v0, 11 	# Syscall code for printing one char
-	li $a0, '\n' 	# print new line char
-	syscall
+start_loop_112:
 
 	# Get value of the variable 'a':
 	lw $v0, 0($sp)
@@ -43,8 +24,7 @@ main:
 	addi $sp, $sp, 4
 	sub $v0, $t8, $v0
 	# Branch Instruction:
-	beq $v0, $zero, end_loop_278
-start_loop_278:
+	beq $v0, $zero, end_loop_112
 	# Loop instructions:
 	# Get value of the variable 'a':
 	lw $v0, 0($sp)
@@ -71,6 +51,6 @@ start_loop_278:
 
 	# Assignement for the variable 'a':
 	sw $v0, 0($sp)
-	bne $v0, $zero, start_loop_278
-end_loop_278:
+	bne $v0, $zero, start_loop_112
+end_loop_112:
 

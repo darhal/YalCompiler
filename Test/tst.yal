@@ -2,7 +2,6 @@ programme essai debut
 	entier a;
 	entier b;
 	lire a;
-	ecrire a * 2;
 	
 	tantque a != 3 repeter
 		ecrire a;
