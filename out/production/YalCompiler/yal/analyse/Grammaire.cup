@@ -76,9 +76,12 @@ non terminal Expression EXP;
 non terminal DECL_LIST, DECL_VAR;
 // non terminal Integer OPER;
 
-precedence left OP_PLUS, OP_MINUS, OP_MULTIPLY, OP_DIVIDE,
-                OP_GREATER, OP_LESS, OP_EQUAL, OP_NEQUAL, OP_AND,
-                OP_OR, OP_NOT;
+
+precedence left OP_PLUS, OP_MINUS;
+
+precedence left OP_MULTIPLY, OP_DIVIDE;
+
+precedence left OP_GREATER, OP_LESS, OP_EQUAL, OP_NEQUAL, OP_AND, OP_OR, OP_NOT;
 
 /* ----------------------------Grammar Section-------------------- */
 
