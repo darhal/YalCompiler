@@ -1,4 +1,5 @@
 .data
+	div_by0: .asciiz "[RUNTIME ERROR]: Division by zero detected."
 .text
 
 main:
@@ -10,32 +11,15 @@ main:
 	addi $sp, $sp, -4
 	sw $v0, 0($sp)
 
-	# Integer Constant '6':
-	li $v0, 6
-	addi $sp, $sp, -4
-	sw $v0, 0($sp)
-
-	# Integer Constant '7':
-	li $v0, 7
+	# Integer Constant '0':
+	li $v0, 0
 	lw $t8, 0($sp)
 	addi $sp, $sp, 4
 	# Division:
+# test si on divise par 0
+beqz $v0, div_by_zero
 	div $t8, $v0
 	mflo $v0
-	addi $sp, $sp, -4
-	sw $v0, 0($sp)
-
-	# Integer Constant '8':
-	li $v0, 8
-	lw $t8, 0($sp)
-	addi $sp, $sp, 4
-	# Division:
-	div $t8, $v0
-	mflo $v0
-	lw $t8, 0($sp)
-	addi $sp, $sp, 4
-	# Addition:
-	add $v0, $t8, $v0
 
 	# Call write sys call:​
 	move $a0, $v0
@@ -44,5 +28,16 @@ main:
 	# Return to line:
 	li $v0, 11 	# Syscall code for printing one char
 	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Handle program exit
+exit:
+	li $v0, 10
+	syscall
+
+	 # Handle RUNTIME errors
+div_by_zero:
+	la $a0, div_by0
+	li $v0, 4
 	syscall
 

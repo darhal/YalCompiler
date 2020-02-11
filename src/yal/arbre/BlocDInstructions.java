@@ -44,6 +44,7 @@ public class BlocDInstructions extends ArbreAbstrait {
         if (FIRST_TIME) {
             code_mips =
                     ".data\n" +
+                    "\tdiv_by0: .asciiz \"[RUNTIME ERROR]: Division by zero detected.\"\n" +
                     ".text\n" +
                     "\n" +
                     "main:\n" +

@@ -1,9 +1,0 @@
-programme test debut // erreur double declaratation
-entier a; 
-entier b;
-entier a;
-a = 3;
-ecrire a;
-ecrire b;
-fin
-

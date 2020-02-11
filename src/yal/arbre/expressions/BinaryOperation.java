@@ -49,6 +49,8 @@ public class BinaryOperation extends Expression
                 break;
             case CodesLexicaux.OP_DIVIDE:
                 mips += "\t# Division:\n";
+                mips += "# test si on divise par 0\n";
+                mips += "beqz $v0, div_by_zero\n";
                 mips += "\tdiv $t8, $v0\n"; // Division
                 mips += "\tmflo $v0\n"; // Get quotient
                 break;
@@ -59,7 +61,7 @@ public class BinaryOperation extends Expression
                 mips += "\t# Soustraction des 2 variables comparées\n";
                 mips += "\tsub $v0, $t8, $v0\n";
                 mips += "\t# Comparaison à 0 du résultat\n";
-                mips += "\tbgtz $v0, Alors" + random +"\n";
+                mips += "\tbgtz $v0, alors" + random +"\n";
                 mips += "\t# Sinon inférieur ou égal à 0 renvoie false\n";
                 mips += "sinon"+ random +":\n";
                 mips += "\tli $v0, 0\n";

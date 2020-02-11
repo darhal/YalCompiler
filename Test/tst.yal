@@ -1,3 +1,3 @@
 programme essai debut
-	ecrire 5 + ((6 / 7) / 8);
+	ecrire 5 / 0;
 fin
