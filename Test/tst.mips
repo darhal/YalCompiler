@@ -1,35 +1,37 @@
 .data
 	div_by0: .asciiz "[RUNTIME ERROR]: Division by zero detected."
+	true_str: .asciiz "vrai"
+	false_str: .asciiz "faux"
 .text
 
 main:
 	# Begin stackframe:
 	move $s7, $sp
 
-	# Integer Constant '5':
-	li $v0, 5
+	# Integer Constant '6':
+	li $v0, 6
 	addi $sp, $sp, -4
 	sw $v0, 0($sp)
 
-	# Integer Constant '0':
-	li $v0, 0
+	# Integer Constant '5':
+	li $v0, 5
 	lw $t8, 0($sp)
 	addi $sp, $sp, 4
-	# Division:
-# test si on divise par 0
-beqz $v0, div_by_zero
-	div $t8, $v0
-	mflo $v0
+	# Less:
+	slt $v0, $t8, $v0
 
-	# Call write sys call:​
-	move $a0, $v0
-	li $v0, 1
+	 # Evalue if the expression is true or false
+	beq $v0, $zero, wfalse_9590
+wtrue_9590:
+	la $a0, true_str
+	li $v0, 4
 	syscall
-	# Return to line:
-	li $v0, 11 	# Syscall code for printing one char
-	li $a0, '\n' 	# print new line char
+	j wend_9590
+wfalse_9590:
+	la $a0, false_str
+	li $v0, 4
 	syscall
-
+wend_9590:
 	# Handle program exit
 exit:
 	li $v0, 10

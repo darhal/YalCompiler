@@ -72,7 +72,7 @@ terminal String    IDF, CSTENTIERE, TYPE;
 /* Non terminals used in the grammar section.  */
 
 non terminal ArbreAbstrait PROG_BODY, PROG, LINST, INST, AFFECT, CONDITION, LOOP;
-non terminal Expression EXP;
+non terminal Expression EXP, LOGIC_EXP;
 non terminal DECL_LIST, DECL_VAR;
 // non terminal Integer OPER;
 
@@ -138,19 +138,19 @@ AFFECT      ::=     IDF:idf EQUAL EXP:e POINTVIRGULE
                         RESULT = new Affectation(var, e, eleft + 1); :}
             ;
 
-CONDITION   ::=     SI EXP:e ALORS LINST:li SINON LINST:oli FINSI
+CONDITION   ::=     SI LOGIC_EXP:e ALORS LINST:li SINON LINST:oli FINSI
                     {:
                         Condition condition = new Condition(e, li, oli, eleft);
                         RESULT = condition;
                     :}
-            |       SI EXP:e ALORS LINST:li FINSI
+            |       SI LOGIC_EXP:e ALORS LINST:li FINSI
                     {:
                         Condition condition = new Condition(e, li, null, eleft);
                         RESULT = condition;
                     :}
             ;
 
-LOOP        ::=    TANTQUE EXP:e REPETER LINST:li FINTANTQUE
+LOOP        ::=    TANTQUE LOGIC_EXP:e REPETER LINST:li FINTANTQUE
                    {:
                         Loop loop = new Loop(e, li, eleft);
                         RESULT = loop;
@@ -160,29 +160,21 @@ LOOP        ::=    TANTQUE EXP:e REPETER LINST:li FINTANTQUE
 EXP         ::=
             IDF:idf{: RESULT = new Variable(new VariableEntry(idf, idfleft + 1), idfleft + 1); :}
             |CSTENTIERE:c{: RESULT = new ConstanteEntiere(c, cleft + 1); :}
-            |OP_NOT EXP:e{: RESULT = new UnaryOperation(e, CodesLexicaux.OP_NOT, eleft + 1); :}
-            |OP_MINUS EXP:e{: RESULT = new UnaryOperation(e, CodesLexicaux.OP_MINUS, eleft + 1); :}
             |PARA_OPEN EXP:e PARA_CLOSE{: RESULT = e; :}
-            |EXP:e1 OP_PLUS EXP:e2{:RESULT = new BinaryOperation(e1, e2, CodesLexicaux.OP_PLUS, e1left + 1);:}
-            |EXP:e1 OP_MINUS EXP:e2{:RESULT = new BinaryOperation(e1, e2, CodesLexicaux.OP_MINUS, e1left + 1);:}
-            |EXP:e1 OP_MULTIPLY EXP:e2{:RESULT = new BinaryOperation(e1, e2, CodesLexicaux.OP_MULTIPLY, e1left + 1);:}
-            |EXP:e1 OP_DIVIDE EXP:e2{:RESULT = new BinaryOperation(e1, e2, CodesLexicaux.OP_DIVIDE, e1left + 1);:}
-            |EXP:e1 OP_GREATER EXP:e2{:RESULT = new BinaryOperation(e1, e2, CodesLexicaux.OP_GREATER, e1left + 1);:}
-            |EXP:e1 OP_LESS EXP:e2{:RESULT = new BinaryOperation(e1, e2, CodesLexicaux.OP_LESS, e1left + 1);:}
-            |EXP:e1 OP_EQUAL EXP:e2{:RESULT = new BinaryOperation(e1, e2, CodesLexicaux.OP_EQUAL, e1left + 1);:}
-            |EXP:e1 OP_NEQUAL EXP:e2{:RESULT = new BinaryOperation(e1, e2, CodesLexicaux.OP_NEQUAL, e1left + 1);:}
-            |EXP:e1 OP_AND EXP:e2{:RESULT = new BinaryOperation(e1, e2, CodesLexicaux.OP_AND, e1left + 1);:}
-            |EXP:e1 OP_OR EXP:e2{:RESULT = new BinaryOperation(e1, e2, CodesLexicaux.OP_OR, e1left + 1);:}
+            |OP_MINUS EXP:e{: RESULT = new UnaryOperation(e, OperatorsTypes.MINUS, ExpressionType.ARITHMETIC, eleft + 1); :}
+            |EXP:e1 OP_PLUS EXP:e2{:RESULT = new BinaryOperation(e1, e2, OperatorsTypes.PLUS, ExpressionType.ARITHMETIC, e1left + 1);:}
+            |EXP:e1 OP_MINUS EXP:e2{:RESULT = new BinaryOperation(e1, e2, OperatorsTypes.MINUS, ExpressionType.ARITHMETIC, e1left + 1);:}
+            |EXP:e1 OP_MULTIPLY EXP:e2{:RESULT = new BinaryOperation(e1, e2, OperatorsTypes.MULTIPLY, ExpressionType.ARITHMETIC, e1left + 1);:}
+            |EXP:e1 OP_DIVIDE EXP:e2{:RESULT = new BinaryOperation(e1, e2, OperatorsTypes.DIVIDE, ExpressionType.ARITHMETIC, e1left + 1);:}
+            |LOGIC_EXP:lexp {:RESULT = lexp;:}
             ;
 
-/*OPER        ::= OP_PLUS  {: RESULT = CodesLexicaux.OP_PLUS; :}
-            | OP_MINUS   {: RESULT = CodesLexicaux.OP_MINUS; :}
-            | OP_MULTIPLY{: RESULT = CodesLexicaux.OP_MULTIPLY; :}
-            | OP_DIVIDE  {: RESULT = CodesLexicaux.OP_DIVIDE; :}
-            | OP_GREATER {: RESULT = CodesLexicaux.OP_GREATER; :}
-            | OP_LESS    {: RESULT = CodesLexicaux.OP_LESS; :}
-            | OP_EQUAL   {: RESULT = CodesLexicaux.OP_EQUAL; :}
-            | OP_NEQUAL  {: RESULT = CodesLexicaux.OP_NEQUAL; :}
-            | OP_AND     {: RESULT = CodesLexicaux.OP_AND; :}
-            | OP_OR      {: RESULT = CodesLexicaux.OP_OR; :}
-            ;*/
+LOGIC_EXP   ::=
+            OP_NOT EXP:e{: RESULT = new UnaryOperation(e, OperatorsTypes.NOT, ExpressionType.LOGIC, eleft + 1); :}
+            |EXP:e1 OP_GREATER EXP:e2{:RESULT = new BinaryOperation(e1, e2, OperatorsTypes.GREATER, ExpressionType.LOGIC, e1left + 1);:}
+            |EXP:e1 OP_LESS EXP:e2{:RESULT = new BinaryOperation(e1, e2, OperatorsTypes.LESS, ExpressionType.LOGIC, e1left + 1);:}
+            |EXP:e1 OP_EQUAL EXP:e2{:RESULT = new BinaryOperation(e1, e2, OperatorsTypes.EQUAL, ExpressionType.LOGIC, e1left + 1);:}
+            |EXP:e1 OP_NEQUAL EXP:e2{:RESULT = new BinaryOperation(e1, e2, OperatorsTypes.NEQUAL, ExpressionType.LOGIC, e1left + 1);:}
+            |EXP:e1 OP_AND EXP:e2{:RESULT = new BinaryOperation(e1, e2, OperatorsTypes.AND, ExpressionType.LOGIC, e1left + 1);:}
+            |EXP:e1 OP_OR EXP:e2{:RESULT = new BinaryOperation(e1, e2, OperatorsTypes.OR, ExpressionType.LOGIC, e1left + 1);:}
+            ;

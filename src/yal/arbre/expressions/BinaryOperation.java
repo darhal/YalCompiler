@@ -1,17 +1,18 @@
 package yal.arbre.expressions;
 
-import yal.analyse.CodesLexicaux;
+import yal.arbre.OperatorsTypes;
 import yal.declaration.TDS;
+import yal.exceptions.TypeMismatchException;
 
 public class BinaryOperation extends Expression
 {
     protected Expression exp1;
     protected Expression exp2;
-    protected int op;
+    protected OperatorsTypes op;
 
-    public BinaryOperation(Expression e1, Expression e2, int op, int n)
+    public BinaryOperation(Expression e1, Expression e2, OperatorsTypes op, ExpressionType type, int n)
     {
-        super(n);
+        super(type, n);
         this.exp1 = e1;
         this.exp2 = e2;
         this.op = op;
@@ -19,6 +20,11 @@ public class BinaryOperation extends Expression
 
     @Override
     public void verifier() {
+        if (type == ExpressionType.ARITHMETIC && (exp1.type == ExpressionType.LOGIC || exp2.type == ExpressionType.LOGIC)) {
+            throw new TypeMismatchException(this.getNoLigne(),
+                    "Attempt to perform a binary arithmetic operation on non arithmetic operands.");
+        }
+
         exp1.verifier();
         exp2.verifier();
     }
@@ -35,26 +41,26 @@ public class BinaryOperation extends Expression
 
         // t8 and v0 now contain exp1 and exp2 respectively
         switch(op){
-            case CodesLexicaux.OP_PLUS:
+            case PLUS:
                 mips += "\t# Addition:\n";
                 mips += "\tadd $v0, $t8, $v0\n"; // Addition
                 break;
-            case CodesLexicaux.OP_MINUS:
+            case MINUS:
                 mips += "\t# Substraction:\n";
                 mips += "\tsub $v0, $t8, $v0\n"; // Subtraction
                 break;
-            case CodesLexicaux.OP_MULTIPLY:
+            case MULTIPLY:
                 mips += "\t# Multiplication:\n";
                 mips += "\tmul $v0, $t8, $v0\n"; // Multiplication (No overflow!)
                 break;
-            case CodesLexicaux.OP_DIVIDE:
+            case DIVIDE:
                 mips += "\t# Division:\n";
                 mips += "# test si on divise par 0\n";
                 mips += "beqz $v0, div_by_zero\n";
                 mips += "\tdiv $t8, $v0\n"; // Division
                 mips += "\tmflo $v0\n"; // Get quotient
                 break;
-            case CodesLexicaux.OP_GREATER:
+            case GREATER:
                 int random = (int)(Math.random() * 10000 + 1);
                 mips += "\t# Début comparaison supérieur\n";
                 mips += "si"+ random +":\n";
@@ -71,24 +77,24 @@ public class BinaryOperation extends Expression
                 mips += "\tli $v0, 1\n";
                 mips += "Fin"+ random +":\n";
                 break;
-            case CodesLexicaux.OP_LESS:
+            case LESS:
                 mips += "\t# Less:\n";
                 mips += "\tslt $v0, $t8, $v0\n"; // Less then ($v0 is set to 1 if $t8 < $v0, 0 otherwise)
                 break;
-            case CodesLexicaux.OP_EQUAL:
+            case EQUAL:
                 mips += "\t# Equal:\n";
                 mips += "\tsub $v0, $t8, $v0\n"; // Simulate equal operation with subtraction (0 if $t8 == $v0, 1 otherwise)
                 mips += "\txori $v0, $v0, 1\n"; // Flip $v0 using xori
                 break;
-            case CodesLexicaux.OP_NEQUAL:
+            case NEQUAL:
                 mips += "\t# Not Equal:\n";
                 mips += "\tsub $v0, $t8, $v0\n"; // Simulate not equal operation with subtraction (0 if $t8 == $v0, 1 otherwise)
                 break;
-            case CodesLexicaux.OP_AND:
+            case AND:
                 mips += "\t# And:\n";
                 mips += "\tand $v0, $t8, $v0\n"; // AND
                 break;
-            case CodesLexicaux.OP_OR:
+            case OR:
                 mips += "\t# Or:\n";
                 mips += "\tor $v0, $t8, $v0\n"; // OR
                 break;
@@ -97,5 +103,9 @@ public class BinaryOperation extends Expression
         }
 
         return mips;
+    }
+
+    public OperatorsTypes getOp() {
+        return op;
     }
 }
