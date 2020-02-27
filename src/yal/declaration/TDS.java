@@ -44,6 +44,14 @@ public class TDS
 
     public int getVariableZoneSize()
     {
-        return symbolMap.size();
+        int sz = 0;
+
+        for (Entry s : symbolMap.keySet()){
+            if (s.getEntryType() == 1){
+                sz++;
+            }
+        }
+
+        return sz;
     }
 }

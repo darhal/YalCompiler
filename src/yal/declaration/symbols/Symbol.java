@@ -18,4 +18,6 @@ public abstract class Symbol
     {
         offset = offset + incr;
     }
+
+
 }

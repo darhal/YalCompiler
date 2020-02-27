@@ -34,4 +34,8 @@ public abstract class Entry
     public int getLine() {
         return line;
     }
+
+    public int getEntryType() {
+        return 1;
+    }
 }

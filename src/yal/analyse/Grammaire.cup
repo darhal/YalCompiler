@@ -61,7 +61,7 @@ parser code {:
 
 terminal Symbol    PROGRAMME, DEBUT, FIN, POINTVIRGULE, LIRE, ECRIRE, EQUAL,
                    TANTQUE, REPETER, FINTANTQUE, SI, ALORS, SINON, FINSI,
-                   PARA_OPEN, PARA_CLOSE;
+                   PARA_OPEN, PARA_CLOSE, FONCTION, RETOURNE;
 
 terminal int       OP_PLUS, OP_MINUS, OP_MULTIPLY, OP_DIVIDE,
                    OP_GREATER, OP_LESS, OP_EQUAL, OP_NEQUAL, OP_AND,
@@ -72,8 +72,8 @@ terminal String    IDF, CSTENTIERE, TYPE;
 /* Non terminals used in the grammar section.  */
 
 non terminal ArbreAbstrait PROG_BODY, PROG, LINST, INST, AFFECT, CONDITION, LOOP;
-non terminal Expression EXP, LOGIC_EXP;
-non terminal DECL_LIST, DECL_VAR;
+non terminal Expression EXP, LOGIC_EXP, RETOURNE_INST, FUNC_CALL;
+non terminal DECL_LIST, DECL_VAR, DECAL_FONCTION, PARAMETERS;
 // non terminal Integer OPER;
 
 
@@ -111,18 +111,47 @@ LINST       ::=     LINST:li  INST:i
                     :}
             ;
 
-DECL_LIST   ::=   DECL_VAR DECL_LIST | DECL_VAR ;
+DECL_LIST   ::=   DECL_VAR DECL_LIST | DECAL_FONCTION DECL_LIST | DECL_VAR | DECAL_FONCTION;
 
 DECL_VAR    ::=   TYPE IDF:idf POINTVIRGULE
                   {:
-                    TDS.Instance().AddEntry(new VariableEntry(idf, idfleft + 1),
-                    new IntSymbol(), idfleft + 1);
+                    TDS.Instance().AddEntry(new VariableEntry(idf, idfleft + 1), new IntSymbol(), idfleft + 1);
                   :}
             ;
+
+DECAL_FONCTION ::= FONCTION IDF:idf PARAMETERS DEBUT LINST:li FIN
+                   {:
+                        FonctionEntry entree = new FonctionEntry(idf, idfleft + 1);
+                        TDS.Instance().AddEntry(
+                            entree,
+                            new FonctionSymbol(new Fonction(entree, li, idfleft+1)),
+                            idfleft + 1
+                        );
+                   :}
+                   |
+                   FONCTION IDF:idf PARAMETERS DEBUT LINST:li RETOURNE_INST:ri FIN
+                   {:
+                        ((BlocDInstructions)li).ajouter(ri);
+                        FonctionEntry entree = new FonctionEntry(idf, idfleft + 1);
+                        TDS.Instance().AddEntry(
+                            entree,
+                            new FonctionSymbol(new Fonction(entree, li, idfleft+1)),
+                            idfleft + 1
+                        );
+                   :}
+            ;
+
+RETOURNE_INST  ::=  RETOURNE EXP:e POINTVIRGULE
+                    {:
+                        RESULT = e;
+                    :};
+
+PARAMETERS  ::=     PARA_OPEN PARA_CLOSE {::};
 
 INST        ::=     AFFECT:aff {: RESULT = aff; :}
             |       CONDITION:cond {: RESULT = cond; :}
             |       LOOP:loop {: RESULT = loop; :}
+            |       FUNC_CALL:func_call {: RESULT = func_call; :}
             |
                     LIRE IDF:idf POINTVIRGULE
                     {:  Variable var = new Variable(new VariableEntry(idf, idfleft + 1), idfleft + 1);
@@ -130,6 +159,12 @@ INST        ::=     AFFECT:aff {: RESULT = aff; :}
             |
                     ECRIRE EXP:e POINTVIRGULE
                     {: RESULT = new Ecrire(e, eleft + 1) ; :}
+            ;
+
+FUNC_CALL   ::=     IDF:idf PARAMETERS POINTVIRGULE
+                    {:
+                        RESULT = new FunctionCall(new FonctionEntry(idf, idfleft + 1), idfleft + 1) ;
+                    :}
             ;
 
 AFFECT      ::=     IDF:idf EQUAL EXP:e POINTVIRGULE
@@ -167,6 +202,7 @@ EXP         ::=
             |EXP:e1 OP_MULTIPLY EXP:e2{:RESULT = new BinaryOperation(e1, e2, OperatorsTypes.MULTIPLY, ExpressionType.ARITHMETIC, e1left + 1);:}
             |EXP:e1 OP_DIVIDE EXP:e2{:RESULT = new BinaryOperation(e1, e2, OperatorsTypes.DIVIDE, ExpressionType.ARITHMETIC, e1left + 1);:}
             |LOGIC_EXP:lexp {:RESULT = lexp;:}
+            |IDF:idf PARAMETERS{: RESULT = new FunctionCall(new FonctionEntry(idf, idfleft + 1), idfleft + 1) ; :}
             ;
 
 LOGIC_EXP   ::=

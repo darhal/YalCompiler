@@ -1,3 +1,16 @@
 programme essai debut
-	ecrire (6 < 5);
+	fonction a() debut
+		ecrire 54;
+		ecrire 55;
+	fin
+	fonction test() debut
+		ecrire 1;
+		a();
+		ecrire 8;
+		retourne 5;
+	fin
+	entier a;
+	
+	a = test();
+	ecrire a;
 fin

@@ -54,6 +54,10 @@ espace = {finDeLigne}  | [ \t\f] | {comment}
 
 "lire"                 { return symbol(CodesLexicaux.LIRE); }
 
+"fonction"             { return symbol(CodesLexicaux.FONCTION); }
+
+"retourne"             { return symbol(CodesLexicaux.RETOURNE); }
+
 "tantque"              { return symbol(CodesLexicaux.TANTQUE); }
 
 "repeter"              { return symbol(CodesLexicaux.REPETER); }

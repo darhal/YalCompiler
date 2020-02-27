@@ -1,12 +1,17 @@
 package yal;
 
 import java.io.*;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import yal.analyse.AnalyseurLexical;
 import yal.analyse.AnalyseurSyntaxique;
 import yal.arbre.ArbreAbstrait;
+import yal.declaration.TDS;
+import yal.declaration.entries.Entry;
+import yal.declaration.symbols.FonctionSymbol;
+import yal.declaration.symbols.Symbol;
 import yal.exceptions.AnalyseException;
 
 public class Yal {
@@ -21,7 +26,7 @@ public class Yal {
 
             String nomSortie = nomFichier.replaceAll("[.]yal", ".mips") ;
             PrintWriter flot = new PrintWriter(new BufferedWriter(new FileWriter(nomSortie))) ;
-            flot.println(arbre.toMIPS() +
+            String code_mips = arbre.toMIPS() +
                     "\n\t# Handle program exit\n"+
                     "exit:\n"+
                     "\tli $v0, 10\n"+
@@ -30,8 +35,14 @@ public class Yal {
                     "div_by_zero:\n"+
                     "\tla $a0, div_by0\n" +
                     "\tli $v0, 4\n" +
-                    "\tsyscall\n"
-            );
+                    "\tsyscall\n";
+
+            for (Map.Entry<Entry, Symbol> pair : TDS.Instance().symbolMap.entrySet()) {
+                if (pair.getKey().getEntryType() == 0){
+                    code_mips += "\n"+((FonctionSymbol)pair.getValue()).getFonction().toMIPS()+"\n";
+                }
+            }
+            flot.println(code_mips);
             flot.close() ;
         } catch (FileNotFoundException ex) {
             System.err.println("Fichier " + nomFichier + " inexistant") ;

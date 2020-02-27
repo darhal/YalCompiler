@@ -7,31 +7,26 @@
 main:
 	# Begin stackframe:
 	move $s7, $sp
-
-	# Integer Constant '6':
-	li $v0, 6
+	# Allocate for the declared variables:
 	addi $sp, $sp, -4
+
+	jal test
+
+	# Assignement for the variable 'a':
 	sw $v0, 0($sp)
 
-	# Integer Constant '5':
-	li $v0, 5
-	lw $t8, 0($sp)
-	addi $sp, $sp, 4
-	# Less:
-	slt $v0, $t8, $v0
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
 
-	 # Evalue if the expression is true or false
-	beq $v0, $zero, wfalse_9590
-wtrue_9590:
-	la $a0, true_str
-	li $v0, 4
+	# Call write sys call:​
+	move $a0, $v0
+	li $v0, 1
 	syscall
-	j wend_9590
-wfalse_9590:
-	la $a0, false_str
-	li $v0, 4
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
 	syscall
-wend_9590:
+
 	# Handle program exit
 exit:
 	li $v0, 10
@@ -42,4 +37,81 @@ div_by_zero:
 	la $a0, div_by0
 	li $v0, 4
 	syscall
+
+	# Declaration of function: a
+a:
+	# Pushing in the function environments (Creating the stack frame)
+	move $s2, $sp
+	addi $sp, $sp, -4
+	sw $ra, 0($sp)
+
+	# Integer Constant '54':
+	li $v0, 54
+
+	# Call write sys call:​
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Integer Constant '55':
+	li $v0, 55
+
+	# Call write sys call:​
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+	# Popping out the function environments (Popping the stack frame)
+	lw $ra, 0($sp)
+	move $sp, $s2
+	jr $ra
+
+
+	# Declaration of function: test
+test:
+	# Pushing in the function environments (Creating the stack frame)
+	move $s2, $sp
+	addi $sp, $sp, -4
+	sw $ra, 0($sp)
+
+	# Integer Constant '1':
+	li $v0, 1
+
+	# Call write sys call:​
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	jal a
+
+	# Integer Constant '8':
+	li $v0, 8
+
+	# Call write sys call:​
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Integer Constant '5':
+	li $v0, 5
+	# Popping out the function environments (Popping the stack frame)
+	lw $ra, 0($sp)
+	move $sp, $s2
+	jr $ra
+
 
