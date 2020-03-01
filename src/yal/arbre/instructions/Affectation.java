@@ -3,7 +3,7 @@ package yal.arbre.instructions;
 import yal.arbre.expressions.*;
 import yal.declaration.TDS;
 import yal.declaration.entries.Entry;
-import yal.declaration.symbols.Symbol;
+import yal.declaration.symbols.Symbole;
 import yal.exceptions.AnalyseSemantiqueException;
 
 public class Affectation extends Instruction
@@ -35,7 +35,7 @@ public class Affectation extends Instruction
 
         mips += exp.toMIPS();
         Entry entree = ((Variable)idf).getEntree();
-        Symbol s = TDS.Instance().Identify(entree);
+        Symbole s = TDS.Instance().Identify(entree);
         int offset = -4 * s.getOffset();
         mips +=
                 "\n\t# Assignement for the variable '"+entree.getIdentifier()+"':\n"+

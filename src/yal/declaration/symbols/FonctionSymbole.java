@@ -1,18 +1,19 @@
 package yal.declaration.symbols;
 
 import yal.arbre.ArbreAbstrait;
+import yal.declaration.Decltype;
 
-public class FonctionSymbol extends Symbol
+public class FonctionSymbole extends Symbole
 {
     protected Fonction fonction;
 
-    public FonctionSymbol(Fonction fonction)
+    public FonctionSymbole(Fonction fonction)
     {
-        super();
+        super(Decltype.FUNCTION);
         this.fonction = fonction;
     }
 
-    public ArbreAbstrait getFonction() {
+    public Fonction getFonction() {
         return fonction;
     }
 

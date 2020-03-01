@@ -1,7 +1,7 @@
 package yal.declaration;
 
 import yal.declaration.entries.Entry;
-import yal.declaration.symbols.Symbol;
+import yal.declaration.symbols.Symbole;
 import yal.exceptions.DoubleDeclarationException;
 import yal.exceptions.IdentifiantNonDeclarerException;
 
@@ -16,14 +16,14 @@ public class TDS
         symbolMap = new HashMap<>();
     }
 
-    public HashMap<Entry, Symbol> symbolMap;
+    public HashMap<Entry, Symbole> symbolMap;
 
     public static TDS Instance()
     {
         return instance;
     }
 
-    public void AddEntry(Entry e, Symbol s, int line) throws DoubleDeclarationException
+    public void AddEntry(Entry e, Symbole s, int line) throws DoubleDeclarationException
     {
         if (symbolMap.get(e) != null){
             throw new DoubleDeclarationException(line);
@@ -33,13 +33,14 @@ public class TDS
         symbolMap.put(e, s);
     }
 
-    public Symbol Identify(Entry e) throws IdentifiantNonDeclarerException
+    public Symbole Identify(Entry e) throws IdentifiantNonDeclarerException
     {
-        if (symbolMap.get(e) == null){
+        Symbole s = symbolMap.get(e);
+        if (s == null){
             throw new IdentifiantNonDeclarerException(e.getLine());
         }
 
-        return symbolMap.get(e);
+        return s;
     }
 
     public int getVariableZoneSize()
@@ -47,7 +48,7 @@ public class TDS
         int sz = 0;
 
         for (Entry s : symbolMap.keySet()){
-            if (s.getEntryType() == 1){
+            if (s.getDecltype() == Decltype.VARIABLE){
                 sz++;
             }
         }

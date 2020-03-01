@@ -55,8 +55,8 @@ public class BinaryOperation extends Expression
                 break;
             case DIVIDE:
                 mips += "\t# Division:\n";
-                mips += "# test si on divise par 0\n";
-                mips += "beqz $v0, div_by_zero\n";
+                mips += "\t# test si on divise par 0\n";
+                mips += "\tbeqz $v0, div_by_zero\n";
                 mips += "\tdiv $t8, $v0\n"; // Division
                 mips += "\tmflo $v0\n"; // Get quotient
                 break;

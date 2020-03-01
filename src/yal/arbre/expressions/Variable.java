@@ -2,7 +2,7 @@ package yal.arbre.expressions;
 
 import yal.declaration.TDS;
 import yal.declaration.entries.Entry;
-import yal.declaration.symbols.Symbol;
+import yal.declaration.symbols.Symbole;
 
 public class Variable extends Identifiant
 {
@@ -24,7 +24,7 @@ public class Variable extends Identifiant
     public String toMIPS()
     {
         String mips = "";
-        Symbol s = TDS.Instance().Identify(entree);
+        Symbole s = TDS.Instance().Identify(entree);
         int offset = -4 * s.getOffset();
         mips +=
                 "\n\t# Get value of the variable '"+entree.getIdentifier()+"':\n"+

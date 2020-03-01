@@ -1,0 +1,45 @@
+programme op
+debut
+
+entier a;
+
+ecrire (25 / 25); //1
+
+ecrire (5 * 5 / 25) + 13; // 1 + 13 = 14
+
+ecrire (5 * 5 / 25) + (13 + 5 - 5); // 25/25 + 13 = 14
+
+ecrire (5 * 5 - 5 * 2 - 1); // 25 - 10 - 1 = 14
+
+ecrire (5 * 5 - 5 / 2 - 5 * 5 + 16); //25 - 2 - 25 + 16 = 14
+
+ecrire (5 / 2 + 5 / 2 + 5 / 2 + 5 * 2 - 2); //2 + 2 + 2 + 10 - 2 = 14
+
+ecrire 100 / 2 / 2 / 2 + 2; // 14
+
+ecrire 2 + 100 / 2 / 2 / 2; // 14
+
+ecrire (5*5 == 25) == (25 == 25); //vrai
+
+ecrire non (non (5*5 == 25) == (25 == 25)); //vrai
+
+ecrire non ( 5 * 5 > 26); //vrai
+
+ecrire non ( 5 * 5 < 24); //vrai
+
+ecrire non (1 == 2 ou 5 > 3 et 5 > 6); //vrai
+
+ecrire (1 == 1 ou 5 > 3 et 5 > 6); //vrai
+
+ecrire (5 > 3 et 5 < 6 ou 1 == 1); //vrai
+
+ecrire (5 > 6 ou 1 == 1); //vrai
+
+a = 5;
+//((a*a)/a)*a + ((a*a)/a)*a - ((a*a)/a)*a < ((a*a)/a)*a
+ecrire a != a ou a == a et a * a / a * a + a * a / a * a - a * a / a * a < a * a / a * a  == a < 6 et a == a ou a == a; //vrai
+ecrire a != a ou a == a et a * a / a * a + a * a / a * a - a * a / a * a < a * a / a * a  == a < 6 et a != a ou a == a; //vrai
+ecrire a == a ou a == a et a * a / a * a + a * a / a * a - a * a / a * a < a * a / a * a  == a < 6 et a != a ou a != a; //vrai
+ecrire a != a ou a == a et a * a / a * a + a * a / a * a - a * a / a * a < a * a / a * a  == a < 6 et a == a ou a != a; //faux
+
+fin

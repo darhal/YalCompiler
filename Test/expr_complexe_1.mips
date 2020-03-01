@@ -1,0 +1,1990 @@
+.data
+	div_by0: .asciiz "[RUNTIME ERROR]: Division by zero detected.\n"
+	true_str: .asciiz "vrai\n"
+	false_str: .asciiz "faux\n"
+.text
+
+main:
+	# Begin stackframe:
+	move $s7, $sp
+	# Allocate for the declared variables:
+	addi $sp, $sp, -4
+
+	# Integer Constant '25':
+	li $v0, 25
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '25':
+	li $v0, 25
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+
+	# Call write sys call:​
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Integer Constant '5':
+	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '25':
+	li $v0, 25
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '13':
+	li $v0, 13
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
+
+	# Call write sys call:​
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Integer Constant '5':
+	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '25':
+	li $v0, 25
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '13':
+	li $v0, 13
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Substraction:
+	sub $v0, $t8, $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
+
+	# Call write sys call:​
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Integer Constant '5':
+	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '2':
+	li $v0, 2
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Substraction:
+	sub $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '1':
+	li $v0, 1
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Substraction:
+	sub $v0, $t8, $v0
+
+	# Call write sys call:​
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Integer Constant '5':
+	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '2':
+	li $v0, 2
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Substraction:
+	sub $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Substraction:
+	sub $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '16':
+	li $v0, 16
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
+
+	# Call write sys call:​
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Integer Constant '5':
+	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '2':
+	li $v0, 2
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '2':
+	li $v0, 2
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '2':
+	li $v0, 2
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '2':
+	li $v0, 2
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '2':
+	li $v0, 2
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Substraction:
+	sub $v0, $t8, $v0
+
+	# Call write sys call:​
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Integer Constant '100':
+	li $v0, 100
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '2':
+	li $v0, 2
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '2':
+	li $v0, 2
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '2':
+	li $v0, 2
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '2':
+	li $v0, 2
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
+
+	# Call write sys call:​
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Integer Constant '2':
+	li $v0, 2
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '100':
+	li $v0, 100
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '2':
+	li $v0, 2
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '2':
+	li $v0, 2
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '2':
+	li $v0, 2
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
+
+	# Call write sys call:​
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Integer Constant '5':
+	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '25':
+	li $v0, 25
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	sub $v0, $t8, $v0
+	xori $v0, $v0, 1
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '25':
+	li $v0, 25
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '25':
+	li $v0, 25
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	sub $v0, $t8, $v0
+	xori $v0, $v0, 1
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	sub $v0, $t8, $v0
+	xori $v0, $v0, 1
+
+	 # Evalue if the expression is true or false
+	beq $v0, $zero, wfalse_7561
+wtrue_7561:
+	la $a0, true_str
+	li $v0, 4
+	syscall
+	j wend_7561
+wfalse_7561:
+	la $a0, false_str
+	li $v0, 4
+	syscall
+wend_7561:
+	# Integer Constant '5':
+	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '25':
+	li $v0, 25
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	sub $v0, $t8, $v0
+	xori $v0, $v0, 1
+	xori $v0, $v0, -1
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '25':
+	li $v0, 25
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '25':
+	li $v0, 25
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	sub $v0, $t8, $v0
+	xori $v0, $v0, 1
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	sub $v0, $t8, $v0
+	xori $v0, $v0, 1
+	xori $v0, $v0, -1
+
+	 # Evalue if the expression is true or false
+	beq $v0, $zero, wfalse_5622
+wtrue_5622:
+	la $a0, true_str
+	li $v0, 4
+	syscall
+	j wend_5622
+wfalse_5622:
+	la $a0, false_str
+	li $v0, 4
+	syscall
+wend_5622:
+	# Integer Constant '5':
+	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '26':
+	li $v0, 26
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Début comparaison supérieur
+si1954:
+	# Soustraction des 2 variables comparées
+	sub $v0, $t8, $v0
+	# Comparaison à 0 du résultat
+	bgtz $v0, alors1954
+	# Sinon inférieur ou égal à 0 renvoie false
+sinon1954:
+	li $v0, 0
+	b Fin1954
+	# Si supérieur à 0 renvoie true
+alors1954:
+	li $v0, 1
+Fin1954:
+	xori $v0, $v0, -1
+
+	 # Evalue if the expression is true or false
+	beq $v0, $zero, wfalse_3929
+wtrue_3929:
+	la $a0, true_str
+	li $v0, 4
+	syscall
+	j wend_3929
+wfalse_3929:
+	la $a0, false_str
+	li $v0, 4
+	syscall
+wend_3929:
+	# Integer Constant '5':
+	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '24':
+	li $v0, 24
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Less:
+	slt $v0, $t8, $v0
+	xori $v0, $v0, -1
+
+	 # Evalue if the expression is true or false
+	beq $v0, $zero, wfalse_8641
+wtrue_8641:
+	la $a0, true_str
+	li $v0, 4
+	syscall
+	j wend_8641
+wfalse_8641:
+	la $a0, false_str
+	li $v0, 4
+	syscall
+wend_8641:
+	# Integer Constant '1':
+	li $v0, 1
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '2':
+	li $v0, 2
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	sub $v0, $t8, $v0
+	xori $v0, $v0, 1
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '3':
+	li $v0, 3
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Début comparaison supérieur
+si1576:
+	# Soustraction des 2 variables comparées
+	sub $v0, $t8, $v0
+	# Comparaison à 0 du résultat
+	bgtz $v0, alors1576
+	# Sinon inférieur ou égal à 0 renvoie false
+sinon1576:
+	li $v0, 0
+	b Fin1576
+	# Si supérieur à 0 renvoie true
+alors1576:
+	li $v0, 1
+Fin1576:
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '6':
+	li $v0, 6
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Début comparaison supérieur
+si407:
+	# Soustraction des 2 variables comparées
+	sub $v0, $t8, $v0
+	# Comparaison à 0 du résultat
+	bgtz $v0, alors407
+	# Sinon inférieur ou égal à 0 renvoie false
+sinon407:
+	li $v0, 0
+	b Fin407
+	# Si supérieur à 0 renvoie true
+alors407:
+	li $v0, 1
+Fin407:
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# And:
+	and $v0, $t8, $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Or:
+	or $v0, $t8, $v0
+	xori $v0, $v0, -1
+
+	 # Evalue if the expression is true or false
+	beq $v0, $zero, wfalse_5948
+wtrue_5948:
+	la $a0, true_str
+	li $v0, 4
+	syscall
+	j wend_5948
+wfalse_5948:
+	la $a0, false_str
+	li $v0, 4
+	syscall
+wend_5948:
+	# Integer Constant '1':
+	li $v0, 1
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '1':
+	li $v0, 1
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	sub $v0, $t8, $v0
+	xori $v0, $v0, 1
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '3':
+	li $v0, 3
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Début comparaison supérieur
+si8313:
+	# Soustraction des 2 variables comparées
+	sub $v0, $t8, $v0
+	# Comparaison à 0 du résultat
+	bgtz $v0, alors8313
+	# Sinon inférieur ou égal à 0 renvoie false
+sinon8313:
+	li $v0, 0
+	b Fin8313
+	# Si supérieur à 0 renvoie true
+alors8313:
+	li $v0, 1
+Fin8313:
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '6':
+	li $v0, 6
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Début comparaison supérieur
+si2190:
+	# Soustraction des 2 variables comparées
+	sub $v0, $t8, $v0
+	# Comparaison à 0 du résultat
+	bgtz $v0, alors2190
+	# Sinon inférieur ou égal à 0 renvoie false
+sinon2190:
+	li $v0, 0
+	b Fin2190
+	# Si supérieur à 0 renvoie true
+alors2190:
+	li $v0, 1
+Fin2190:
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# And:
+	and $v0, $t8, $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Or:
+	or $v0, $t8, $v0
+
+	 # Evalue if the expression is true or false
+	beq $v0, $zero, wfalse_7532
+wtrue_7532:
+	la $a0, true_str
+	li $v0, 4
+	syscall
+	j wend_7532
+wfalse_7532:
+	la $a0, false_str
+	li $v0, 4
+	syscall
+wend_7532:
+	# Integer Constant '5':
+	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '3':
+	li $v0, 3
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Début comparaison supérieur
+si5805:
+	# Soustraction des 2 variables comparées
+	sub $v0, $t8, $v0
+	# Comparaison à 0 du résultat
+	bgtz $v0, alors5805
+	# Sinon inférieur ou égal à 0 renvoie false
+sinon5805:
+	li $v0, 0
+	b Fin5805
+	# Si supérieur à 0 renvoie true
+alors5805:
+	li $v0, 1
+Fin5805:
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '6':
+	li $v0, 6
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Less:
+	slt $v0, $t8, $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# And:
+	and $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '1':
+	li $v0, 1
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '1':
+	li $v0, 1
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	sub $v0, $t8, $v0
+	xori $v0, $v0, 1
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Or:
+	or $v0, $t8, $v0
+
+	 # Evalue if the expression is true or false
+	beq $v0, $zero, wfalse_2325
+wtrue_2325:
+	la $a0, true_str
+	li $v0, 4
+	syscall
+	j wend_2325
+wfalse_2325:
+	la $a0, false_str
+	li $v0, 4
+	syscall
+wend_2325:
+	# Integer Constant '5':
+	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '6':
+	li $v0, 6
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Début comparaison supérieur
+si6381:
+	# Soustraction des 2 variables comparées
+	sub $v0, $t8, $v0
+	# Comparaison à 0 du résultat
+	bgtz $v0, alors6381
+	# Sinon inférieur ou égal à 0 renvoie false
+sinon6381:
+	li $v0, 0
+	b Fin6381
+	# Si supérieur à 0 renvoie true
+alors6381:
+	li $v0, 1
+Fin6381:
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '1':
+	li $v0, 1
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '1':
+	li $v0, 1
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	sub $v0, $t8, $v0
+	xori $v0, $v0, 1
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Or:
+	or $v0, $t8, $v0
+
+	 # Evalue if the expression is true or false
+	beq $v0, $zero, wfalse_8826
+wtrue_8826:
+	la $a0, true_str
+	li $v0, 4
+	syscall
+	j wend_8826
+wfalse_8826:
+	la $a0, false_str
+	li $v0, 4
+	syscall
+wend_8826:
+	# Integer Constant '5':
+	li $v0, 5
+
+	# Assignement for the variable 'a':
+	sw $v0, 0($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Not Equal:
+	sub $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	sub $v0, $t8, $v0
+	xori $v0, $v0, 1
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Substraction:
+	sub $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Less:
+	slt $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	sub $v0, $t8, $v0
+	xori $v0, $v0, 1
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '6':
+	li $v0, 6
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Less:
+	slt $v0, $t8, $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# And:
+	and $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	sub $v0, $t8, $v0
+	xori $v0, $v0, 1
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# And:
+	and $v0, $t8, $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Or:
+	or $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	sub $v0, $t8, $v0
+	xori $v0, $v0, 1
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Or:
+	or $v0, $t8, $v0
+
+	 # Evalue if the expression is true or false
+	beq $v0, $zero, wfalse_5154
+wtrue_5154:
+	la $a0, true_str
+	li $v0, 4
+	syscall
+	j wend_5154
+wfalse_5154:
+	la $a0, false_str
+	li $v0, 4
+	syscall
+wend_5154:
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Not Equal:
+	sub $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	sub $v0, $t8, $v0
+	xori $v0, $v0, 1
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Substraction:
+	sub $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Less:
+	slt $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	sub $v0, $t8, $v0
+	xori $v0, $v0, 1
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '6':
+	li $v0, 6
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Less:
+	slt $v0, $t8, $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# And:
+	and $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Not Equal:
+	sub $v0, $t8, $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# And:
+	and $v0, $t8, $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Or:
+	or $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	sub $v0, $t8, $v0
+	xori $v0, $v0, 1
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Or:
+	or $v0, $t8, $v0
+
+	 # Evalue if the expression is true or false
+	beq $v0, $zero, wfalse_4998
+wtrue_4998:
+	la $a0, true_str
+	li $v0, 4
+	syscall
+	j wend_4998
+wfalse_4998:
+	la $a0, false_str
+	li $v0, 4
+	syscall
+wend_4998:
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	sub $v0, $t8, $v0
+	xori $v0, $v0, 1
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	sub $v0, $t8, $v0
+	xori $v0, $v0, 1
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Substraction:
+	sub $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Less:
+	slt $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	sub $v0, $t8, $v0
+	xori $v0, $v0, 1
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '6':
+	li $v0, 6
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Less:
+	slt $v0, $t8, $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# And:
+	and $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Not Equal:
+	sub $v0, $t8, $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# And:
+	and $v0, $t8, $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Or:
+	or $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Not Equal:
+	sub $v0, $t8, $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Or:
+	or $v0, $t8, $v0
+
+	 # Evalue if the expression is true or false
+	beq $v0, $zero, wfalse_617
+wtrue_617:
+	la $a0, true_str
+	li $v0, 4
+	syscall
+	j wend_617
+wfalse_617:
+	la $a0, false_str
+	li $v0, 4
+	syscall
+wend_617:
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Not Equal:
+	sub $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	sub $v0, $t8, $v0
+	xori $v0, $v0, 1
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Substraction:
+	sub $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Less:
+	slt $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	sub $v0, $t8, $v0
+	xori $v0, $v0, 1
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Integer Constant '6':
+	li $v0, 6
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Less:
+	slt $v0, $t8, $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# And:
+	and $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	sub $v0, $t8, $v0
+	xori $v0, $v0, 1
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# And:
+	and $v0, $t8, $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Or:
+	or $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	addi $sp, $sp, -4
+	sw $v0, -4($sp)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($sp)
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Not Equal:
+	sub $v0, $t8, $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Or:
+	or $v0, $t8, $v0
+
+	 # Evalue if the expression is true or false
+	beq $v0, $zero, wfalse_3416
+wtrue_3416:
+	la $a0, true_str
+	li $v0, 4
+	syscall
+	j wend_3416
+wfalse_3416:
+	la $a0, false_str
+	li $v0, 4
+	syscall
+wend_3416:
+	# Handle program exit
+exit:
+	li $v0, 10
+	syscall
+
+	 # Handle RUNTIME errors
+div_by_zero:
+	la $a0, div_by0
+	li $v0, 4
+	syscall
+	j exit
+

@@ -1,23 +1,30 @@
 package yal.declaration.symbols;
 
 import yal.arbre.ArbreAbstrait;
+import yal.arbre.expressions.ExpressionType;
 import yal.declaration.entries.Entry;
 
 public class Fonction extends ArbreAbstrait
 {
     protected ArbreAbstrait inst;
     protected Entry entree;
+    protected ExpressionType returnType;
 
-    public Fonction(Entry entree, ArbreAbstrait inst, int ligne)
+    public Fonction(Entry entree, ArbreAbstrait inst, ExpressionType type, int ligne)
     {
         super(ligne);
         this.inst = inst;
         this.entree = entree;
+        this.returnType = type;
+    }
+
+    public ExpressionType getReturnType() {
+        return returnType;
     }
 
     @Override
     public void verifier() {
-        // TODO:
+        inst.verifier();
     }
 
     @Override

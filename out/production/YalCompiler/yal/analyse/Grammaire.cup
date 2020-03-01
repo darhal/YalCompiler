@@ -76,19 +76,31 @@ non terminal Expression EXP, LOGIC_EXP, RETOURNE_INST, FUNC_CALL;
 non terminal DECL_LIST, DECL_VAR, DECAL_FONCTION, PARAMETERS;
 // non terminal Integer OPER;
 
+precedence left OP_OR;
+
+precedence left OP_AND;
+
+precedence left OP_GREATER, OP_LESS, OP_EQUAL, OP_NEQUAL;
+
+precedence left OP_NOT;
 
 precedence left OP_PLUS, OP_MINUS;
 
 precedence left OP_MULTIPLY, OP_DIVIDE;
 
-precedence left OP_GREATER, OP_LESS, OP_EQUAL, OP_NEQUAL, OP_AND, OP_OR, OP_NOT;
+precedence left PARA_OPEN;
 
 /* ----------------------------Grammar Section-------------------- */
 
 start with PROG ;
 
-PROG        ::=     PROGRAMME  IDF  DEBUT PROG_BODY:prog  FIN
-                    {: RESULT = prog ; :}
+PROG        ::=     PROGRAMME  IDF  DEBUT:d PROG_BODY:prog  FIN:f
+                    {:
+                        Debut debut = new Debut(dleft+1);
+                        debut.ajouter(prog);
+                        debut.ajouter(new Fin(fleft+1));
+                        RESULT = debut;
+                    :}
             ;
 
 PROG_BODY   ::=     DECL_LIST LINST: li
@@ -115,7 +127,7 @@ DECL_LIST   ::=   DECL_VAR DECL_LIST | DECAL_FONCTION DECL_LIST | DECL_VAR | DEC
 
 DECL_VAR    ::=   TYPE IDF:idf POINTVIRGULE
                   {:
-                    TDS.Instance().AddEntry(new VariableEntry(idf, idfleft + 1), new IntSymbol(), idfleft + 1);
+                    TDS.Instance().AddEntry(new VariableEntry(idf, idfleft + 1), new IntSymbole(), idfleft + 1);
                   :}
             ;
 
@@ -124,7 +136,7 @@ DECAL_FONCTION ::= FONCTION IDF:idf PARAMETERS DEBUT LINST:li FIN
                         FonctionEntry entree = new FonctionEntry(idf, idfleft + 1);
                         TDS.Instance().AddEntry(
                             entree,
-                            new FonctionSymbol(new Fonction(entree, li, idfleft+1)),
+                            new FonctionSymbole(new Fonction(entree, li, ExpressionType.FUNCTION, idfleft+1)),
                             idfleft + 1
                         );
                    :}
@@ -135,7 +147,7 @@ DECAL_FONCTION ::= FONCTION IDF:idf PARAMETERS DEBUT LINST:li FIN
                         FonctionEntry entree = new FonctionEntry(idf, idfleft + 1);
                         TDS.Instance().AddEntry(
                             entree,
-                            new FonctionSymbol(new Fonction(entree, li, idfleft+1)),
+                            new FonctionSymbole(new Fonction(entree, li, ri.getType(), idfleft+1)),
                             idfleft + 1
                         );
                    :}
