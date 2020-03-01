@@ -20,13 +20,15 @@ public class BinaryOperation extends Expression
 
     @Override
     public void verifier() {
-        if (type == ExpressionType.ARITHMETIC && (exp1.type == ExpressionType.LOGIC || exp2.type == ExpressionType.LOGIC)) {
-            throw new TypeMismatchException(this.getNoLigne(),
-                    "Attempt to perform a binary arithmetic operation on non arithmetic operands.");
-        }
-
         exp1.verifier();
         exp2.verifier();
+
+        if (type == ExpressionType.ARITHMETIC) {
+            if (exp1.type != ExpressionType.ARITHMETIC || exp2.type != ExpressionType.ARITHMETIC){
+                throw new TypeMismatchException(this.getNoLigne(),
+                        "Attempt to perform a binary arithmetic operation on non arithmetic operands.");
+            }
+        }
     }
 
     @Override
@@ -61,21 +63,7 @@ public class BinaryOperation extends Expression
                 mips += "\tmflo $v0\n"; // Get quotient
                 break;
             case GREATER:
-                int random = (int)(Math.random() * 10000 + 1);
-                mips += "\t# Début comparaison supérieur\n";
-                mips += "si"+ random +":\n";
-                mips += "\t# Soustraction des 2 variables comparées\n";
-                mips += "\tsub $v0, $t8, $v0\n";
-                mips += "\t# Comparaison à 0 du résultat\n";
-                mips += "\tbgtz $v0, alors" + random +"\n";
-                mips += "\t# Sinon inférieur ou égal à 0 renvoie false\n";
-                mips += "sinon"+ random +":\n";
-                mips += "\tli $v0, 0\n";
-                mips += "\tb Fin"+ random +"\n";
-                mips += "\t# Si supérieur à 0 renvoie true\n";
-                mips += "alors"+ random +":\n";
-                mips += "\tli $v0, 1\n";
-                mips += "Fin"+ random +":\n";
+                mips += "\tslt $v0, $v0, $t8\n"; // Greater then ($v0 is set to 1 if $t8 > $v0, 0 otherwise)
                 break;
             case LESS:
                 mips += "\t# Less:\n";
@@ -84,7 +72,7 @@ public class BinaryOperation extends Expression
             case EQUAL:
                 mips += "\t# Equal:\n";
                 mips += "\tsub $v0, $t8, $v0\n"; // Simulate equal operation with subtraction (0 if $t8 == $v0, 1 otherwise)
-                mips += "\txori $v0, $v0, 1\n"; // Flip $v0 using xori
+                mips += "\tnor $v0, $v0, $v0\n"; // Flip $v0 using nor
                 break;
             case NEQUAL:
                 mips += "\t# Not Equal:\n";

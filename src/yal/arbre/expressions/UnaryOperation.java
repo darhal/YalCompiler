@@ -18,6 +18,8 @@ public class UnaryOperation extends Expression
 
     @Override
     public void verifier() {
+        exp.verifier();
+
         if (type == ExpressionType.ARITHMETIC && exp.type != ExpressionType.ARITHMETIC){
             throw new TypeMismatchException(this.getNoLigne(),
                     "Attempt to perform an arithmetic unary operation on non arithmetic expression.");
@@ -25,8 +27,6 @@ public class UnaryOperation extends Expression
             throw new TypeMismatchException(this.getNoLigne(),
                     "Attempt to perform a logical unary operation on non logical expression.");
         }
-
-        exp.verifier();
     }
 
     @Override
@@ -36,7 +36,8 @@ public class UnaryOperation extends Expression
         // Do the unary operation:
         switch(op){
             case NOT:
-                mips += "\txori $v0, $v0, -1\n"; // Non
+                // mips += "\tnot $v0, $v0\n"; // Non
+                mips += "\tnor $v0, $v0, $v0\n"; // Non
                 break;
             case MINUS:
                 mips += "\tsub $v0, $zero, $v0\n"; // -

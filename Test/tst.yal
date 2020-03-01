@@ -1,12 +1,11 @@
 programme essai debut
 	fonction a() debut
-		ecrire (1 == 1 ou 5 > 3 et 5 > 6); // Vrai
-		ecrire 5 != 5 ou 5 == 5 et 5 * 5 / 5 * 5 + 5 * 5 / 5 * 5 - 5 * 5 / 5 * 5 < 5 * 5 / 5 * 5  == 5 < 6 et 5 == 5 ou 5 == 5; // vrai
-		retourne 10;
+		ecrire 1; 
+		retourne 5 == 5;
 	fin
 	fonction test() debut
 		ecrire 1;
-		ecrire a() * 5;
+		ecrire non a();
 		ecrire 8;
 		retourne 5;
 	fin

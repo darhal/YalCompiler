@@ -480,7 +480,7 @@ main:
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
-	xori $v0, $v0, 1
+	nor $v0, $v0, $v0
 	addi $sp, $sp, -4
 	sw $v0, -4($sp)
 
@@ -495,25 +495,25 @@ main:
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
-	xori $v0, $v0, 1
+	nor $v0, $v0, $v0
 	lw $t8, -4($sp)
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
-	xori $v0, $v0, 1
+	nor $v0, $v0, $v0
 
 	 # Evalue if the expression is true or false
-	beq $v0, $zero, wfalse_7561
-wtrue_7561:
+	beq $v0, $zero, wfalse_4011
+wtrue_4011:
 	la $a0, true_str
 	li $v0, 4
 	syscall
-	j wend_7561
-wfalse_7561:
+	j wend_4011
+wfalse_4011:
 	la $a0, false_str
 	li $v0, 4
 	syscall
-wend_7561:
+wend_4011:
 	# Integer Constant '5':
 	li $v0, 5
 	addi $sp, $sp, -4
@@ -534,8 +534,8 @@ wend_7561:
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
-	xori $v0, $v0, 1
-	xori $v0, $v0, -1
+	nor $v0, $v0, $v0
+	nor $v0, $v0, $v0
 	addi $sp, $sp, -4
 	sw $v0, -4($sp)
 
@@ -550,26 +550,26 @@ wend_7561:
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
-	xori $v0, $v0, 1
+	nor $v0, $v0, $v0
 	lw $t8, -4($sp)
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
-	xori $v0, $v0, 1
-	xori $v0, $v0, -1
+	nor $v0, $v0, $v0
+	nor $v0, $v0, $v0
 
 	 # Evalue if the expression is true or false
-	beq $v0, $zero, wfalse_5622
-wtrue_5622:
+	beq $v0, $zero, wfalse_2468
+wtrue_2468:
 	la $a0, true_str
 	li $v0, 4
 	syscall
-	j wend_5622
-wfalse_5622:
+	j wend_2468
+wfalse_2468:
 	la $a0, false_str
 	li $v0, 4
 	syscall
-wend_5622:
+wend_2468:
 	# Integer Constant '5':
 	li $v0, 5
 	addi $sp, $sp, -4
@@ -588,34 +588,21 @@ wend_5622:
 	li $v0, 26
 	lw $t8, -4($sp)
 	addi $sp, $sp, 4
-	# Début comparaison supérieur
-si1954:
-	# Soustraction des 2 variables comparées
-	sub $v0, $t8, $v0
-	# Comparaison à 0 du résultat
-	bgtz $v0, alors1954
-	# Sinon inférieur ou égal à 0 renvoie false
-sinon1954:
-	li $v0, 0
-	b Fin1954
-	# Si supérieur à 0 renvoie true
-alors1954:
-	li $v0, 1
-Fin1954:
-	xori $v0, $v0, -1
+	slt $v0, $v0, $t8
+	nor $v0, $v0, $v0
 
 	 # Evalue if the expression is true or false
-	beq $v0, $zero, wfalse_3929
-wtrue_3929:
+	beq $v0, $zero, wfalse_8415
+wtrue_8415:
 	la $a0, true_str
 	li $v0, 4
 	syscall
-	j wend_3929
-wfalse_3929:
+	j wend_8415
+wfalse_8415:
 	la $a0, false_str
 	li $v0, 4
 	syscall
-wend_3929:
+wend_8415:
 	# Integer Constant '5':
 	li $v0, 5
 	addi $sp, $sp, -4
@@ -636,20 +623,20 @@ wend_3929:
 	addi $sp, $sp, 4
 	# Less:
 	slt $v0, $t8, $v0
-	xori $v0, $v0, -1
+	nor $v0, $v0, $v0
 
 	 # Evalue if the expression is true or false
-	beq $v0, $zero, wfalse_8641
-wtrue_8641:
+	beq $v0, $zero, wfalse_1014
+wtrue_1014:
 	la $a0, true_str
 	li $v0, 4
 	syscall
-	j wend_8641
-wfalse_8641:
+	j wend_1014
+wfalse_1014:
 	la $a0, false_str
 	li $v0, 4
 	syscall
-wend_8641:
+wend_1014:
 	# Integer Constant '1':
 	li $v0, 1
 	addi $sp, $sp, -4
@@ -661,7 +648,7 @@ wend_8641:
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
-	xori $v0, $v0, 1
+	nor $v0, $v0, $v0
 	addi $sp, $sp, -4
 	sw $v0, -4($sp)
 
@@ -674,20 +661,7 @@ wend_8641:
 	li $v0, 3
 	lw $t8, -4($sp)
 	addi $sp, $sp, 4
-	# Début comparaison supérieur
-si1576:
-	# Soustraction des 2 variables comparées
-	sub $v0, $t8, $v0
-	# Comparaison à 0 du résultat
-	bgtz $v0, alors1576
-	# Sinon inférieur ou égal à 0 renvoie false
-sinon1576:
-	li $v0, 0
-	b Fin1576
-	# Si supérieur à 0 renvoie true
-alors1576:
-	li $v0, 1
-Fin1576:
+	slt $v0, $v0, $t8
 	addi $sp, $sp, -4
 	sw $v0, -4($sp)
 
@@ -700,20 +674,7 @@ Fin1576:
 	li $v0, 6
 	lw $t8, -4($sp)
 	addi $sp, $sp, 4
-	# Début comparaison supérieur
-si407:
-	# Soustraction des 2 variables comparées
-	sub $v0, $t8, $v0
-	# Comparaison à 0 du résultat
-	bgtz $v0, alors407
-	# Sinon inférieur ou égal à 0 renvoie false
-sinon407:
-	li $v0, 0
-	b Fin407
-	# Si supérieur à 0 renvoie true
-alors407:
-	li $v0, 1
-Fin407:
+	slt $v0, $v0, $t8
 	lw $t8, -4($sp)
 	addi $sp, $sp, 4
 	# And:
@@ -722,20 +683,20 @@ Fin407:
 	addi $sp, $sp, 4
 	# Or:
 	or $v0, $t8, $v0
-	xori $v0, $v0, -1
+	nor $v0, $v0, $v0
 
 	 # Evalue if the expression is true or false
-	beq $v0, $zero, wfalse_5948
-wtrue_5948:
+	beq $v0, $zero, wfalse_7743
+wtrue_7743:
 	la $a0, true_str
 	li $v0, 4
 	syscall
-	j wend_5948
-wfalse_5948:
+	j wend_7743
+wfalse_7743:
 	la $a0, false_str
 	li $v0, 4
 	syscall
-wend_5948:
+wend_7743:
 	# Integer Constant '1':
 	li $v0, 1
 	addi $sp, $sp, -4
@@ -747,7 +708,7 @@ wend_5948:
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
-	xori $v0, $v0, 1
+	nor $v0, $v0, $v0
 	addi $sp, $sp, -4
 	sw $v0, -4($sp)
 
@@ -760,20 +721,7 @@ wend_5948:
 	li $v0, 3
 	lw $t8, -4($sp)
 	addi $sp, $sp, 4
-	# Début comparaison supérieur
-si8313:
-	# Soustraction des 2 variables comparées
-	sub $v0, $t8, $v0
-	# Comparaison à 0 du résultat
-	bgtz $v0, alors8313
-	# Sinon inférieur ou égal à 0 renvoie false
-sinon8313:
-	li $v0, 0
-	b Fin8313
-	# Si supérieur à 0 renvoie true
-alors8313:
-	li $v0, 1
-Fin8313:
+	slt $v0, $v0, $t8
 	addi $sp, $sp, -4
 	sw $v0, -4($sp)
 
@@ -786,20 +734,7 @@ Fin8313:
 	li $v0, 6
 	lw $t8, -4($sp)
 	addi $sp, $sp, 4
-	# Début comparaison supérieur
-si2190:
-	# Soustraction des 2 variables comparées
-	sub $v0, $t8, $v0
-	# Comparaison à 0 du résultat
-	bgtz $v0, alors2190
-	# Sinon inférieur ou égal à 0 renvoie false
-sinon2190:
-	li $v0, 0
-	b Fin2190
-	# Si supérieur à 0 renvoie true
-alors2190:
-	li $v0, 1
-Fin2190:
+	slt $v0, $v0, $t8
 	lw $t8, -4($sp)
 	addi $sp, $sp, 4
 	# And:
@@ -810,17 +745,17 @@ Fin2190:
 	or $v0, $t8, $v0
 
 	 # Evalue if the expression is true or false
-	beq $v0, $zero, wfalse_7532
-wtrue_7532:
+	beq $v0, $zero, wfalse_108
+wtrue_108:
 	la $a0, true_str
 	li $v0, 4
 	syscall
-	j wend_7532
-wfalse_7532:
+	j wend_108
+wfalse_108:
 	la $a0, false_str
 	li $v0, 4
 	syscall
-wend_7532:
+wend_108:
 	# Integer Constant '5':
 	li $v0, 5
 	addi $sp, $sp, -4
@@ -830,20 +765,7 @@ wend_7532:
 	li $v0, 3
 	lw $t8, -4($sp)
 	addi $sp, $sp, 4
-	# Début comparaison supérieur
-si5805:
-	# Soustraction des 2 variables comparées
-	sub $v0, $t8, $v0
-	# Comparaison à 0 du résultat
-	bgtz $v0, alors5805
-	# Sinon inférieur ou égal à 0 renvoie false
-sinon5805:
-	li $v0, 0
-	b Fin5805
-	# Si supérieur à 0 renvoie true
-alors5805:
-	li $v0, 1
-Fin5805:
+	slt $v0, $v0, $t8
 	addi $sp, $sp, -4
 	sw $v0, -4($sp)
 
@@ -876,24 +798,24 @@ Fin5805:
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
-	xori $v0, $v0, 1
+	nor $v0, $v0, $v0
 	lw $t8, -4($sp)
 	addi $sp, $sp, 4
 	# Or:
 	or $v0, $t8, $v0
 
 	 # Evalue if the expression is true or false
-	beq $v0, $zero, wfalse_2325
-wtrue_2325:
+	beq $v0, $zero, wfalse_807
+wtrue_807:
 	la $a0, true_str
 	li $v0, 4
 	syscall
-	j wend_2325
-wfalse_2325:
+	j wend_807
+wfalse_807:
 	la $a0, false_str
 	li $v0, 4
 	syscall
-wend_2325:
+wend_807:
 	# Integer Constant '5':
 	li $v0, 5
 	addi $sp, $sp, -4
@@ -903,20 +825,7 @@ wend_2325:
 	li $v0, 6
 	lw $t8, -4($sp)
 	addi $sp, $sp, 4
-	# Début comparaison supérieur
-si6381:
-	# Soustraction des 2 variables comparées
-	sub $v0, $t8, $v0
-	# Comparaison à 0 du résultat
-	bgtz $v0, alors6381
-	# Sinon inférieur ou égal à 0 renvoie false
-sinon6381:
-	li $v0, 0
-	b Fin6381
-	# Si supérieur à 0 renvoie true
-alors6381:
-	li $v0, 1
-Fin6381:
+	slt $v0, $v0, $t8
 	addi $sp, $sp, -4
 	sw $v0, -4($sp)
 
@@ -931,24 +840,24 @@ Fin6381:
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
-	xori $v0, $v0, 1
+	nor $v0, $v0, $v0
 	lw $t8, -4($sp)
 	addi $sp, $sp, 4
 	# Or:
 	or $v0, $t8, $v0
 
 	 # Evalue if the expression is true or false
-	beq $v0, $zero, wfalse_8826
-wtrue_8826:
+	beq $v0, $zero, wfalse_4546
+wtrue_4546:
 	la $a0, true_str
 	li $v0, 4
 	syscall
-	j wend_8826
-wfalse_8826:
+	j wend_4546
+wfalse_4546:
 	la $a0, false_str
 	li $v0, 4
 	syscall
-wend_8826:
+wend_4546:
 	# Integer Constant '5':
 	li $v0, 5
 
@@ -980,7 +889,7 @@ wend_8826:
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
-	xori $v0, $v0, 1
+	nor $v0, $v0, $v0
 	addi $sp, $sp, -4
 	sw $v0, -4($sp)
 
@@ -1138,11 +1047,6 @@ wend_8826:
 
 	# Get value of the variable 'a':
 	lw $v0, 0($sp)
-	lw $t8, -4($sp)
-	addi $sp, $sp, 4
-	# Equal:
-	sub $v0, $t8, $v0
-	xori $v0, $v0, 1
 	addi $sp, $sp, -4
 	sw $v0, -4($sp)
 
@@ -1154,6 +1058,11 @@ wend_8826:
 	slt $v0, $t8, $v0
 	lw $t8, -4($sp)
 	addi $sp, $sp, 4
+	# Equal:
+	sub $v0, $t8, $v0
+	nor $v0, $v0, $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
 	# And:
 	and $v0, $t8, $v0
 	addi $sp, $sp, -4
@@ -1170,7 +1079,7 @@ wend_8826:
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
-	xori $v0, $v0, 1
+	nor $v0, $v0, $v0
 	lw $t8, -4($sp)
 	addi $sp, $sp, 4
 	# And:
@@ -1193,24 +1102,24 @@ wend_8826:
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
-	xori $v0, $v0, 1
+	nor $v0, $v0, $v0
 	lw $t8, -4($sp)
 	addi $sp, $sp, 4
 	# Or:
 	or $v0, $t8, $v0
 
 	 # Evalue if the expression is true or false
-	beq $v0, $zero, wfalse_5154
-wtrue_5154:
+	beq $v0, $zero, wfalse_800
+wtrue_800:
 	la $a0, true_str
 	li $v0, 4
 	syscall
-	j wend_5154
-wfalse_5154:
+	j wend_800
+wfalse_800:
 	la $a0, false_str
 	li $v0, 4
 	syscall
-wend_5154:
+wend_800:
 	# Get value of the variable 'a':
 	lw $v0, 0($sp)
 	addi $sp, $sp, -4
@@ -1236,7 +1145,7 @@ wend_5154:
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
-	xori $v0, $v0, 1
+	nor $v0, $v0, $v0
 	addi $sp, $sp, -4
 	sw $v0, -4($sp)
 
@@ -1394,11 +1303,6 @@ wend_5154:
 
 	# Get value of the variable 'a':
 	lw $v0, 0($sp)
-	lw $t8, -4($sp)
-	addi $sp, $sp, 4
-	# Equal:
-	sub $v0, $t8, $v0
-	xori $v0, $v0, 1
 	addi $sp, $sp, -4
 	sw $v0, -4($sp)
 
@@ -1408,6 +1312,11 @@ wend_5154:
 	addi $sp, $sp, 4
 	# Less:
 	slt $v0, $t8, $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	sub $v0, $t8, $v0
+	nor $v0, $v0, $v0
 	lw $t8, -4($sp)
 	addi $sp, $sp, 4
 	# And:
@@ -1448,24 +1357,24 @@ wend_5154:
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
-	xori $v0, $v0, 1
+	nor $v0, $v0, $v0
 	lw $t8, -4($sp)
 	addi $sp, $sp, 4
 	# Or:
 	or $v0, $t8, $v0
 
 	 # Evalue if the expression is true or false
-	beq $v0, $zero, wfalse_4998
-wtrue_4998:
+	beq $v0, $zero, wfalse_1133
+wtrue_1133:
 	la $a0, true_str
 	li $v0, 4
 	syscall
-	j wend_4998
-wfalse_4998:
+	j wend_1133
+wfalse_1133:
 	la $a0, false_str
 	li $v0, 4
 	syscall
-wend_4998:
+wend_1133:
 	# Get value of the variable 'a':
 	lw $v0, 0($sp)
 	addi $sp, $sp, -4
@@ -1477,7 +1386,7 @@ wend_4998:
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
-	xori $v0, $v0, 1
+	nor $v0, $v0, $v0
 	addi $sp, $sp, -4
 	sw $v0, -4($sp)
 
@@ -1492,7 +1401,7 @@ wend_4998:
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
-	xori $v0, $v0, 1
+	nor $v0, $v0, $v0
 	addi $sp, $sp, -4
 	sw $v0, -4($sp)
 
@@ -1650,11 +1559,6 @@ wend_4998:
 
 	# Get value of the variable 'a':
 	lw $v0, 0($sp)
-	lw $t8, -4($sp)
-	addi $sp, $sp, 4
-	# Equal:
-	sub $v0, $t8, $v0
-	xori $v0, $v0, 1
 	addi $sp, $sp, -4
 	sw $v0, -4($sp)
 
@@ -1664,6 +1568,11 @@ wend_4998:
 	addi $sp, $sp, 4
 	# Less:
 	slt $v0, $t8, $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	sub $v0, $t8, $v0
+	nor $v0, $v0, $v0
 	lw $t8, -4($sp)
 	addi $sp, $sp, 4
 	# And:
@@ -1710,17 +1619,17 @@ wend_4998:
 	or $v0, $t8, $v0
 
 	 # Evalue if the expression is true or false
-	beq $v0, $zero, wfalse_617
-wtrue_617:
+	beq $v0, $zero, wfalse_1740
+wtrue_1740:
 	la $a0, true_str
 	li $v0, 4
 	syscall
-	j wend_617
-wfalse_617:
+	j wend_1740
+wfalse_1740:
 	la $a0, false_str
 	li $v0, 4
 	syscall
-wend_617:
+wend_1740:
 	# Get value of the variable 'a':
 	lw $v0, 0($sp)
 	addi $sp, $sp, -4
@@ -1746,7 +1655,7 @@ wend_617:
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
-	xori $v0, $v0, 1
+	nor $v0, $v0, $v0
 	addi $sp, $sp, -4
 	sw $v0, -4($sp)
 
@@ -1904,11 +1813,6 @@ wend_617:
 
 	# Get value of the variable 'a':
 	lw $v0, 0($sp)
-	lw $t8, -4($sp)
-	addi $sp, $sp, 4
-	# Equal:
-	sub $v0, $t8, $v0
-	xori $v0, $v0, 1
 	addi $sp, $sp, -4
 	sw $v0, -4($sp)
 
@@ -1918,6 +1822,11 @@ wend_617:
 	addi $sp, $sp, 4
 	# Less:
 	slt $v0, $t8, $v0
+	lw $t8, -4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	sub $v0, $t8, $v0
+	nor $v0, $v0, $v0
 	lw $t8, -4($sp)
 	addi $sp, $sp, 4
 	# And:
@@ -1936,7 +1845,7 @@ wend_617:
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
-	xori $v0, $v0, 1
+	nor $v0, $v0, $v0
 	lw $t8, -4($sp)
 	addi $sp, $sp, 4
 	# And:
@@ -1965,17 +1874,17 @@ wend_617:
 	or $v0, $t8, $v0
 
 	 # Evalue if the expression is true or false
-	beq $v0, $zero, wfalse_3416
-wtrue_3416:
+	beq $v0, $zero, wfalse_962
+wtrue_962:
 	la $a0, true_str
 	li $v0, 4
 	syscall
-	j wend_3416
-wfalse_3416:
+	j wend_962
+wfalse_962:
 	la $a0, false_str
 	li $v0, 4
 	syscall
-wend_3416:
+wend_962:
 	# Handle program exit
 exit:
 	li $v0, 10

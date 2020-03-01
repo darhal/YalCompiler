@@ -80,13 +80,17 @@ precedence left OP_OR;
 
 precedence left OP_AND;
 
-precedence left OP_GREATER, OP_LESS, OP_EQUAL, OP_NEQUAL;
+// precedence left OP_NOT; //  ??
 
-precedence left OP_NOT;
+precedence left OP_EQUAL, OP_NEQUAL;
+
+precedence left OP_GREATER, OP_LESS;
 
 precedence left OP_PLUS, OP_MINUS;
 
 precedence left OP_MULTIPLY, OP_DIVIDE;
+
+precedence left OP_NOT;
 
 precedence left PARA_OPEN;
 
