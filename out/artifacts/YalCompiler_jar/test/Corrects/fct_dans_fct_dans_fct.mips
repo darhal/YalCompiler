@@ -1,0 +1,87 @@
+.data
+	div_by0: .asciiz "[RUNTIME ERROR]: Division by zero detected.\n"
+	true_str: .asciiz "vrai\n"
+	false_str: .asciiz "faux\n"
+.text
+
+main:
+	# Begin stackframe:
+	move $s7, $sp
+	# Allocate for the declared variables:
+	addi $sp, $sp, -12
+
+	jal fonction1
+
+	# Call write sys call:​
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Handle program exit
+exit:
+	li $v0, 10
+	syscall
+
+	 # Handle RUNTIME errors
+div_by_zero:
+	la $a0, div_by0
+	li $v0, 4
+	syscall
+	j exit
+
+	# Declaration of function: fonction1
+fonction1:
+	# Pushing in the function environments (Creating the stack frame)
+	move $s2, $sp
+	addi $sp, $sp, -4
+	sw $ra, 4($sp)
+
+	jal fonction2
+	# Popping out the function environments (Popping the stack frame)
+	lw $ra, 4($sp)
+	addi $sp, $sp, 4
+	jr $ra
+
+
+	# Declaration of function: fonction3
+fonction3:
+	# Pushing in the function environments (Creating the stack frame)
+	move $s2, $sp
+	addi $sp, $sp, -4
+	sw $ra, 4($sp)
+
+	# Integer Constant '100':
+	li $v0, 100
+	# Popping out the function environments (Popping the stack frame)
+	lw $ra, 4($sp)
+	addi $sp, $sp, 4
+	jr $ra
+
+
+	# Declaration of function: fonction2
+fonction2:
+	# Pushing in the function environments (Creating the stack frame)
+	move $s2, $sp
+	addi $sp, $sp, -4
+	sw $ra, 4($sp)
+
+	# Integer Constant '100':
+	li $v0, 100
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	jal fonction3
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
+	# Popping out the function environments (Popping the stack frame)
+	lw $ra, 4($sp)
+	addi $sp, $sp, 4
+	jr $ra
+
+

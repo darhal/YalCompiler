@@ -1,9 +1,0 @@
-programme ilfaitbeau
-debut
-  fonction fonc1()
-  debut
-    retourne 3;
-  fin
-
-  lire fonc1();
-fin
