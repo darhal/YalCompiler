@@ -8,9 +8,51 @@ main:
 	# Begin stackframe:
 	move $s7, $sp
 	# Allocate for the declared variables:
-	addi $sp, $sp, -4
+	addi $sp, $sp, -20
 
-	jal test
+	jal fonction3
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	jal ouaf
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
+
+	# Call write sys call:​
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	jal fonction3
+
+	# Assignement for the variable 'a':
+	sw $v0, 0($s7)
+
+	jal ouaf
+
+	# Assignement for the variable 'b':
+	sw $v0, -4($s7)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($s7)
+
+	# Call write sys call:​
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Get value of the variable 'b':
+	lw $v0, -4($s7)
 
 	# Call write sys call:​
 	move $a0, $v0
@@ -33,94 +75,64 @@ div_by_zero:
 	syscall
 	j exit
 
-	# Declaration of function: test
-test:
+	# Declaration of function: ouaf
+ouaf:
 	# Pushing in the function environments (Creating the stack frame)
 	move $s2, $sp
 	addi $sp, $sp, -4
-	sw $ra, 0($sp)
-
-	# Integer Constant '1':
-	li $v0, 1
-
-	# Call write sys call:​
-	move $a0, $v0
-	li $v0, 1
-	syscall
-	# Return to line:
-	li $v0, 11 	# Syscall code for printing one char
-	li $a0, '\n' 	# print new line char
-	syscall
-
-	jal a
-	nor $v0, $v0, $v0
-
-	 # Evalue if the expression is true or false
-	beq $v0, $zero, wfalse_3835
-wtrue_3835:
-	la $a0, true_str
-	li $v0, 4
-	syscall
-	j wend_3835
-wfalse_3835:
-	la $a0, false_str
-	li $v0, 4
-	syscall
-wend_3835:
-	# Integer Constant '8':
-	li $v0, 8
-
-	# Call write sys call:​
-	move $a0, $v0
-	li $v0, 1
-	syscall
-	# Return to line:
-	li $v0, 11 	# Syscall code for printing one char
-	li $a0, '\n' 	# print new line char
-	syscall
+	sw $ra, 4($sp)
 
 	# Integer Constant '5':
 	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	jal fonction2
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
 	# Popping out the function environments (Popping the stack frame)
-	lw $ra, 0($sp)
-	move $sp, $s2
+	lw $ra, 4($sp)
+	addi $sp, $sp, 4
 	jr $ra
 
 
-	# Declaration of function: a
-a:
+	# Declaration of function: fonction2
+fonction2:
 	# Pushing in the function environments (Creating the stack frame)
 	move $s2, $sp
 	addi $sp, $sp, -4
-	sw $ra, 0($sp)
+	sw $ra, 4($sp)
 
 	# Integer Constant '2':
 	li $v0, 2
-
-	# Call write sys call:​
-	move $a0, $v0
-	li $v0, 1
-	syscall
-	# Return to line:
-	li $v0, 11 	# Syscall code for printing one char
-	li $a0, '\n' 	# print new line char
-	syscall
-
-	# Integer Constant '5':
-	li $v0, 5
-	addi $sp, $sp, -4
-	sw $v0, -4($sp)
-
-	# Integer Constant '5':
-	li $v0, 5
-	lw $t8, -4($sp)
-	addi $sp, $sp, 4
-	# Equal:
-	sub $v0, $t8, $v0
-	nor $v0, $v0, $v0
 	# Popping out the function environments (Popping the stack frame)
-	lw $ra, 0($sp)
-	move $sp, $s2
+	lw $ra, 4($sp)
+	addi $sp, $sp, 4
+	jr $ra
+
+
+	# Declaration of function: fonction3
+fonction3:
+	# Pushing in the function environments (Creating the stack frame)
+	move $s2, $sp
+	addi $sp, $sp, -4
+	sw $ra, 4($sp)
+
+	# Integer Constant '1':
+	li $v0, 1
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	jal fonction2
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
+	# Popping out the function environments (Popping the stack frame)
+	lw $ra, 4($sp)
+	addi $sp, $sp, 4
 	jr $ra
 
 

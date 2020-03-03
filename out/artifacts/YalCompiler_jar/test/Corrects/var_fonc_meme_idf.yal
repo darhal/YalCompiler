@@ -1,0 +1,21 @@
+// Renvoie 1 2 ;; OK
+programme proggy
+debut
+  entier fonc1;
+  entier fonc2;
+  fonction fonc1()
+  debut
+      retourne 1;
+  fin
+
+  fonction fonc2()
+  debut
+      retourne 2;
+  fin
+
+  fonc1 = fonc1();
+  fonc2 = fonc2();
+
+  ecrire fonc1;
+  ecrire fonc2;
+fin

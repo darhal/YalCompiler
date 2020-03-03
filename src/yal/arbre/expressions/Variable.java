@@ -28,7 +28,7 @@ public class Variable extends Identifiant
         int offset = -4 * s.getOffset();
         mips +=
                 "\n\t# Get value of the variable '"+entree.getIdentifier()+"':\n"+
-                "\tlw $v0, "+offset+"($sp)\n";
+                "\tlw $v0, "+offset+"($s7)\n";
 
         return mips;
     }

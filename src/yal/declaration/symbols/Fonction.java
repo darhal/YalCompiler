@@ -34,11 +34,12 @@ public class Fonction extends ArbreAbstrait
         mips += "\t# Pushing in the function environments (Creating the stack frame)\n";
         mips += "\tmove $s2, $sp\n";
         mips += "\taddi $sp, $sp, -4\n";
-        mips += "\tsw $ra, 0($sp)\n"; // Function enviroment
+        mips += "\tsw $ra, 4($sp)\n"; // Function enviroment
         mips += inst.toMIPS();
         mips += "\t# Popping out the function environments (Popping the stack frame)\n";
-        mips += "\tlw $ra, 0($sp)\n";
-        mips += "\tmove $sp, $s2\n";
+        mips += "\tlw $ra, 4($sp)\n";
+        mips += "\taddi $sp, $sp, 4\n";
+        // mips += "\tmove $sp, $s2\n";
         mips += "\tjr $ra\n"; // Go back from where we finish
         return mips;
     }

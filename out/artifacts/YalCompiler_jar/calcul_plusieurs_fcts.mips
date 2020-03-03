@@ -8,14 +8,14 @@ main:
 	# Begin stackframe:
 	move $s7, $sp
 	# Allocate for the declared variables:
-	addi $sp, $sp, -8
+	addi $sp, $sp, -20
 
 	jal fonction3
 	addi $sp, $sp, -4
-	sw $v0, -8($sp)
+	sw $v0, -20($s7)
 
 	jal ouaf
-	lw $t8, -8($sp)
+	lw $t8, -20($s7)
 	addi $sp, $sp, 4
 	# Addition:
 	add $v0, $t8, $v0
@@ -32,15 +32,15 @@ main:
 	jal fonction3
 
 	# Assignement for the variable 'a':
-	sw $v0, 0($sp)
+	sw $v0, 0($s7)
 
 	jal ouaf
 
 	# Assignement for the variable 'b':
-	sw $v0, -4($sp)
+	sw $v0, -4($s7)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 
 	# Call write sys call:​
 	move $a0, $v0
@@ -52,7 +52,7 @@ main:
 	syscall
 
 	# Get value of the variable 'b':
-	lw $v0, -4($sp)
+	lw $v0, -4($s7)
 
 	# Call write sys call:​
 	move $a0, $v0
@@ -78,61 +78,61 @@ div_by_zero:
 	# Declaration of function: ouaf
 ouaf:
 	# Pushing in the function environments (Creating the stack frame)
-	move $s2, $sp
 	addi $sp, $sp, -4
-	sw $ra, 0($sp)
+	move $s2, $sp
+	sw $ra, 0($s2)
 
 	# Integer Constant '5':
 	li $v0, 5
 	addi $sp, $sp, -4
-	sw $v0, -8($sp)
+	sw $v0, -20($s7)
 
 	jal fonction2
-	lw $t8, -8($sp)
+	lw $t8, -20($s7)
 	addi $sp, $sp, 4
 	# Addition:
 	add $v0, $t8, $v0
 	# Popping out the function environments (Popping the stack frame)
-	lw $ra, 0($sp)
-	move $sp, $s2
+	lw $ra, 0($s2)
+	addi $sp, $sp, 4
 	jr $ra
 
 
 	# Declaration of function: fonction2
 fonction2:
 	# Pushing in the function environments (Creating the stack frame)
-	move $s2, $sp
 	addi $sp, $sp, -4
-	sw $ra, 0($sp)
+	move $s2, $sp
+	sw $ra, 0($s2)
 
 	# Integer Constant '2':
 	li $v0, 2
 	# Popping out the function environments (Popping the stack frame)
-	lw $ra, 0($sp)
-	move $sp, $s2
+	lw $ra, 0($s2)
+	addi $sp, $sp, 4
 	jr $ra
 
 
 	# Declaration of function: fonction3
 fonction3:
 	# Pushing in the function environments (Creating the stack frame)
-	move $s2, $sp
 	addi $sp, $sp, -4
-	sw $ra, 0($sp)
+	move $s2, $sp
+	sw $ra, 0($s2)
 
 	# Integer Constant '1':
 	li $v0, 1
 	addi $sp, $sp, -4
-	sw $v0, -8($sp)
+	sw $v0, -20($s7)
 
 	jal fonction2
-	lw $t8, -8($sp)
+	lw $t8, -20($s7)
 	addi $sp, $sp, 4
 	# Addition:
 	add $v0, $t8, $v0
 	# Popping out the function environments (Popping the stack frame)
-	lw $ra, 0($sp)
-	move $sp, $s2
+	lw $ra, 0($s2)
+	addi $sp, $sp, 4
 	jr $ra
 
 

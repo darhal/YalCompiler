@@ -1,0 +1,10 @@
+programme pro
+debut
+	fonction fonfon()
+	debut
+		ecrire 3;
+		retourne 3==2;
+	fin
+
+	ecrire 3;
+fin

@@ -45,14 +45,14 @@ public class TDS
 
     public int getVariableZoneSize()
     {
-        int sz = 0;
+        /*int sz = 0;
 
         for (Entry s : symbolMap.keySet()){
             if (s.getDecltype() == Decltype.VARIABLE){
                 sz++;
             }
-        }
+        }*/
 
-        return sz;
+        return symbolMap.size();
     }
 }

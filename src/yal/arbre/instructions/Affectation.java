@@ -39,7 +39,7 @@ public class Affectation extends Instruction
         int offset = -4 * s.getOffset();
         mips +=
                 "\n\t# Assignement for the variable '"+entree.getIdentifier()+"':\n"+
-                "\tsw $v0, "+offset+"($sp)\n";
+                "\tsw $v0, "+offset+"($s7)\n";
 
         return mips;
     }

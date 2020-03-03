@@ -13,11 +13,11 @@ main:
 	# Integer Constant '25':
 	li $v0, 25
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '25':
 	li $v0, 25
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Division:
 	# test si on divise par 0
@@ -37,20 +37,20 @@ main:
 	# Integer Constant '5':
 	li $v0, 5
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '5':
 	li $v0, 5
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '25':
 	li $v0, 25
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Division:
 	# test si on divise par 0
@@ -58,11 +58,11 @@ main:
 	div $t8, $v0
 	mflo $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '13':
 	li $v0, 13
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Addition:
 	add $v0, $t8, $v0
@@ -79,20 +79,20 @@ main:
 	# Integer Constant '5':
 	li $v0, 5
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '5':
 	li $v0, 5
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '25':
 	li $v0, 25
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Division:
 	# test si on divise par 0
@@ -100,29 +100,29 @@ main:
 	div $t8, $v0
 	mflo $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '13':
 	li $v0, 13
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '5':
 	li $v0, 5
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Addition:
 	add $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '5':
 	li $v0, 5
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Substraction:
 	sub $v0, $t8, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Addition:
 	add $v0, $t8, $v0
@@ -139,38 +139,38 @@ main:
 	# Integer Constant '5':
 	li $v0, 5
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '5':
 	li $v0, 5
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '5':
 	li $v0, 5
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '2':
 	li $v0, 2
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Substraction:
 	sub $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '1':
 	li $v0, 1
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Substraction:
 	sub $v0, $t8, $v0
@@ -187,59 +187,59 @@ main:
 	# Integer Constant '5':
 	li $v0, 5
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '5':
 	li $v0, 5
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '5':
 	li $v0, 5
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '2':
 	li $v0, 2
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Division:
 	# test si on divise par 0
 	beqz $v0, div_by_zero
 	div $t8, $v0
 	mflo $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Substraction:
 	sub $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '5':
 	li $v0, 5
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '5':
 	li $v0, 5
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Substraction:
 	sub $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '16':
 	li $v0, 16
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Addition:
 	add $v0, $t8, $v0
@@ -256,11 +256,11 @@ main:
 	# Integer Constant '5':
 	li $v0, 5
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '2':
 	li $v0, 2
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Division:
 	# test si on divise par 0
@@ -268,71 +268,71 @@ main:
 	div $t8, $v0
 	mflo $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '5':
 	li $v0, 5
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '2':
 	li $v0, 2
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Division:
 	# test si on divise par 0
 	beqz $v0, div_by_zero
 	div $t8, $v0
 	mflo $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Addition:
 	add $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '5':
 	li $v0, 5
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '2':
 	li $v0, 2
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Division:
 	# test si on divise par 0
 	beqz $v0, div_by_zero
 	div $t8, $v0
 	mflo $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Addition:
 	add $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '5':
 	li $v0, 5
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '2':
 	li $v0, 2
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Addition:
 	add $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '2':
 	li $v0, 2
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Substraction:
 	sub $v0, $t8, $v0
@@ -349,11 +349,11 @@ main:
 	# Integer Constant '100':
 	li $v0, 100
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '2':
 	li $v0, 2
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Division:
 	# test si on divise par 0
@@ -361,11 +361,11 @@ main:
 	div $t8, $v0
 	mflo $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '2':
 	li $v0, 2
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Division:
 	# test si on divise par 0
@@ -373,11 +373,11 @@ main:
 	div $t8, $v0
 	mflo $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '2':
 	li $v0, 2
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Division:
 	# test si on divise par 0
@@ -385,11 +385,11 @@ main:
 	div $t8, $v0
 	mflo $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '2':
 	li $v0, 2
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Addition:
 	add $v0, $t8, $v0
@@ -406,16 +406,16 @@ main:
 	# Integer Constant '2':
 	li $v0, 2
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '100':
 	li $v0, 100
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '2':
 	li $v0, 2
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Division:
 	# test si on divise par 0
@@ -423,11 +423,11 @@ main:
 	div $t8, $v0
 	mflo $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '2':
 	li $v0, 2
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Division:
 	# test si on divise par 0
@@ -435,18 +435,18 @@ main:
 	div $t8, $v0
 	mflo $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '2':
 	li $v0, 2
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Division:
 	# test si on divise par 0
 	beqz $v0, div_by_zero
 	div $t8, $v0
 	mflo $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Addition:
 	add $v0, $t8, $v0
@@ -463,95 +463,95 @@ main:
 	# Integer Constant '5':
 	li $v0, 5
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '5':
 	li $v0, 5
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '25':
 	li $v0, 25
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
 	nor $v0, $v0, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '25':
 	li $v0, 25
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '25':
 	li $v0, 25
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
 	nor $v0, $v0, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
 	nor $v0, $v0, $v0
 
 	 # Evalue if the expression is true or false
-	beq $v0, $zero, wfalse_4011
-wtrue_4011:
+	beq $v0, $zero, wfalse_1140
+wtrue_1140:
 	la $a0, true_str
 	li $v0, 4
 	syscall
-	j wend_4011
-wfalse_4011:
+	j wend_1140
+wfalse_1140:
 	la $a0, false_str
 	li $v0, 4
 	syscall
-wend_4011:
+wend_1140:
 	# Integer Constant '5':
 	li $v0, 5
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '5':
 	li $v0, 5
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '25':
 	li $v0, 25
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
 	nor $v0, $v0, $v0
 	nor $v0, $v0, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '25':
 	li $v0, 25
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '25':
 	li $v0, 25
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
 	nor $v0, $v0, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
@@ -559,357 +559,357 @@ wend_4011:
 	nor $v0, $v0, $v0
 
 	 # Evalue if the expression is true or false
-	beq $v0, $zero, wfalse_2468
-wtrue_2468:
+	beq $v0, $zero, wfalse_6326
+wtrue_6326:
 	la $a0, true_str
 	li $v0, 4
 	syscall
-	j wend_2468
-wfalse_2468:
+	j wend_6326
+wfalse_6326:
 	la $a0, false_str
 	li $v0, 4
 	syscall
-wend_2468:
+wend_6326:
 	# Integer Constant '5':
 	li $v0, 5
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '5':
 	li $v0, 5
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '26':
 	li $v0, 26
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	slt $v0, $v0, $t8
 	nor $v0, $v0, $v0
 
 	 # Evalue if the expression is true or false
-	beq $v0, $zero, wfalse_8415
-wtrue_8415:
+	beq $v0, $zero, wfalse_3749
+wtrue_3749:
 	la $a0, true_str
 	li $v0, 4
 	syscall
-	j wend_8415
-wfalse_8415:
+	j wend_3749
+wfalse_3749:
 	la $a0, false_str
 	li $v0, 4
 	syscall
-wend_8415:
+wend_3749:
 	# Integer Constant '5':
 	li $v0, 5
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '5':
 	li $v0, 5
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '24':
 	li $v0, 24
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Less:
 	slt $v0, $t8, $v0
 	nor $v0, $v0, $v0
 
 	 # Evalue if the expression is true or false
-	beq $v0, $zero, wfalse_1014
-wtrue_1014:
+	beq $v0, $zero, wfalse_8460
+wtrue_8460:
 	la $a0, true_str
 	li $v0, 4
 	syscall
-	j wend_1014
-wfalse_1014:
+	j wend_8460
+wfalse_8460:
 	la $a0, false_str
 	li $v0, 4
 	syscall
-wend_1014:
+wend_8460:
 	# Integer Constant '1':
 	li $v0, 1
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '2':
 	li $v0, 2
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
 	nor $v0, $v0, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '5':
 	li $v0, 5
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '3':
 	li $v0, 3
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	slt $v0, $v0, $t8
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '5':
 	li $v0, 5
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '6':
 	li $v0, 6
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	slt $v0, $v0, $t8
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# And:
 	and $v0, $t8, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Or:
 	or $v0, $t8, $v0
 	nor $v0, $v0, $v0
 
 	 # Evalue if the expression is true or false
-	beq $v0, $zero, wfalse_7743
-wtrue_7743:
+	beq $v0, $zero, wfalse_5463
+wtrue_5463:
 	la $a0, true_str
 	li $v0, 4
 	syscall
-	j wend_7743
-wfalse_7743:
+	j wend_5463
+wfalse_5463:
 	la $a0, false_str
 	li $v0, 4
 	syscall
-wend_7743:
+wend_5463:
 	# Integer Constant '1':
 	li $v0, 1
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '1':
 	li $v0, 1
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
 	nor $v0, $v0, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '5':
 	li $v0, 5
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '3':
 	li $v0, 3
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	slt $v0, $v0, $t8
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '5':
 	li $v0, 5
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '6':
 	li $v0, 6
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	slt $v0, $v0, $t8
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# And:
 	and $v0, $t8, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Or:
 	or $v0, $t8, $v0
 
 	 # Evalue if the expression is true or false
-	beq $v0, $zero, wfalse_108
-wtrue_108:
+	beq $v0, $zero, wfalse_240
+wtrue_240:
 	la $a0, true_str
 	li $v0, 4
 	syscall
-	j wend_108
-wfalse_108:
+	j wend_240
+wfalse_240:
 	la $a0, false_str
 	li $v0, 4
 	syscall
-wend_108:
+wend_240:
 	# Integer Constant '5':
 	li $v0, 5
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '3':
 	li $v0, 3
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	slt $v0, $v0, $t8
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '5':
 	li $v0, 5
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '6':
 	li $v0, 6
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Less:
 	slt $v0, $t8, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# And:
 	and $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '1':
 	li $v0, 1
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '1':
 	li $v0, 1
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
 	nor $v0, $v0, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Or:
 	or $v0, $t8, $v0
 
 	 # Evalue if the expression is true or false
-	beq $v0, $zero, wfalse_807
-wtrue_807:
+	beq $v0, $zero, wfalse_1373
+wtrue_1373:
 	la $a0, true_str
 	li $v0, 4
 	syscall
-	j wend_807
-wfalse_807:
+	j wend_1373
+wfalse_1373:
 	la $a0, false_str
 	li $v0, 4
 	syscall
-wend_807:
+wend_1373:
 	# Integer Constant '5':
 	li $v0, 5
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '6':
 	li $v0, 6
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	slt $v0, $v0, $t8
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '1':
 	li $v0, 1
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '1':
 	li $v0, 1
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
 	nor $v0, $v0, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Or:
 	or $v0, $t8, $v0
 
 	 # Evalue if the expression is true or false
-	beq $v0, $zero, wfalse_4546
-wtrue_4546:
+	beq $v0, $zero, wfalse_9995
+wtrue_9995:
 	la $a0, true_str
 	li $v0, 4
 	syscall
-	j wend_4546
-wfalse_4546:
+	j wend_9995
+wfalse_9995:
 	la $a0, false_str
 	li $v0, 4
 	syscall
-wend_4546:
+wend_9995:
 	# Integer Constant '5':
 	li $v0, 5
 
 	# Assignement for the variable 'a':
-	sw $v0, 0($sp)
+	sw $v0, 0($s7)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Not Equal:
 	sub $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
 	nor $v0, $v0, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Division:
 	# test si on divise par 0
@@ -917,34 +917,34 @@ wend_4546:
 	div $t8, $v0
 	mflo $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Division:
 	# test si on divise par 0
@@ -952,38 +952,38 @@ wend_4546:
 	div $t8, $v0
 	mflo $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Addition:
 	add $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Division:
 	# test si on divise par 0
@@ -991,38 +991,38 @@ wend_4546:
 	div $t8, $v0
 	mflo $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Substraction:
 	sub $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Division:
 	# test si on divise par 0
@@ -1030,142 +1030,142 @@ wend_4546:
 	div $t8, $v0
 	mflo $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Less:
 	slt $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '6':
 	li $v0, 6
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Less:
 	slt $v0, $t8, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
 	nor $v0, $v0, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# And:
 	and $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
 	nor $v0, $v0, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# And:
 	and $v0, $t8, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Or:
 	or $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
 	nor $v0, $v0, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Or:
 	or $v0, $t8, $v0
 
 	 # Evalue if the expression is true or false
-	beq $v0, $zero, wfalse_800
-wtrue_800:
+	beq $v0, $zero, wfalse_4366
+wtrue_4366:
 	la $a0, true_str
 	li $v0, 4
 	syscall
-	j wend_800
-wfalse_800:
+	j wend_4366
+wfalse_4366:
 	la $a0, false_str
 	li $v0, 4
 	syscall
-wend_800:
+wend_4366:
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Not Equal:
 	sub $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
 	nor $v0, $v0, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Division:
 	# test si on divise par 0
@@ -1173,34 +1173,34 @@ wend_800:
 	div $t8, $v0
 	mflo $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Division:
 	# test si on divise par 0
@@ -1208,38 +1208,38 @@ wend_800:
 	div $t8, $v0
 	mflo $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Addition:
 	add $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Division:
 	# test si on divise par 0
@@ -1247,38 +1247,38 @@ wend_800:
 	div $t8, $v0
 	mflo $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Substraction:
 	sub $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Division:
 	# test si on divise par 0
@@ -1286,142 +1286,142 @@ wend_800:
 	div $t8, $v0
 	mflo $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Less:
 	slt $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '6':
 	li $v0, 6
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Less:
 	slt $v0, $t8, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
 	nor $v0, $v0, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# And:
 	and $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Not Equal:
 	sub $v0, $t8, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# And:
 	and $v0, $t8, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Or:
 	or $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
 	nor $v0, $v0, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Or:
 	or $v0, $t8, $v0
 
 	 # Evalue if the expression is true or false
-	beq $v0, $zero, wfalse_1133
-wtrue_1133:
+	beq $v0, $zero, wfalse_5602
+wtrue_5602:
 	la $a0, true_str
 	li $v0, 4
 	syscall
-	j wend_1133
-wfalse_1133:
+	j wend_5602
+wfalse_5602:
 	la $a0, false_str
 	li $v0, 4
 	syscall
-wend_1133:
+wend_5602:
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
 	nor $v0, $v0, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
 	nor $v0, $v0, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Division:
 	# test si on divise par 0
@@ -1429,34 +1429,34 @@ wend_1133:
 	div $t8, $v0
 	mflo $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Division:
 	# test si on divise par 0
@@ -1464,38 +1464,38 @@ wend_1133:
 	div $t8, $v0
 	mflo $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Addition:
 	add $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Division:
 	# test si on divise par 0
@@ -1503,38 +1503,38 @@ wend_1133:
 	div $t8, $v0
 	mflo $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Substraction:
 	sub $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Division:
 	# test si on divise par 0
@@ -1542,140 +1542,140 @@ wend_1133:
 	div $t8, $v0
 	mflo $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Less:
 	slt $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '6':
 	li $v0, 6
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Less:
 	slt $v0, $t8, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
 	nor $v0, $v0, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# And:
 	and $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Not Equal:
 	sub $v0, $t8, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# And:
 	and $v0, $t8, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Or:
 	or $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Not Equal:
 	sub $v0, $t8, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Or:
 	or $v0, $t8, $v0
 
 	 # Evalue if the expression is true or false
-	beq $v0, $zero, wfalse_1740
-wtrue_1740:
+	beq $v0, $zero, wfalse_1269
+wtrue_1269:
 	la $a0, true_str
 	li $v0, 4
 	syscall
-	j wend_1740
-wfalse_1740:
+	j wend_1269
+wfalse_1269:
 	la $a0, false_str
 	li $v0, 4
 	syscall
-wend_1740:
+wend_1269:
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Not Equal:
 	sub $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
 	nor $v0, $v0, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Division:
 	# test si on divise par 0
@@ -1683,34 +1683,34 @@ wend_1740:
 	div $t8, $v0
 	mflo $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Division:
 	# test si on divise par 0
@@ -1718,38 +1718,38 @@ wend_1740:
 	div $t8, $v0
 	mflo $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Addition:
 	add $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Division:
 	# test si on divise par 0
@@ -1757,38 +1757,38 @@ wend_1740:
 	div $t8, $v0
 	mflo $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Substraction:
 	sub $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Division:
 	# test si on divise par 0
@@ -1796,95 +1796,95 @@ wend_1740:
 	div $t8, $v0
 	mflo $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Multiplication:
 	mul $v0, $t8, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Less:
 	slt $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Integer Constant '6':
 	li $v0, 6
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Less:
 	slt $v0, $t8, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
 	nor $v0, $v0, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# And:
 	and $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Equal:
 	sub $v0, $t8, $v0
 	nor $v0, $v0, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# And:
 	and $v0, $t8, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Or:
 	or $v0, $t8, $v0
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 	addi $sp, $sp, -4
-	sw $v0, -4($sp)
+	sw $v0, 4($sp)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
-	lw $t8, -4($sp)
+	lw $v0, 0($s7)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Not Equal:
 	sub $v0, $t8, $v0
-	lw $t8, -4($sp)
+	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Or:
 	or $v0, $t8, $v0
 
 	 # Evalue if the expression is true or false
-	beq $v0, $zero, wfalse_962
-wtrue_962:
+	beq $v0, $zero, wfalse_673
+wtrue_673:
 	la $a0, true_str
 	li $v0, 4
 	syscall
-	j wend_962
-wfalse_962:
+	j wend_673
+wfalse_673:
 	la $a0, false_str
 	li $v0, 4
 	syscall
-wend_962:
+wend_673:
 	# Handle program exit
 exit:
 	li $v0, 10

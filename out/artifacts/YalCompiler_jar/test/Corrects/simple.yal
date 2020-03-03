@@ -1,0 +1,15 @@
+// Renvoie 3 ;; OK
+programme essai
+debut
+
+	fonction oui()
+	debut
+		retourne 3;
+	fin
+
+entier a;
+a = oui();
+
+ecrire a;
+
+fin

@@ -29,7 +29,7 @@ public class Lire extends Instruction
         String mips = "\n\t# Reads an integer: ";
         mips += "\n\tli $v0, 5\n";
         mips += "\tsyscall\n";
-        mips += "\tsw $v0, "+offset+"($sp)\n";
+        mips += "\tsw $v0, "+offset+"($s7)\n";
         return mips;
     }
 }
