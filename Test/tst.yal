@@ -1,6 +1,6 @@
 programme essai debut
 	fonction a() debut
-		ecrire 1; 
+		ecrire 2;
 		retourne 5 == 5;
 	fin
 	fonction test() debut
@@ -11,6 +11,6 @@ programme essai debut
 	fin
 	entier a;
 	
-	a = test();
-	ecrire a;
+	// a = test();
+	ecrire test();
 fin
