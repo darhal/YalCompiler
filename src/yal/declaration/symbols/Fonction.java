@@ -1,21 +1,31 @@
 package yal.declaration.symbols;
 
 import yal.arbre.ArbreAbstrait;
+import yal.arbre.BlocDInstructions;
 import yal.arbre.expressions.ExpressionType;
+import yal.arbre.instructions.ReturnInstruction;
+import yal.declaration.TDS;
 import yal.declaration.entries.Entry;
 
 public class Fonction extends ArbreAbstrait
 {
-    protected ArbreAbstrait inst;
+    protected BlocDInstructions inst;
     protected Entry entree;
     protected ExpressionType returnType;
 
-    public Fonction(Entry entree, ArbreAbstrait inst, ExpressionType type, int ligne)
+    public Fonction(Entry entree, BlocDInstructions inst, ExpressionType type, int ligne)
     {
         super(ligne);
         this.inst = inst;
         this.entree = entree;
         this.returnType = type;
+
+        for (ArbreAbstrait a : this.inst.getProgramme()){
+            if (a instanceof ReturnInstruction){
+                ReturnInstruction ri = (ReturnInstruction)(a);
+                ri.setFnBloc(TDS.Instance().getCurrentBloc());
+            }
+        }
     }
 
     public ExpressionType getReturnType() {
@@ -36,6 +46,8 @@ public class Fonction extends ArbreAbstrait
         mips += "\taddi $sp, $sp, -4\n";
         mips += "\tsw $ra, 4($sp)\n"; // Function enviroment
         mips += inst.toMIPS();
+        mips += "\t End of the function routine :\n";
+        mips += entree.getIdentifier()+"_fin:\n";
         mips += "\t# Popping out the function environments (Popping the stack frame)\n";
         mips += "\tlw $ra, 4($sp)\n";
         mips += "\taddi $sp, $sp, 4\n";

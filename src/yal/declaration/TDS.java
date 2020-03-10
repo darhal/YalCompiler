@@ -1,22 +1,28 @@
 package yal.declaration;
 
 import yal.declaration.entries.Entry;
+import yal.declaration.entries.FonctionEntry;
 import yal.declaration.symbols.Symbole;
 import yal.exceptions.DoubleDeclarationException;
 import yal.exceptions.IdentifiantNonDeclarerException;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TDS
 {
     private static TDS instance = new TDS();
 
+    public HashMap<Entry, Symbole> symbolMap;
+    public ArrayList<FonctionEntry> blocs;
+    public int currentBloc;
+
     private TDS()
     {
         symbolMap = new HashMap<>();
+        blocs = new ArrayList<>();
+        currentBloc = -1;
     }
-
-    public HashMap<Entry, Symbole> symbolMap;
 
     public static TDS Instance()
     {
@@ -41,6 +47,27 @@ public class TDS
         }
 
         return s;
+    }
+
+    public void EnterBloc(FonctionEntry fentry)
+    {
+        blocs.add(fentry);
+        currentBloc = blocs.size();
+    }
+
+    public void LeaveBloc()
+    {
+        currentBloc = -1;
+    }
+
+    public FonctionEntry getBloc(int index)
+    {
+        return blocs.get(index);
+    }
+
+    public int getCurrentBloc()
+    {
+        return currentBloc;
     }
 
     public int getVariableZoneSize()

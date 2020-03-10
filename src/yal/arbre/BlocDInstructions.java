@@ -33,7 +33,11 @@ public class BlocDInstructions extends ArbreAbstrait {
             a.verifier();
         }
     }
-    
+
+    public ArrayList<ArbreAbstrait> getProgramme() {
+        return programme;
+    }
+
     @Override
     public String toMIPS()
     {

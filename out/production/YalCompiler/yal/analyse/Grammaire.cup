@@ -71,16 +71,14 @@ terminal String    IDF, CSTENTIERE, TYPE;
 
 /* Non terminals used in the grammar section.  */
 
-non terminal ArbreAbstrait PROG_BODY, PROG, LINST, INST, AFFECT, CONDITION, LOOP;
-non terminal Expression EXP, LOGIC_EXP, RETOURNE_INST, FUNC_CALL;
+non terminal ArbreAbstrait PROG_BODY, PROG, LINST, INST, AFFECT, CONDITION, LOOP, RETOURNE_INST;
+non terminal Expression EXP, LOGIC_EXP, FUNC_CALL;
 non terminal DECL_LIST, DECL_VAR, DECAL_FONCTION, PARAMETERS;
 // non terminal Integer OPER;
 
 precedence left OP_OR;
 
 precedence left OP_AND;
-
-// precedence left OP_NOT; //  ??
 
 precedence left OP_EQUAL, OP_NEQUAL;
 
@@ -138,38 +136,19 @@ DECL_VAR    ::=   TYPE IDF:idf POINTVIRGULE
 DECAL_FONCTION ::= FONCTION IDF:idf PARAMETERS DEBUT LINST:li FIN
                    {:
                         FonctionEntry entree = new FonctionEntry(idf, idfleft + 1);
+                        TDS.Instance().EnterBloc(entree);
                         TDS.Instance().AddEntry(
                             entree,
-                            new FonctionSymbole(new Fonction(entree, li, ExpressionType.FUNCTION, idfleft+1)),
+                            new FonctionSymbole(new Fonction(entree, (BlocDInstructions)li, ExpressionType.ARITHMETIC, idfleft+1)),
                             idfleft + 1
                         );
-                   :}
-                   |
-                   FONCTION IDF:idf PARAMETERS DEBUT LINST:li RETOURNE_INST:ri FIN
-                   {:
-                        ((BlocDInstructions)li).ajouter(ri);
-                        FonctionEntry entree = new FonctionEntry(idf, idfleft + 1);
-                        TDS.Instance().AddEntry(
-                            entree,
-                            new FonctionSymbole(new Fonction(entree, li, ri.getType(), idfleft+1)),
-                            idfleft + 1
-                        );
-                   :}
-                   |
-                   FONCTION IDF:idf PARAMETERS DEBUT RETOURNE_INST:ri FIN
-                   {:
-                        FonctionEntry entree = new FonctionEntry(idf, idfleft + 1);
-                        TDS.Instance().AddEntry(
-                            entree,
-                            new FonctionSymbole(new Fonction(entree, ri, ri.getType(), idfleft+1)),
-                            idfleft + 1
-                        );
+                        TDS.Instance().LeaveBloc();
                    :}
             ;
 
 RETOURNE_INST  ::=  RETOURNE EXP:e POINTVIRGULE
                     {:
-                        RESULT = e;
+                        RESULT = new ReturnInstruction(e, eleft+1);
                     :};
 
 PARAMETERS  ::=     PARA_OPEN PARA_CLOSE {::};
@@ -178,13 +157,12 @@ INST        ::=     AFFECT:aff {: RESULT = aff; :}
             |       CONDITION:cond {: RESULT = cond; :}
             |       LOOP:loop {: RESULT = loop; :}
             |       FUNC_CALL:func_call {: RESULT = func_call; :}
-            |
-                    LIRE IDF:idf POINTVIRGULE
+            |       LIRE IDF:idf POINTVIRGULE
                     {:  Variable var = new Variable(new VariableEntry(idf, idfleft + 1), idfleft + 1);
                         RESULT = new Lire(var, idfleft + 1); :}
-            |
-                    ECRIRE EXP:e POINTVIRGULE
+            |       ECRIRE EXP:e POINTVIRGULE
                     {: RESULT = new Ecrire(e, eleft + 1) ; :}
+            |       RETOURNE_INST:ri {: RESULT = ri; :}
             ;
 
 FUNC_CALL   ::=     IDF:idf PARAMETERS POINTVIRGULE
@@ -228,8 +206,7 @@ EXP         ::=
             |EXP:e1 OP_MULTIPLY EXP:e2{:RESULT = new BinaryOperation(e1, e2, OperatorsTypes.MULTIPLY, ExpressionType.ARITHMETIC, e1left + 1);:}
             |EXP:e1 OP_DIVIDE EXP:e2{:RESULT = new BinaryOperation(e1, e2, OperatorsTypes.DIVIDE, ExpressionType.ARITHMETIC, e1left + 1);:}
             |LOGIC_EXP:lexp {:RESULT = lexp;:}
-            |IDF:idf PARAMETERS{:
-            RESULT = new FunctionCall(new FonctionEntry(idf, idfleft + 1), idfleft + 1) ; :}
+            |IDF:idf PARAMETERS{: RESULT = new FunctionCall(new FonctionEntry(idf, idfleft + 1), idfleft + 1) ; :}
             ;
 
 LOGIC_EXP   ::=

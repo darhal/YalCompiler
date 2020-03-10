@@ -1,0 +1,44 @@
+programme prog1 debut
+entier a;
+entier b;
+entier c;
+
+fonction fonc () debut
+    si a == 3 alors
+         retourne a;
+    finsi
+    a = a + 1 ;
+    ecrire a;
+    retourne fonc();
+fin
+
+fonction a() debut
+    b = 30;
+    retourne b;
+    ecrire 1==1;
+fin
+
+fonction b() debut
+    c = a();
+    retourne c;
+fin
+
+entier test;
+//retourne 8;
+a = fonc();
+ecrire a;
+b = a() + 10;
+ecrire b;
+ecrire b();
+//ecrire non b();
+//ecrire a() et b();
+
+fin // test
+
+//1
+//2
+//3
+//3
+//40
+//30
+
