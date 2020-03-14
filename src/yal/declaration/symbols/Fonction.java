@@ -6,19 +6,25 @@ import yal.arbre.expressions.ExpressionType;
 import yal.arbre.instructions.ReturnInstruction;
 import yal.declaration.TDS;
 import yal.declaration.entries.Entry;
+import yal.declaration.entries.FonctionEntry;
+import yal.exceptions.AnalyseSemantiqueException;
 
 public class Fonction extends ArbreAbstrait
 {
     protected BlocDInstructions inst;
-    protected Entry entree;
+    protected FonctionEntry entree;
     protected ExpressionType returnType;
+    protected int nbParameters;
+    protected int noBloc;
 
-    public Fonction(Entry entree, BlocDInstructions inst, ExpressionType type, int ligne)
+    public Fonction(int nbBloc, FonctionEntry entree, BlocDInstructions inst, Integer nbParameters, ExpressionType type, int ligne)
     {
         super(ligne);
         this.inst = inst;
         this.entree = entree;
         this.returnType = type;
+        this.noBloc = nbBloc;
+        this.nbParameters = nbParameters;
     }
 
     public ExpressionType getReturnType() {
@@ -27,11 +33,19 @@ public class Fonction extends ArbreAbstrait
 
     @Override
     public void verifier() {
+        TDS.Instance().EnterBloc(noBloc);
+        if (entree.getNbReturn() == 0){
+            throw new AnalyseSemantiqueException(entree.getLine(),
+                    "Functions must have at least one return statement, the function '"+entree.getIdentifier()+"' doesn't have any return statement"
+            );
+        }
         inst.verifier();
+        TDS.Instance().LeaveBloc();
     }
 
     @Override
     public String toMIPS() {
+        TDS.Instance().EnterBloc(noBloc);
         String mips = "\t# Declaration of function: "+ entree.getIdentifier()+"\n";
         mips += entree.getIdentifier()+":\n";
         mips += "\t# Pushing in the function environments (Creating the stack frame)\n";
@@ -46,6 +60,7 @@ public class Fonction extends ArbreAbstrait
         mips += "\taddi $sp, $sp, 4\n";
         // mips += "\tmove $sp, $s2\n";
         mips += "\tjr $ra\n"; // Go back from where we finish
+        TDS.Instance().LeaveBloc();
         return mips;
     }
 }

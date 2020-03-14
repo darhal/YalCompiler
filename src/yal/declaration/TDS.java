@@ -2,6 +2,7 @@ package yal.declaration;
 
 import yal.declaration.entries.Entry;
 import yal.declaration.entries.FonctionEntry;
+import yal.declaration.symbols.FonctionSymbole;
 import yal.declaration.symbols.Symbole;
 import yal.exceptions.AnalyseSemantiqueException;
 import yal.exceptions.DoubleDeclarationException;
@@ -14,15 +15,16 @@ public class TDS
 {
     private static TDS instance = new TDS();
 
-    public HashMap<Entry, Symbole> symbolMap;
-    public ArrayList<FonctionEntry> blocs;
+    public HashMap<FonctionEntry, FonctionSymbole> fnSymbolMap;
+    public ArrayList<TableLocal> blocs;
     public int currentBloc;
 
     private TDS()
     {
-        symbolMap = new HashMap<>();
+        fnSymbolMap = new HashMap<>();
         blocs = new ArrayList<>();
-        currentBloc = -1;
+        blocs.add(new TableLocal(0, -1));
+        currentBloc = 0;
     }
 
     public static TDS Instance()
@@ -30,19 +32,29 @@ public class TDS
         return instance;
     }
 
-    public void AddEntry(Entry e, Symbole s, int line) throws DoubleDeclarationException
+    public void AddEntry(Entry e, Symbole s, int line)
     {
-        if (symbolMap.get(e) != null){
-            throw new DoubleDeclarationException(line);
-        }
-
-        s.incrementOffset(getVariableZoneSize());
-        symbolMap.put(e, s);
+        this.getBloc(currentBloc).AddEntry(e, s, line);
     }
 
     public Symbole Identify(Entry e) throws IdentifiantNonDeclarerException
     {
-        Symbole s = symbolMap.get(e);
+        return this.getBloc(currentBloc).Identify(e);
+    }
+
+    public void addFunctionEntry(FonctionEntry e, FonctionSymbole s, int line)
+    {
+        if (fnSymbolMap.get(e) != null){
+            throw new DoubleDeclarationException(line);
+        }
+
+        s.incrementOffset(getVariableZoneSize());
+        fnSymbolMap.put(e, s);
+    }
+
+    public Symbole IdentifyFunction(FonctionEntry e) throws IdentifiantNonDeclarerException
+    {
+        FonctionSymbole s = fnSymbolMap.get(e);
         if (s == null){
             throw new IdentifiantNonDeclarerException(e.getLine());
         }
@@ -53,21 +65,22 @@ public class TDS
     public void EnterBloc()
     {
         currentBloc = blocs.size();
-        blocs.add(new FonctionEntry());
+        blocs.add(new TableLocal(currentBloc, 0));
+    }
+
+    public void EnterBloc(int noBloc)
+    {
+        if (noBloc < blocs.size()){
+            currentBloc = noBloc;
+        }
     }
 
     public void LeaveBloc()
     {
-        FonctionEntry entree = TDS.Instance().getBloc(TDS.Instance().getCurrentBloc());
-        if (entree.getNbReturn() == 0){
-            throw new AnalyseSemantiqueException(entree.getLine(),
-                    "Functions must have at least one return statement, the function '"+entree.getIdentifier()+"' doesn't have any return statement"
-            );
-        }
-        currentBloc = -1;
+        currentBloc = 0;
     }
 
-    public FonctionEntry getBloc(int index)
+    public TableLocal getBloc(int index)
     {
         return blocs.get(index);
     }
@@ -77,16 +90,12 @@ public class TDS
         return currentBloc;
     }
 
+    public ArrayList<TableLocal> getBlocs() {
+        return blocs;
+    }
+
     public int getVariableZoneSize()
     {
-        /*int sz = 0;
-
-        for (Entry s : symbolMap.keySet()){
-            if (s.getDecltype() == Decltype.VARIABLE){
-                sz++;
-            }
-        }*/
-
-        return symbolMap.size();
+        return this.getBloc(0).getVariableZoneSize();
     }
 }

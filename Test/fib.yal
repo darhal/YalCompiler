@@ -1,12 +1,19 @@
-//programme fib debut
-//  fonction fib(n) debut
-//      	si (n < 2) alors
-//		retourne n;
-//	finsi
-//	
-//	retourne fib(n-1) + fib(n-2);
-// fin
-//
-//  ecrire fib(3);
-//
-//fin
+// Program that calculate the fibonacci sequence
+programme fib_test debut
+	fonction fib(entier n) debut
+      	si n == 1 ou n == 0 alors
+			retourne n;
+		finsi
+	
+		retourne fib(n-1) + fib(n-2);
+	fin
+
+	ecrire fib(0); // 0
+	ecrire fib(1); // 1
+	ecrire fib(3); // 2
+	ecrire fib(5); // 5
+	ecrire fib(8); // 21
+	ecrire fib(10); // 55
+	ecrire fib(20); // 6765
+	ecrire fib(38); // 39088169
+fin

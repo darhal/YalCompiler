@@ -73,9 +73,9 @@ terminal String    IDF, CSTENTIERE, TYPE;
 
 non terminal ArbreAbstrait PROG_BODY, PROG, LINST, INST, AFFECT, CONDITION, LOOP, RETOURNE_INST;
 non terminal Expression EXP, LOGIC_EXP, FUNC_CALL;
-non terminal DECL_LIST, DECL_VAR, DECAL_FONCTION, PARAMETERS;
+non terminal DECL_LIST, DECL_VAR, DECAL_FONCTION, FUNC_DECL_PAR;
 non terminal Symbol DEBUT_FONC;
-non terminal FUNC_DECLLIST_PAR, FUNC_DECL_PAR;
+non terminal Integer FUNC_DECLLIST_PAR, PARAMETERS;
 
 precedence left OP_OR;
 
@@ -136,14 +136,16 @@ DECL_VAR    ::=   TYPE IDF:idf POINTVIRGULE
 
 DEBUT_FONC     ::= FONCTION {: TDS.Instance().EnterBloc(); :};
 
-DECAL_FONCTION ::= DEBUT_FONC IDF:idf PARAMETERS DEBUT LINST:li FIN:fin
+DECAL_FONCTION ::= DEBUT_FONC IDF:idf PARAMETERS:nb_para DEBUT LINST:li FIN:fin
                    {:
-                        FonctionEntry entree = TDS.Instance().getBloc(TDS.Instance().getCurrentBloc());
+                        int noBloc = TDS.Instance().getCurrentBloc();
+                        FonctionEntry entree = TDS.Instance().getBloc(noBloc).getFnEntry();
                         entree.setIdf(idf);
                         entree.setLine(idfleft + 1);
-                        TDS.Instance().AddEntry(
+                        entree.setNbParam(nb_para);
+                        TDS.Instance().addFunctionEntry(
                             entree,
-                            new FonctionSymbole(new Fonction(entree, (BlocDInstructions)li, ExpressionType.ARITHMETIC, idfleft+1)),
+                            new FonctionSymbole(new Fonction(noBloc, entree, (BlocDInstructions)li, nb_para, ExpressionType.ARITHMETIC, idfleft+1)),
                             idfleft + 1
                         );
                         TDS.Instance().LeaveBloc();
@@ -153,19 +155,25 @@ DECAL_FONCTION ::= DEBUT_FONC IDF:idf PARAMETERS DEBUT LINST:li FIN:fin
 RETOURNE_INST  ::=  RETOURNE EXP:e POINTVIRGULE
                     {:
                         int nbBloc = TDS.Instance().getCurrentBloc();
-                        FonctionEntry entree = TDS.Instance().getBloc(nbBloc);
+                        FonctionEntry entree = TDS.Instance().getBloc(nbBloc).getFnEntry();
                         entree.incrementNbReturn();
                         RESULT = new ReturnInstruction(e, nbBloc, eleft+1);
                     :};
 
-PARAMETERS      ::= PARA_OPEN PARA_CLOSE {::}
+PARAMETERS      ::= PARA_OPEN PARA_CLOSE {: RESULT = 0; :}
                     |
-                    PARA_OPEN FUNC_DECLLIST_PAR PARA_CLOSE{::};
+                    PARA_OPEN FUNC_DECLLIST_PAR:nb_par PARA_CLOSE{: RESULT = nb_par; :};
 
-FUNC_DECLLIST_PAR ::= FUNC_DECL_PAR POINTVIRGULE FUNC_DECLLIST_PAR | FUNC_DECL_PAR;
+FUNC_DECLLIST_PAR ::= FUNC_DECL_PAR POINTVIRGULE FUNC_DECLLIST_PAR:nb_par
+                      {: RESULT = nb_par + 1; :}
+                      |
+                      FUNC_DECL_PAR
+                      {: RESULT = 1; :};
 
 FUNC_DECL_PAR     ::= TYPE IDF:idf
-                      {::};
+                      {:
+                        TDS.Instance().AddEntry(new VariableEntry(idf, idfleft + 1), new SymbolParameter(), idfleft + 1);
+                      :};
 
 INST        ::=     AFFECT:aff {: RESULT = aff; :}
             |       CONDITION:cond {: RESULT = cond; :}

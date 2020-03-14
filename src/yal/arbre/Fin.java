@@ -32,10 +32,8 @@ public class Fin extends ArbreAbstrait
                 "\tsyscall\n"+
                 "\tj exit\n";
 
-        for (Map.Entry<Entry, Symbole> pair : TDS.Instance().symbolMap.entrySet()) {
-            if (pair.getKey().getDecltype() == Decltype.FUNCTION){
-                code_mips += "\n"+((FonctionSymbole)pair.getValue()).getFonction().toMIPS()+"\n";
-            }
+        for (FonctionSymbole fnSymbol : TDS.Instance().fnSymbolMap.values()) {
+            code_mips += "\n"+fnSymbol.getFonction().toMIPS()+"\n";
         }
 
         return code_mips;

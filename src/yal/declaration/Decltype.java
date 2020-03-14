@@ -4,4 +4,5 @@ public enum Decltype
 {
     VARIABLE,
     FUNCTION,
+    PARAMETER
 }

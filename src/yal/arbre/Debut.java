@@ -3,6 +3,7 @@ package yal.arbre;
 import yal.declaration.Decltype;
 import yal.declaration.TDS;
 import yal.declaration.entries.Entry;
+import yal.declaration.entries.FonctionEntry;
 import yal.declaration.symbols.FonctionSymbole;
 import yal.declaration.symbols.Symbole;
 
@@ -16,10 +17,8 @@ public class Debut extends BlocDInstructions
 
     @Override
     public void verifier() {
-        for (Map.Entry<Entry, Symbole> pair : TDS.Instance().symbolMap.entrySet()) {
-            if (pair.getKey().getDecltype() == Decltype.FUNCTION){
-                ((FonctionSymbole)pair.getValue()).getFonction().verifier();
-            }
+        for (FonctionSymbole fnSymbol : TDS.Instance().fnSymbolMap.values()) {
+            fnSymbol.getFonction().verifier();
         }
     }
 

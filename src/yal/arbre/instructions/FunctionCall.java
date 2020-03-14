@@ -22,7 +22,7 @@ public class FunctionCall extends Expression
 
     @Override
     public void verifier() {
-        Symbole s = TDS.Instance().Identify(entree);
+        Symbole s = TDS.Instance().IdentifyFunction(entree);
 
         if (s.getType() == Decltype.FUNCTION){
             FonctionSymbole fs = (FonctionSymbole)s;

@@ -2,14 +2,18 @@ package yal.declaration.entries;
 
 import yal.declaration.Decltype;
 
+import java.util.Objects;
+
 public class FonctionEntry extends Entry
 {
     public int nbReturn;
+    public int nbParam;
 
     public FonctionEntry()
     {
         super("N/A", Decltype.FUNCTION, 0);
         this.nbReturn = 0;
+        this.nbParam = 0;
     }
 
     public FonctionEntry(String idf, int line)
@@ -26,5 +30,21 @@ public class FonctionEntry extends Entry
     public int getNbReturn()
     {
         return this.nbReturn;
+    }
+
+    public void setNbParam(int nb) { nbParam = nb; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        FonctionEntry that = (FonctionEntry) o;
+        return nbParam == that.nbParam;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), nbParam);
     }
 }

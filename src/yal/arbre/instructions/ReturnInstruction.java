@@ -23,7 +23,7 @@ public class ReturnInstruction extends Instruction
     public void verifier() {
         exp.verifier();
 
-        if (fnBloc == -1){ // return dans main function
+        if (fnBloc == 0){ // return dans main function
             throw new AnalyseSemantiqueException(this.noLigne, "return statement is being used in the main program");
         }
 
@@ -38,7 +38,7 @@ public class ReturnInstruction extends Instruction
 
     @Override
     public String toMIPS() {
-        FonctionEntry entry = TDS.Instance().getBloc(fnBloc);
+        FonctionEntry entry = TDS.Instance().getBloc(fnBloc).getFnEntry();
         String mips = exp.toMIPS();
         mips += "\tj "+entry.getIdentifier()+"_fin\n"; // Go back from where we finish
         return mips;

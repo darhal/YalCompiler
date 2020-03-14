@@ -13,6 +13,16 @@ public class FonctionSymbole extends Symbole
         this.fonction = fonction;
     }
 
+    public FonctionSymbole()
+    {
+        super(Decltype.FUNCTION);
+        this.fonction = null;
+    }
+
+    public void setFonction(Fonction fn) {
+        fonction = fn;
+    }
+
     public Fonction getFonction() {
         return fonction;
     }
