@@ -70,8 +70,7 @@ public class BinaryOperation extends Expression
                 break;
             case EQUAL:
                 mips += "\t# Equal:\n";
-                mips += "\tsub $v0, $t8, $v0\n"; // Simulate equal operation with subtraction (0 if $t8 == $v0, 1 otherwise)
-                mips += "\tnor $v0, $v0, $v0\n"; // Flip $v0 using nor
+                mips += "\tseq $v0, $t8, $v0\n"; // If t8 == v0 then put 1 in v0 otherwise 0
                 break;
             case NEQUAL:
                 mips += "\t# Not Equal:\n";

@@ -1,27 +1,16 @@
-programme test debut
-	entier a;
-	fonction test() debut
-		si a > 5 alors
-			retourne 2;
-		finsi
-
-		retourne a;	
+programme pro
+debut
+	fonction fonfonfon(entier a) debut
+		ecrire 5;
+		ecrire 3;
+		retourne 1;
 	fin
 
-	lire a;
-	ecrire test();
+  fonction fonfon(entier a; entier b) debut
+		ecrire 3;
+		ecrire 2;
+		retourne 1;
+  fin
+
+  ecrire 9;
 fin
-
-
-//programme fib debut
-//  fonction fib(n) debut
-//      	si (n < 2) alors
-//		retourne n;
-//	finsi
-//	
-//	retourne fib(n-1) + fib(n-2);
-// fin
-//
-//  ecrire fib(3);
-//
-//fin

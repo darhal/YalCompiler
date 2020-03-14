@@ -36,8 +36,7 @@ public class UnaryOperation extends Expression
         // Do the unary operation:
         switch(op){
             case NOT:
-                // mips += "\tnot $v0, $v0\n"; // Non
-                mips += "\tnor $v0, $v0, $v0\n"; // Non
+                mips += "\tnot $v0, $v0\n"; // Non
                 break;
             case MINUS:
                 mips += "\tsub $v0, $zero, $v0\n"; // -

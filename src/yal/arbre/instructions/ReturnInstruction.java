@@ -2,6 +2,7 @@ package yal.arbre.instructions;
 
 import yal.arbre.ArbreAbstrait;
 import yal.arbre.expressions.Expression;
+import yal.arbre.expressions.ExpressionType;
 import yal.declaration.TDS;
 import yal.declaration.entries.FonctionEntry;
 import yal.exceptions.AnalyseSemantiqueException;
@@ -21,9 +22,18 @@ public class ReturnInstruction extends Instruction
     @Override
     public void verifier() {
         exp.verifier();
+
         if (fnBloc == -1){ // return dans main function
             throw new AnalyseSemantiqueException(this.noLigne, "return statement is being used in the main program");
         }
+
+        if (exp.getType() != ExpressionType.ARITHMETIC){
+            throw new AnalyseSemantiqueException(this.noLigne, "return type must be an arithmetic expression");
+        }
+    }
+
+    public ExpressionType getReturnType() {
+        return exp.getType();
     }
 
     @Override

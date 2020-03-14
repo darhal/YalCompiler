@@ -3,6 +3,7 @@ package yal.declaration;
 import yal.declaration.entries.Entry;
 import yal.declaration.entries.FonctionEntry;
 import yal.declaration.symbols.Symbole;
+import yal.exceptions.AnalyseSemantiqueException;
 import yal.exceptions.DoubleDeclarationException;
 import yal.exceptions.IdentifiantNonDeclarerException;
 
@@ -57,6 +58,12 @@ public class TDS
 
     public void LeaveBloc()
     {
+        FonctionEntry entree = TDS.Instance().getBloc(TDS.Instance().getCurrentBloc());
+        if (entree.getNbReturn() == 0){
+            throw new AnalyseSemantiqueException(entree.getLine(),
+                    "Functions must have at least one return statement, the function '"+entree.getIdentifier()+"' doesn't have any return statement"
+            );
+        }
         currentBloc = -1;
     }
 

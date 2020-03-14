@@ -1,0 +1,12 @@
+//programme fib debut
+//  fonction fib(n) debut
+//      	si (n < 2) alors
+//		retourne n;
+//	finsi
+//	
+//	retourne fib(n-1) + fib(n-2);
+// fin
+//
+//  ecrire fib(3);
+//
+//fin

@@ -75,6 +75,7 @@ non terminal ArbreAbstrait PROG_BODY, PROG, LINST, INST, AFFECT, CONDITION, LOOP
 non terminal Expression EXP, LOGIC_EXP, FUNC_CALL;
 non terminal DECL_LIST, DECL_VAR, DECAL_FONCTION, PARAMETERS;
 non terminal Symbol DEBUT_FONC;
+non terminal FUNC_DECLLIST_PAR, FUNC_DECL_PAR;
 
 precedence left OP_OR;
 
@@ -135,7 +136,7 @@ DECL_VAR    ::=   TYPE IDF:idf POINTVIRGULE
 
 DEBUT_FONC     ::= FONCTION {: TDS.Instance().EnterBloc(); :};
 
-DECAL_FONCTION ::= DEBUT_FONC IDF:idf PARAMETERS DEBUT LINST:li FIN
+DECAL_FONCTION ::= DEBUT_FONC IDF:idf PARAMETERS DEBUT LINST:li FIN:fin
                    {:
                         FonctionEntry entree = TDS.Instance().getBloc(TDS.Instance().getCurrentBloc());
                         entree.setIdf(idf);
@@ -151,10 +152,20 @@ DECAL_FONCTION ::= DEBUT_FONC IDF:idf PARAMETERS DEBUT LINST:li FIN
 
 RETOURNE_INST  ::=  RETOURNE EXP:e POINTVIRGULE
                     {:
-                        RESULT = new ReturnInstruction(e, TDS.Instance().getCurrentBloc(), eleft+1);
+                        int nbBloc = TDS.Instance().getCurrentBloc();
+                        FonctionEntry entree = TDS.Instance().getBloc(nbBloc);
+                        entree.incrementNbReturn();
+                        RESULT = new ReturnInstruction(e, nbBloc, eleft+1);
                     :};
 
-PARAMETERS  ::=     PARA_OPEN PARA_CLOSE {::};
+PARAMETERS      ::= PARA_OPEN PARA_CLOSE {::}
+                    |
+                    PARA_OPEN FUNC_DECLLIST_PAR PARA_CLOSE{::};
+
+FUNC_DECLLIST_PAR ::= FUNC_DECL_PAR POINTVIRGULE FUNC_DECLLIST_PAR | FUNC_DECL_PAR;
+
+FUNC_DECL_PAR     ::= TYPE IDF:idf
+                      {::};
 
 INST        ::=     AFFECT:aff {: RESULT = aff; :}
             |       CONDITION:cond {: RESULT = cond; :}
@@ -208,7 +219,7 @@ EXP         ::=
             |EXP:e1 OP_MINUS EXP:e2{:RESULT = new BinaryOperation(e1, e2, OperatorsTypes.MINUS, ExpressionType.ARITHMETIC, e1left + 1);:}
             |EXP:e1 OP_MULTIPLY EXP:e2{:RESULT = new BinaryOperation(e1, e2, OperatorsTypes.MULTIPLY, ExpressionType.ARITHMETIC, e1left + 1);:}
             |EXP:e1 OP_DIVIDE EXP:e2{:RESULT = new BinaryOperation(e1, e2, OperatorsTypes.DIVIDE, ExpressionType.ARITHMETIC, e1left + 1);:}
-            |LOGIC_EXP:lexp {:RESULT = lexp;:}
+            |LOGIC_EXP:lexp {: RESULT = lexp; :}
             |IDF:idf PARAMETERS{: RESULT = new FunctionCall(new FonctionEntry(idf, idfleft + 1), idfleft + 1) ; :}
             ;
 

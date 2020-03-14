@@ -10,12 +10,8 @@ main:
 	# Allocate for the declared variables:
 	addi $sp, $sp, -8
 
-	# Reads an integer: 
-	li $v0, 5
-	syscall
-	sw $v0, 0($s7)
-
-	jal test
+	# Integer Constant '9':
+	li $v0, 9
 
 	# Call write sys call:​
 	move $a0, $v0
@@ -38,41 +34,84 @@ div_by_zero:
 	syscall
 	j exit
 
-	# Declaration of function: test
-test:
+	# Declaration of function: fonfon
+fonfon:
 	# Pushing in the function environments (Creating the stack frame)
 	move $s2, $sp
 	addi $sp, $sp, -4
 	sw $ra, 4($sp)
 
-	# Condition Instruction:
-	# Get value of the variable 'a':
-	lw $v0, 0($s7)
+	# Integer Constant '3':
+	li $v0, 3
+
+	# Call write sys call:​
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Integer Constant '2':
+	li $v0, 2
+
+	# Call write sys call:​
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Integer Constant '1':
+	li $v0, 1
+	j fonfon_fin
+	# End of the function routine :
+fonfon_fin:
+	# Popping out the function environments (Popping the stack frame)
+	lw $ra, 4($sp)
+	addi $sp, $sp, 4
+	jr $ra
+
+
+	# Declaration of function: fonfonfon
+fonfonfon:
+	# Pushing in the function environments (Creating the stack frame)
+	move $s2, $sp
 	addi $sp, $sp, -4
-	sw $v0, 4($sp)
+	sw $ra, 4($sp)
 
 	# Integer Constant '5':
 	li $v0, 5
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	slt $v0, $v0, $t8
-	beq $v0, $zero, sinon_4266	 # Skip the condition if v0 is equal to zero
-	# Begin of the instruction inside SI branch:
-	# Integer Constant '2':
-	li $v0, 2
-	j test_fin
 
-	j fsi_4266
+	# Call write sys call:​
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
 
-sinon_4266:
-	# End of the branch
-fsi_4266:
+	# Integer Constant '3':
+	li $v0, 3
 
-	# Get value of the variable 'a':
-	lw $v0, 0($s7)
-	j test_fin
+	# Call write sys call:​
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Integer Constant '1':
+	li $v0, 1
+	j fonfonfon_fin
 	# End of the function routine :
-test_fin:
+fonfonfon_fin:
 	# Popping out the function environments (Popping the stack frame)
 	lw $ra, 4($sp)
 	addi $sp, $sp, 4
