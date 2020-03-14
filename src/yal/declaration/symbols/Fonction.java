@@ -19,13 +19,6 @@ public class Fonction extends ArbreAbstrait
         this.inst = inst;
         this.entree = entree;
         this.returnType = type;
-
-        for (ArbreAbstrait a : this.inst.getProgramme()){
-            if (a instanceof ReturnInstruction){
-                ReturnInstruction ri = (ReturnInstruction)(a);
-                ri.setFnBloc(TDS.Instance().getCurrentBloc());
-            }
-        }
     }
 
     public ExpressionType getReturnType() {
@@ -46,7 +39,7 @@ public class Fonction extends ArbreAbstrait
         mips += "\taddi $sp, $sp, -4\n";
         mips += "\tsw $ra, 4($sp)\n"; // Function enviroment
         mips += inst.toMIPS();
-        mips += "\t End of the function routine :\n";
+        mips += "\t# End of the function routine :\n";
         mips += entree.getIdentifier()+"_fin:\n";
         mips += "\t# Popping out the function environments (Popping the stack frame)\n";
         mips += "\tlw $ra, 4($sp)\n";

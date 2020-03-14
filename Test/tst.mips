@@ -1,0 +1,81 @@
+.data
+	div_by0: .asciiz "[RUNTIME ERROR]: Division by zero detected.\n"
+	true_str: .asciiz "vrai\n"
+	false_str: .asciiz "faux\n"
+.text
+
+main:
+	# Begin stackframe:
+	move $s7, $sp
+	# Allocate for the declared variables:
+	addi $sp, $sp, -8
+
+	# Reads an integer: 
+	li $v0, 5
+	syscall
+	sw $v0, 0($s7)
+
+	jal test
+
+	# Call write sys call:​
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Handle program exit
+exit:
+	li $v0, 10
+	syscall
+
+	 # Handle RUNTIME errors
+div_by_zero:
+	la $a0, div_by0
+	li $v0, 4
+	syscall
+	j exit
+
+	# Declaration of function: test
+test:
+	# Pushing in the function environments (Creating the stack frame)
+	move $s2, $sp
+	addi $sp, $sp, -4
+	sw $ra, 4($sp)
+
+	# Condition Instruction:
+	# Get value of the variable 'a':
+	lw $v0, 0($s7)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	slt $v0, $v0, $t8
+	beq $v0, $zero, sinon_4266	 # Skip the condition if v0 is equal to zero
+	# Begin of the instruction inside SI branch:
+	# Integer Constant '2':
+	li $v0, 2
+	j test_fin
+
+	j fsi_4266
+
+sinon_4266:
+	# End of the branch
+fsi_4266:
+
+	# Get value of the variable 'a':
+	lw $v0, 0($s7)
+	j test_fin
+	# End of the function routine :
+test_fin:
+	# Popping out the function environments (Popping the stack frame)
+	lw $ra, 4($sp)
+	addi $sp, $sp, 4
+	jr $ra
+
+

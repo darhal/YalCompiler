@@ -50,4 +50,12 @@ public abstract class Entry
     public int hashCode() {
         return Objects.hash(idf, type);
     }
+
+    public void setIdf(String idf) {
+        this.idf = idf;
+    }
+
+    public void setLine(int line) {
+        this.line = line;
+    }
 }

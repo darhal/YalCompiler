@@ -74,7 +74,7 @@ terminal String    IDF, CSTENTIERE, TYPE;
 non terminal ArbreAbstrait PROG_BODY, PROG, LINST, INST, AFFECT, CONDITION, LOOP, RETOURNE_INST;
 non terminal Expression EXP, LOGIC_EXP, FUNC_CALL;
 non terminal DECL_LIST, DECL_VAR, DECAL_FONCTION, PARAMETERS;
-// non terminal Integer OPER;
+non terminal Symbol DEBUT_FONC;
 
 precedence left OP_OR;
 
@@ -133,10 +133,13 @@ DECL_VAR    ::=   TYPE IDF:idf POINTVIRGULE
                   :}
             ;
 
-DECAL_FONCTION ::= FONCTION IDF:idf PARAMETERS DEBUT LINST:li FIN
+DEBUT_FONC     ::= FONCTION {: TDS.Instance().EnterBloc(); :};
+
+DECAL_FONCTION ::= DEBUT_FONC IDF:idf PARAMETERS DEBUT LINST:li FIN
                    {:
-                        FonctionEntry entree = new FonctionEntry(idf, idfleft + 1);
-                        TDS.Instance().EnterBloc(entree);
+                        FonctionEntry entree = TDS.Instance().getBloc(TDS.Instance().getCurrentBloc());
+                        entree.setIdf(idf);
+                        entree.setLine(idfleft + 1);
                         TDS.Instance().AddEntry(
                             entree,
                             new FonctionSymbole(new Fonction(entree, (BlocDInstructions)li, ExpressionType.ARITHMETIC, idfleft+1)),
@@ -148,7 +151,7 @@ DECAL_FONCTION ::= FONCTION IDF:idf PARAMETERS DEBUT LINST:li FIN
 
 RETOURNE_INST  ::=  RETOURNE EXP:e POINTVIRGULE
                     {:
-                        RESULT = new ReturnInstruction(e, eleft+1);
+                        RESULT = new ReturnInstruction(e, TDS.Instance().getCurrentBloc(), eleft+1);
                     :};
 
 PARAMETERS  ::=     PARA_OPEN PARA_CLOSE {::};

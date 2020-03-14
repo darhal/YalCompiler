@@ -49,10 +49,10 @@ public class TDS
         return s;
     }
 
-    public void EnterBloc(FonctionEntry fentry)
+    public void EnterBloc()
     {
-        blocs.add(fentry);
         currentBloc = blocs.size();
+        blocs.add(new FonctionEntry());
     }
 
     public void LeaveBloc()
