@@ -1,14 +1,22 @@
 .data
+	div_by0: .asciiz "[RUNTIME ERROR]: Division by zero detected.\n"
+	true_str: .asciiz "vrai\n"
+	false_str: .asciiz "faux\n"
 .text
 
 main:
 	# Begin stackframe:
 	move $s7, $sp
 	# Allocate for the declared variables:
-	addi $sp, $sp, -4
+	addi $sp, $sp, -16
+
+	jal fonc
+
+	# Assignement for the variable 'a':
+	sw $v0, 0($s7)
 
 	# Get value of the variable 'a':
-	lw $v0, 0($sp)
+	lw $v0, 0($s7)
 
 	# Call write sys call:​
 	move $a0, $v0
@@ -19,8 +27,22 @@ main:
 	li $a0, '\n' 	# print new line char
 	syscall
 
-	# Integer Constant '2':
-	li $v0, 2
+	jal a
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '10':
+	li $v0, 10
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
+
+	# Assignement for the variable 'b':
+	sw $v0, -4($s7)
+
+	# Get value of the variable 'b':
+	lw $v0, -4($s7)
 
 	# Call write sys call:​
 	move $a0, $v0
@@ -31,8 +53,165 @@ main:
 	li $a0, '\n' 	# print new line char
 	syscall
 
-	# Reads an integer: 
-	li $v0, 5
+	jal b
+
+	# Call write sys call:​
+	move $a0, $v0
+	li $v0, 1
 	syscall
-	sw $v0, 0($sp)
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Handle program exit
+exit:
+	li $v0, 10
+	syscall
+
+	 # Handle RUNTIME errors
+div_by_zero:
+	la $a0, div_by0
+	li $v0, 4
+	syscall
+	j exit
+
+	# Declaration of function: fonc
+fonc:
+	# Pushing in the function environments (Creating the stack frame)
+	move $s2, $sp
+	addi $sp, $sp, -4
+	sw $ra, 4($sp)
+
+	# Condition Instruction:
+	# Get value of the variable 'a':
+	lw $v0, 0($s7)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '3':
+	li $v0, 3
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	seq $v0, $t8, $v0
+	beq $v0, $zero, sinon_4989	 # Skip the condition if v0 is equal to zero
+	# Begin of the instruction inside SI branch:
+	# Get value of the variable 'a':
+	lw $v0, 0($s7)
+	j fonc_fin
+
+	j fsi_4989
+
+sinon_4989:
+	# End of the branch
+fsi_4989:
+
+	# Get value of the variable 'a':
+	lw $v0, 0($s7)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '1':
+	li $v0, 1
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
+
+	# Assignement for the variable 'a':
+	sw $v0, 0($s7)
+
+	# Get value of the variable 'a':
+	lw $v0, 0($s7)
+
+	# Call write sys call:​
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	jal fonc
+	j fonc_fin
+	# End of the function routine :
+fonc_fin:
+	# Popping out the function environments (Popping the stack frame)
+	lw $ra, 4($sp)
+	addi $sp, $sp, 4
+	jr $ra
+
+
+	# Declaration of function: b
+b:
+	# Pushing in the function environments (Creating the stack frame)
+	move $s2, $sp
+	addi $sp, $sp, -4
+	sw $ra, 4($sp)
+
+	jal a
+
+	# Assignement for the variable 'c':
+	sw $v0, -8($s7)
+
+	# Get value of the variable 'c':
+	lw $v0, -8($s7)
+	j b_fin
+	# End of the function routine :
+b_fin:
+	# Popping out the function environments (Popping the stack frame)
+	lw $ra, 4($sp)
+	addi $sp, $sp, 4
+	jr $ra
+
+
+	# Declaration of function: a
+a:
+	# Pushing in the function environments (Creating the stack frame)
+	move $s2, $sp
+	addi $sp, $sp, -4
+	sw $ra, 4($sp)
+
+	# Integer Constant '30':
+	li $v0, 30
+
+	# Assignement for the variable 'b':
+	sw $v0, -4($s7)
+
+	# Get value of the variable 'b':
+	lw $v0, -4($s7)
+	j a_fin
+
+	# Integer Constant '1':
+	li $v0, 1
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '1':
+	li $v0, 1
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	seq $v0, $t8, $v0
+
+	 # Evalue if the expression is true or false
+	beq $v0, $zero, wfalse_3360
+wtrue_3360:
+	la $a0, true_str
+	li $v0, 4
+	syscall
+	j wend_3360
+wfalse_3360:
+	la $a0, false_str
+	li $v0, 4
+	syscall
+wend_3360:	# End of the function routine :
+a_fin:
+	# Popping out the function environments (Popping the stack frame)
+	lw $ra, 4($sp)
+	addi $sp, $sp, 4
+	jr $ra
+
 

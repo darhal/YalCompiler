@@ -1,6 +1,5 @@
 package yal.arbre;
 
-import yal.declaration.TDS;
 import java.util.ArrayList;
 
 /**
@@ -12,7 +11,6 @@ import java.util.ArrayList;
 public class BlocDInstructions extends ArbreAbstrait {
     
     protected ArrayList<ArbreAbstrait> programme ;
-    private static boolean FIRST_TIME = true;
 
     public BlocDInstructions(int n) {
         super(n) ;
@@ -20,7 +18,6 @@ public class BlocDInstructions extends ArbreAbstrait {
     }
     
     public void ajouter(ArbreAbstrait a) {
-        System.out.println("Adding :"+a);
         programme.add(a) ;
     }
     
@@ -36,30 +33,15 @@ public class BlocDInstructions extends ArbreAbstrait {
             a.verifier();
         }
     }
-    
+
+    public ArrayList<ArbreAbstrait> getProgramme() {
+        return programme;
+    }
+
     @Override
     public String toMIPS()
     {
         String code_mips = "";
-
-        if (FIRST_TIME) {
-            code_mips =
-                    ".data\n" +
-                    ".text\n" +
-                    "\n" +
-                    "main:\n" +
-                    "\t# Begin stackframe:\n" +
-                    "\tmove $s7, $sp\n";
-
-            if (TDS.Instance().getVariableZoneSize() != 0) {
-                code_mips +=
-                        "\t# Allocate for the declared variables:\n" +
-                        "\taddi $sp, $sp, " + -4 * TDS.Instance().getVariableZoneSize() + "\n"
-                ;
-            }
-
-            FIRST_TIME = false;
-        }
 
         for (ArbreAbstrait a : programme) {
             code_mips += a.toMIPS();

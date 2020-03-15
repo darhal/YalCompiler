@@ -54,6 +54,10 @@ espace = {finDeLigne}  | [ \t\f] | {comment}
 
 "lire"                 { return symbol(CodesLexicaux.LIRE); }
 
+"fonction"             { return symbol(CodesLexicaux.FONCTION); }
+
+"retourne"             { return symbol(CodesLexicaux.RETOURNE); }
+
 "tantque"              { return symbol(CodesLexicaux.TANTQUE); }
 
 "repeter"              { return symbol(CodesLexicaux.REPETER); }
@@ -64,9 +68,37 @@ espace = {finDeLigne}  | [ \t\f] | {comment}
 
 "alors"                { return symbol(CodesLexicaux.ALORS); }
 
+"sinon"                { return symbol(CodesLexicaux.SINON); }
+
 "finsi"                { return symbol(CodesLexicaux.FINSI); }
 
 ";"                    { return symbol(CodesLexicaux.POINTVIRGULE); }
+
+"+"                    { return symbol(CodesLexicaux.OP_PLUS); }
+
+"-"                    { return symbol(CodesLexicaux.OP_MINUS); }
+
+"*"                    { return symbol(CodesLexicaux.OP_MULTIPLY); }
+
+"/"                    { return symbol(CodesLexicaux.OP_DIVIDE); }
+
+">"                    { return symbol(CodesLexicaux.OP_GREATER); }
+
+"<"                    { return symbol(CodesLexicaux.OP_LESS); }
+
+"=="                   { return symbol(CodesLexicaux.OP_EQUAL); }
+
+"!="                   { return symbol(CodesLexicaux.OP_NEQUAL); }
+
+"et"                   { return symbol(CodesLexicaux.OP_AND); }
+
+"ou"                   { return symbol(CodesLexicaux.OP_OR); }
+
+"non"                  { return symbol(CodesLexicaux.OP_NOT); }
+
+"("                    { return symbol(CodesLexicaux.PARA_OPEN); }
+
+")"                    { return symbol(CodesLexicaux.PARA_CLOSE); }
 
 {csteE}      	       { return symbol(CodesLexicaux.CSTENTIERE, yytext()); }
 

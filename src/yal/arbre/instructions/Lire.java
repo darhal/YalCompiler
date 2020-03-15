@@ -1,9 +1,8 @@
 package yal.arbre.instructions;
 
-import yal.arbre.expressions.Identifiant;
 import yal.arbre.expressions.Variable;
 import yal.declaration.TDS;
-import yal.declaration.symbols.Symbol;
+import yal.declaration.symbols.Symbole;
 
 public class Lire extends Instruction
 {
@@ -24,13 +23,13 @@ public class Lire extends Instruction
     @Override
     public String toMIPS()
     {
-        Symbol s = TDS.Instance().Identify(idf.getEntree());
+        Symbole s = TDS.Instance().Identify(idf.getEntree());
         int offset = -4 * s.getOffset();
 
         String mips = "\n\t# Reads an integer: ";
         mips += "\n\tli $v0, 5\n";
         mips += "\tsyscall\n";
-        mips += "\tsw $v0, "+offset+"($sp)\n";
+        mips += "\tsw $v0, "+offset+"($s7)\n";
         return mips;
     }
 }

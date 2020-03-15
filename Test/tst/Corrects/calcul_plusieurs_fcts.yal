@@ -1,0 +1,30 @@
+// Renvoie 10 3 7 ;; OK
+programme miaou
+debut
+  entier a;
+  entier b;
+
+  fonction fonction2()
+  debut
+      retourne 2;
+  fin
+
+    fonction ouaf()
+    debut
+      retourne 5+fonction2();
+    fin
+
+
+  fonction fonction3()
+  debut
+    retourne 1+fonction2();
+  fin
+
+  ecrire fonction3() + ouaf();
+  a = fonction3();
+  b = ouaf();
+
+  ecrire a;
+  ecrire b;
+
+fin

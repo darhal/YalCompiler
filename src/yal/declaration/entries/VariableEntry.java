@@ -2,8 +2,8 @@ package yal.declaration.entries;
 
 public class VariableEntry extends Entry
 {
-    public VariableEntry(String idf)
+    public VariableEntry(String idf, int line)
     {
-        super(idf);
+        super(idf, line);
     }
 }

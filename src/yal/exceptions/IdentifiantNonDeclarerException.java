@@ -1,8 +1,8 @@
 package yal.exceptions;
 
-public class IdentifiantNonDeclarerException extends AnalyseException
+public class IdentifiantNonDeclarerException extends AnalyseSemantiqueException
 {
-    public IdentifiantNonDeclarerException(){
-        super("[ERREUR]: Identifiant non declaré.");
+    public IdentifiantNonDeclarerException(int ligne){
+        super(ligne, " Identifiant non declaré.");
     }
 }

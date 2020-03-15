@@ -1,0 +1,13 @@
+// Renvoie 10 ;; OK
+programme proggy
+debut
+  entier a;
+  fonction fonc1()
+  debut
+    retourne 3;
+  fin
+
+  a = 7;
+  ecrire fonc1() + a ;
+
+fin

@@ -1,0 +1,39 @@
+programme oklm
+debut
+
+// Affichage final attendu :
+// 1
+// 2
+// 2
+// 1
+// 0
+
+entier a;
+entier b;
+
+fonction incremente() debut
+	retourne a + 1;
+fin
+
+fonction retourne2() debut
+    retourne 2;
+fin
+
+fonction egal() debut
+    si a == b alors
+        retourne 1;
+    sinon
+        retourne 0;
+    finsi
+fin
+
+a = 1;
+ecrire a;         // 1
+a = incremente();
+ecrire a;         // 2
+b = retourne2();
+ecrire b;         // 2
+ecrire egal();    // 1
+a = 3;
+ecrire egal();    // 0
+fin

@@ -1,0 +1,14 @@
+programme proggy
+debut
+  fonction fonc1()
+  debut
+      retourne 2;
+  fin
+
+  fonction fonc1()
+  debut
+      retourne 3;
+  fin
+
+  ecrire 1;
+fin

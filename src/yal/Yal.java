@@ -21,7 +21,8 @@ public class Yal {
 
             String nomSortie = nomFichier.replaceAll("[.]yal", ".mips") ;
             PrintWriter flot = new PrintWriter(new BufferedWriter(new FileWriter(nomSortie))) ;
-            flot.println(arbre.toMIPS());
+            String code_mips = arbre.toMIPS();
+            flot.println(code_mips);
             flot.close() ;
         } catch (FileNotFoundException ex) {
             System.err.println("Fichier " + nomFichier + " inexistant") ;

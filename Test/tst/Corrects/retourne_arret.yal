@@ -1,0 +1,16 @@
+// Renvoie 0 1 ;; OK
+programme proggy
+debut
+  entier a;
+  fonction fonction1()
+  debut
+    retourne 1;
+    a=62;
+    retourne 90;
+  fin
+
+ecrire a;
+a = fonction1();
+ecrire a;
+
+fin
