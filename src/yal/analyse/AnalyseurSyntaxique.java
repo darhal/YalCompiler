@@ -602,7 +602,7 @@ class CUP$AnalyseurSyntaxique$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 30: // LOOP ::= TANTQUE LOGIC_EXP REPETER LINST FINTANTQUE 
             {
-              ArbreAbstrait RESULT =null;
+              Object RESULT =null;
 		int eleft = ((java_cup.runtime.Symbol)CUP$AnalyseurSyntaxique$stack.elementAt(CUP$AnalyseurSyntaxique$top-3)).left;
 		int eright = ((java_cup.runtime.Symbol)CUP$AnalyseurSyntaxique$stack.elementAt(CUP$AnalyseurSyntaxique$top-3)).right;
 		Expression e = (Expression)((java_cup.runtime.Symbol) CUP$AnalyseurSyntaxique$stack.elementAt(CUP$AnalyseurSyntaxique$top-3)).value;
@@ -620,7 +620,7 @@ class CUP$AnalyseurSyntaxique$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 29: // CONDITION ::= SI LOGIC_EXP ALORS LINST FINSI 
             {
-              ArbreAbstrait RESULT =null;
+              Object RESULT =null;
 		int eleft = ((java_cup.runtime.Symbol)CUP$AnalyseurSyntaxique$stack.elementAt(CUP$AnalyseurSyntaxique$top-3)).left;
 		int eright = ((java_cup.runtime.Symbol)CUP$AnalyseurSyntaxique$stack.elementAt(CUP$AnalyseurSyntaxique$top-3)).right;
 		Expression e = (Expression)((java_cup.runtime.Symbol) CUP$AnalyseurSyntaxique$stack.elementAt(CUP$AnalyseurSyntaxique$top-3)).value;
