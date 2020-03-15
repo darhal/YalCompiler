@@ -55,8 +55,9 @@ public class TDS
     public Symbole IdentifyFunction(FonctionEntry e) throws IdentifiantNonDeclarerException
     {
         FonctionSymbole s = fnSymbolMap.get(e);
+
         if (s == null){
-            throw new IdentifiantNonDeclarerException(e.getLine());
+            throw new IdentifiantNonDeclarerException(e.getLine(), e.getIdentifier());
         }
 
         return s;
@@ -97,5 +98,15 @@ public class TDS
     public int getVariableZoneSize()
     {
         return this.getBloc(currentBloc).getVariableZoneSize();
+    }
+
+    public int getArgsZoneSize()
+    {
+        return this.getBloc(currentBloc).getArgsZoneSize();
+    }
+
+    public int getLocalVarSize()
+    {
+        return this.getBloc(currentBloc).getLocalVarSize();
     }
 }

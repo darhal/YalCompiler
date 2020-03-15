@@ -46,23 +46,39 @@ public class Fonction extends ArbreAbstrait
     @Override
     public String toMIPS() {
         TDS.Instance().EnterBloc(noBloc);
-        int param_sz = nbParameters;
-        int func_env = (param_sz+1+1)*4;
+        String fn_idf = entree.getIdentifier();
+        int total_sz = TDS.Instance().getVariableZoneSize();
+        int local_var_sz = TDS.Instance().getLocalVarSize();
+        int func_env_sz = (1+1+1+total_sz)*4;
+
         String mips = "\t# Declaration of function: "+ entree.getIdentifier()+"\n";
-        mips += entree.getIdentifier()+":\n";
+        mips += fn_idf+":\n";
+
         mips += "\t# Pushing in the function environments (Creating the stack frame)\n";
-        mips += "\taddi $sp, $sp, -"+func_env+"\n"; // param, adr retour, no region
-        mips += "\tmove $s2, $sp\n";
-        // Function enviroment
-        mips += "\tsw $ra, "+4*2+"($s2)\n";
+        mips += "\t# Return address:\n";
+        mips += "\tsw $ra, -"+0+"($sp)\n";
+        mips += "\t# Dynamic linking:\n";
+        mips += "\tsw $s7, -"+4+"($sp)\n";
+        mips += "\t# No bloc:\n";
+        mips += "\tli $t8, "+noBloc+"\n";
+        mips += "\tsw $t8, -"+8+"($sp)\n";
+
+        mips += "\t# Reserve the space for variables: \n";
+        mips += "\taddi $sp, $sp, -"+3*4+"\n"; // adr retour, dynamic linking, no region
+        mips += "\tmove $s7, $sp\n";
+        mips += "\taddi $sp, $sp, -"+total_sz * 4+"\n"; // adr retour, dynamic linking, no region, param, local var
+
+        mips += "\t# Function instructions \n";
         mips += inst.toMIPS();
+
         mips += "\t# End of the function routine :\n";
-        mips += entree.getIdentifier()+"_fin:\n";
+        mips += fn_idf+"_fin:\n";
         mips += "\t# Popping out the function environments (Popping the stack frame)\n";
-        mips += "\tlw $ra, "+4*2+"($sp)\n";
-        mips += "\taddi $sp, $sp, "+func_env*-4+"\n";
-        // mips += "\tmove $sp, $s2\n";
+        mips += "\taddi $sp, $sp, "+func_env_sz+"\n";
+        mips += "\tlw $ra, -"+0+"($sp)\n";
+        mips += "\tlw $s7, -"+4+"($sp)\n";
         mips += "\tjr $ra\n"; // Go back from where we finish
+
         TDS.Instance().LeaveBloc();
         return mips;
     }

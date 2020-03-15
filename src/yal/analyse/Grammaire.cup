@@ -8,6 +8,7 @@ import yal.declaration.*;
 import yal.declaration.entries.*;
 import yal.declaration.symbols.*;
 import yal.exceptions.AnalyseSyntaxiqueException;
+import java.util.ArrayList;
 
 import java_cup.runtime.*;
 
@@ -59,7 +60,7 @@ parser code {:
    
 /* Terminals (tokens returned by the scanner).  */
 
-terminal Symbol    PROGRAMME, DEBUT, FIN, POINTVIRGULE, LIRE, ECRIRE, EQUAL,
+terminal Symbol    PROGRAMME, DEBUT, FIN, POINTVIRGULE, VIRGULE, LIRE, ECRIRE, EQUAL,
                    TANTQUE, REPETER, FINTANTQUE, SI, ALORS, SINON, FINSI,
                    PARA_OPEN, PARA_CLOSE, FONCTION, RETOURNE;
 
@@ -73,9 +74,10 @@ terminal String    IDF, CSTENTIERE, TYPE;
 
 non terminal ArbreAbstrait PROG_BODY, PROG, LINST, INST, AFFECT, CONDITION, LOOP, RETOURNE_INST;
 non terminal Expression EXP, LOGIC_EXP, FUNC_CALL;
-non terminal DECL_LIST, DECL_VAR, DECAL_FONCTION, FUNC_DECL_PAR;
+non terminal DECL_LIST, DECL_VAR, DECAL_FONCTION, FUNC_DECL_PAR, FN_DECL_VAR;
 non terminal Symbol DEBUT_FONC;
 non terminal Integer FUNC_DECLLIST_PAR, PARAMETERS;
+non terminal ArrayList<Expression> PAR_EFF;
 
 precedence left OP_OR;
 
@@ -128,15 +130,33 @@ LINST       ::=     LINST:li  INST:i
 
 DECL_LIST   ::=   DECL_VAR DECL_LIST | DECAL_FONCTION DECL_LIST | DECL_VAR | DECAL_FONCTION;
 
+FN_DECL_VAR ::=   DECL_VAR FN_DECL_VAR | DECL_VAR;
+
 DECL_VAR    ::=   TYPE IDF:idf POINTVIRGULE
                   {:
                     TDS.Instance().AddEntry(new VariableEntry(idf, idfleft + 1), new IntSymbole(), idfleft + 1);
+                    // System.out.println("Adding variable : "+idf);
                   :}
             ;
 
 DEBUT_FONC     ::= FONCTION {: TDS.Instance().EnterBloc(); :};
 
 DECAL_FONCTION ::= DEBUT_FONC IDF:idf PARAMETERS:nb_para DEBUT LINST:li FIN:fin
+                   {:
+                        int noBloc = TDS.Instance().getCurrentBloc();
+                        FonctionEntry entree = TDS.Instance().getBloc(noBloc).getFnEntry();
+                        entree.setIdf(idf);
+                        entree.setLine(idfleft + 1);
+                        entree.setNbParam(nb_para);
+                        TDS.Instance().addFunctionEntry(
+                            entree,
+                            new FonctionSymbole(new Fonction(noBloc, entree, (BlocDInstructions)li, nb_para, ExpressionType.ARITHMETIC, idfleft+1)),
+                            idfleft + 1
+                        );
+                        TDS.Instance().LeaveBloc();
+                   :}
+                   |
+                   DEBUT_FONC IDF:idf PARAMETERS:nb_para DEBUT FN_DECL_VAR LINST:li FIN:fin
                    {:
                         int noBloc = TDS.Instance().getCurrentBloc();
                         FonctionEntry entree = TDS.Instance().getBloc(noBloc).getFnEntry();
@@ -173,6 +193,7 @@ FUNC_DECLLIST_PAR ::= FUNC_DECL_PAR POINTVIRGULE FUNC_DECLLIST_PAR:nb_par
 FUNC_DECL_PAR     ::= TYPE IDF:idf
                       {:
                         TDS.Instance().AddEntry(new VariableEntry(idf, idfleft + 1), new SymbolParameter(), idfleft + 1);
+                        // System.out.println("Adding param : "+idf);
                       :};
 
 INST        ::=     AFFECT:aff {: RESULT = aff; :}
@@ -187,6 +208,19 @@ INST        ::=     AFFECT:aff {: RESULT = aff; :}
             |       RETOURNE_INST:ri {: RESULT = ri; :}
             ;
 
+PAR_EFF     ::=     PAR_EFF:par_eff VIRGULE EXP:e
+                    {:
+                        par_eff.add(e);
+                        RESULT = par_eff;
+                    :}
+                    | EXP:e
+                    {:
+                        ArrayList<Expression> par_list = new ArrayList<>();
+                        par_list.add(e);
+                        RESULT = par_list;
+                    :}
+                    ;
+
 FUNC_CALL   ::=     IDF:idf PARAMETERS POINTVIRGULE
                     {:
                         RESULT = new FunctionCall(new FonctionEntry(idf, idfleft + 1), idfleft + 1) ;
@@ -199,19 +233,19 @@ AFFECT      ::=     IDF:idf EQUAL EXP:e POINTVIRGULE
                         RESULT = new Affectation(var, e, eleft + 1); :}
             ;
 
-CONDITION   ::=     SI LOGIC_EXP:e ALORS LINST:li SINON LINST:oli FINSI
+CONDITION   ::=     SI EXP:e ALORS LINST:li SINON LINST:oli FINSI
                     {:
                         Condition condition = new Condition(e, li, oli, eleft);
                         RESULT = condition;
                     :}
-            |       SI LOGIC_EXP:e ALORS LINST:li FINSI
+            |       SI EXP:e ALORS LINST:li FINSI
                     {:
                         Condition condition = new Condition(e, li, null, eleft);
                         RESULT = condition;
                     :}
             ;
 
-LOOP        ::=    TANTQUE LOGIC_EXP:e REPETER LINST:li FINTANTQUE
+LOOP        ::=    TANTQUE EXP:e REPETER LINST:li FINTANTQUE
                    {:
                         Loop loop = new Loop(e, li, eleft);
                         RESULT = loop;
@@ -228,7 +262,10 @@ EXP         ::=
             |EXP:e1 OP_MULTIPLY EXP:e2{:RESULT = new BinaryOperation(e1, e2, OperatorsTypes.MULTIPLY, ExpressionType.ARITHMETIC, e1left + 1);:}
             |EXP:e1 OP_DIVIDE EXP:e2{:RESULT = new BinaryOperation(e1, e2, OperatorsTypes.DIVIDE, ExpressionType.ARITHMETIC, e1left + 1);:}
             |LOGIC_EXP:lexp {: RESULT = lexp; :}
-            |IDF:idf PARAMETERS{: RESULT = new FunctionCall(new FonctionEntry(idf, idfleft + 1), idfleft + 1) ; :}
+            |IDF:idf PARA_OPEN PARA_CLOSE{: RESULT = new FunctionCall(new FonctionEntry(idf, idfleft + 1), idfleft + 1) ; :}
+            |IDF:idf PARA_OPEN PAR_EFF:para PARA_CLOSE{:
+                RESULT = new FunctionCall(new FonctionEntry(idf, idfleft + 1), para, idfleft + 1);
+            :}
             ;
 
 LOGIC_EXP   ::=

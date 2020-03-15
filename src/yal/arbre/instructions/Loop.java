@@ -3,6 +3,8 @@ package yal.arbre.instructions;
 import yal.arbre.ArbreAbstrait;
 import yal.arbre.BlocDInstructions;
 import yal.arbre.expressions.Expression;
+import yal.arbre.expressions.ExpressionType;
+import yal.exceptions.AnalyseSemantiqueException;
 
 public class Loop extends Instruction
 {
@@ -20,11 +22,15 @@ public class Loop extends Instruction
     {
         exp.verifier();
         inst.verifier();
+
+        if (exp.getType() != ExpressionType.LOGIC){
+            throw new AnalyseSemantiqueException(this.noLigne, "Loop condition should be a logical expression.");
+        }
     }
 
     public String toMIPS()
     {
-        int random = (int)(Math.random() * 10000 + 1);
+        int random = hashCode();
         String start = "start_loop_"+random;
         String end = "end_loop_"+random;
         String mips = "";

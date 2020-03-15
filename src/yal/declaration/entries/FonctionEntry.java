@@ -34,6 +34,18 @@ public class FonctionEntry extends Entry
 
     public void setNbParam(int nb) { nbParam = nb; }
 
+    public int getNbParam() {
+        return nbParam;
+    }
+
+    @Override
+    public String getIdentifier()
+    {
+        return idf+"_p"+nbParam;
+    }
+
+    public String getFunctionName(){ return idf+"()"; }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

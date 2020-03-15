@@ -27,7 +27,7 @@ public class Ecrire extends Instruction
 
     @Override
     public String toMIPS() {
-        int random = (int)(Math.random() * 10000 + 1);
+        int random = hashCode(); // Unique
         String wtrue_lbl = "wtrue_"+random;
         String wfalse_lbl = "wfalse_"+random;
         String skip_lbl = "wend_"+random;
@@ -56,7 +56,7 @@ public class Ecrire extends Instruction
                     "\tla $a0, false_str\n" +
                     "\tli $v0, 4\n" +
                     "\tsyscall\n"+
-                    skip_lbl+":"
+                    skip_lbl+":\n"
                     ;
         }else{
             return mips+exp.toMIPS() +

@@ -10,14 +10,27 @@ import yal.declaration.symbols.FonctionSymbole;
 import yal.declaration.symbols.Symbole;
 import yal.exceptions.IdentifiantNonDeclarerException;
 
+import java.util.ArrayList;
+
 public class FunctionCall extends Expression
 {
     private FonctionEntry entree;
+    private ArrayList<Expression> args;
 
     public FunctionCall(FonctionEntry entree, int ligne)
     {
         super(ExpressionType.FUNCTION, ligne);
         this.entree = entree;
+        this.args = new ArrayList<>();
+        this.entree.setNbParam(this.args.size());
+    }
+
+    public FunctionCall(FonctionEntry entree, ArrayList<Expression> args, int ligne)
+    {
+        super(ExpressionType.FUNCTION, ligne);
+        this.entree = entree;
+        this.args = args;
+        this.entree.setNbParam(this.args.size());
     }
 
     @Override
@@ -29,13 +42,22 @@ public class FunctionCall extends Expression
             Fonction fn = fs.getFonction();
             this.type = fn.getReturnType();
         }else{
-            throw new IdentifiantNonDeclarerException(noLigne);
+            throw new IdentifiantNonDeclarerException(noLigne, entree.getFunctionName());
         }
     }
 
     @Override
     public String toMIPS() {
         String mips = "";
+
+        int i = 0;
+        for (Expression e : args) {
+            mips += e.toMIPS();
+            int offset = 3*4+(i*4);
+            mips += "\tsw $v0, -"+offset+"($sp)\n";
+            i++;
+        }
+
         mips += "\n\tjal "+entree.getIdentifier()+"\n";
         return mips;
     }

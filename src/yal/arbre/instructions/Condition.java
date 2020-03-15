@@ -2,6 +2,8 @@ package yal.arbre.instructions;
 
 import yal.arbre.ArbreAbstrait;
 import yal.arbre.expressions.Expression;
+import yal.arbre.expressions.ExpressionType;
+import yal.exceptions.AnalyseSemantiqueException;
 
 public class Condition extends Instruction
 {
@@ -25,12 +27,16 @@ public class Condition extends Instruction
         if (elseInst != null){
             elseInst.verifier();
         }
+
+        if (exp.getType() != ExpressionType.LOGIC){
+            throw new AnalyseSemantiqueException(this.noLigne, "Loop condition should be a logical expression.");
+        }
     }
 
     public String toMIPS()
     {
         String mips = "\n\t# Condition Instruction:";
-        int random = (int)(Math.random() * 10000 + 1);
+        int random = hashCode();
         String label_name = "sinon_"+random;
         String end_si = "fsi_"+random;
         mips += exp.toMIPS();

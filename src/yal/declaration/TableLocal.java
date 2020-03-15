@@ -31,6 +31,7 @@ public class TableLocal
         }
 
         s.incrementOffset(getVariableZoneSize());
+        s.setNoBloc(noBloc);
         symbolMap.put(e, s);
     }
 
@@ -46,7 +47,7 @@ public class TableLocal
         }
 
         if (s == null){
-            throw new IdentifiantNonDeclarerException(e.getLine());
+            throw new IdentifiantNonDeclarerException(e.getLine(), ((FonctionEntry)e).getFunctionName());
         }
 
         return s;
@@ -69,5 +70,17 @@ public class TableLocal
     public int getVariableZoneSize()
     {
         return symbolMap.size();
+    }
+
+    public int getArgsZoneSize()
+    {
+        int nbParam = fnEntry.getNbParam();
+        return nbParam;
+    }
+
+    public int getLocalVarSize()
+    {
+        int nbParam = fnEntry.getNbParam();
+        return symbolMap.size() - nbParam;
     }
 }

@@ -74,6 +74,8 @@ espace = {finDeLigne}  | [ \t\f] | {comment}
 
 ";"                    { return symbol(CodesLexicaux.POINTVIRGULE); }
 
+","                    { return symbol(CodesLexicaux.VIRGULE); }
+
 "+"                    { return symbol(CodesLexicaux.OP_PLUS); }
 
 "-"                    { return symbol(CodesLexicaux.OP_MINUS); }
