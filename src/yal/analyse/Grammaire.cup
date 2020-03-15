@@ -66,9 +66,9 @@ terminal String    IDF, CSTENTIERE, TYPE ;
 
 /* Non terminals used in the grammar section.  */
 
-non terminal ArbreAbstrait PROG_BODY, PROG, LINST, INST, CONDITION, LOOP;
+non terminal ArbreAbstrait PROG_BODY, PROG, LINST, INST;
 non terminal Expression EXP;
-non terminal DECL_LIST, DECL_VAR, AFFECT;
+non terminal DECL_LIST, DECL_VAR, AFFECT, CONDITION, LOOP;
 
 /* ----------------------------Grammar Section-------------------- */
 
@@ -124,7 +124,7 @@ CONDITION   ::=     SI EXP:e ALORS LINST:li FINSI
 
 LOOP        ::=    TANTQUE EXP:e REPETER LINST:li FINTANTQUE
                    {:
-                        Loop loop = new Loop((Expression)e, (BlocDInstructions)li, eleft);
+                        Loop loop = new Loop(e, (BlocDInstructions)li, eleft);
                         RESULT = loop;
                    :}
             ;

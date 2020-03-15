@@ -1,5 +1,7 @@
 programme essai debut
 	entier a;
-	a = 1;
 	ecrire a;
+	ecrire 2;
+	lire a;
+	a = 6;
 fin
