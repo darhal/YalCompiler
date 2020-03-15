@@ -26,9 +26,13 @@ public class Variable extends Identifiant
         String mips = "";
         Symbole s = TDS.Instance().Identify(entree);
         int offset = -4 * s.getOffset();
+        //mips += "\n\t# Get value of the variable '"+entree.getIdentifier()+"':\n"+
+        //        "\tlw $v0, "+offset+"($s7)\n";
         mips += "\n\t# Get value of the variable '"+entree.getIdentifier()+"':\n"+
-                "\tlw $v0, "+offset+"($s7)\n";
-        // System.out.println("Variable : "+entree.getIdentifier()+" | Offset : "+offset);
+                "\tli $t2, "+s.getNoBloc()+"\n"+
+                "\tjal search_var\n"+
+                "\tlw $v0, "+offset+"($t1)\n"
+                ;
         return mips;
     }
 

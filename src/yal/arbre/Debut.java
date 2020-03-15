@@ -27,13 +27,16 @@ public class Debut extends BlocDInstructions
     {
         String code_mips =
                 ".data\n" +
-                "\tdiv_by0: .asciiz \"[RUNTIME ERROR]: Division by zero detected.\\n\"\n" +
+                "\tdiv_by0: .asciiz \"[RUNTIME ERROR]: Division by zero is forbidden.\\n\"\n" +
                 "\ttrue_str: .asciiz \"vrai\\n\"\n" +
                 "\tfalse_str: .asciiz \"faux\\n\"\n" +
                 ".text\n" +
                 "\n"+
                 "main:\n" +
                 "\t# Begin stackframe:\n" +
+                "\tli $t8, "+0+"\n" +
+                "\tsw $t8, -"+4+"($sp)\n" +
+                "\taddi $sp, $sp, -4\n" +
                 "\tmove $s7, $sp\n";
 
         if (TDS.Instance().getVariableZoneSize() != 0) {

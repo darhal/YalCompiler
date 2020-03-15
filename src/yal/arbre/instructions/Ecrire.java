@@ -2,6 +2,7 @@ package yal.arbre.instructions;
 
 import yal.arbre.expressions.Expression;
 import yal.arbre.expressions.ExpressionType;
+import yal.declaration.TDS;
 import yal.exceptions.InvalidArgumentException;
 
 public class Ecrire extends Instruction
@@ -27,7 +28,7 @@ public class Ecrire extends Instruction
 
     @Override
     public String toMIPS() {
-        int random = hashCode(); // Unique
+        long random = TDS.Instance().uniqueString(); // generation d'un UUID unique
         String wtrue_lbl = "wtrue_"+random;
         String wfalse_lbl = "wfalse_"+random;
         String skip_lbl = "wend_"+random;
@@ -35,7 +36,7 @@ public class Ecrire extends Instruction
 
         if (exp.getType() == ExpressionType.ARITHMETIC) {
             return mips+exp.toMIPS() +
-                    "\n\t# Call write sys call:​\n" +
+                    "\n\t# Call write sys call:\n" +
                     "\tmove $a0, $v0\n" +
                     "\tli $v0, 1\n" +
                     "\tsyscall\n" +
@@ -60,7 +61,7 @@ public class Ecrire extends Instruction
                     ;
         }else{
             return mips+exp.toMIPS() +
-                    "\n\t# Call write sys call:​\n" +
+                    "\n\t# Call write sys call:\n" +
                     "\tmove $a0, $v0\n" +
                     "\tli $v0, 1\n" +
                     "\tsyscall\n" +

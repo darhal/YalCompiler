@@ -1,10 +1,11 @@
 package yal.arbre.instructions;
 
 import yal.arbre.ArbreAbstrait;
-import yal.arbre.BlocDInstructions;
 import yal.arbre.expressions.Expression;
 import yal.arbre.expressions.ExpressionType;
+import yal.declaration.TDS;
 import yal.exceptions.AnalyseSemantiqueException;
+import java.util.UUID;
 
 public class Loop extends Instruction
 {
@@ -30,7 +31,7 @@ public class Loop extends Instruction
 
     public String toMIPS()
     {
-        int random = hashCode();
+        long random = TDS.Instance().uniqueString(); // generation d'un UUID unique
         String start = "start_loop_"+random;
         String end = "end_loop_"+random;
         String mips = "";

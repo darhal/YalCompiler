@@ -3,6 +3,7 @@ package yal.arbre.instructions;
 import yal.arbre.ArbreAbstrait;
 import yal.arbre.expressions.Expression;
 import yal.arbre.expressions.ExpressionType;
+import yal.declaration.TDS;
 import yal.exceptions.AnalyseSemantiqueException;
 
 public class Condition extends Instruction
@@ -36,7 +37,7 @@ public class Condition extends Instruction
     public String toMIPS()
     {
         String mips = "\n\t# Condition Instruction:";
-        int random = hashCode();
+        long random = TDS.Instance().uniqueString(); // generation d'un UUID unique
         String label_name = "sinon_"+random;
         String end_si = "fsi_"+random;
         mips += exp.toMIPS();

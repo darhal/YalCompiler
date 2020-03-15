@@ -1,4 +1,4 @@
-// Program that calculate the fibonacci sequence
+// Program that calculate the fibonacci sequence using the recursive and iterative way: (It might take a while to calculate the two last results)
 programme fib_test debut
 	fonction fib_rec(entier n) debut
       	si n == 1 ou n == 0 alors

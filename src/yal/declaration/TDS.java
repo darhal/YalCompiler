@@ -10,6 +10,7 @@ import yal.exceptions.IdentifiantNonDeclarerException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.UUID;
 
 public class TDS
 {
@@ -108,5 +109,9 @@ public class TDS
     public int getLocalVarSize()
     {
         return this.getBloc(currentBloc).getLocalVarSize();
+    }
+
+    public long uniqueString() {
+        return UUID.randomUUID().hashCode() & 0xffffffffl;
     }
 }

@@ -27,9 +27,13 @@ public class Lire extends Instruction
         int offset = -4 * s.getOffset();
 
         String mips = "\n\t# Reads an integer: ";
-        mips += "\n\tli $v0, 5\n";
-        mips += "\tsyscall\n";
-        mips += "\tsw $v0, "+offset+"($s7)\n";
+        mips += "\n\tli $v0, 5\n" +
+                "\tsyscall\n" +
+                "\n\t# Get adress of the variable '"+idf.getEntree().getIdentifier()+"':\n"+
+                "\tli $t2, "+s.getNoBloc()+"\n"+
+                "\tjal search_var\n"+
+                "\tsw $v0, "+offset+"($t1)\n"
+        ;
         return mips;
     }
 }
