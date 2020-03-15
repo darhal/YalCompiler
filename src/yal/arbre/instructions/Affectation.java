@@ -37,8 +37,7 @@ public class Affectation extends Instruction
         Entry entree = ((Variable)idf).getEntree();
         Symbole s = TDS.Instance().Identify(entree);
         int offset = -4 * s.getOffset();
-        mips +=
-                "\n\t# Assignement for the variable '"+entree.getIdentifier()+"':\n"+
+        mips += "\n\t# Assignement for the variable '"+entree.getIdentifier()+"':\n"+
                 "\tsw $v0, "+offset+"($s7)\n";
 
         return mips;

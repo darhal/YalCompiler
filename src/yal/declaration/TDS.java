@@ -96,6 +96,6 @@ public class TDS
 
     public int getVariableZoneSize()
     {
-        return this.getBloc(0).getVariableZoneSize();
+        return this.getBloc(currentBloc).getVariableZoneSize();
     }
 }
