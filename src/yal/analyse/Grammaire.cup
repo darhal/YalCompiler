@@ -169,7 +169,7 @@ DECAL_FONCTION ::= DEBUT_FONC IDF:idf PARAMETERS:nb_para DEBUT LINST:li FIN:fin
                         );
                         TDS.Instance().LeaveBloc();
                    :}
-            ;
+                   ;
 
 RETOURNE_INST  ::=  RETOURNE EXP:e POINTVIRGULE
                     {:
@@ -219,16 +219,22 @@ PAR_EFF     ::=     PAR_EFF:par_eff VIRGULE EXP:e
                     :}
                     ;
 
-FUNC_CALL   ::=     IDF:idf PARAMETERS POINTVIRGULE
+FUNC_CALL   ::=     IDF:idf PARA_OPEN PARA_CLOSE
                     {:
                         RESULT = new FunctionCall(new FonctionEntry(idf, idfleft + 1), idfleft + 1) ;
+                    :}
+                    |
+                    IDF:idf PARA_OPEN PAR_EFF:para PARA_CLOSE
+                    {:
+                        RESULT = new FunctionCall(new FonctionEntry(idf, idfleft + 1), para, idfleft + 1);
                     :}
             ;
 
 AFFECT      ::=     IDF:idf EQUAL EXP:e POINTVIRGULE
                     {:
                         Variable var = new Variable(new VariableEntry(idf, idfleft + 1), idfleft + 1);
-                        RESULT = new Affectation(var, e, eleft + 1); :}
+                        RESULT = new Affectation(var, e, eleft + 1);
+                    :}
             ;
 
 CONDITION   ::=     SI EXP:e ALORS LINST:li SINON LINST:oli FINSI
@@ -260,10 +266,7 @@ EXP         ::=
             |EXP:e1 OP_MULTIPLY EXP:e2{:RESULT = new BinaryOperation(e1, e2, OperatorsTypes.MULTIPLY, ExpressionType.ARITHMETIC, e1left + 1);:}
             |EXP:e1 OP_DIVIDE EXP:e2{:RESULT = new BinaryOperation(e1, e2, OperatorsTypes.DIVIDE, ExpressionType.ARITHMETIC, e1left + 1);:}
             |LOGIC_EXP:lexp {: RESULT = lexp; :}
-            |IDF:idf PARA_OPEN PARA_CLOSE{: RESULT = new FunctionCall(new FonctionEntry(idf, idfleft + 1), idfleft + 1) ; :}
-            |IDF:idf PARA_OPEN PAR_EFF:para PARA_CLOSE{:
-                RESULT = new FunctionCall(new FonctionEntry(idf, idfleft + 1), para, idfleft + 1);
-            :}
+            |FUNC_CALL:func_call {: RESULT = func_call; :}
             ;
 
 LOGIC_EXP   ::=

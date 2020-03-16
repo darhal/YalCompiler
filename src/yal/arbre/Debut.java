@@ -20,6 +20,10 @@ public class Debut extends BlocDInstructions
         for (FonctionSymbole fnSymbol : TDS.Instance().fnSymbolMap.values()) {
             fnSymbol.getFonction().verifier();
         }
+
+        for (ArbreAbstrait a : programme) {
+            a.verifier();
+        }
     }
 
     @Override

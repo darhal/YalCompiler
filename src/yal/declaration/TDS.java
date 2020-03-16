@@ -57,7 +57,7 @@ public class TDS
         FonctionSymbole s = fnSymbolMap.get(e);
 
         if (s == null){
-            throw new IdentifiantNonDeclarerException(e.getLine(), e.getIdentifier());
+            throw new IdentifiantNonDeclarerException(e.getLine(), e.getFunctionName());
         }
 
         return s;

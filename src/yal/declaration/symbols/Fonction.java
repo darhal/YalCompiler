@@ -94,4 +94,9 @@ public class Fonction extends ArbreAbstrait
         TDS.Instance().LeaveBloc();
         return mips;
     }
+
+    public FonctionEntry getEntree()
+    {
+        return entree;
+    }
 }
