@@ -2,7 +2,6 @@ package yal.declaration;
 
 import yal.declaration.entries.Entry;
 import yal.declaration.entries.FonctionEntry;
-import yal.declaration.symbols.FonctionSymbole;
 import yal.declaration.symbols.Symbole;
 import yal.exceptions.DoubleDeclarationException;
 import yal.exceptions.IdentifiantNonDeclarerException;
@@ -30,7 +29,12 @@ public class TableLocal
             throw new DoubleDeclarationException(line);
         }
 
-        s.incrementOffset(getVariableZoneSize());
+        if (s.isParam()){
+            s.setOffset(getArgsZoneSize());
+        }else{
+            s.setOffset(getLocalVarSize());
+        }
+
         s.setNoBloc(noBloc);
         symbolMap.put(e, s);
     }
@@ -74,13 +78,31 @@ public class TableLocal
 
     public int getArgsZoneSize()
     {
-        int nbParam = fnEntry.getNbParam();
-        return nbParam;
+        int i = 0;
+
+        for (Symbole s : TDS.Instance().getSymbolMap().values()) {
+            if (s.isParam()) {
+                i++;
+            }
+        }
+
+        return i;
     }
 
     public int getLocalVarSize()
     {
-        int nbParam = fnEntry.getNbParam();
-        return symbolMap.size() - nbParam;
+        int i = 0;
+
+        for (Symbole s : TDS.Instance().getSymbolMap().values()) {
+            if (!s.isParam()) {
+                i++;
+            }
+        }
+
+        return i;
+    }
+
+    public HashMap<Entry, Symbole> getSymbolMap() {
+        return symbolMap;
     }
 }

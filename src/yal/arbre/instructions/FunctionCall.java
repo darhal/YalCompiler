@@ -35,10 +35,10 @@ public class FunctionCall extends Expression
 
     @Override
     public void verifier() {
-        Symbole s = TDS.Instance().IdentifyFunction(entree);
+        FonctionSymbole s = TDS.Instance().IdentifyFunction(entree);
 
         if (s.getType() == Decltype.FUNCTION){
-            FonctionSymbole fs = (FonctionSymbole)s;
+            FonctionSymbole fs = s;
             Fonction fn = fs.getFonction();
             this.type = fn.getReturnType();
         }else{
@@ -53,10 +53,11 @@ public class FunctionCall extends Expression
         int i = 0;
         for (Expression e : args) {
             mips += e.toMIPS();
-            int offset = 3*4+(i*4);
+            int offset = i*4;
             mips += "\tsw $v0, -"+offset+"($sp)\n";
             i++;
         }
+        mips += "\taddi $sp, $sp, -"+i * 4+"\n";
 
         mips += "\n\tjal "+entree.getIdentifier()+"\n";
         return mips;

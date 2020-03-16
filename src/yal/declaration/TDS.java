@@ -4,7 +4,6 @@ import yal.declaration.entries.Entry;
 import yal.declaration.entries.FonctionEntry;
 import yal.declaration.symbols.FonctionSymbole;
 import yal.declaration.symbols.Symbole;
-import yal.exceptions.AnalyseSemantiqueException;
 import yal.exceptions.DoubleDeclarationException;
 import yal.exceptions.IdentifiantNonDeclarerException;
 
@@ -49,11 +48,11 @@ public class TDS
             throw new DoubleDeclarationException(line);
         }
 
-        s.incrementOffset(getVariableZoneSize());
+        s.setOffset(getVariableZoneSize());
         fnSymbolMap.put(e, s);
     }
 
-    public Symbole IdentifyFunction(FonctionEntry e) throws IdentifiantNonDeclarerException
+    public FonctionSymbole IdentifyFunction(FonctionEntry e) throws IdentifiantNonDeclarerException
     {
         FonctionSymbole s = fnSymbolMap.get(e);
 
@@ -109,6 +108,10 @@ public class TDS
     public int getLocalVarSize()
     {
         return this.getBloc(currentBloc).getLocalVarSize();
+    }
+
+    public HashMap<Entry, Symbole> getSymbolMap() {
+        return this.getBloc(currentBloc).getSymbolMap();
     }
 
     public long uniqueString() {

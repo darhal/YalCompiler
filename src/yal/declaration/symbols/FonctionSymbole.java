@@ -28,7 +28,7 @@ public class FonctionSymbole extends Symbole
     }
 
     @Override
-    public void incrementOffset(int incr)
+    public void setOffset(int incr)
     {
     }
 }

@@ -34,9 +34,6 @@ public class Debut extends BlocDInstructions
                 "\n"+
                 "main:\n" +
                 "\t# Begin stackframe:\n" +
-                "\tli $t8, "+0+"\n" +
-                "\tsw $t8, -"+4+"($sp)\n" +
-                "\taddi $sp, $sp, -4\n" +
                 "\tmove $s7, $sp\n";
 
         if (TDS.Instance().getVariableZoneSize() != 0) {

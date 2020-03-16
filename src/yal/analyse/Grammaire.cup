@@ -135,7 +135,6 @@ FN_DECL_VAR ::=   DECL_VAR FN_DECL_VAR | DECL_VAR;
 DECL_VAR    ::=   TYPE IDF:idf POINTVIRGULE
                   {:
                     TDS.Instance().AddEntry(new VariableEntry(idf, idfleft + 1), new IntSymbole(), idfleft + 1);
-                    // System.out.println("Adding variable : "+idf);
                   :}
             ;
 
@@ -193,7 +192,6 @@ FUNC_DECLLIST_PAR ::= FUNC_DECL_PAR POINTVIRGULE FUNC_DECLLIST_PAR:nb_par
 FUNC_DECL_PAR     ::= TYPE IDF:idf
                       {:
                         TDS.Instance().AddEntry(new VariableEntry(idf, idfleft + 1), new SymbolParameter(), idfleft + 1);
-                        // System.out.println("Adding param : "+idf);
                       :};
 
 INST        ::=     AFFECT:aff {: RESULT = aff; :}

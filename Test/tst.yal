@@ -1,52 +1,25 @@
-// Program that calculate the fibonacci sequence using the recursive and iterative way: (It might take a while to calculate the two last results)
-programme fib_test debut
-	fonction fib_rec(entier n) debut
-      	si n == 1 ou n == 0 alors
-			retourne n;
-		finsi
+programme idf debut
+	entier a;
+	entier b;
+	entier c;
 	
-		retourne fib_rec(n-1) + fib_rec(n-2);
+	fonction a(entier x; entier y) debut
+		entier a;
+		entier b;
+		entier d;
+		lire a;
+		lire b;
+		lire d;
+		ecrire a;
+		ecrire b;
+		ecrire d;
+		ecrire x;
+		ecrire y;
+		retourne a+b;
 	fin
 	
-	fonction fib_itr(entier n) debut
-		entier i; entier j; entier k; entier t;
-		
-		si n == 0 alors
-			retourne 0;
-		finsi
-		
-		i = 0;
-		j = 1;
-		k = 1;
-		
-		tantque (k < n) repeter
-			t = i + j;
-			i = j;
-			j = t;
-			
-			k = k + 1;
-		fintantque
-		
-		retourne j;
-	fin
-	
-	////////////////// Iterative //////////////////
-	ecrire fib_itr(0); // 0
-	ecrire fib_itr(1); // 1
-	ecrire fib_itr(3); // 2
-	ecrire fib_itr(5); // 5
-	ecrire fib_itr(8); // 21
-	ecrire fib_itr(10); // 55
-	ecrire fib_itr(18); // 2584
-	ecrire fib_itr(23); // 28657
-
-	////////////////// Recursive //////////////////
-	ecrire fib_rec(0); // 0
-	ecrire fib_rec(1); // 1
-	ecrire fib_rec(3); // 2
-	ecrire fib_rec(5); // 5
-	ecrire fib_rec(8); // 21
-	ecrire fib_rec(10); // 55
-	ecrire fib_rec(18); // 2584
-	ecrire fib_rec(23); // 28657
+	a=4;
+	b=5;
+	c = TEST(a);
+	ecrire c;
 fin

@@ -40,6 +40,14 @@ public class Fonction extends ArbreAbstrait
             );
         }
         inst.verifier();
+
+        for (Symbole s : TDS.Instance().getSymbolMap().values()) {
+            if (s.isParam()) {
+                s.setOffset((entree.getNbParam() - s.getOffset()) + 3);
+                s.setOffset(-s.getOffset());
+            }
+        }
+
         TDS.Instance().LeaveBloc();
     }
 
@@ -48,6 +56,7 @@ public class Fonction extends ArbreAbstrait
         TDS.Instance().EnterBloc(noBloc);
         String fn_idf = entree.getIdentifier();
         int total_sz = TDS.Instance().getVariableZoneSize();
+        int total_args_sz = TDS.Instance().getArgsZoneSize();
         int local_var_sz = TDS.Instance().getLocalVarSize();
         int func_env_sz = (1+1+1+total_sz)*4;
 
@@ -66,7 +75,10 @@ public class Fonction extends ArbreAbstrait
         mips += "\t# Reserve the space for variables: \n";
         mips += "\taddi $sp, $sp, -"+3*4+"\n"; // adr retour, dynamic linking, no region
         mips += "\tmove $s7, $sp\n";
-        mips += "\taddi $sp, $sp, -"+total_sz * 4+"\n"; // adr retour, dynamic linking, no region, param, local var
+
+        if (local_var_sz != 0) {
+            mips += "\taddi $sp, $sp, -" + local_var_sz * 4 + "\n"; // adr retour, dynamic linking, no region, local var
+        }
 
         mips += "\t# Function instructions \n";
         mips += inst.toMIPS();
@@ -75,8 +87,8 @@ public class Fonction extends ArbreAbstrait
         mips += fn_idf+"_fin:\n";
         mips += "\t# Popping out the function environments (Popping the stack frame)\n";
         mips += "\taddi $sp, $sp, "+func_env_sz+"\n";
-        mips += "\tlw $ra, -"+0+"($sp)\n";
-        mips += "\tlw $s7, -"+4+"($sp)\n";
+        mips += "\tlw $ra, -"+(0+total_args_sz*4)+"($sp)\n";
+        mips += "\tlw $s7, -"+(4+total_args_sz*4)+"($sp)\n";
         mips += "\tjr $ra\n"; // Go back from where we finish
 
         TDS.Instance().LeaveBloc();

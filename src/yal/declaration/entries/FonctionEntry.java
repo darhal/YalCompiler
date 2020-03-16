@@ -44,7 +44,13 @@ public class FonctionEntry extends Entry
         return idf+"_p"+nbParam;
     }
 
-    public String getFunctionName(){ return idf+"()"; }
+    public String getFunctionName()
+    {
+        String type = "entier,";
+        type.repeat(nbParam);
+        type = type.substring(0, type.length() - 1);
+        return idf+"("+type+")";
+    }
 
     @Override
     public boolean equals(Object o) {
