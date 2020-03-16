@@ -1,0 +1,8 @@
+programme idf debut
+	fonction TEST(entier x; entier y) debut
+		retourne 0;
+	fin
+	entier a;
+	
+	a = TEST(5);
+fin
