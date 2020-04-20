@@ -102,6 +102,14 @@ espace = {finDeLigne}  | [ \t\f] | {comment}
 
 ")"                    { return symbol(CodesLexicaux.PARA_CLOSE); }
 
+"["                    { return symbol(CodesLexicaux.CRO_OPEN); }
+
+"]"                    { return symbol(CodesLexicaux.CRO_CLOSE); }
+
+"longeur"              { return symbol(CodesLexicaux.LONGEUR); }
+
+"."                    { return symbol(CodesLexicaux.DOT); }
+
 {csteE}      	       { return symbol(CodesLexicaux.CSTENTIERE, yytext()); }
 
 {idf}      	           { return symbol(CodesLexicaux.IDF, yytext()); }
