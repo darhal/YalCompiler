@@ -94,7 +94,7 @@ public class TableLocal
         int i = 0;
 
         for (Symbole s : TDS.Instance().getSymbolMap().values()) {
-            if (!s.isParam()) {
+            if (s.isVariable() || s.isArray()) {
                 i++;
             }
         }

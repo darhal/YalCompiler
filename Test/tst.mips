@@ -8,8 +8,252 @@ main:
 	# Begin stackframe:
 	move $s7, $sp
 
+	# Integer Constant '0':
+	li $v0, 0
+	sw $v0, -0($sp)
+	addi $sp, $sp, -4
+
+	jal fib_itr_p1
+
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
 	# Integer Constant '1':
 	li $v0, 1
+	sw $v0, -0($sp)
+	addi $sp, $sp, -4
+
+	jal fib_itr_p1
+
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Integer Constant '3':
+	li $v0, 3
+	sw $v0, -0($sp)
+	addi $sp, $sp, -4
+
+	jal fib_itr_p1
+
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Integer Constant '5':
+	li $v0, 5
+	sw $v0, -0($sp)
+	addi $sp, $sp, -4
+
+	jal fib_itr_p1
+
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Integer Constant '8':
+	li $v0, 8
+	sw $v0, -0($sp)
+	addi $sp, $sp, -4
+
+	jal fib_itr_p1
+
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Integer Constant '10':
+	li $v0, 10
+	sw $v0, -0($sp)
+	addi $sp, $sp, -4
+
+	jal fib_itr_p1
+
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Integer Constant '18':
+	li $v0, 18
+	sw $v0, -0($sp)
+	addi $sp, $sp, -4
+
+	jal fib_itr_p1
+
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Integer Constant '23':
+	li $v0, 23
+	sw $v0, -0($sp)
+	addi $sp, $sp, -4
+
+	jal fib_itr_p1
+
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Integer Constant '0':
+	li $v0, 0
+	sw $v0, -0($sp)
+	addi $sp, $sp, -4
+
+	jal fib_rec_p1
+
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Integer Constant '1':
+	li $v0, 1
+	sw $v0, -0($sp)
+	addi $sp, $sp, -4
+
+	jal fib_rec_p1
+
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Integer Constant '3':
+	li $v0, 3
+	sw $v0, -0($sp)
+	addi $sp, $sp, -4
+
+	jal fib_rec_p1
+
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Integer Constant '5':
+	li $v0, 5
+	sw $v0, -0($sp)
+	addi $sp, $sp, -4
+
+	jal fib_rec_p1
+
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Integer Constant '8':
+	li $v0, 8
+	sw $v0, -0($sp)
+	addi $sp, $sp, -4
+
+	jal fib_rec_p1
+
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Integer Constant '10':
+	li $v0, 10
+	sw $v0, -0($sp)
+	addi $sp, $sp, -4
+
+	jal fib_rec_p1
+
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Integer Constant '18':
+	li $v0, 18
+	sw $v0, -0($sp)
+	addi $sp, $sp, -4
+
+	jal fib_rec_p1
+
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Integer Constant '23':
+	li $v0, 23
+	sw $v0, -0($sp)
+	addi $sp, $sp, -4
+
+	jal fib_rec_p1
 
 	# Call write sys call:
 	move $a0, $v0
@@ -44,8 +288,8 @@ search_var:
 search_loop_end:
 	jr $ra	#Resume normal execution
 
-	# Declaration of function: array_test_p1
-array_test_p1:
+	# Declaration of function: fib_rec_p1
+fib_rec_p1:
 	# Pushing in the function environments (Creating the stack frame)
 	# Return address:
 	sw $ra, -0($sp)
@@ -59,13 +303,275 @@ array_test_p1:
 	move $s7, $sp
 	# Function instructions 
 
+	# Condition Instruction:
+	# Get value of the variable 'n':
+	li $t2, 1
+	jal search_var
+	lw $v0, 16($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '1':
+	li $v0, 1
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	seq $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'n':
+	li $t2, 1
+	jal search_var
+	lw $v0, 16($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
 	# Integer Constant '0':
 	li $v0, 0
-	j array_test_p1_fin
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	seq $v0, $t8, $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Or:
+	or $v0, $t8, $v0
+	beq $v0, $zero, sinon_2568405561	 # Skip the condition if v0 is equal to zero
+	# Begin of the instruction inside SI branch:
+	# Get value of the variable 'n':
+	li $t2, 1
+	jal search_var
+	lw $v0, 16($t1)
+	j fib_rec_p1_fin
+
+	j fsi_2568405561
+
+sinon_2568405561:
+	# End of the branch
+fsi_2568405561:
+
+	# Get value of the variable 'n':
+	li $t2, 1
+	jal search_var
+	lw $v0, 16($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '1':
+	li $v0, 1
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Substraction:
+	sub $v0, $t8, $v0
+	sw $v0, -0($sp)
+	addi $sp, $sp, -4
+
+	jal fib_rec_p1
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'n':
+	li $t2, 1
+	jal search_var
+	lw $v0, 16($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '2':
+	li $v0, 2
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Substraction:
+	sub $v0, $t8, $v0
+	sw $v0, -0($sp)
+	addi $sp, $sp, -4
+
+	jal fib_rec_p1
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
+	j fib_rec_p1_fin
 	# End of the function routine :
-array_test_p1_fin:
+fib_rec_p1_fin:
 	# Popping out the function environments (Popping the stack frame)
 	addi $sp, $sp, 16
+	lw $ra, -4($sp)
+	lw $s7, -8($sp)
+	jr $ra
+
+
+	# Declaration of function: fib_itr_p1
+fib_itr_p1:
+	# Pushing in the function environments (Creating the stack frame)
+	# Return address:
+	sw $ra, -0($sp)
+	# Dynamic linking:
+	sw $s7, -4($sp)
+	# No bloc:
+	li $t8, 2
+	sw $t8, -8($sp)
+	# Reserve the space for variables: 
+	addi $sp, $sp, -12
+	move $s7, $sp
+	addi $sp, $sp, -16
+	# Function instructions 
+
+	# Condition Instruction:
+	# Get value of the variable 'n':
+	li $t2, 2
+	jal search_var
+	lw $v0, 16($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '0':
+	li $v0, 0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	seq $v0, $t8, $v0
+	beq $v0, $zero, sinon_3655866045	 # Skip the condition if v0 is equal to zero
+	# Begin of the instruction inside SI branch:
+	# Integer Constant '0':
+	li $v0, 0
+	j fib_itr_p1_fin
+
+	j fsi_3655866045
+
+sinon_3655866045:
+	# End of the branch
+fsi_3655866045:
+
+	# Integer Constant '0':
+	li $v0, 0
+
+	# Assignement for the variable 'i':
+
+	# Get adress of the variable 'i':
+	li $t2, 2
+	jal search_var
+	sw $v0, 0($t1)
+
+	# Integer Constant '1':
+	li $v0, 1
+
+	# Assignement for the variable 'j':
+
+	# Get adress of the variable 'j':
+	li $t2, 2
+	jal search_var
+	sw $v0, -4($t1)
+
+	# Integer Constant '1':
+	li $v0, 1
+
+	# Assignement for the variable 'k':
+
+	# Get adress of the variable 'k':
+	li $t2, 2
+	jal search_var
+	sw $v0, -8($t1)
+start_loop_3660550916:
+
+	# Get value of the variable 'k':
+	li $t2, 2
+	jal search_var
+	lw $v0, -8($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'n':
+	li $t2, 2
+	jal search_var
+	lw $v0, 16($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Less:
+	slt $v0, $t8, $v0
+	# Branch Instruction:
+	beq $v0, $zero, end_loop_3660550916
+	# Loop instructions:
+	# Get value of the variable 'i':
+	li $t2, 2
+	jal search_var
+	lw $v0, 0($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'j':
+	li $t2, 2
+	jal search_var
+	lw $v0, -4($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
+
+	# Assignement for the variable 't':
+
+	# Get adress of the variable 't':
+	li $t2, 2
+	jal search_var
+	sw $v0, -12($t1)
+
+	# Get value of the variable 'j':
+	li $t2, 2
+	jal search_var
+	lw $v0, -4($t1)
+
+	# Assignement for the variable 'i':
+
+	# Get adress of the variable 'i':
+	li $t2, 2
+	jal search_var
+	sw $v0, 0($t1)
+
+	# Get value of the variable 't':
+	li $t2, 2
+	jal search_var
+	lw $v0, -12($t1)
+
+	# Assignement for the variable 'j':
+
+	# Get adress of the variable 'j':
+	li $t2, 2
+	jal search_var
+	sw $v0, -4($t1)
+
+	# Get value of the variable 'k':
+	li $t2, 2
+	jal search_var
+	lw $v0, -8($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '1':
+	li $v0, 1
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
+
+	# Assignement for the variable 'k':
+
+	# Get adress of the variable 'k':
+	li $t2, 2
+	jal search_var
+	sw $v0, -8($t1)
+	bne $v0, $zero, start_loop_3660550916
+end_loop_3660550916:
+
+	# Get value of the variable 'j':
+	li $t2, 2
+	jal search_var
+	lw $v0, -4($t1)
+	j fib_itr_p1_fin
+	# End of the function routine :
+fib_itr_p1_fin:
+	# Popping out the function environments (Popping the stack frame)
+	addi $sp, $sp, 32
 	lw $ra, -4($sp)
 	lw $s7, -8($sp)
 	jr $ra

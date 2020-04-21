@@ -29,7 +29,7 @@ public class Variable extends Identifiant
         mips += "\n\t# Get value of the variable '"+entree.getIdentifier()+"':\n"+
                 "\tli $t2, "+s.getNoBloc()+"\n"+
                 "\tjal search_var\n"+
-                "\tlw $v0, "+offset+"($t1)\n"
+                "\tlw $v0, "+offset+"($s7)\n"
                 ;
         return mips;
     }

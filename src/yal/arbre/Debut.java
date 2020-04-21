@@ -4,6 +4,7 @@ import yal.declaration.Decltype;
 import yal.declaration.TDS;
 import yal.declaration.entries.Entry;
 import yal.declaration.entries.FonctionEntry;
+import yal.declaration.symbols.ArraySymbole;
 import yal.declaration.symbols.FonctionSymbole;
 import yal.declaration.symbols.Symbole;
 
@@ -31,7 +32,8 @@ public class Debut extends BlocDInstructions
     {
         String code_mips =
                 ".data\n" +
-                "\tdiv_by0: .asciiz \"[RUNTIME ERROR]: Division by zero is forbidden.\\n\"\n" +
+                "\tdiv_by0: .asciiz \"[RUNTIME ERROR]:SEMANTICS: Division by zero is forbidden.\\n\"\n" +
+                "\tout_of_bound: .asciiz \"[RUNTIME ERROR]:SEMANTICS: Array index is out of bound (or index is negative).\\n\"\n" +
                 "\ttrue_str: .asciiz \"vrai\\n\"\n" +
                 "\tfalse_str: .asciiz \"faux\\n\"\n" +
                 ".text\n" +
@@ -45,6 +47,23 @@ public class Debut extends BlocDInstructions
                 "\t# Allocate for the declared variables:\n" +
                 "\taddi $sp, $sp, " + -4 * TDS.Instance().getVariableZoneSize() + "\n"
                 ;
+        }
+
+        int bloc = TDS.Instance().getCurrentBloc();
+        for (Map.Entry<Entry, Symbole> es : TDS.Instance().getBloc(bloc).getSymbolMap().entrySet()){
+            Entry e = es.getKey();
+            Symbole s = es.getValue();
+            int offset = -4 * s.getOffset();
+
+            if (s.getType() == Decltype.ARRAY) {
+                ArraySymbole as = (ArraySymbole)s;
+
+                code_mips += "\n\t Calculating the size of the array '"+e.getIdentifier()+"' (size in $v0): "+
+                             as.getExpression().toMIPS()+
+                             "\tli $a0, $v0\n"+
+                             "\tjal allocate_array\n"+
+                             "\tsw $v0, "+offset+"($t1)\n";
+            }
         }
 
         for (ArbreAbstrait a : programme) {

@@ -5,6 +5,6 @@ programme array_test debut
 	fin
 	
 	entier[25] test_array;
-	test_array.longeur;
+	// test_array.longeur;
 	ecrire 1;
 fin

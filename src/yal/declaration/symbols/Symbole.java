@@ -7,14 +7,12 @@ public abstract class Symbole
     protected int offset;
     protected int noBloc;
     protected Decltype type;
-    protected boolean isParam;
 
     protected Symbole()
     {
         this.offset = 0;
         this.noBloc = 0;
         type = Decltype.VARIABLE;
-        isParam = false;
     }
 
     protected Symbole(Decltype type)
@@ -22,15 +20,26 @@ public abstract class Symbole
         this.offset = 0;
         this.noBloc = 0;
         this.type = type;
-        isParam = false;
     }
 
     public int getNoBloc() {
         return noBloc;
     }
 
+    public boolean isVariable() {
+        return type == Decltype.VARIABLE;
+    }
+
     public boolean isParam() {
-        return isParam;
+        return type == Decltype.PARAMETER;
+    }
+
+    public boolean isArray() {
+        return type == Decltype.ARRAY;
+    }
+
+    public boolean isFunction() {
+        return type == Decltype.FUNCTION;
     }
 
     public void setNoBloc(int noBloc) {

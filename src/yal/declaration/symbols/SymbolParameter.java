@@ -7,6 +7,5 @@ public class SymbolParameter extends Symbole
     public SymbolParameter()
     {
         super(Decltype.PARAMETER);
-        isParam = true;
     }
 }

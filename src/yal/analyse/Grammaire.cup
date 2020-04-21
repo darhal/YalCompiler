@@ -140,8 +140,7 @@ DECL_VAR    ::=   TYPE IDF:idf POINTVIRGULE
                   |
                   TYPE CRO_OPEN EXP:e CRO_CLOSE IDF:idf POINTVIRGULE
                   {:
-                    TDS.Instance().AddEntry(new ArrayEntry(idf, idfleft + 1), new ArraySymbole(), idfleft + 1);
-                    // TODO: Add exp instruction
+                    TDS.Instance().AddEntry(new VariableEntry(idf, idfleft + 1), new ArraySymbole(e), idfleft + 1);
                   :}
             ;
 
@@ -188,7 +187,7 @@ RETOURNE_INST  ::=  RETOURNE EXP:e POINTVIRGULE
 
 PARAMETERS      ::= PARA_OPEN PARA_CLOSE {: RESULT = 0; :}
                     |
-                    PARA_OPEN FUNC_DECLLIST_PAR:nb_par PARA_CLOSE{: RESULT = nb_par; :};
+                    PARA_OPEN FUNC_DECLLIST_PAR:nb_par PARA_CLOSE {: RESULT = nb_par; :};
 
 FUNC_DECLLIST_PAR ::= FUNC_DECL_PAR POINTVIRGULE FUNC_DECLLIST_PAR:nb_par
                       {: RESULT = nb_par + 1; :}
