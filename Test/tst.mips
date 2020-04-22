@@ -120,6 +120,38 @@ main:
 	li $a0, '\n' 	# print new line char
 	syscall
 
+	# Get the address of the array 'test_array':
+	move $a0, $v0 	# Save the index in $a0
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $v0, 0($v0) 	# Get the size of the array
+	li $t4, 4
+	div $v0, $t4
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '25':
+	li $v0, 25
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	seq $v0, $t8, $v0
+
+	 # Evalue if the expression is true or false
+	beq $v0, $zero, wfalse_4135936948
+wtrue_4135936948:
+	la $a0, true_str
+	li $v0, 4
+	syscall
+	j wend_4135936948
+wfalse_4135936948:
+	la $a0, false_str
+	li $v0, 4
+	syscall
+wend_4135936948:
+
 	# Integer Constant '5':
 	li $v0, 5
 	sw $v0, -0($sp)
@@ -268,7 +300,41 @@ array_test_p1:
 	li $t2, 1
 	jal search_var
 	sw $v0, -8($t1)
-start_loop_1040217948:
+
+	# Get the address of the array 'array':
+	move $a0, $v0 	# Save the index in $a0
+	li $t2, 1
+	jal search_var
+	lw $v0, 0($t1)
+	lw $v0, 0($v0) 	# Get the size of the array
+	li $t4, 4
+	div $v0, $t4
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'n':
+	li $t2, 1
+	jal search_var
+	lw $v0, 16($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	seq $v0, $t8, $v0
+
+	 # Evalue if the expression is true or false
+	beq $v0, $zero, wfalse_1117791744
+wtrue_1117791744:
+	la $a0, true_str
+	li $v0, 4
+	syscall
+	j wend_1117791744
+wfalse_1117791744:
+	la $a0, false_str
+	li $v0, 4
+	syscall
+wend_1117791744:
+start_loop_2657235053:
 
 	# Get value of the variable 'i':
 	li $t2, 1
@@ -286,7 +352,7 @@ start_loop_1040217948:
 	# Less:
 	slt $v0, $t8, $v0
 	# Branch Instruction:
-	beq $v0, $zero, end_loop_1040217948
+	beq $v0, $zero, end_loop_2657235053
 	# Loop instructions:
 	# Get value of the variable 'i':
 	li $t2, 1
@@ -353,8 +419,8 @@ start_loop_1040217948:
 	li $t2, 1
 	jal search_var
 	sw $v0, -4($t1)
-	bne $v0, $zero, start_loop_1040217948
-end_loop_1040217948:
+	bne $v0, $zero, start_loop_2657235053
+end_loop_2657235053:
 
 	# Get value of the variable 'sum':
 	li $t2, 1

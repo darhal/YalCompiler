@@ -6,6 +6,7 @@ programme array_test debut
 		i = 0;
 		sum = 0;
 		
+		ecrire array.longeur == n;
 		tantque i < n repeter
 			array[i] = i;
 			sum = sum + array[i];
@@ -23,6 +24,7 @@ programme array_test debut
 	ecrire test_array[0];
 	ecrire test_array[1];
 	ecrire test_array[2];
+	ecrire test_array.longeur == 25;
 	
 	ecrire array_test(5);
 	ecrire array_test(array_test(5));
