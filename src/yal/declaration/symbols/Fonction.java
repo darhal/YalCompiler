@@ -4,10 +4,14 @@ import yal.arbre.ArbreAbstrait;
 import yal.arbre.BlocDInstructions;
 import yal.arbre.expressions.ExpressionType;
 import yal.arbre.instructions.ReturnInstruction;
+import yal.declaration.Decltype;
 import yal.declaration.TDS;
+import yal.declaration.TableLocal;
 import yal.declaration.entries.Entry;
 import yal.declaration.entries.FonctionEntry;
 import yal.exceptions.AnalyseSemantiqueException;
+
+import java.util.Map;
 
 public class Fonction extends ArbreAbstrait
 {
@@ -54,6 +58,8 @@ public class Fonction extends ArbreAbstrait
     @Override
     public String toMIPS() {
         TDS.Instance().EnterBloc(noBloc);
+        TableLocal bloc = TDS.Instance().getCurrentTableLocal();
+
         String fn_idf = entree.getIdentifier();
         int total_sz = TDS.Instance().getVariableZoneSize();
         int total_args_sz = TDS.Instance().getArgsZoneSize();
@@ -78,6 +84,22 @@ public class Fonction extends ArbreAbstrait
 
         if (local_var_sz != 0) {
             mips += "\taddi $sp, $sp, -" + local_var_sz * 4 + "\n"; // adr retour, dynamic linking, no region, local var
+        }
+
+        for (Map.Entry<Entry, Symbole> es : bloc.getSymbolMap().entrySet()){
+            Entry e = es.getKey();
+            Symbole s = es.getValue();
+            int offset = -4 * s.getOffset();
+
+            if (s.getType() == Decltype.ARRAY) {
+                ArraySymbole as = (ArraySymbole)s;
+
+                mips += "\n\t# Calculating the size of the array '"+e.getIdentifier()+"' (size in $v0): "+
+                        as.getExpression().toMIPS()+
+                        "\tmove $a0, $v0\n"+
+                        "\tjal allocate_array\n"+
+                        "\tsw $v0, "+offset+"($s7)\n";
+            }
         }
 
         mips += "\t# Function instructions \n";

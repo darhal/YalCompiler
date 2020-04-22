@@ -2,6 +2,7 @@ package yal.arbre;
 
 import yal.declaration.Decltype;
 import yal.declaration.TDS;
+import yal.declaration.TableLocal;
 import yal.declaration.entries.Entry;
 import yal.declaration.entries.FonctionEntry;
 import yal.declaration.symbols.ArraySymbole;
@@ -49,8 +50,8 @@ public class Debut extends BlocDInstructions
                 ;
         }
 
-        int bloc = TDS.Instance().getCurrentBloc();
-        for (Map.Entry<Entry, Symbole> es : TDS.Instance().getBloc(bloc).getSymbolMap().entrySet()){
+        TableLocal bloc = TDS.Instance().getCurrentTableLocal();
+        for (Map.Entry<Entry, Symbole> es : bloc.getSymbolMap().entrySet()){
             Entry e = es.getKey();
             Symbole s = es.getValue();
             int offset = -4 * s.getOffset();

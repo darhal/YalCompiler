@@ -1,7 +1,18 @@
 programme array_test debut
 	fonction array_test(entier n) debut
-		entier[50] array;
-		retourne 0;
+		entier[n] array;
+		entier i;
+		entier sum;
+		i = 0;
+		sum = 0;
+		
+		tantque i < n repeter
+			array[i] = i;
+			sum = sum + array[i];
+			i = i + 1;
+		fintantque
+		
+		retourne sum;
 	fin
 	
 	entier[25] test_array;
@@ -12,4 +23,7 @@ programme array_test debut
 	ecrire test_array[0];
 	ecrire test_array[1];
 	ecrire test_array[2];
+	
+	ecrire array_test(5);
+	ecrire array_test(array_test(5));
 fin

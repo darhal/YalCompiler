@@ -1,7 +1,9 @@
 package yal.declaration;
 
+import yal.arbre.expressions.Variable;
 import yal.declaration.entries.Entry;
 import yal.declaration.entries.FonctionEntry;
+import yal.declaration.entries.VariableEntry;
 import yal.declaration.symbols.Symbole;
 import yal.exceptions.DoubleDeclarationException;
 import yal.exceptions.IdentifiantNonDeclarerException;
@@ -51,7 +53,7 @@ public class TableLocal
         }
 
         if (s == null){
-            throw new IdentifiantNonDeclarerException(e.getLine(), ((FonctionEntry)e).getFunctionName());
+            throw new IdentifiantNonDeclarerException(e.getLine(), e.getIdentifier());
         }
 
         return s;

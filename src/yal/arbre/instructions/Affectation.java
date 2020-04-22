@@ -34,13 +34,12 @@ public class Affectation extends Instruction
     public String toMIPS() {
         String mips = "";
 
-        mips += exp.toMIPS();
         Entry entree = idf.getEntree();
         Symbole s = TDS.Instance().Identify(entree);
         int offset = -4 * s.getOffset();
 
+        mips += exp.toMIPS();
         mips += "\n\t# Assignement for the variable '"+entree.getIdentifier()+"':\n"+
-                "\n\t# Get adress of the variable '"+entree.getIdentifier()+"':\n"+
                 "\tli $t2, "+s.getNoBloc()+"\n"+
                 "\tjal search_var\n"
         ;
@@ -49,8 +48,8 @@ public class Affectation extends Instruction
             ArrayElement ae = (ArrayElement) idf;
             mips += "\tmove $t3, $v0\n"+
                     ae.getExpression().toMIPS()+
+                    "\tmove $a0, $v0\n"+
                     "\tlw $v0, "+offset+"($t1)\n"+
-                    "\tmove $t1, $t3\n"+
                     "\tjal get_arr_element_address\n"+
                     "\tsw $t3, ($v0)\n";
         }else{

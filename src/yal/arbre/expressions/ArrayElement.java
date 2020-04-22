@@ -36,10 +36,10 @@ public class ArrayElement extends Variable
         int offset = -4 * s.getOffset();
         mips += exp.toMIPS()+
                 "\n\t# Get the address of the array '"+entree.getIdentifier()+"':\n"+
+                "\tmove $a0, $v0 \t# Save the index in $a0\n"+
                 "\tli $t2, "+s.getNoBloc()+"\n"+
                 "\tjal search_var\n"+
-                "\tmove $t1, $v0\n"+
-                "\tlw $v0, "+offset+"($s7)\n"+
+                "\tlw $v0, "+offset+"($t1)\n"+
                 "\tjal get_arr_element_value\n"
         ;
         return mips;

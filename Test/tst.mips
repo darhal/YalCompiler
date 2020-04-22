@@ -22,16 +22,14 @@ main:
 	li $v0, 1
 
 	# Assignement for the variable 'test_array':
-
-	# Get adress of the variable 'test_array':
 	li $t2, 0
 	jal search_var
 	move $t3, $v0
 
 	# Integer Constant '0':
 	li $v0, 0
+	move $a0, $v0
 	lw $v0, 0($t1)
-	move $t1, $t3
 	jal get_arr_element_address
 	sw $t3, ($v0)
 
@@ -39,16 +37,14 @@ main:
 	li $v0, 2
 
 	# Assignement for the variable 'test_array':
-
-	# Get adress of the variable 'test_array':
 	li $t2, 0
 	jal search_var
 	move $t3, $v0
 
 	# Integer Constant '1':
 	li $v0, 1
+	move $a0, $v0
 	lw $v0, 0($t1)
-	move $t1, $t3
 	jal get_arr_element_address
 	sw $t3, ($v0)
 
@@ -56,16 +52,14 @@ main:
 	li $v0, 3
 
 	# Assignement for the variable 'test_array':
-
-	# Get adress of the variable 'test_array':
 	li $t2, 0
 	jal search_var
 	move $t3, $v0
 
 	# Integer Constant '2':
 	li $v0, 2
+	move $a0, $v0
 	lw $v0, 0($t1)
-	move $t1, $t3
 	jal get_arr_element_address
 	sw $t3, ($v0)
 
@@ -73,10 +67,10 @@ main:
 	li $v0, 0
 
 	# Get the address of the array 'test_array':
+	move $a0, $v0 	# Save the index in $a0
 	li $t2, 0
 	jal search_var
-	move $t1, $v0
-	lw $v0, 0($s7)
+	lw $v0, 0($t1)
 	jal get_arr_element_value
 
 	# Call write sys call:
@@ -92,10 +86,10 @@ main:
 	li $v0, 1
 
 	# Get the address of the array 'test_array':
+	move $a0, $v0 	# Save the index in $a0
 	li $t2, 0
 	jal search_var
-	move $t1, $v0
-	lw $v0, 0($s7)
+	lw $v0, 0($t1)
 	jal get_arr_element_value
 
 	# Call write sys call:
@@ -111,11 +105,47 @@ main:
 	li $v0, 2
 
 	# Get the address of the array 'test_array':
+	move $a0, $v0 	# Save the index in $a0
 	li $t2, 0
 	jal search_var
-	move $t1, $v0
-	lw $v0, 0($s7)
+	lw $v0, 0($t1)
 	jal get_arr_element_value
+
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Integer Constant '5':
+	li $v0, 5
+	sw $v0, -0($sp)
+	addi $sp, $sp, -4
+
+	jal array_test_p1
+
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Integer Constant '5':
+	li $v0, 5
+	sw $v0, -0($sp)
+	addi $sp, $sp, -4
+
+	jal array_test_p1
+	sw $v0, -0($sp)
+	addi $sp, $sp, -4
+
+	jal array_test_p1
 
 	# Call write sys call:
 	move $a0, $v0
@@ -142,7 +172,7 @@ div_by_zero:
 	# $t1: temp base local | $t2: wanted bloc id | $s0: temp bloc id
 search_var:
 	move $t1, $s7
-	search_loop:
+search_loop:
 	lw $s0, 4($t1)
 	sub $s0, $s0, $t2
 	beqz $s0, search_loop_end
@@ -166,33 +196,31 @@ search_loop_end:
 	sw $a0, 0($v0)
 	jr $ra 	#Resume normal execution
 
-	# Get value from an array index should be in $t1, table address is in $v0, value is returned in $v0
+	# Get value from an array index should be in $a0, table address is in $v0, value is returned in $v0
 get_arr_element_value:
 	# multiply a0 by 4:
 	li $t4, 4
-	multu $t1, $t4
-	mflo $t1
+	multu $a0, $t4
+	mflo $a0
 	lw $t2, 0($v0) 	# Get the size of the array
-	sub $t2, $t2, $t1
-	blez $t2, print_bound_err
- # Branch on less than or equal to zero (if size - index <= 0) then print error and exit
-	addi $v0, $v0, 1 	# Skip first index it have the size
-	add $v0, $v0, $t1 	# $v0 now have the exact address of the element we are searching for
+	sub $t2, $t2, $a0
+	blez $t2, print_bound_err	 # Branch on less than or equal to zero (if size - index <= 0) then print error and exit
+	addi $v0, $v0, 4 	# Skip first index it have the size
+	add $v0, $v0, $a0 	# $v0 now have the exact address of the element we are searching for
 	lw $v0, ($v0)	 # Get the value in the address of $v0 into $v0 register and then return
 	jr $ra 	#Resume normal execution
 
-	# Get address from an array. index should be in $t1, table address is in $v0, element address is returned in $v0
+	# Get address from an array. index should be in $a0, table address is in $v0, element address is returned in $v0
 get_arr_element_address:
 	# multiply a0 by 4:
 	li $t4, 4
-	multu $t1, $t4
-	mflo $t1
+	multu $a0, $t4
+	mflo $a0
 	lw $t2, 0($v0) 	# Get the size of the array
-	sub $t2, $t2, $t1
-	blez $t2, print_bound_err
- # Branch on less than or equal to zero (if size - index <= 0) then print error and exit
-	addi $v0, $v0, 1 	# Skip first index it have the size
-	add $v0, $v0, $t1 	# $v0 now have the exact address of the element we are searching for
+	sub $t2, $t2, $a0
+	blez $t2, print_bound_err	 # Branch on less than or equal to zero (if size - index <= 0) then print error and exit
+	addi $v0, $v0, 4 	# Skip first index it have the size
+	add $v0, $v0, $a0 	# $v0 now have the exact address of the element we are searching for
 	jr $ra 	#Resume normal execution
 print_bound_err:
 	la $a0, out_of_bound
@@ -213,16 +241,130 @@ array_test_p1:
 	# Reserve the space for variables: 
 	addi $sp, $sp, -12
 	move $s7, $sp
-	addi $sp, $sp, -4
+	addi $sp, $sp, -12
+
+	# Calculating the size of the array 'array' (size in $v0): 
+	# Get value of the variable 'n':
+	li $t2, 1
+	jal search_var
+	lw $v0, 16($t1)
+	move $a0, $v0
+	jal allocate_array
+	sw $v0, 0($s7)
 	# Function instructions 
 
 	# Integer Constant '0':
 	li $v0, 0
+
+	# Assignement for the variable 'i':
+	li $t2, 1
+	jal search_var
+	sw $v0, -4($t1)
+
+	# Integer Constant '0':
+	li $v0, 0
+
+	# Assignement for the variable 'sum':
+	li $t2, 1
+	jal search_var
+	sw $v0, -8($t1)
+start_loop_1040217948:
+
+	# Get value of the variable 'i':
+	li $t2, 1
+	jal search_var
+	lw $v0, -4($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'n':
+	li $t2, 1
+	jal search_var
+	lw $v0, 16($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Less:
+	slt $v0, $t8, $v0
+	# Branch Instruction:
+	beq $v0, $zero, end_loop_1040217948
+	# Loop instructions:
+	# Get value of the variable 'i':
+	li $t2, 1
+	jal search_var
+	lw $v0, -4($t1)
+
+	# Assignement for the variable 'array':
+	li $t2, 1
+	jal search_var
+	move $t3, $v0
+
+	# Get value of the variable 'i':
+	li $t2, 1
+	jal search_var
+	lw $v0, -4($t1)
+	move $a0, $v0
+	lw $v0, 0($t1)
+	jal get_arr_element_address
+	sw $t3, ($v0)
+
+	# Get value of the variable 'sum':
+	li $t2, 1
+	jal search_var
+	lw $v0, -8($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'i':
+	li $t2, 1
+	jal search_var
+	lw $v0, -4($t1)
+
+	# Get the address of the array 'array':
+	move $a0, $v0 	# Save the index in $a0
+	li $t2, 1
+	jal search_var
+	lw $v0, 0($t1)
+	jal get_arr_element_value
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
+
+	# Assignement for the variable 'sum':
+	li $t2, 1
+	jal search_var
+	sw $v0, -8($t1)
+
+	# Get value of the variable 'i':
+	li $t2, 1
+	jal search_var
+	lw $v0, -4($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '1':
+	li $v0, 1
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
+
+	# Assignement for the variable 'i':
+	li $t2, 1
+	jal search_var
+	sw $v0, -4($t1)
+	bne $v0, $zero, start_loop_1040217948
+end_loop_1040217948:
+
+	# Get value of the variable 'sum':
+	li $t2, 1
+	jal search_var
+	lw $v0, -8($t1)
 	j array_test_p1_fin
 	# End of the function routine :
 array_test_p1_fin:
 	# Popping out the function environments (Popping the stack frame)
-	addi $sp, $sp, 20
+	addi $sp, $sp, 28
 	lw $ra, -4($sp)
 	lw $s7, -8($sp)
 	jr $ra

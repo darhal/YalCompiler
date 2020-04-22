@@ -86,9 +86,14 @@ public class TDS
         return blocs.get(index);
     }
 
-    public int getCurrentBloc()
+    public int getCurrentBlocID()
     {
         return currentBloc;
+    }
+
+    public TableLocal getCurrentTableLocal()
+    {
+        return this.getBloc(currentBloc);
     }
 
     public ArrayList<TableLocal> getBlocs() {

@@ -8,6 +8,7 @@ import yal.declaration.entries.FonctionEntry;
 import yal.declaration.symbols.Fonction;
 import yal.declaration.symbols.FonctionSymbole;
 import yal.declaration.symbols.Symbole;
+import yal.exceptions.AnalyseSemantiqueException;
 import yal.exceptions.IdentifiantNonDeclarerException;
 
 import java.util.ArrayList;
@@ -43,6 +44,14 @@ public class FunctionCall extends Expression
             this.type = fn.getReturnType();
         }else{
             throw new IdentifiantNonDeclarerException(noLigne, entree.getFunctionName());
+        }
+
+        for (Expression e : args){
+            e.verifier();
+
+            if (e.getType() != ExpressionType.ARITHMETIC){
+                throw new AnalyseSemantiqueException(e.getNoLigne(), entree.getFunctionName()+" arguments must be of the type 'entier'");
+            }
         }
     }
 

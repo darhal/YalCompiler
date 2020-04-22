@@ -148,7 +148,7 @@ DEBUT_FONC     ::= FONCTION {: TDS.Instance().EnterBloc(); :};
 
 DECAL_FONCTION ::= DEBUT_FONC IDF:idf PARAMETERS:nb_para DEBUT LINST:li FIN:fin
                    {:
-                        int noBloc = TDS.Instance().getCurrentBloc();
+                        int noBloc = TDS.Instance().getCurrentBlocID();
                         FonctionEntry entree = TDS.Instance().getBloc(noBloc).getFnEntry();
                         entree.setIdf(idf);
                         entree.setLine(idfleft + 1);
@@ -163,7 +163,7 @@ DECAL_FONCTION ::= DEBUT_FONC IDF:idf PARAMETERS:nb_para DEBUT LINST:li FIN:fin
                    |
                    DEBUT_FONC IDF:idf PARAMETERS:nb_para DEBUT FN_DECL_VAR LINST:li FIN:fin
                    {:
-                        int noBloc = TDS.Instance().getCurrentBloc();
+                        int noBloc = TDS.Instance().getCurrentBlocID();
                         FonctionEntry entree = TDS.Instance().getBloc(noBloc).getFnEntry();
                         entree.setIdf(idf);
                         entree.setLine(idfleft + 1);
@@ -179,7 +179,7 @@ DECAL_FONCTION ::= DEBUT_FONC IDF:idf PARAMETERS:nb_para DEBUT LINST:li FIN:fin
 
 RETOURNE_INST  ::=  RETOURNE EXP:e POINTVIRGULE
                     {:
-                        int nbBloc = TDS.Instance().getCurrentBloc();
+                        int nbBloc = TDS.Instance().getCurrentBlocID();
                         FonctionEntry entree = TDS.Instance().getBloc(nbBloc).getFnEntry();
                         entree.incrementNbReturn();
                         RESULT = new ReturnInstruction(e, nbBloc, eleft+1);
