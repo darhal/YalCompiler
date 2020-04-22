@@ -1,33 +1,27 @@
-programme array_test debut
-	fonction array_test(entier n) debut
-		entier[n] array;
-		entier i;
-		entier sum;
-		i = 0;
-		sum = 0;
-		
-		ecrire array.longeur == n;
-		tantque i < n repeter
-			array[i] = i;
-			sum = sum + array[i];
-			i = i + 1;
-		fintantque
-		
-		retourne sum;
-	fin
-	
-	entier[25] test_array;
-	entier a;
-	test_array[0] = 1;
-	test_array[1] = 2;
-	test_array[2] = 3;
-	
-	ecrire test_array[0];
-	ecrire test_array[1];
-	ecrire test_array[2];
-	ecrire test_array.longeur == 25;
-	ecrire a.longeur;
-	
-	ecrire array_test(5);
-	ecrire array_test(array_test(5));
+// Affiche 1 2 3 1.
+
+programme prog
+debut
+
+  fonction a()
+  debut
+    entier[3] b;
+    entier[3] c;
+
+    b[0] = 1;
+    b[1] = 2;
+    b[2] = 3;
+
+    c = b;
+
+    ecrire c[0];
+    ecrire c[1];
+    ecrire c[2];
+
+    retourne 1;
+  fin
+
+  ecrire a();
+
+
 fin

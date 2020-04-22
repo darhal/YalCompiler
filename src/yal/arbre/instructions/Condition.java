@@ -23,7 +23,10 @@ public class Condition extends Instruction
     public void verifier()
     {
         exp.verifier();
-        inst.verifier();
+
+        if (inst != null){
+            inst.verifier();
+        }
 
         if (elseInst != null){
             elseInst.verifier();
@@ -43,8 +46,12 @@ public class Condition extends Instruction
         mips += exp.toMIPS();
         // Wrap these a round a condition
         mips += "\tbeq $v0, $zero, "+label_name+"\t # Skip the condition if v0 is equal to zero\n";
-        mips += "\t# Begin of the instruction inside SI branch:";
-        mips += inst.toMIPS()+"\n";
+        mips += "\t# Begin of the instruction inside SI branch:\n";
+
+        if (inst != null){
+            mips += inst.toMIPS()+"\n";
+        }
+
         mips += "\tj "+end_si+"\n\n";
         mips += label_name+":\n";
 

@@ -1,7 +1,5 @@
 package yal.arbre.expressions;
 
-import yal.arbre.expressions.Variable;
-import yal.arbre.instructions.Instruction;
 import yal.declaration.Decltype;
 import yal.declaration.TDS;
 import yal.declaration.entries.VariableEntry;
@@ -32,7 +30,8 @@ public class ArrayLongeur extends Expression
         Symbole s = TDS.Instance().Identify(entree);
         int offset = -4 * s.getOffset();
 
-        String mips = "\n\t# Get the address of the array '"+entree.getIdentifier()+"':\n"+
+        String mips =
+                "\n\t# Get the address of the array '"+entree.getIdentifier()+"':\n"+
                 "\tmove $a0, $v0 \t# Save the index in $a0\n"+
                 "\tli $t2, "+s.getNoBloc()+"\n"+
                 "\tjal search_var\n"+

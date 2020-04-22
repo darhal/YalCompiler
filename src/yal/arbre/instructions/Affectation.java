@@ -25,6 +25,18 @@ public class Affectation extends Instruction
             throw new AnalyseSemantiqueException(noLigne, "Attempt to affect a non variable identifier to an expression.");
         }
 
+        Entry entree = idf.getEntree();
+        Symbole s = TDS.Instance().Identify(entree);
+
+        if (s.getType() == Decltype.ARRAY) {
+            ArrayElement ae = (ArrayElement) idf;
+            ae.verifier();
+
+            if (ae.getExpression().getType() != ExpressionType.ARITHMETIC){
+                throw new AnalyseSemantiqueException(ae.getExpression().getNoLigne(), "Index of the array '"+entree.getIdentifier()+"' is a non arithmetic value.");
+            }
+        }
+
         idf.verifier();
         // Verify that expression is valid
         exp.verifier();

@@ -8,156 +8,28 @@
 main:
 	# Begin stackframe:
 	move $s7, $sp
-	# Allocate for the declared variables:
-	addi $sp, $sp, -4
 
-	# Calculating the size of the array 'test_array' (size in $v0): 
-	# Integer Constant '25':
-	li $v0, 25
-	move $a0, $v0
-	jal allocate_array
-	sw $v0, 0($s7)
-
-	# Integer Constant '1':
-	li $v0, 1
-
-	# Assignement for the variable 'test_array':
-	li $t2, 0
-	jal search_var
-	move $t3, $v0
-
-	# Integer Constant '0':
-	li $v0, 0
-	move $a0, $v0
-	lw $v0, 0($t1)
-	jal get_arr_element_address
-	sw $t3, ($v0)
-
-	# Integer Constant '2':
-	li $v0, 2
-
-	# Assignement for the variable 'test_array':
-	li $t2, 0
-	jal search_var
-	move $t3, $v0
-
-	# Integer Constant '1':
-	li $v0, 1
-	move $a0, $v0
-	lw $v0, 0($t1)
-	jal get_arr_element_address
-	sw $t3, ($v0)
-
-	# Integer Constant '3':
-	li $v0, 3
-
-	# Assignement for the variable 'test_array':
-	li $t2, 0
-	jal search_var
-	move $t3, $v0
-
-	# Integer Constant '2':
-	li $v0, 2
-	move $a0, $v0
-	lw $v0, 0($t1)
-	jal get_arr_element_address
-	sw $t3, ($v0)
-
-	# Integer Constant '0':
-	li $v0, 0
-
-	# Get the address of the array 'test_array':
-	move $a0, $v0 	# Save the index in $a0
-	li $t2, 0
-	jal search_var
-	lw $v0, 0($t1)
-	jal get_arr_element_value
-
-	# Call write sys call:
-	move $a0, $v0
-	li $v0, 1
-	syscall
-	# Return to line:
-	li $v0, 11 	# Syscall code for printing one char
-	li $a0, '\n' 	# print new line char
-	syscall
-
-	# Integer Constant '1':
-	li $v0, 1
-
-	# Get the address of the array 'test_array':
-	move $a0, $v0 	# Save the index in $a0
-	li $t2, 0
-	jal search_var
-	lw $v0, 0($t1)
-	jal get_arr_element_value
-
-	# Call write sys call:
-	move $a0, $v0
-	li $v0, 1
-	syscall
-	# Return to line:
-	li $v0, 11 	# Syscall code for printing one char
-	li $a0, '\n' 	# print new line char
-	syscall
-
-	# Integer Constant '2':
-	li $v0, 2
-
-	# Get the address of the array 'test_array':
-	move $a0, $v0 	# Save the index in $a0
-	li $t2, 0
-	jal search_var
-	lw $v0, 0($t1)
-	jal get_arr_element_value
-
-	# Call write sys call:
-	move $a0, $v0
-	li $v0, 1
-	syscall
-	# Return to line:
-	li $v0, 11 	# Syscall code for printing one char
-	li $a0, '\n' 	# print new line char
-	syscall
-
-	# Get the address of the array 'test_array':
-	move $a0, $v0 	# Save the index in $a0
-	li $t2, 0
-	jal search_var
-	lw $v0, 0($t1)
-	lw $v0, 0($v0) 	# Get the size of the array
-	li $t4, 4
-	div $v0, $t4
-	mflo $v0
+	# Condition Instruction:
+	# Integer Constant '5':
+	li $v0, 5
 	addi $sp, $sp, -4
 	sw $v0, 4($sp)
 
-	# Integer Constant '25':
-	li $v0, 25
+	# Integer Constant '5':
+	li $v0, 5
 	lw $t8, 4($sp)
 	addi $sp, $sp, 4
-	# Equal:
-	seq $v0, $t8, $v0
+	# Not Equal:
+	sub $v0, $t8, $v0
+	beq $v0, $zero, sinon_2448055383	 # Skip the condition if v0 is equal to zero
+	# Begin of the instruction inside SI branch:
+	j fsi_2448055383
 
-	 # Evalue if the expression is true or false
-	beq $v0, $zero, wfalse_4135936948
-wtrue_4135936948:
-	la $a0, true_str
-	li $v0, 4
-	syscall
-	j wend_4135936948
-wfalse_4135936948:
-	la $a0, false_str
-	li $v0, 4
-	syscall
-wend_4135936948:
+sinon_2448055383:
+	# Begin of the SINON branch
 
 	# Integer Constant '5':
 	li $v0, 5
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal array_test_p1
 
 	# Call write sys call:
 	move $a0, $v0
@@ -167,26 +39,8 @@ wend_4135936948:
 	li $v0, 11 	# Syscall code for printing one char
 	li $a0, '\n' 	# print new line char
 	syscall
-
-	# Integer Constant '5':
-	li $v0, 5
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal array_test_p1
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal array_test_p1
-
-	# Call write sys call:
-	move $a0, $v0
-	li $v0, 1
-	syscall
-	# Return to line:
-	li $v0, 11 	# Syscall code for printing one char
-	li $a0, '\n' 	# print new line char
-	syscall
+	# End of the branch
+fsi_2448055383:
 
 	# Handle program exit
 exit:
@@ -259,180 +113,4 @@ print_bound_err:
 	li $v0, 4
 	syscall
 	j exit
-
-	# Declaration of function: array_test_p1
-array_test_p1:
-	# Pushing in the function environments (Creating the stack frame)
-	# Return address:
-	sw $ra, -0($sp)
-	# Dynamic linking:
-	sw $s7, -4($sp)
-	# No bloc:
-	li $t8, 1
-	sw $t8, -8($sp)
-	# Reserve the space for variables: 
-	addi $sp, $sp, -12
-	move $s7, $sp
-	addi $sp, $sp, -12
-
-	# Calculating the size of the array 'array' (size in $v0): 
-	# Get value of the variable 'n':
-	li $t2, 1
-	jal search_var
-	lw $v0, 16($t1)
-	move $a0, $v0
-	jal allocate_array
-	sw $v0, 0($s7)
-	# Function instructions 
-
-	# Integer Constant '0':
-	li $v0, 0
-
-	# Assignement for the variable 'i':
-	li $t2, 1
-	jal search_var
-	sw $v0, -4($t1)
-
-	# Integer Constant '0':
-	li $v0, 0
-
-	# Assignement for the variable 'sum':
-	li $t2, 1
-	jal search_var
-	sw $v0, -8($t1)
-
-	# Get the address of the array 'array':
-	move $a0, $v0 	# Save the index in $a0
-	li $t2, 1
-	jal search_var
-	lw $v0, 0($t1)
-	lw $v0, 0($v0) 	# Get the size of the array
-	li $t4, 4
-	div $v0, $t4
-	mflo $v0
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Get value of the variable 'n':
-	li $t2, 1
-	jal search_var
-	lw $v0, 16($t1)
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Equal:
-	seq $v0, $t8, $v0
-
-	 # Evalue if the expression is true or false
-	beq $v0, $zero, wfalse_1117791744
-wtrue_1117791744:
-	la $a0, true_str
-	li $v0, 4
-	syscall
-	j wend_1117791744
-wfalse_1117791744:
-	la $a0, false_str
-	li $v0, 4
-	syscall
-wend_1117791744:
-start_loop_2657235053:
-
-	# Get value of the variable 'i':
-	li $t2, 1
-	jal search_var
-	lw $v0, -4($t1)
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Get value of the variable 'n':
-	li $t2, 1
-	jal search_var
-	lw $v0, 16($t1)
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Less:
-	slt $v0, $t8, $v0
-	# Branch Instruction:
-	beq $v0, $zero, end_loop_2657235053
-	# Loop instructions:
-	# Get value of the variable 'i':
-	li $t2, 1
-	jal search_var
-	lw $v0, -4($t1)
-
-	# Assignement for the variable 'array':
-	li $t2, 1
-	jal search_var
-	move $t3, $v0
-
-	# Get value of the variable 'i':
-	li $t2, 1
-	jal search_var
-	lw $v0, -4($t1)
-	move $a0, $v0
-	lw $v0, 0($t1)
-	jal get_arr_element_address
-	sw $t3, ($v0)
-
-	# Get value of the variable 'sum':
-	li $t2, 1
-	jal search_var
-	lw $v0, -8($t1)
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Get value of the variable 'i':
-	li $t2, 1
-	jal search_var
-	lw $v0, -4($t1)
-
-	# Get the address of the array 'array':
-	move $a0, $v0 	# Save the index in $a0
-	li $t2, 1
-	jal search_var
-	lw $v0, 0($t1)
-	jal get_arr_element_value
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Addition:
-	add $v0, $t8, $v0
-
-	# Assignement for the variable 'sum':
-	li $t2, 1
-	jal search_var
-	sw $v0, -8($t1)
-
-	# Get value of the variable 'i':
-	li $t2, 1
-	jal search_var
-	lw $v0, -4($t1)
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '1':
-	li $v0, 1
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Addition:
-	add $v0, $t8, $v0
-
-	# Assignement for the variable 'i':
-	li $t2, 1
-	jal search_var
-	sw $v0, -4($t1)
-	bne $v0, $zero, start_loop_2657235053
-end_loop_2657235053:
-
-	# Get value of the variable 'sum':
-	li $t2, 1
-	jal search_var
-	lw $v0, -8($t1)
-	j array_test_p1_fin
-	# End of the function routine :
-array_test_p1_fin:
-	# Popping out the function environments (Popping the stack frame)
-	addi $sp, $sp, 28
-	lw $ra, -4($sp)
-	lw $s7, -8($sp)
-	jr $ra
-
 

@@ -259,6 +259,16 @@ CONDITION   ::=     SI EXP:e ALORS LINST:li SINON LINST:oli FINSI
                         Condition condition = new Condition(e, li, null, eleft);
                         RESULT = condition;
                     :}
+            |       SI EXP:e ALORS SINON LINST:oli FINSI
+                    {:
+                        Condition condition = new Condition(e, null, oli, eleft);
+                        RESULT = condition;
+                    :}
+            |       SI EXP:e ALORS FINSI
+                    {:
+                        Condition condition = new Condition(e, null, null, eleft);
+                        RESULT = condition;
+                    :}
             ;
 
 LOOP        ::=    TANTQUE EXP:e REPETER LINST:li FINTANTQUE
