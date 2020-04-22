@@ -17,6 +17,7 @@ programme array_test debut
 	fin
 	
 	entier[25] test_array;
+	entier a;
 	test_array[0] = 1;
 	test_array[1] = 2;
 	test_array[2] = 3;
@@ -25,6 +26,7 @@ programme array_test debut
 	ecrire test_array[1];
 	ecrire test_array[2];
 	ecrire test_array.longeur == 25;
+	ecrire a.longeur;
 	
 	ecrire array_test(5);
 	ecrire array_test(array_test(5));

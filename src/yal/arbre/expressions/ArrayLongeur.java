@@ -23,7 +23,7 @@ public class ArrayLongeur extends Expression
         Symbole s = TDS.Instance().Identify(entree);
 
         if (s.getType() != Decltype.ARRAY){
-            throw new AnalyseSemantiqueException(noLigne, "Attempt to measure 'longeur' of a non array variable '"+ entree.getIdentifier()+"', 'longeur' can only be performed on an array.");
+            throw new AnalyseSemantiqueException(noLigne, "Attempt to measure the length of a non array variable '"+ entree.getIdentifier()+"', 'longeur' operator can only be performed on an arrays");
         }
     }
 
