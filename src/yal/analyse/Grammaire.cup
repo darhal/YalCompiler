@@ -245,6 +245,12 @@ AFFECT      ::=     IDF:idf EQUAL EXP:e POINTVIRGULE
                         Variable var = new Variable(new VariableEntry(idf, idfleft + 1), idfleft + 1);
                         RESULT = new Affectation(var, e, eleft + 1);
                     :}
+                    |
+                    IDF:idf CRO_OPEN EXP:e CRO_CLOSE EQUAL EXP:e2 POINTVIRGULE
+                    {:
+                        ArrayElement ae = new ArrayElement(new VariableEntry(idf, idfleft + 1), e, idfleft + 1);
+                        RESULT = new Affectation(ae, e2, e2left + 1);
+                    :}
             ;
 
 CONDITION   ::=     SI EXP:e ALORS LINST:li SINON LINST:oli FINSI
@@ -277,6 +283,7 @@ EXP         ::=
             |EXP:e1 OP_DIVIDE EXP:e2{:RESULT = new BinaryOperation(e1, e2, OperatorsTypes.DIVIDE, ExpressionType.ARITHMETIC, e1left + 1);:}
             |LOGIC_EXP:lexp {: RESULT = lexp; :}
             |FUNC_CALL:func_call {: RESULT = func_call; :}
+            |IDF:idf CRO_OPEN EXP:e CRO_CLOSE {: RESULT = new ArrayElement(new VariableEntry(idf, idfleft + 1), e, idfleft + 1); :}
             ;
 
 LOGIC_EXP   ::=

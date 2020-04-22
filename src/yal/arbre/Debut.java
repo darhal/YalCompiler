@@ -58,11 +58,11 @@ public class Debut extends BlocDInstructions
             if (s.getType() == Decltype.ARRAY) {
                 ArraySymbole as = (ArraySymbole)s;
 
-                code_mips += "\n\t Calculating the size of the array '"+e.getIdentifier()+"' (size in $v0): "+
+                code_mips += "\n\t# Calculating the size of the array '"+e.getIdentifier()+"' (size in $v0): "+
                              as.getExpression().toMIPS()+
-                             "\tli $a0, $v0\n"+
+                             "\tmove $a0, $v0\n"+
                              "\tjal allocate_array\n"+
-                             "\tsw $v0, "+offset+"($t1)\n";
+                             "\tsw $v0, "+offset+"($s7)\n";
             }
         }
 
