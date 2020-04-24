@@ -3,10 +3,10 @@
 programme prog
 debut
 
-  fonction a()
+  fonction a(entier n; entier m)
   debut
-    entier[3] b;
-    entier[3] c;
+    entier[n] b;
+    entier[m] c;
 
     b[0] = 1;
     b[1] = 2;
@@ -21,7 +21,6 @@ debut
     retourne 1;
   fin
 
-  ecrire a();
-
-
+  entier[5] a;
+  ecrire a(3,3);
 fin

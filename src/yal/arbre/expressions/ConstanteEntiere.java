@@ -13,4 +13,6 @@ public class ConstanteEntiere extends Constante {
                 ;
     }
 
+    @Override
+    public boolean isConst() { return true; }
 }

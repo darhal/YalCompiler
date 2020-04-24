@@ -37,4 +37,7 @@ public class Variable extends Identifiant
     public Entry getEntree() {
         return entree;
     }
+
+    @Override
+    public VariableType getVariableType() { return VariableType.IDENTIFIANT; }
 }

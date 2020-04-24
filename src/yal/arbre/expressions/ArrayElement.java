@@ -24,7 +24,11 @@ public class ArrayElement extends Variable
         Symbole s = TDS.Instance().Identify(entree);
 
         if (s.getType() != Decltype.ARRAY){
-            throw new AnalyseSemantiqueException(noLigne, "Attempt to access an array element while '"+ entree.getIdentifier()+"' is a not an array.");
+            throw new AnalyseSemantiqueException(noLigne, "Attempt to access an array element while '"+ entree.getIdentifier()+"' is a not an array");
+        }
+
+        if (exp.getType() != ExpressionType.ARITHMETIC){
+            throw new AnalyseSemantiqueException(exp.getNoLigne(), "Index of the array '"+entree.getIdentifier()+"' is a non arithmetic value");
         }
     }
 
@@ -48,4 +52,7 @@ public class ArrayElement extends Variable
     public Expression getExpression() {
         return exp;
     }
+
+    @Override
+    public VariableType getVariableType() { return VariableType.ARRAY_ELEMENT; }
 }

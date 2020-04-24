@@ -27,13 +27,22 @@ public class Fin extends ArbreAbstrait
                 "\tsyscall\n"+
 
                 "\n\t # Handle RUNTIME errors\n"+
-                "div_by_zero:\n"+
-                "\tla $a0, div_by0\n" +
+                "runtime_err:\n"+
                 "\tli $v0, 4\n" +
                 "\tsyscall\n"+
-                "\tj exit\n\n"+
+                "\tj exit\n"+
 
-                "\t# Sub routine to find variables outside of the local scope:\n"+
+                "\n\t # Handle division by 0 error\n"+
+                "div_by_zero:\n"+
+                "\tla $a0, div_by0\n" +
+                "\tj runtime_err\n"+
+
+                "\n\t # Handle division by 0 error\n"+
+                "memcpy_err:\n"+
+                "\tla $a0, arr_cpy_err\n" +
+                "\tj runtime_err\n"+
+
+                "\n\t# Sub routine to find variables outside of the local scope:\n"+
                 "\t# $t1: temp base local | $t2: wanted bloc id | $s0: temp bloc id\n"+
                 "search_var:\n"+
                 "\tmove $t1, $s7\n"+
@@ -49,6 +58,7 @@ public class Fin extends ArbreAbstrait
                 "\n\t# Allocate array the array size should be in a0, address is in $v0\n"+
                 "\t# returned address will be in a0:\n"+
                 "\tallocate_array:\n"+
+                "\taddi $a0, $a0, 1 \t # Adding the size of the table\n"+
                 "\t# multiply a0 by 4:\n"+
                 "\tli $t4, 4\n"+
                 "\tmultu $a0, $t4\n"+
@@ -57,6 +67,7 @@ public class Fin extends ArbreAbstrait
                 "\tli $v0, 9 \t# sbrk syscall\n"+
                 "\tsyscall\n \t# Issue the syscall\n"+
                 "\t# Initialize the array\n"+
+                "\tsubi $a0, $a0, 4 \t # Substract the size of the table\n"+
                 "\tsw $a0, 0($v0)\n"+
                 "\tjr $ra \t#Resume normal execution\n"+
 
@@ -89,9 +100,22 @@ public class Fin extends ArbreAbstrait
 
                 "print_bound_err:\n"+
                 "\tla $a0, out_of_bound\n" +
-                "\tli $v0, 4\n" +
-                "\tsyscall\n"+
-                "\tj exit\n"
+                "\tj runtime_err\n"+
+
+                "\t# Memory copy function to copy content of one table to another: \n"+
+                "\t# $t0 = $a0\n"+
+                "memcpy:\n"+
+                "\tlw $t3, 0($t0)\n"+
+                "\tlw $a1, 0($a0)\n"+
+                "\tbne $a1, $t3, memcpy_err\n"+
+                "\tadd $a1, $a1, $a0\n"+
+                "memcpy_loop:\n"+
+                "\taddi $t0, $t0, 4\n"+
+                "\taddi $a0, $a0, 4\n"+
+                "\tlw $t3, 0($a0)\n"+
+                "\tsw $t3, 0($t0)\n"+
+                "\tbne $a0, $a1, memcpy_loop\n"+
+                "\tjr $ra \t#Resume normal execution\n"
                 ;
 
         for (FonctionSymbole fnSymbol : TDS.Instance().fnSymbolMap.values()) {

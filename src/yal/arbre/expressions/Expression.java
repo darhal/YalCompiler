@@ -4,6 +4,12 @@ import yal.arbre.ArbreAbstrait;
 
 public abstract class Expression extends ArbreAbstrait
 {
+    public enum VariableType {
+        IDENTIFIANT,
+        ARRAY_ELEMENT,
+        EXPRESSION
+    }
+
     protected ExpressionType type;
 
     protected Expression(ExpressionType type, int n) {
@@ -18,5 +24,12 @@ public abstract class Expression extends ArbreAbstrait
 
     public ExpressionType getType() {
         return type;
+    }
+
+    public VariableType getVariableType() { return VariableType.EXPRESSION; }
+
+    public boolean isConst()
+    {
+        return false;
     }
 }

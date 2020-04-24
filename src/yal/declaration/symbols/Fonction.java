@@ -107,7 +107,7 @@ public class Fonction extends ArbreAbstrait
 
         mips += "\t# End of the function routine :\n";
         mips += fn_idf+"_fin:\n";
-        mips += "\t# Popping out the function environments (Popping the stack frame)\n";
+        mips += "\t# Popping out the function environments (Popping the stack frame): \n";
         mips += "\taddi $sp, $sp, "+func_env_sz+"\n";
         mips += "\tlw $ra, -"+(0+total_args_sz*4)+"($sp)\n";
         mips += "\tlw $s7, -"+(4+total_args_sz*4)+"($sp)\n";

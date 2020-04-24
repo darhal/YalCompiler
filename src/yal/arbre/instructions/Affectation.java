@@ -22,24 +22,30 @@ public class Affectation extends Instruction
     public void verifier() {
         // Verify that entry is declared
         if (idf == null){
-            throw new AnalyseSemantiqueException(noLigne, "Attempt to affect a non variable identifier to an expression.");
+            throw new AnalyseSemantiqueException(noLigne, "Attempt to affect a non variable identifier to an expression");
         }
 
-        Entry entree = idf.getEntree();
-        Symbole s = TDS.Instance().Identify(entree);
+        // Verify that expression is valid
+        idf.verifier();
+        exp.verifier();
 
-        if (s.getType() == Decltype.ARRAY) {
-            ArrayElement ae = (ArrayElement) idf;
-            ae.verifier();
+        Entry idfEntry = idf.getEntree();
+        Symbole idfSymbole = TDS.Instance().Identify(idfEntry);
 
-            if (ae.getExpression().getType() != ExpressionType.ARITHMETIC){
-                throw new AnalyseSemantiqueException(ae.getExpression().getNoLigne(), "Index of the array '"+entree.getIdentifier()+"' is a non arithmetic value.");
+        if (idfSymbole.getType() == Decltype.ARRAY) {
+            if (exp.getVariableType() != Expression.VariableType.EXPRESSION) {
+                Variable var = (Variable) exp;
+
+                Entry varEntry = var.getEntree();
+                Symbole varSymbole = TDS.Instance().Identify(varEntry);
+
+                if (varSymbole.getType() != Decltype.ARRAY) {
+                    throw new AnalyseSemantiqueException(noLigne, "Attempt to assign a non array variable '" + varEntry.getIdentifier() + "', to an array variable '" + idfEntry.getIdentifier() + "'");
+                }
+            } else if (idf.getVariableType() != Expression.VariableType.ARRAY_ELEMENT) {
+                throw new AnalyseSemantiqueException(noLigne, "Attempt to assign a non array expression, to an array variable '" + idfEntry.getIdentifier() + "'");
             }
         }
-
-        idf.verifier();
-        // Verify that expression is valid
-        exp.verifier();
     }
 
     @Override
@@ -57,15 +63,21 @@ public class Affectation extends Instruction
         ;
 
         if (s.getType() == Decltype.ARRAY) {
-            ArrayElement ae = (ArrayElement) idf;
-            mips += "\tmove $t3, $v0\n"+
-                    ae.getExpression().toMIPS()+
-                    "\tmove $a0, $v0\n"+
-                    "\tlw $v0, "+offset+"($t1)\n"+
-                    "\tjal get_arr_element_address\n"+
-                    "\tsw $t3, ($v0)\n";
-        }else{
-            mips += "\tsw $v0, "+offset+"($t1)\n";
+            if (idf.getVariableType() == Expression.VariableType.ARRAY_ELEMENT){
+                ArrayElement ae = (ArrayElement) idf;
+                mips += "\tmove $t3, $v0\n" +
+                        ae.getExpression().toMIPS() +
+                        "\tmove $a0, $v0\n" +
+                        "\tlw $v0, " + offset + "($t1)\n" +
+                        "\tjal get_arr_element_address\n" +
+                        "\tsw $t3, ($v0)\n";
+            } else { // array = array scenario
+                mips += "\tmove $a0, $v0\n" +
+                        "\tlw $t0, " + offset + "($t1)\n" +
+                        "\tjal memcpy\n";
+            }
+        } else {
+            mips += "\tsw $v0, " + offset + "($t1)\n";
         }
 
         return mips;

@@ -8,6 +8,7 @@ import yal.declaration.entries.FonctionEntry;
 import yal.declaration.symbols.ArraySymbole;
 import yal.declaration.symbols.FonctionSymbole;
 import yal.declaration.symbols.Symbole;
+import yal.exceptions.AnalyseSemantiqueException;
 
 import java.util.Map;
 
@@ -26,6 +27,19 @@ public class Debut extends BlocDInstructions
         for (ArbreAbstrait a : programme) {
             a.verifier();
         }
+
+        TableLocal bloc = TDS.Instance().getCurrentTableLocal();
+        for (Map.Entry<Entry, Symbole> es : bloc.getSymbolMap().entrySet()){
+            Entry e = es.getKey();
+            Symbole s = es.getValue();
+
+            if (s.getType() == Decltype.ARRAY) {
+                ArraySymbole as = (ArraySymbole)s;
+                if (!as.getExpression().isConst()){
+                    throw new AnalyseSemantiqueException(e.getLine(), "The array '"+e.getIdentifier()+"' is defined in main program with non-const size, arrays that are in main must have a constant length");
+                }
+            }
+        }
     }
 
     @Override
@@ -35,6 +49,7 @@ public class Debut extends BlocDInstructions
                 ".data\n" +
                 "\tdiv_by0: .asciiz \"[RUNTIME ERROR]:SEMANTICS: Division by zero is forbidden.\\n\"\n" +
                 "\tout_of_bound: .asciiz \"[RUNTIME ERROR]:SEMANTICS: Array index is out of bound (or index is negative).\\n\"\n" +
+                "\tarr_cpy_err: .asciiz \"[RUNTIME ERROR]:SEMANTICS: Attempt to perform an array copy on an array that doesn't have the same size as the source.\\n\"\n" +
                 "\ttrue_str: .asciiz \"vrai\\n\"\n" +
                 "\tfalse_str: .asciiz \"faux\\n\"\n" +
                 ".text\n" +
