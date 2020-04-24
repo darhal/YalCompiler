@@ -17,7 +17,7 @@ public class Variable extends Identifiant
     @Override
     public void verifier()
     {
-        TDS.Instance().Identify(entree);
+        Symbole s = TDS.Instance().Identify(entree);
     }
 
     @Override

@@ -18,6 +18,7 @@ public class Lire extends Instruction
     public void verifier()
     {
         idf.verifier();
+        // TODO: verify read array, read array element and read function
     }
 
     @Override

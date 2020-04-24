@@ -1,26 +1,12 @@
-// Affiche 1 2 3 1.
-
 programme prog
 debut
 
-  fonction a(entier n; entier m)
-  debut
-    entier[n] b;
-    entier[m] c;
+ fonc a()
+ debut
+    entier [1] b;
+    retourne b;
+ fin
 
-    b[0] = 1;
-    b[1] = 2;
-    b[2] = 3;
+ ecrire a();
 
-    c = b;
-
-    ecrire c[0];
-    ecrire c[1];
-    ecrire c[2];
-
-    retourne 1;
-  fin
-
-  entier[5] a;
-  ecrire a(3,3);
 fin

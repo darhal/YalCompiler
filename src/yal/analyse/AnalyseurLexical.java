@@ -60,11 +60,11 @@ public class AnalyseurLexical implements java_cup.runtime.Scanner {
     "\1\23\1\2\1\24\7\2\1\25\2\2\1\26\1\27"+
     "\11\2\1\30\1\31\17\2\1\32\4\2\1\33\2\2"+
     "\1\34\3\2\1\35\1\2\1\36\3\2\1\37\1\40"+
-    "\5\2\1\41\1\2\1\42\2\2\1\43\1\2\1\44"+
-    "\1\45\1\2\1\46\1\2\1\47";
+    "\5\2\1\41\1\2\1\42\4\2\1\43\1\44\1\2"+
+    "\1\45\1\46\1\2\1\47";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[113];
+    int [] result = new int[114];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -102,11 +102,11 @@ public class AnalyseurLexical implements java_cup.runtime.Scanner {
     "\0\120\0\u0988\0\u09b0\0\120\0\u09d8\0\u0a00\0\u0a28\0\120"+
     "\0\u0a50\0\120\0\u0a78\0\u0aa0\0\u0ac8\0\120\0\120\0\u0af0"+
     "\0\u0b18\0\u0b40\0\u0b68\0\u0b90\0\120\0\u0bb8\0\120\0\u0be0"+
-    "\0\u0c08\0\120\0\u0c30\0\120\0\120\0\u0c58\0\120\0\u0c80"+
-    "\0\120";
+    "\0\u0c08\0\u0c30\0\u0c58\0\120\0\120\0\u0c80\0\120\0\120"+
+    "\0\u0ca8\0\120";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[113];
+    int [] result = new int[114];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -184,7 +184,7 @@ public class AnalyseurLexical implements java_cup.runtime.Scanner {
     "\1\125\1\3\16\0\2\3\5\0\12\3\1\126\3\3"+
     "\1\0\4\3\16\0\2\3\5\0\4\3\1\127\11\3"+
     "\1\0\4\3\16\0\2\3\5\0\14\3\1\130\1\3"+
-    "\1\0\4\3\16\0\2\3\5\0\6\3\1\131\7\3"+
+    "\1\0\4\3\16\0\2\3\5\0\11\3\1\131\4\3"+
     "\1\0\4\3\16\0\2\3\5\0\15\3\1\132\1\0"+
     "\4\3\16\0\2\3\5\0\4\3\1\133\11\3\1\0"+
     "\4\3\16\0\2\3\5\0\6\3\1\134\7\3\1\0"+
@@ -194,24 +194,25 @@ public class AnalyseurLexical implements java_cup.runtime.Scanner {
     "\4\3\16\0\2\3\5\0\11\3\1\140\4\3\1\0"+
     "\4\3\16\0\2\3\5\0\14\3\1\141\1\3\1\0"+
     "\4\3\16\0\2\3\5\0\15\3\1\142\1\0\4\3"+
-    "\16\0\2\3\5\0\11\3\1\143\4\3\1\0\4\3"+
+    "\16\0\2\3\5\0\6\3\1\143\7\3\1\0\4\3"+
     "\16\0\2\3\5\0\5\3\1\144\10\3\1\0\4\3"+
     "\16\0\2\3\5\0\1\3\1\145\14\3\1\0\4\3"+
     "\16\0\2\3\5\0\15\3\1\146\1\0\4\3\16\0"+
     "\2\3\5\0\6\3\1\147\7\3\1\0\4\3\16\0"+
     "\2\3\5\0\2\3\1\150\13\3\1\0\4\3\16\0"+
     "\2\3\5\0\12\3\1\151\3\3\1\0\4\3\16\0"+
-    "\2\3\5\0\1\3\1\152\14\3\1\0\4\3\16\0"+
+    "\2\3\5\0\11\3\1\152\4\3\1\0\4\3\16\0"+
     "\2\3\5\0\5\3\1\153\10\3\1\0\4\3\16\0"+
     "\2\3\5\0\6\3\1\154\7\3\1\0\4\3\16\0"+
     "\2\3\5\0\15\3\1\155\1\0\4\3\16\0\2\3"+
     "\5\0\16\3\1\0\2\3\1\156\1\3\16\0\2\3"+
-    "\5\0\6\3\1\157\7\3\1\0\4\3\16\0\2\3"+
-    "\5\0\11\3\1\160\4\3\1\0\4\3\16\0\2\3"+
-    "\5\0\6\3\1\161\7\3\1\0\4\3\15\0";
+    "\5\0\1\3\1\157\14\3\1\0\4\3\16\0\2\3"+
+    "\5\0\6\3\1\160\7\3\1\0\4\3\16\0\2\3"+
+    "\5\0\11\3\1\161\4\3\1\0\4\3\16\0\2\3"+
+    "\5\0\6\3\1\162\7\3\1\0\4\3\15\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[3240];
+    int [] result = new int[3280];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -250,10 +251,10 @@ public class AnalyseurLexical implements java_cup.runtime.Scanner {
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
     "\1\0\1\11\2\1\1\11\15\1\7\11\1\1\5\11"+
-    "\1\0\14\1\1\11\3\1\1\11\100\1";
+    "\1\0\14\1\1\11\3\1\1\11\101\1";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[113];
+    int [] result = new int[114];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -862,15 +863,15 @@ public class AnalyseurLexical implements java_cup.runtime.Scanner {
             }
           case 73: break;
           case 35: 
-            { return symbol(CodesLexicaux.LONGEUR);
+            { return symbol(CodesLexicaux.RETOURNE);
             }
           case 74: break;
           case 36: 
-            { return symbol(CodesLexicaux.RETOURNE);
+            { return symbol(CodesLexicaux.FONCTION);
             }
           case 75: break;
           case 37: 
-            { return symbol(CodesLexicaux.FONCTION);
+            { return symbol(CodesLexicaux.LONGEUR);
             }
           case 76: break;
           case 38: 

@@ -106,7 +106,7 @@ espace = {finDeLigne}  | [ \t\f] | {comment}
 
 "]"                    { return symbol(CodesLexicaux.CRO_CLOSE); }
 
-"longeur"              { return symbol(CodesLexicaux.LONGEUR); }
+"longueur"             { return symbol(CodesLexicaux.LONGEUR); }
 
 "."                    { return symbol(CodesLexicaux.DOT); }
 

@@ -5,4 +5,5 @@ public enum ExpressionType
     ARITHMETIC,
     LOGIC,
     FUNCTION,
+    ARRAY,
 }

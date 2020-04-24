@@ -2,6 +2,11 @@ package yal.arbre.expressions;
 
 import yal.analyse.CodesLexicaux;
 import yal.arbre.OperatorsTypes;
+import yal.declaration.Decltype;
+import yal.declaration.TDS;
+import yal.declaration.entries.Entry;
+import yal.declaration.symbols.Symbole;
+import yal.exceptions.AnalyseSemantiqueException;
 import yal.exceptions.TypeMismatchException;
 
 public class UnaryOperation extends Expression
@@ -19,6 +24,16 @@ public class UnaryOperation extends Expression
     @Override
     public void verifier() {
         exp.verifier();
+
+        // Verify that there is no plain arrays involved in our expression:
+        if (exp.getVariableType() == VariableType.IDENTIFIANT) {
+            Entry varEntry = ((Variable)exp).getEntree();
+            Symbole varSymbole = TDS.Instance().Identify(varEntry);
+
+            if (varSymbole.getType() == Decltype.ARRAY){
+                throw new AnalyseSemantiqueException(noLigne, "Can't perform arithmetic/logical operations on the array '"+varEntry.getIdentifier()+"'");
+            }
+        }
 
         if (type == ExpressionType.ARITHMETIC && exp.type != ExpressionType.ARITHMETIC){
             throw new TypeMismatchException(this.getNoLigne(),

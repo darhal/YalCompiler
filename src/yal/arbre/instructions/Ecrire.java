@@ -24,6 +24,8 @@ public class Ecrire extends Instruction
                     "expected an arithmetic or logic expression while function call has been given with no return value"
             );
         }
+
+        // TODO: verify its not a table idf either
     }
 
     @Override

@@ -38,6 +38,8 @@ public class Fonction extends ArbreAbstrait
     @Override
     public void verifier() {
         TDS.Instance().EnterBloc(noBloc);
+
+        // TODO: verify that the return expression is not an array (idf is an array)!
         if (entree.getNbReturn() == 0){
             throw new AnalyseSemantiqueException(entree.getLine(),
                     "Functions must have at least one return statement, the function '"+entree.getIdentifier()+"' doesn't have any return statement"

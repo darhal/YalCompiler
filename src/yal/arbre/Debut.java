@@ -1,5 +1,8 @@
 package yal.arbre;
 
+import yal.arbre.expressions.Constante;
+import yal.arbre.expressions.ConstanteEntiere;
+import yal.arbre.expressions.Expression;
 import yal.declaration.Decltype;
 import yal.declaration.TDS;
 import yal.declaration.TableLocal;
@@ -35,8 +38,16 @@ public class Debut extends BlocDInstructions
 
             if (s.getType() == Decltype.ARRAY) {
                 ArraySymbole as = (ArraySymbole)s;
-                if (!as.getExpression().isConst()){
-                    throw new AnalyseSemantiqueException(e.getLine(), "The array '"+e.getIdentifier()+"' is defined in main program with non-const size, arrays that are in main must have a constant length");
+                Expression exp = as.getExpression();
+
+                if (!exp.isConst()) { // TODO: Should we consider const expressions too ?
+                    throw new AnalyseSemantiqueException(e.getLine(), "The array '"+e.getIdentifier()+"' is defined in main program with non-const size, arrays that are defined in main must have a constant length");
+                } else {
+                    ConstanteEntiere cte = (ConstanteEntiere) exp;
+
+                    if (cte.getCste().equals("0")){
+                        throw new AnalyseSemantiqueException(e.getLine(), "The array '"+e.getIdentifier()+"' can't have a length of 0 (array size must be strictly positive > 0)");
+                    }
                 }
             }
         }

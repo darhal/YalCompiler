@@ -13,22 +13,16 @@ main:
 	addi $sp, $sp, -4
 
 	# Calculating the size of the array 'a' (size in $v0): 
-	# Integer Constant '5':
-	li $v0, 5
+	# Integer Constant '1':
+	li $v0, 1
 	move $a0, $v0
 	jal allocate_array
 	sw $v0, 0($s7)
 
-	# Integer Constant '3':
-	li $v0, 3
-	sw $v0, -0($sp)
-
-	# Integer Constant '3':
-	li $v0, 3
-	sw $v0, -4($sp)
-	addi $sp, $sp, -8
-
-	jal a_p2
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
 
 	# Call write sys call:
 	move $a0, $v0
@@ -133,164 +127,4 @@ memcpy_loop:
 	sw $t3, 0($t0)
 	bne $a0, $a1, memcpy_loop
 	jr $ra 	#Resume normal execution
-
-	# Declaration of function: a_p2
-a_p2:
-	# Pushing in the function environments (Creating the stack frame)
-	# Return address:
-	sw $ra, -0($sp)
-	# Dynamic linking:
-	sw $s7, -4($sp)
-	# No bloc:
-	li $t8, 1
-	sw $t8, -8($sp)
-	# Reserve the space for variables: 
-	addi $sp, $sp, -12
-	move $s7, $sp
-	addi $sp, $sp, -8
-
-	# Calculating the size of the array 'c' (size in $v0): 
-	# Get value of the variable 'm':
-	li $t2, 1
-	jal search_var
-	lw $v0, 16($t1)
-	move $a0, $v0
-	jal allocate_array
-	sw $v0, -4($s7)
-
-	# Calculating the size of the array 'b' (size in $v0): 
-	# Get value of the variable 'n':
-	li $t2, 1
-	jal search_var
-	lw $v0, 20($t1)
-	move $a0, $v0
-	jal allocate_array
-	sw $v0, 0($s7)
-	# Function instructions 
-
-	# Integer Constant '1':
-	li $v0, 1
-
-	# Assignement for the variable 'b':
-	li $t2, 1
-	jal search_var
-	move $t3, $v0
-
-	# Integer Constant '0':
-	li $v0, 0
-	move $a0, $v0
-	lw $v0, 0($t1)
-	jal get_arr_element_address
-	sw $t3, ($v0)
-
-	# Integer Constant '2':
-	li $v0, 2
-
-	# Assignement for the variable 'b':
-	li $t2, 1
-	jal search_var
-	move $t3, $v0
-
-	# Integer Constant '1':
-	li $v0, 1
-	move $a0, $v0
-	lw $v0, 0($t1)
-	jal get_arr_element_address
-	sw $t3, ($v0)
-
-	# Integer Constant '3':
-	li $v0, 3
-
-	# Assignement for the variable 'b':
-	li $t2, 1
-	jal search_var
-	move $t3, $v0
-
-	# Integer Constant '2':
-	li $v0, 2
-	move $a0, $v0
-	lw $v0, 0($t1)
-	jal get_arr_element_address
-	sw $t3, ($v0)
-
-	# Get value of the variable 'b':
-	li $t2, 1
-	jal search_var
-	lw $v0, 0($t1)
-
-	# Assignement for the variable 'c':
-	li $t2, 1
-	jal search_var
-	move $a0, $v0
-	lw $t0, -4($t1)
-	jal memcpy
-
-	# Integer Constant '0':
-	li $v0, 0
-
-	# Get the address of the array 'c':
-	move $a0, $v0 	# Save the index in $a0
-	li $t2, 1
-	jal search_var
-	lw $v0, -4($t1)
-	jal get_arr_element_value
-
-	# Call write sys call:
-	move $a0, $v0
-	li $v0, 1
-	syscall
-	# Return to line:
-	li $v0, 11 	# Syscall code for printing one char
-	li $a0, '\n' 	# print new line char
-	syscall
-
-	# Integer Constant '1':
-	li $v0, 1
-
-	# Get the address of the array 'c':
-	move $a0, $v0 	# Save the index in $a0
-	li $t2, 1
-	jal search_var
-	lw $v0, -4($t1)
-	jal get_arr_element_value
-
-	# Call write sys call:
-	move $a0, $v0
-	li $v0, 1
-	syscall
-	# Return to line:
-	li $v0, 11 	# Syscall code for printing one char
-	li $a0, '\n' 	# print new line char
-	syscall
-
-	# Integer Constant '2':
-	li $v0, 2
-
-	# Get the address of the array 'c':
-	move $a0, $v0 	# Save the index in $a0
-	li $t2, 1
-	jal search_var
-	lw $v0, -4($t1)
-	jal get_arr_element_value
-
-	# Call write sys call:
-	move $a0, $v0
-	li $v0, 1
-	syscall
-	# Return to line:
-	li $v0, 11 	# Syscall code for printing one char
-	li $a0, '\n' 	# print new line char
-	syscall
-
-	# Integer Constant '1':
-	li $v0, 1
-	j a_p2_fin
-	# End of the function routine :
-a_p2_fin:
-	# Popping out the function environments (Popping the stack frame): 
-	addi $sp, $sp, 28
-	lw $ra, -8($sp)
-	lw $s7, -12($sp)
-	jr $ra
-
 

@@ -55,6 +55,7 @@ public class Fin extends ArbreAbstrait
                 "search_loop_end:\n"+
                 "\tjr $ra\t#Resume normal execution\n"+
 
+                // TODO: Array allocation the size in $a0 must be strictly positive (> 0 and not >= 0)!
                 "\n\t# Allocate array the array size should be in a0, address is in $v0\n"+
                 "\t# returned address will be in a0:\n"+
                 "\tallocate_array:\n"+
