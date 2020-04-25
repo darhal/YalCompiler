@@ -53,7 +53,7 @@ public class Ecrire extends Instruction
         String mips = "";
 
         if (exp.getType() == ExpressionType.ARITHMETIC) {
-            return mips+exp.toMIPS() +
+            return  mips + exp.toMIPS() +
                     "\n\t# Call write sys call:\n" +
                     "\tmove $a0, $v0\n" +
                     "\tli $v0, 1\n" +
@@ -63,7 +63,7 @@ public class Ecrire extends Instruction
                     "\tli $a0, '\\n' \t# print new line char\n" +
                     "\tsyscall\n";
         }else if (exp.getType() == ExpressionType.LOGIC){
-            return mips+exp.toMIPS() +
+            return  mips + exp.toMIPS() +
                     "\n\t # Evalue if the expression is true or false\n"+
                     "\tbeq $v0, $zero, "+wfalse_lbl+"\n"+
                     wtrue_lbl+":\n"+
