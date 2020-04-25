@@ -3,8 +3,12 @@ package yal.arbre.instructions;
 import yal.arbre.ArbreAbstrait;
 import yal.arbre.expressions.Expression;
 import yal.arbre.expressions.ExpressionType;
+import yal.arbre.expressions.Variable;
+import yal.declaration.Decltype;
 import yal.declaration.TDS;
+import yal.declaration.entries.Entry;
 import yal.declaration.entries.FonctionEntry;
+import yal.declaration.symbols.Symbole;
 import yal.exceptions.AnalyseSemantiqueException;
 
 public class ReturnInstruction extends Instruction
@@ -29,6 +33,17 @@ public class ReturnInstruction extends Instruction
 
         if (exp.getType() != ExpressionType.ARITHMETIC){
             throw new AnalyseSemantiqueException(this.noLigne, "return type must be an arithmetic expression");
+        }
+
+        // verify that the return expression is not an array (idf is an array)!
+        if (exp.getVariableType() == Expression.VariableType.IDENTIFIANT){
+            Variable var = (Variable)exp;
+            Entry e = var.getEntree();
+            Symbole s = TDS.Instance().Identify(e);
+
+            if (s.getType() == Decltype.ARRAY){
+                throw new AnalyseSemantiqueException(this.noLigne, "return type must be an 'entier' and can't be an array");
+            }
         }
     }
 

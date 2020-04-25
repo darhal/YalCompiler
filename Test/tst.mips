@@ -1,6 +1,8 @@
 .data
 	div_by0: .asciiz "[RUNTIME ERROR]:SEMANTICS: Division by zero is forbidden.\n"
-	out_of_bound: .asciiz "[RUNTIME ERROR]:SEMANTICS: Array index is out of bound (or index is negative).\n"
+	arr_sz_err: .asciiz "[RUNTIME ERROR]:SEMANTICS: Array size can't be zero or negative.\n"
+	out_of_bound: .asciiz "[RUNTIME ERROR]:SEMANTICS: Array index is out of bound.\n"
+	negative_index: .asciiz "[RUNTIME ERROR]:SEMANTICS: Array index can't be negative.\n"
 	arr_cpy_err: .asciiz "[RUNTIME ERROR]:SEMANTICS: Attempt to perform an array copy on an array that doesn't have the same size as the source.\n"
 	true_str: .asciiz "vrai\n"
 	false_str: .asciiz "faux\n"
@@ -9,20 +11,93 @@
 main:
 	# Begin stackframe:
 	move $s7, $sp
+	# Initialize variables to 0:
+	sw $zero, 0($sp)
+	sw $zero, -4($sp)
+	sw $zero, -8($sp)
 	# Allocate for the declared variables:
-	addi $sp, $sp, -4
+	addi $sp, $sp, -12
+	addi $sp, $sp, -0
 
-	# Calculating the size of the array 'a' (size in $v0): 
+	jal test_p0
+
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+	addi $sp, $sp, -0
+
+	jal test2_p0
+
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
 	# Integer Constant '1':
 	li $v0, 1
-	move $a0, $v0
-	jal allocate_array
-	sw $v0, 0($s7)
+
+	# Assignement for the variable 'a':
+	li $t2, 0
+	jal search_var
+	sw $v0, 0($t1)
+
+	# Integer Constant '2':
+	li $v0, 2
+
+	# Assignement for the variable 'b':
+	li $t2, 0
+	jal search_var
+	sw $v0, -4($t1)
+
+	# Integer Constant '3':
+	li $v0, 3
+
+	# Assignement for the variable 'c':
+	li $t2, 0
+	jal search_var
+	sw $v0, -8($t1)
 
 	# Get value of the variable 'a':
 	li $t2, 0
 	jal search_var
 	lw $v0, 0($t1)
+
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Get value of the variable 'b':
+	li $t2, 0
+	jal search_var
+	lw $v0, -4($t1)
+
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Get value of the variable 'c':
+	li $t2, 0
+	jal search_var
+	lw $v0, -8($t1)
 
 	# Call write sys call:
 	move $a0, $v0
@@ -49,7 +124,22 @@ div_by_zero:
 	la $a0, div_by0
 	j runtime_err
 
-	 # Handle division by 0 error
+	# Handle out of bound array index
+print_bound_err:
+	la $a0, out_of_bound
+	j runtime_err
+
+	# Handle negative array index
+print_negative_index_err:
+	la $a0, negative_index
+	j runtime_err
+
+	 # Handle negative array size errors
+arr_sz:
+	la $a0, arr_sz_err
+	j runtime_err
+
+	 # Handle memcpy errors
 memcpy_err:
 	la $a0, arr_cpy_err
 	j runtime_err
@@ -70,6 +160,7 @@ search_loop_end:
 	# Allocate array the array size should be in a0, address is in $v0
 	# returned address will be in a0:
 	allocate_array:
+	blez $a0, arr_sz
 	addi $a0, $a0, 1 	 # Adding the size of the table
 	# multiply a0 by 4:
 	li $t4, 4
@@ -82,13 +173,21 @@ search_loop_end:
 	# Initialize the array
 	subi $a0, $a0, 4 	 # Substract the size of the table
 	sw $a0, 0($v0)
+	li $t3, 0
+init_loop:
+	addi $t3, $t3, 4
+	addi $v0, $v0, 4
+	sw $zero, ($v0)
+	bne $t3, $a0, init_loop
+	sub $v0, $v0, $t3 	 # restore to the original address
 	jr $ra 	#Resume normal execution
 
 	# Get value from an array index should be in $a0, table address is in $v0, value is returned in $v0
 get_arr_element_value:
+	bltz $a0, print_negative_index_err	 # Branch if the index is negative then print error and exit
 	# multiply a0 by 4:
 	li $t4, 4
-	multu $a0, $t4
+	mult $a0, $t4
 	mflo $a0
 	lw $t2, 0($v0) 	# Get the size of the array
 	sub $t2, $t2, $a0
@@ -100,6 +199,7 @@ get_arr_element_value:
 
 	# Get address from an array. index should be in $a0, table address is in $v0, element address is returned in $v0
 get_arr_element_address:
+	bltz $a0, print_negative_index_err	 # Branch if the index is negative then print error and exit
 	# multiply a0 by 4:
 	li $t4, 4
 	multu $a0, $t4
@@ -110,10 +210,8 @@ get_arr_element_address:
 	addi $v0, $v0, 4 	# Skip first index it have the size
 	add $v0, $v0, $a0 	# $v0 now have the exact address of the element we are searching for
 	jr $ra 	#Resume normal execution
-print_bound_err:
-	la $a0, out_of_bound
-	j runtime_err
-	# Memory copy function to copy content of one table to another: 
+
+# Memory copy function to copy content of one table to another: 
 	# $t0 = $a0
 memcpy:
 	lw $t3, 0($t0)
@@ -127,4 +225,180 @@ memcpy_loop:
 	sw $t3, 0($t0)
 	bne $a0, $a1, memcpy_loop
 	jr $ra 	#Resume normal execution
+
+	# Declaration of function: test_p0
+test_p0:
+	# Pushing in the function environments (Creating the stack frame)
+	# Return address:
+	sw $ra, -0($sp)
+	# Dynamic linking:
+	sw $s7, -4($sp)
+	# No bloc:
+	li $t8, 1
+	sw $t8, -8($sp)
+	# Reserve the space for variables: 
+	addi $sp, $sp, -12
+	move $s7, $sp
+	# Initialize local variables to 0:
+	sw $zero, 0($sp)
+	sw $zero, -4($sp)
+	sw $zero, -8($sp)
+	addi $sp, $sp, -12
+	# Function instructions 
+
+	# Integer Constant '4':
+	li $v0, 4
+
+	# Assignement for the variable 'a':
+	li $t2, 1
+	jal search_var
+	sw $v0, 0($t1)
+
+	# Integer Constant '5':
+	li $v0, 5
+
+	# Assignement for the variable 'b':
+	li $t2, 1
+	jal search_var
+	sw $v0, -4($t1)
+
+	# Integer Constant '6':
+	li $v0, 6
+
+	# Assignement for the variable 'c':
+	li $t2, 1
+	jal search_var
+	sw $v0, -8($t1)
+
+	# Get value of the variable 'a':
+	li $t2, 1
+	jal search_var
+	lw $v0, 0($t1)
+
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Get value of the variable 'b':
+	li $t2, 1
+	jal search_var
+	lw $v0, -4($t1)
+
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Get value of the variable 'c':
+	li $t2, 1
+	jal search_var
+	lw $v0, -8($t1)
+
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Get value of the variable 'a':
+	li $t2, 1
+	jal search_var
+	lw $v0, 0($t1)
+	j test_p0_fin
+	# End of the function routine :
+test_p0_fin:
+	# Popping out the function environments (Popping the stack frame): 
+	addi $sp, $sp, 24
+	lw $ra, -0($sp)
+	lw $s7, -4($sp)
+	jr $ra
+
+
+	# Declaration of function: test2_p0
+test2_p0:
+	# Pushing in the function environments (Creating the stack frame)
+	# Return address:
+	sw $ra, -0($sp)
+	# Dynamic linking:
+	sw $s7, -4($sp)
+	# No bloc:
+	li $t8, 2
+	sw $t8, -8($sp)
+	# Reserve the space for variables: 
+	addi $sp, $sp, -12
+	move $s7, $sp
+	# Initialize local variables to 0:
+	sw $zero, 0($sp)
+	sw $zero, -4($sp)
+	sw $zero, -8($sp)
+	addi $sp, $sp, -12
+	# Function instructions 
+
+	# Get value of the variable 'a':
+	li $t2, 2
+	jal search_var
+	lw $v0, 0($t1)
+
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Get value of the variable 'b':
+	li $t2, 2
+	jal search_var
+	lw $v0, -4($t1)
+
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Get value of the variable 'c':
+	li $t2, 2
+	jal search_var
+	lw $v0, -8($t1)
+
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Get value of the variable 'a':
+	li $t2, 2
+	jal search_var
+	lw $v0, 0($t1)
+	j test2_p0_fin
+	# End of the function routine :
+test2_p0_fin:
+	# Popping out the function environments (Popping the stack frame): 
+	addi $sp, $sp, 24
+	lw $ra, -0($sp)
+	lw $s7, -4($sp)
+	jr $ra
+
 

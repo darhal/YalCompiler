@@ -1,12 +1,34 @@
-programme prog
-debut
-
- fonc a()
- debut
-    entier [1] b;
-    retourne b;
- fin
-
- ecrire a();
-
+programme prog debut
+	fonction test() debut
+		entier a; entier b;
+		entier c;
+		
+		a = 4;
+		b = 5;
+		c = 6;
+		ecrire a;
+		ecrire b;
+		ecrire c;
+		retourne a;
+	fin
+	
+	fonction test2() debut
+		entier a; entier b; entier c;
+		
+		ecrire a;
+		ecrire b;
+		ecrire c;
+		retourne a;
+	fin
+	
+	
+	entier a; entier b; entier c;
+	ecrire test();
+	ecrire test2();
+	a = 1;
+	b = 2;
+	c = 3;
+	ecrire a;
+	ecrire b;
+	ecrire c;
 fin

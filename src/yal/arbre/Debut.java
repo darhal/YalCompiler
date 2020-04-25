@@ -59,7 +59,9 @@ public class Debut extends BlocDInstructions
         String code_mips =
                 ".data\n" +
                 "\tdiv_by0: .asciiz \"[RUNTIME ERROR]:SEMANTICS: Division by zero is forbidden.\\n\"\n" +
-                "\tout_of_bound: .asciiz \"[RUNTIME ERROR]:SEMANTICS: Array index is out of bound (or index is negative).\\n\"\n" +
+                "\tarr_sz_err: .asciiz \"[RUNTIME ERROR]:SEMANTICS: Array size can't be zero or negative.\\n\"\n" +
+                "\tout_of_bound: .asciiz \"[RUNTIME ERROR]:SEMANTICS: Array index is out of bound.\\n\"\n" +
+                "\tnegative_index: .asciiz \"[RUNTIME ERROR]:SEMANTICS: Array index can't be negative.\\n\"\n" +
                 "\tarr_cpy_err: .asciiz \"[RUNTIME ERROR]:SEMANTICS: Attempt to perform an array copy on an array that doesn't have the same size as the source.\\n\"\n" +
                 "\ttrue_str: .asciiz \"vrai\\n\"\n" +
                 "\tfalse_str: .asciiz \"faux\\n\"\n" +
@@ -70,9 +72,16 @@ public class Debut extends BlocDInstructions
                 "\tmove $s7, $sp\n";
 
         if (TDS.Instance().getVariableZoneSize() != 0) {
+            // Init variables to 0
+            code_mips += "\t# Initialize variables to 0:\n";
+
+            for (int i = 0; i < TDS.Instance().getVariableZoneSize(); i++){
+                code_mips += "\tsw $zero, "+i * - 4+"($sp)\n";
+            }
+
             code_mips +=
-                "\t# Allocate for the declared variables:\n" +
-                "\taddi $sp, $sp, " + -4 * TDS.Instance().getVariableZoneSize() + "\n"
+                    "\t# Allocate for the declared variables:\n" +
+                    "\taddi $sp, $sp, " + -4 * TDS.Instance().getVariableZoneSize() + "\n"
                 ;
         }
 

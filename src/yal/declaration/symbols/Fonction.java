@@ -39,12 +39,12 @@ public class Fonction extends ArbreAbstrait
     public void verifier() {
         TDS.Instance().EnterBloc(noBloc);
 
-        // TODO: verify that the return expression is not an array (idf is an array)!
         if (entree.getNbReturn() == 0){
             throw new AnalyseSemantiqueException(entree.getLine(),
                     "Functions must have at least one return statement, the function '"+entree.getIdentifier()+"' doesn't have any return statement"
             );
         }
+
         inst.verifier();
 
         for (Symbole s : TDS.Instance().getSymbolMap().values()) {
@@ -85,6 +85,12 @@ public class Fonction extends ArbreAbstrait
         mips += "\tmove $s7, $sp\n";
 
         if (local_var_sz != 0) {
+            mips += "\t# Initialize local variables to 0:\n";
+
+            for (int i = 0; i < local_var_sz; i++){
+                mips += "\tsw $zero, "+i * - 4+"($sp)\n";
+            }
+
             mips += "\taddi $sp, $sp, -" + local_var_sz * 4 + "\n"; // adr retour, dynamic linking, no region, local var
         }
 
