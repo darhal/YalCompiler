@@ -207,12 +207,12 @@ INST        ::=     AFFECT:aff {: RESULT = aff; :}
             |       LIRE IDF:idf POINTVIRGULE
                     {:  Variable var = new Variable(new VariableEntry(idf, idfleft + 1), idfleft + 1);
                         RESULT = new Lire(var, idfleft + 1); :}
-            |       LIRE IDF:idf CRO_OPEN EXP:e CRO_CLOSE POINTVIRGULE
-                    {: ArrayElement var = new ArrayElement(new VariableEntry(idf, idfleft + 1), e, idfleft + 1);
-                       RESULT = new Lire(var, idfleft + 1); :}
             |       ECRIRE EXP:e POINTVIRGULE
                     {: RESULT = new Ecrire(e, eleft + 1) ; :}
             |       RETOURNE_INST:ri {: RESULT = ri; :}
+            //|      LIRE IDF:idf CRO_OPEN EXP:e CRO_CLOSE POINTVIRGULE
+            //       {: ArrayElement var = new ArrayElement(new VariableEntry(idf, idfleft + 1), e, idfleft + 1);
+            //        RESULT = new Lire(var, idfleft + 1); :}
             ;
 
 PAR_EFF     ::=     PAR_EFF:par_eff VIRGULE EXP:e

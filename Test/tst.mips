@@ -194,17 +194,17 @@ main:
 	and $v0, $t8, $v0
 
 	 # Evalue if the expression is true or false
-	beq $v0, $zero, wfalse_1237240694
-wtrue_1237240694:
+	beq $v0, $zero, wfalse_150795627
+wtrue_150795627:
 	la $a0, true_str
 	li $v0, 4
 	syscall
-	j wend_1237240694
-wfalse_1237240694:
+	j wend_150795627
+wfalse_150795627:
 	la $a0, false_str
 	li $v0, 4
 	syscall
-wend_1237240694:
+wend_150795627:
 
 	# Integer Constant '0':
 	li $v0, 0
@@ -377,17 +377,17 @@ wend_1237240694:
 	and $v0, $t8, $v0
 
 	 # Evalue if the expression is true or false
-	beq $v0, $zero, wfalse_1310203911
-wtrue_1310203911:
+	beq $v0, $zero, wfalse_4186783604
+wtrue_4186783604:
 	la $a0, true_str
 	li $v0, 4
 	syscall
-	j wend_1310203911
-wfalse_1310203911:
+	j wend_4186783604
+wfalse_4186783604:
 	la $a0, false_str
 	li $v0, 4
 	syscall
-wend_1310203911:
+wend_4186783604:
 
 	# Integer Constant '0':
 	li $v0, 0
@@ -560,17 +560,17 @@ wend_1310203911:
 	and $v0, $t8, $v0
 
 	 # Evalue if the expression is true or false
-	beq $v0, $zero, wfalse_3440651801
-wtrue_3440651801:
+	beq $v0, $zero, wfalse_553827269
+wtrue_553827269:
 	la $a0, true_str
 	li $v0, 4
 	syscall
-	j wend_3440651801
-wfalse_3440651801:
+	j wend_553827269
+wfalse_553827269:
 	la $a0, false_str
 	li $v0, 4
 	syscall
-wend_3440651801:
+wend_553827269:
 
 	# Integer Constant '0':
 	li $v0, 0
@@ -743,17 +743,17 @@ wend_3440651801:
 	and $v0, $t8, $v0
 
 	 # Evalue if the expression is true or false
-	beq $v0, $zero, wfalse_2813493068
-wtrue_2813493068:
+	beq $v0, $zero, wfalse_2109921276
+wtrue_2109921276:
 	la $a0, true_str
 	li $v0, 4
 	syscall
-	j wend_2813493068
-wfalse_2813493068:
+	j wend_2109921276
+wfalse_2109921276:
 	la $a0, false_str
 	li $v0, 4
 	syscall
-wend_2813493068:
+wend_2109921276:
 
 	# Handle program exit
 exit:
@@ -922,7 +922,7 @@ fib_rec_p1:
 	addi $sp, $sp, 4
 	# Or:
 	or $v0, $t8, $v0
-	beq $v0, $zero, sinon_2256176295	 # Skip the condition if v0 is equal to zero
+	beq $v0, $zero, sinon_2810797274	 # Skip the condition if v0 is equal to zero
 	# Begin of the instruction inside SI branch:
 
 	# Get value of the variable 'n':
@@ -931,11 +931,11 @@ fib_rec_p1:
 	lw $v0, 16($t1)
 	j fib_rec_p1_fin
 
-	j fsi_2256176295
+	j fsi_2810797274
 
-sinon_2256176295:
+sinon_2810797274:
 	# End of the branch
-fsi_2256176295:
+fsi_2810797274:
 
 	# Get value of the variable 'n':
 	li $t2, 1
@@ -1066,7 +1066,7 @@ fib_itr_dp_p1:
 	li $t2, 3
 	jal search_var
 	sw $v0, 0($t1)
-start_loop_1877219144:
+start_loop_317488443:
 
 	# Get value of the variable 'i':
 	li $t2, 3
@@ -1106,7 +1106,7 @@ start_loop_1877219144:
 	# Or:
 	or $v0, $t8, $v0
 	# Branch Instruction:
-	beq $v0, $zero, end_loop_1877219144
+	beq $v0, $zero, end_loop_317488443
 	# Loop instructions:
 	# Get value of the variable 'i':
 	li $t2, 3
@@ -1190,8 +1190,8 @@ start_loop_1877219144:
 	li $t2, 3
 	jal search_var
 	sw $v0, 0($t1)
-	bne $v0, $zero, start_loop_1877219144
-end_loop_1877219144:
+	bne $v0, $zero, start_loop_317488443
+end_loop_317488443:
 
 	# Get value of the variable 'n':
 	li $t2, 3
@@ -1249,18 +1249,18 @@ fib_itr_p1:
 	addi $sp, $sp, 4
 	# Equal:
 	seq $v0, $t8, $v0
-	beq $v0, $zero, sinon_4018051274	 # Skip the condition if v0 is equal to zero
+	beq $v0, $zero, sinon_1195736740	 # Skip the condition if v0 is equal to zero
 	# Begin of the instruction inside SI branch:
 
 	# Integer Constant '0':
 	li $v0, 0
 	j fib_itr_p1_fin
 
-	j fsi_4018051274
+	j fsi_1195736740
 
-sinon_4018051274:
+sinon_1195736740:
 	# End of the branch
-fsi_4018051274:
+fsi_1195736740:
 
 	# Integer Constant '0':
 	li $v0, 0
@@ -1285,7 +1285,7 @@ fsi_4018051274:
 	li $t2, 2
 	jal search_var
 	sw $v0, -8($t1)
-start_loop_407770830:
+start_loop_2811640778:
 
 	# Get value of the variable 'k':
 	li $t2, 2
@@ -1303,7 +1303,7 @@ start_loop_407770830:
 	# Less:
 	slt $v0, $t8, $v0
 	# Branch Instruction:
-	beq $v0, $zero, end_loop_407770830
+	beq $v0, $zero, end_loop_2811640778
 	# Loop instructions:
 	# Get value of the variable 'i':
 	li $t2, 2
@@ -1364,8 +1364,8 @@ start_loop_407770830:
 	li $t2, 2
 	jal search_var
 	sw $v0, -8($t1)
-	bne $v0, $zero, start_loop_407770830
-end_loop_407770830:
+	bne $v0, $zero, start_loop_2811640778
+end_loop_2811640778:
 
 	# Get value of the variable 'j':
 	li $t2, 2
@@ -1417,7 +1417,7 @@ fib_rec_dp_p1:
 	addi $sp, $sp, 4
 	# Equal:
 	seq $v0, $t8, $v0
-	beq $v0, $zero, sinon_2405967099	 # Skip the condition if v0 is equal to zero
+	beq $v0, $zero, sinon_3267104211	 # Skip the condition if v0 is equal to zero
 	# Begin of the instruction inside SI branch:
 
 	# Condition Instruction:
@@ -1454,7 +1454,7 @@ fib_rec_dp_p1:
 	addi $sp, $sp, 4
 	# Or:
 	or $v0, $t8, $v0
-	beq $v0, $zero, sinon_2212261810	 # Skip the condition if v0 is equal to zero
+	beq $v0, $zero, sinon_540891317	 # Skip the condition if v0 is equal to zero
 	# Begin of the instruction inside SI branch:
 
 	# Get value of the variable 'n':
@@ -1478,9 +1478,9 @@ fib_rec_dp_p1:
 	jal get_arr_element_address
 	sw $t3, ($v0)
 
-	j fsi_2212261810
+	j fsi_540891317
 
-sinon_2212261810:
+sinon_540891317:
 	# Begin of the SINON branch
 
 	# Get value of the variable 'n':
@@ -1541,13 +1541,13 @@ sinon_2212261810:
 	jal get_arr_element_address
 	sw $t3, ($v0)
 	# End of the branch
-fsi_2212261810:
+fsi_540891317:
 
-	j fsi_2405967099
+	j fsi_3267104211
 
-sinon_2405967099:
+sinon_3267104211:
 	# End of the branch
-fsi_2405967099:
+fsi_3267104211:
 
 	# Get value of the variable 'n':
 	li $t2, 4
