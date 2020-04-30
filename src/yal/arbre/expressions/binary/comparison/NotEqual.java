@@ -26,17 +26,14 @@ public class NotEqual extends ComparisonOperation {
         }
 
         // Verify that there is no arrays involved in our expression:
-        if (exp1.getVariableType() != exp2.getVariableType()) {
-            throw new TypeMismatchException(this.getNoLigne(), "Attempt to perform a comparison operation two different types, or expression is ambiguous please use parentheses ()");
-        }
-
-        if (exp1.getVariableType() == VariableType.IDENTIFIANT) {
+        if (exp1.getVariableType() == VariableType.IDENTIFIANT && exp2.getVariableType() == VariableType.IDENTIFIANT) {
             Entry varEntry1 = ((Variable)exp1).getEntree();
             Symbole varSymbole1 = TDS.Instance().Identify(varEntry1);
             Entry varEntry2 = ((Variable)exp2).getEntree();
             Symbole varSymbole2 = TDS.Instance().Identify(varEntry2);
 
-            if (varSymbole1.getType() != varSymbole2.getType()){
+            if ((varSymbole1.getType() == Decltype.ARRAY && varSymbole2.getType() != Decltype.ARRAY) ||
+                    (varSymbole1.getType() != Decltype.ARRAY && varSymbole2.getType() == Decltype.ARRAY)) {
                 throw new AnalyseSemantiqueException(noLigne, "Attempt to perform a comparison operation two different types, or expression is ambiguous please use parentheses ()");
             }
         }
@@ -70,7 +67,7 @@ public class NotEqual extends ComparisonOperation {
                 }
             }
         }
-        
+
         return mips;
     }
 }
