@@ -16,24 +16,472 @@ main:
 	# Allocate for the declared variables:
 	addi $sp, $sp, -4
 
-	# Calculating the size of the array 'f' (size in $v0): 
+	# Integer Constant '25':
+	li $v0, 25
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '25':
+	li $v0, 25
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Integer Constant '5':
+	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '25':
+	li $v0, 25
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '13':
+	li $v0, 13
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
+
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Integer Constant '5':
+	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '25':
+	li $v0, 25
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '13':
+	li $v0, 13
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Substraction:
+	sub $v0, $t8, $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
+
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Integer Constant '5':
+	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '2':
+	li $v0, 2
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Substraction:
+	sub $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '1':
+	li $v0, 1
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Substraction:
+	sub $v0, $t8, $v0
+
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Integer Constant '5':
+	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '2':
+	li $v0, 2
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Substraction:
+	sub $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Substraction:
+	sub $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '16':
+	li $v0, 16
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
+
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Integer Constant '5':
+	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '2':
+	li $v0, 2
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '2':
+	li $v0, 2
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '2':
+	li $v0, 2
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '2':
+	li $v0, 2
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '2':
+	li $v0, 2
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Substraction:
+	sub $v0, $t8, $v0
+
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
 	# Integer Constant '100':
 	li $v0, 100
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '2':
+	li $v0, 2
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '2':
+	li $v0, 2
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '2':
+	li $v0, 2
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '2':
+	li $v0, 2
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
+
+	# Call write sys call:
 	move $a0, $v0
-	jal allocate_array
-	sw $v0, 0($s7)
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
 
-	# Integer Constant '0':
-	li $v0, 0
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal fib_itr_p1
+	# Integer Constant '2':
+	li $v0, 2
 	addi $sp, $sp, -4
 	sw $v0, 4($sp)
 
-	# Integer Constant '0':
-	li $v0, 0
+	# Integer Constant '100':
+	li $v0, 100
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '2':
+	li $v0, 2
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '2':
+	li $v0, 2
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '2':
+	li $v0, 2
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
+
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Integer Constant '5':
+	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '25':
+	li $v0, 25
 	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Equal:
@@ -41,34 +489,125 @@ main:
 	addi $sp, $sp, -4
 	sw $v0, 4($sp)
 
-	# Integer Constant '1':
-	li $v0, 1
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal fib_itr_p1
+	# Integer Constant '25':
+	li $v0, 25
 	addi $sp, $sp, -4
 	sw $v0, 4($sp)
 
-	# Integer Constant '1':
-	li $v0, 1
+	# Integer Constant '25':
+	li $v0, 25
 	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Equal:
 	seq $v0, $t8, $v0
 	lw $t8, 4($sp)
 	addi $sp, $sp, 4
-	# And:
-	and $v0, $t8, $v0
+	# Equal:
+	sne $v0, $v0, $zero 	# ($v0 != $zero) ? 1 : 0
+	sne $t8, $t8, $zero 	# ($t8 != $zero) ? 1 : 0
+	seq $v0, $t8, $v0
+
+	 # Call write routine for logical expressions
+	jal write_logical
+
+	# Integer Constant '5':
+	li $v0, 5
 	addi $sp, $sp, -4
 	sw $v0, 4($sp)
 
-	# Integer Constant '3':
-	li $v0, 3
-	sw $v0, -0($sp)
+	# Integer Constant '5':
+	li $v0, 5
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
 	addi $sp, $sp, -4
+	sw $v0, 4($sp)
 
-	jal fib_itr_p1
+	# Integer Constant '25':
+	li $v0, 25
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	seq $v0, $t8, $v0
+	seq $v0, $zero, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '25':
+	li $v0, 25
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '25':
+	li $v0, 25
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	seq $v0, $t8, $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	sne $v0, $v0, $zero 	# ($v0 != $zero) ? 1 : 0
+	sne $t8, $t8, $zero 	# ($t8 != $zero) ? 1 : 0
+	seq $v0, $t8, $v0
+	seq $v0, $zero, $v0
+
+	 # Call write routine for logical expressions
+	jal write_logical
+
+	# Integer Constant '5':
+	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '26':
+	li $v0, 26
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Greater
+	slt $v0, $v0, $t8
+	seq $v0, $zero, $v0
+
+	 # Call write routine for logical expressions
+	jal write_logical
+
+	# Integer Constant '5':
+	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '24':
+	li $v0, 24
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Less:
+	slt $v0, $t8, $v0
+	seq $v0, $zero, $v0
+
+	 # Call write routine for logical expressions
+	jal write_logical
+
+	# Integer Constant '1':
+	li $v0, 1
 	addi $sp, $sp, -4
 	sw $v0, 4($sp)
 
@@ -78,341 +617,49 @@ main:
 	addi $sp, $sp, 4
 	# Equal:
 	seq $v0, $t8, $v0
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# And:
-	and $v0, $t8, $v0
 	addi $sp, $sp, -4
 	sw $v0, 4($sp)
 
 	# Integer Constant '5':
 	li $v0, 5
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal fib_itr_p1
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '5':
-	li $v0, 5
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Equal:
-	seq $v0, $t8, $v0
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# And:
-	and $v0, $t8, $v0
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '8':
-	li $v0, 8
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal fib_itr_p1
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '21':
-	li $v0, 21
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Equal:
-	seq $v0, $t8, $v0
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# And:
-	and $v0, $t8, $v0
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '10':
-	li $v0, 10
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal fib_itr_p1
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '55':
-	li $v0, 55
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Equal:
-	seq $v0, $t8, $v0
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# And:
-	and $v0, $t8, $v0
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '18':
-	li $v0, 18
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal fib_itr_p1
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '2584':
-	li $v0, 2584
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Equal:
-	seq $v0, $t8, $v0
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# And:
-	and $v0, $t8, $v0
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '23':
-	li $v0, 23
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal fib_itr_p1
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '28657':
-	li $v0, 28657
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Equal:
-	seq $v0, $t8, $v0
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# And:
-	and $v0, $t8, $v0
-
-	 # Evalue if the expression is true or false
-	beq $v0, $zero, wfalse_150795627
-wtrue_150795627:
-	la $a0, true_str
-	li $v0, 4
-	syscall
-	j wend_150795627
-wfalse_150795627:
-	la $a0, false_str
-	li $v0, 4
-	syscall
-wend_150795627:
-
-	# Integer Constant '0':
-	li $v0, 0
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal fib_itr_dp_p1
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '0':
-	li $v0, 0
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Equal:
-	seq $v0, $t8, $v0
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '1':
-	li $v0, 1
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal fib_itr_dp_p1
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '1':
-	li $v0, 1
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Equal:
-	seq $v0, $t8, $v0
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# And:
-	and $v0, $t8, $v0
 	addi $sp, $sp, -4
 	sw $v0, 4($sp)
 
 	# Integer Constant '3':
 	li $v0, 3
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal fib_itr_dp_p1
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '2':
-	li $v0, 2
 	lw $t8, 4($sp)
 	addi $sp, $sp, 4
-	# Equal:
-	seq $v0, $t8, $v0
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# And:
-	and $v0, $t8, $v0
+	# Greater
+	slt $v0, $v0, $t8
 	addi $sp, $sp, -4
 	sw $v0, 4($sp)
 
 	# Integer Constant '5':
 	li $v0, 5
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal fib_itr_dp_p1
 	addi $sp, $sp, -4
 	sw $v0, 4($sp)
 
-	# Integer Constant '5':
-	li $v0, 5
+	# Integer Constant '6':
+	li $v0, 6
 	lw $t8, 4($sp)
 	addi $sp, $sp, 4
-	# Equal:
-	seq $v0, $t8, $v0
+	# Greater
+	slt $v0, $v0, $t8
 	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# And:
 	and $v0, $t8, $v0
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '8':
-	li $v0, 8
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal fib_itr_dp_p1
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '21':
-	li $v0, 21
 	lw $t8, 4($sp)
 	addi $sp, $sp, 4
-	# Equal:
-	seq $v0, $t8, $v0
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# And:
-	and $v0, $t8, $v0
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
+	# Or:
+	or $v0, $t8, $v0
+	seq $v0, $zero, $v0
 
-	# Integer Constant '10':
-	li $v0, 10
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal fib_itr_dp_p1
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '55':
-	li $v0, 55
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Equal:
-	seq $v0, $t8, $v0
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# And:
-	and $v0, $t8, $v0
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '18':
-	li $v0, 18
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal fib_itr_dp_p1
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '2584':
-	li $v0, 2584
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Equal:
-	seq $v0, $t8, $v0
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# And:
-	and $v0, $t8, $v0
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '23':
-	li $v0, 23
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal fib_itr_dp_p1
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '28657':
-	li $v0, 28657
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Equal:
-	seq $v0, $t8, $v0
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# And:
-	and $v0, $t8, $v0
-
-	 # Evalue if the expression is true or false
-	beq $v0, $zero, wfalse_4186783604
-wtrue_4186783604:
-	la $a0, true_str
-	li $v0, 4
-	syscall
-	j wend_4186783604
-wfalse_4186783604:
-	la $a0, false_str
-	li $v0, 4
-	syscall
-wend_4186783604:
-
-	# Integer Constant '0':
-	li $v0, 0
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal fib_rec_dp_p1
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '0':
-	li $v0, 0
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Equal:
-	seq $v0, $t8, $v0
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
+	 # Call write routine for logical expressions
+	jal write_logical
 
 	# Integer Constant '1':
 	li $v0, 1
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal fib_rec_dp_p1
 	addi $sp, $sp, -4
 	sw $v0, 4($sp)
 
@@ -422,232 +669,376 @@ wend_4186783604:
 	addi $sp, $sp, 4
 	# Equal:
 	seq $v0, $t8, $v0
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# And:
-	and $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '5':
+	li $v0, 5
 	addi $sp, $sp, -4
 	sw $v0, 4($sp)
 
 	# Integer Constant '3':
 	li $v0, 3
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal fib_rec_dp_p1
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '2':
-	li $v0, 2
 	lw $t8, 4($sp)
 	addi $sp, $sp, 4
-	# Equal:
-	seq $v0, $t8, $v0
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# And:
-	and $v0, $t8, $v0
+	# Greater
+	slt $v0, $v0, $t8
 	addi $sp, $sp, -4
 	sw $v0, 4($sp)
 
 	# Integer Constant '5':
 	li $v0, 5
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal fib_rec_dp_p1
 	addi $sp, $sp, -4
 	sw $v0, 4($sp)
+
+	# Integer Constant '6':
+	li $v0, 6
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Greater
+	slt $v0, $v0, $t8
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# And:
+	and $v0, $t8, $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Or:
+	or $v0, $t8, $v0
+
+	 # Call write routine for logical expressions
+	jal write_logical
 
 	# Integer Constant '5':
 	li $v0, 5
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Equal:
-	seq $v0, $t8, $v0
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# And:
-	and $v0, $t8, $v0
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '8':
-	li $v0, 8
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal fib_rec_dp_p1
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '21':
-	li $v0, 21
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Equal:
-	seq $v0, $t8, $v0
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# And:
-	and $v0, $t8, $v0
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '10':
-	li $v0, 10
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal fib_rec_dp_p1
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '55':
-	li $v0, 55
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Equal:
-	seq $v0, $t8, $v0
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# And:
-	and $v0, $t8, $v0
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '18':
-	li $v0, 18
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal fib_rec_dp_p1
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '2584':
-	li $v0, 2584
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Equal:
-	seq $v0, $t8, $v0
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# And:
-	and $v0, $t8, $v0
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '23':
-	li $v0, 23
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal fib_rec_dp_p1
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '28657':
-	li $v0, 28657
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Equal:
-	seq $v0, $t8, $v0
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# And:
-	and $v0, $t8, $v0
-
-	 # Evalue if the expression is true or false
-	beq $v0, $zero, wfalse_553827269
-wtrue_553827269:
-	la $a0, true_str
-	li $v0, 4
-	syscall
-	j wend_553827269
-wfalse_553827269:
-	la $a0, false_str
-	li $v0, 4
-	syscall
-wend_553827269:
-
-	# Integer Constant '0':
-	li $v0, 0
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal fib_rec_p1
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '0':
-	li $v0, 0
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Equal:
-	seq $v0, $t8, $v0
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '1':
-	li $v0, 1
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal fib_rec_p1
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '1':
-	li $v0, 1
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Equal:
-	seq $v0, $t8, $v0
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# And:
-	and $v0, $t8, $v0
 	addi $sp, $sp, -4
 	sw $v0, 4($sp)
 
 	# Integer Constant '3':
 	li $v0, 3
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal fib_rec_p1
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '2':
-	li $v0, 2
 	lw $t8, 4($sp)
 	addi $sp, $sp, 4
-	# Equal:
-	seq $v0, $t8, $v0
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# And:
-	and $v0, $t8, $v0
+	# Greater
+	slt $v0, $v0, $t8
 	addi $sp, $sp, -4
 	sw $v0, 4($sp)
 
 	# Integer Constant '5':
 	li $v0, 5
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal fib_rec_p1
 	addi $sp, $sp, -4
 	sw $v0, 4($sp)
+
+	# Integer Constant '6':
+	li $v0, 6
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Less:
+	slt $v0, $t8, $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# And:
+	and $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '1':
+	li $v0, 1
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '1':
+	li $v0, 1
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	seq $v0, $t8, $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Or:
+	or $v0, $t8, $v0
+
+	 # Call write routine for logical expressions
+	jal write_logical
 
 	# Integer Constant '5':
 	li $v0, 5
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '6':
+	li $v0, 6
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Greater
+	slt $v0, $v0, $t8
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '1':
+	li $v0, 1
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '1':
+	li $v0, 1
 	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Equal:
+	seq $v0, $t8, $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Or:
+	or $v0, $t8, $v0
+
+	 # Call write routine for logical expressions
+	jal write_logical
+
+	# Integer Constant '5':
+	li $v0, 5
+
+	# Assignement for the variable 'a':
+	li $t2, 0
+	jal search_var
+	sw $v0, 0($t1)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Not Equal:
+	sne $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	seq $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Substraction:
+	sub $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Less:
+	slt $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '6':
+	li $v0, 6
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Less:
+	slt $v0, $t8, $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	sne $v0, $v0, $zero 	# ($v0 != $zero) ? 1 : 0
+	sne $t8, $t8, $zero 	# ($t8 != $zero) ? 1 : 0
 	seq $v0, $t8, $v0
 	lw $t8, 4($sp)
 	addi $sp, $sp, 4
@@ -656,17 +1047,17 @@ wend_553827269:
 	addi $sp, $sp, -4
 	sw $v0, 4($sp)
 
-	# Integer Constant '8':
-	li $v0, 8
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal fib_rec_p1
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
 	addi $sp, $sp, -4
 	sw $v0, 4($sp)
 
-	# Integer Constant '21':
-	li $v0, 21
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
 	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Equal:
@@ -675,23 +1066,274 @@ wend_553827269:
 	addi $sp, $sp, 4
 	# And:
 	and $v0, $t8, $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Or:
+	or $v0, $t8, $v0
 	addi $sp, $sp, -4
 	sw $v0, 4($sp)
 
-	# Integer Constant '10':
-	li $v0, 10
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal fib_rec_p1
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
 	addi $sp, $sp, -4
 	sw $v0, 4($sp)
 
-	# Integer Constant '55':
-	li $v0, 55
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
 	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Equal:
+	seq $v0, $t8, $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Or:
+	or $v0, $t8, $v0
+
+	 # Call write routine for logical expressions
+	jal write_logical
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Not Equal:
+	sne $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	seq $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Substraction:
+	sub $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Less:
+	slt $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '6':
+	li $v0, 6
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Less:
+	slt $v0, $t8, $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	sne $v0, $v0, $zero 	# ($v0 != $zero) ? 1 : 0
+	sne $t8, $t8, $zero 	# ($t8 != $zero) ? 1 : 0
 	seq $v0, $t8, $v0
 	lw $t8, 4($sp)
 	addi $sp, $sp, 4
@@ -700,20 +1342,293 @@ wend_553827269:
 	addi $sp, $sp, -4
 	sw $v0, 4($sp)
 
-	# Integer Constant '18':
-	li $v0, 18
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal fib_rec_p1
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
 	addi $sp, $sp, -4
 	sw $v0, 4($sp)
 
-	# Integer Constant '2584':
-	li $v0, 2584
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Not Equal:
+	sne $v0, $t8, $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# And:
+	and $v0, $t8, $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Or:
+	or $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
 	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Equal:
+	seq $v0, $t8, $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Or:
+	or $v0, $t8, $v0
+
+	 # Call write routine for logical expressions
+	jal write_logical
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	seq $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	seq $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Substraction:
+	sub $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Less:
+	slt $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '6':
+	li $v0, 6
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Less:
+	slt $v0, $t8, $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	sne $v0, $v0, $zero 	# ($v0 != $zero) ? 1 : 0
+	sne $t8, $t8, $zero 	# ($t8 != $zero) ? 1 : 0
 	seq $v0, $t8, $v0
 	lw $t8, 4($sp)
 	addi $sp, $sp, 4
@@ -722,17 +1637,312 @@ wend_553827269:
 	addi $sp, $sp, -4
 	sw $v0, 4($sp)
 
-	# Integer Constant '23':
-	li $v0, 23
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal fib_rec_p1
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
 	addi $sp, $sp, -4
 	sw $v0, 4($sp)
 
-	# Integer Constant '28657':
-	li $v0, 28657
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Not Equal:
+	sne $v0, $t8, $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# And:
+	and $v0, $t8, $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Or:
+	or $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Not Equal:
+	sne $v0, $t8, $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Or:
+	or $v0, $t8, $v0
+
+	 # Call write routine for logical expressions
+	jal write_logical
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Not Equal:
+	sne $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	seq $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Addition:
+	add $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Substraction:
+	sub $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Division:
+	# test si on divise par 0
+	beqz $v0, div_by_zero
+	div $t8, $v0
+	mflo $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Multiplication:
+	mul $v0, $t8, $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Less:
+	slt $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Integer Constant '6':
+	li $v0, 6
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Less:
+	slt $v0, $t8, $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Equal:
+	sne $v0, $v0, $zero 	# ($v0 != $zero) ? 1 : 0
+	sne $t8, $t8, $zero 	# ($t8 != $zero) ? 1 : 0
+	seq $v0, $t8, $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# And:
+	and $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
 	lw $t8, 4($sp)
 	addi $sp, $sp, 4
 	# Equal:
@@ -741,19 +1951,35 @@ wend_553827269:
 	addi $sp, $sp, 4
 	# And:
 	and $v0, $t8, $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Or:
+	or $v0, $t8, $v0
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
 
-	 # Evalue if the expression is true or false
-	beq $v0, $zero, wfalse_2109921276
-wtrue_2109921276:
-	la $a0, true_str
-	li $v0, 4
-	syscall
-	j wend_2109921276
-wfalse_2109921276:
-	la $a0, false_str
-	li $v0, 4
-	syscall
-wend_2109921276:
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	addi $sp, $sp, -4
+	sw $v0, 4($sp)
+
+	# Get value of the variable 'a':
+	li $t2, 0
+	jal search_var
+	lw $v0, 0($t1)
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Not Equal:
+	sne $v0, $t8, $v0
+	lw $t8, 4($sp)
+	addi $sp, $sp, 4
+	# Or:
+	or $v0, $t8, $v0
+
+	 # Call write routine for logical expressions
+	jal write_logical
 
 	# Handle program exit
 exit:
@@ -765,6 +1991,24 @@ runtime_err:
 	li $v0, 4
 	syscall
 	j exit
+
+	 # Write logical expression
+write_logical:	beq $v0, $zero, false_lbl
+true_lbl:
+	la $a0, true_str
+	li $v0, 4
+	syscall
+	jr $ra
+false_lbl:
+	la $a0, false_str
+	li $v0, 4
+	syscall
+jr $ra
+
+	 # Normalise logical expression
+nrml_logical:
+	sne $v0, $v0, $zero 	# ($v0 != $zero) ? 1 : 0
+jr $ra
 
 	 # Handle division by 0 error
 div_by_zero:
@@ -873,700 +2117,22 @@ memcpy_loop:
 	bne $a0, $a1, memcpy_loop
 	jr $ra 	#Resume normal execution
 
-	# Declaration of function: fib_rec_p1
-fib_rec_p1:
-	# Pushing in the function environments (Creating the stack frame)
-	# Return address:
-	sw $ra, -0($sp)
-	# Dynamic linking:
-	sw $s7, -4($sp)
-	# No bloc:
-	li $t8, 1
-	sw $t8, -8($sp)
-	# Reserve the space for variables: 
-	addi $sp, $sp, -12
-	move $s7, $sp
-	# Function instructions 
-
-	# Condition Instruction:
-	# Get value of the variable 'n':
-	li $t2, 1
-	jal search_var
-	lw $v0, 16($t1)
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '1':
-	li $v0, 1
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Equal:
-	seq $v0, $t8, $v0
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Get value of the variable 'n':
-	li $t2, 1
-	jal search_var
-	lw $v0, 16($t1)
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '0':
-	li $v0, 0
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Equal:
-	seq $v0, $t8, $v0
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Or:
-	or $v0, $t8, $v0
-	beq $v0, $zero, sinon_2810797274	 # Skip the condition if v0 is equal to zero
-	# Begin of the instruction inside SI branch:
-
-	# Get value of the variable 'n':
-	li $t2, 1
-	jal search_var
-	lw $v0, 16($t1)
-	j fib_rec_p1_fin
-
-	j fsi_2810797274
-
-sinon_2810797274:
-	# End of the branch
-fsi_2810797274:
-
-	# Get value of the variable 'n':
-	li $t2, 1
-	jal search_var
-	lw $v0, 16($t1)
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '1':
-	li $v0, 1
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Substraction:
-	sub $v0, $t8, $v0
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal fib_rec_p1
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Get value of the variable 'n':
-	li $t2, 1
-	jal search_var
-	lw $v0, 16($t1)
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '2':
-	li $v0, 2
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Substraction:
-	sub $v0, $t8, $v0
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal fib_rec_p1
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Addition:
-	add $v0, $t8, $v0
-	j fib_rec_p1_fin
-	# End of the function routine :
-fib_rec_p1_fin:
-	# Popping out the function environments (Popping the stack frame): 
-	addi $sp, $sp, 16
-	lw $ra, -4($sp)
-	lw $s7, -8($sp)
-	jr $ra
-
-
-	# Declaration of function: fib_itr_dp_p1
-fib_itr_dp_p1:
-	# Pushing in the function environments (Creating the stack frame)
-	# Return address:
-	sw $ra, -0($sp)
-	# Dynamic linking:
-	sw $s7, -4($sp)
-	# No bloc:
-	li $t8, 3
-	sw $t8, -8($sp)
-	# Reserve the space for variables: 
-	addi $sp, $sp, -12
-	move $s7, $sp
-	# Initialize local variables to 0:
-	sw $zero, 0($sp)
-	sw $zero, -4($sp)
-	addi $sp, $sp, -8
-
-	# Calculating the size of the array 'f' (size in $v0): 
-	# Get value of the variable 'n':
-	li $t2, 3
-	jal search_var
-	lw $v0, 16($t1)
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '2':
-	li $v0, 2
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Addition:
-	add $v0, $t8, $v0
-	move $a0, $v0
-	jal allocate_array
-	sw $v0, -4($s7)
-	# Function instructions 
-
-	# Integer Constant '0':
-	li $v0, 0
-
-	# Assignement for the variable 'f':
-	li $t2, 3
-	jal search_var
-	move $t3, $v0
-	lw $v0, -4($t1)
-	move $t4, $v0
-
-	# Integer Constant '0':
-	li $v0, 0
-	move $a0, $v0
-	move $v0, $t4
-	jal get_arr_element_address
-	sw $t3, ($v0)
-
-	# Integer Constant '1':
-	li $v0, 1
-
-	# Assignement for the variable 'f':
-	li $t2, 3
-	jal search_var
-	move $t3, $v0
-	lw $v0, -4($t1)
-	move $t4, $v0
-
-	# Integer Constant '1':
-	li $v0, 1
-	move $a0, $v0
-	move $v0, $t4
-	jal get_arr_element_address
-	sw $t3, ($v0)
-
-	# Integer Constant '2':
-	li $v0, 2
-
-	# Assignement for the variable 'i':
-	li $t2, 3
-	jal search_var
-	sw $v0, 0($t1)
-start_loop_317488443:
-
-	# Get value of the variable 'i':
-	li $t2, 3
-	jal search_var
-	lw $v0, 0($t1)
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Get value of the variable 'n':
-	li $t2, 3
-	jal search_var
-	lw $v0, 16($t1)
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Less:
-	slt $v0, $t8, $v0
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Get value of the variable 'i':
-	li $t2, 3
-	jal search_var
-	lw $v0, 0($t1)
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Get value of the variable 'n':
-	li $t2, 3
-	jal search_var
-	lw $v0, 16($t1)
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Equal:
-	seq $v0, $t8, $v0
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Or:
-	or $v0, $t8, $v0
-	# Branch Instruction:
-	beq $v0, $zero, end_loop_317488443
-	# Loop instructions:
-	# Get value of the variable 'i':
-	li $t2, 3
-	jal search_var
-	lw $v0, 0($t1)
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '1':
-	li $v0, 1
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Substraction:
-	sub $v0, $t8, $v0
-
-	# Get the address of the array 'f':
-	move $a0, $v0 	# Save the index in $a0
-	li $t2, 3
-	jal search_var
-	lw $v0, -4($t1)
-	jal get_arr_element_value
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Get value of the variable 'i':
-	li $t2, 3
-	jal search_var
-	lw $v0, 0($t1)
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '2':
-	li $v0, 2
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Substraction:
-	sub $v0, $t8, $v0
-
-	# Get the address of the array 'f':
-	move $a0, $v0 	# Save the index in $a0
-	li $t2, 3
-	jal search_var
-	lw $v0, -4($t1)
-	jal get_arr_element_value
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Addition:
-	add $v0, $t8, $v0
-
-	# Assignement for the variable 'f':
-	li $t2, 3
-	jal search_var
-	move $t3, $v0
-	lw $v0, -4($t1)
-	move $t4, $v0
-
-	# Get value of the variable 'i':
-	li $t2, 3
-	jal search_var
-	lw $v0, 0($t1)
-	move $a0, $v0
-	move $v0, $t4
-	jal get_arr_element_address
-	sw $t3, ($v0)
-
-	# Get value of the variable 'i':
-	li $t2, 3
-	jal search_var
-	lw $v0, 0($t1)
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '1':
-	li $v0, 1
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Addition:
-	add $v0, $t8, $v0
-
-	# Assignement for the variable 'i':
-	li $t2, 3
-	jal search_var
-	sw $v0, 0($t1)
-	bne $v0, $zero, start_loop_317488443
-end_loop_317488443:
-
-	# Get value of the variable 'n':
-	li $t2, 3
-	jal search_var
-	lw $v0, 16($t1)
-
-	# Get the address of the array 'f':
-	move $a0, $v0 	# Save the index in $a0
-	li $t2, 3
-	jal search_var
-	lw $v0, -4($t1)
-	jal get_arr_element_value
-	j fib_itr_dp_p1_fin
-	# End of the function routine :
-fib_itr_dp_p1_fin:
-	# Popping out the function environments (Popping the stack frame): 
-	addi $sp, $sp, 24
-	lw $ra, -4($sp)
-	lw $s7, -8($sp)
-	jr $ra
-
-
-	# Declaration of function: fib_itr_p1
-fib_itr_p1:
-	# Pushing in the function environments (Creating the stack frame)
-	# Return address:
-	sw $ra, -0($sp)
-	# Dynamic linking:
-	sw $s7, -4($sp)
-	# No bloc:
-	li $t8, 2
-	sw $t8, -8($sp)
-	# Reserve the space for variables: 
-	addi $sp, $sp, -12
-	move $s7, $sp
-	# Initialize local variables to 0:
-	sw $zero, 0($sp)
-	sw $zero, -4($sp)
-	sw $zero, -8($sp)
-	sw $zero, -12($sp)
-	addi $sp, $sp, -16
-	# Function instructions 
-
-	# Condition Instruction:
-	# Get value of the variable 'n':
-	li $t2, 2
-	jal search_var
-	lw $v0, 16($t1)
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '0':
-	li $v0, 0
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Equal:
-	seq $v0, $t8, $v0
-	beq $v0, $zero, sinon_1195736740	 # Skip the condition if v0 is equal to zero
-	# Begin of the instruction inside SI branch:
-
-	# Integer Constant '0':
-	li $v0, 0
-	j fib_itr_p1_fin
-
-	j fsi_1195736740
-
-sinon_1195736740:
-	# End of the branch
-fsi_1195736740:
-
-	# Integer Constant '0':
-	li $v0, 0
-
-	# Assignement for the variable 'i':
-	li $t2, 2
-	jal search_var
-	sw $v0, 0($t1)
-
-	# Integer Constant '1':
-	li $v0, 1
-
-	# Assignement for the variable 'j':
-	li $t2, 2
-	jal search_var
-	sw $v0, -4($t1)
-
-	# Integer Constant '1':
-	li $v0, 1
-
-	# Assignement for the variable 'k':
-	li $t2, 2
-	jal search_var
-	sw $v0, -8($t1)
-start_loop_2811640778:
-
-	# Get value of the variable 'k':
-	li $t2, 2
-	jal search_var
-	lw $v0, -8($t1)
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Get value of the variable 'n':
-	li $t2, 2
-	jal search_var
-	lw $v0, 16($t1)
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Less:
-	slt $v0, $t8, $v0
-	# Branch Instruction:
-	beq $v0, $zero, end_loop_2811640778
-	# Loop instructions:
-	# Get value of the variable 'i':
-	li $t2, 2
-	jal search_var
-	lw $v0, 0($t1)
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Get value of the variable 'j':
-	li $t2, 2
-	jal search_var
-	lw $v0, -4($t1)
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Addition:
-	add $v0, $t8, $v0
-
-	# Assignement for the variable 't':
-	li $t2, 2
-	jal search_var
-	sw $v0, -12($t1)
-
-	# Get value of the variable 'j':
-	li $t2, 2
-	jal search_var
-	lw $v0, -4($t1)
-
-	# Assignement for the variable 'i':
-	li $t2, 2
-	jal search_var
-	sw $v0, 0($t1)
-
-	# Get value of the variable 't':
-	li $t2, 2
-	jal search_var
-	lw $v0, -12($t1)
-
-	# Assignement for the variable 'j':
-	li $t2, 2
-	jal search_var
-	sw $v0, -4($t1)
-
-	# Get value of the variable 'k':
-	li $t2, 2
-	jal search_var
-	lw $v0, -8($t1)
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '1':
-	li $v0, 1
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Addition:
-	add $v0, $t8, $v0
-
-	# Assignement for the variable 'k':
-	li $t2, 2
-	jal search_var
-	sw $v0, -8($t1)
-	bne $v0, $zero, start_loop_2811640778
-end_loop_2811640778:
-
-	# Get value of the variable 'j':
-	li $t2, 2
-	jal search_var
-	lw $v0, -4($t1)
-	j fib_itr_p1_fin
-	# End of the function routine :
-fib_itr_p1_fin:
-	# Popping out the function environments (Popping the stack frame): 
-	addi $sp, $sp, 32
-	lw $ra, -4($sp)
-	lw $s7, -8($sp)
-	jr $ra
-
-
-	# Declaration of function: fib_rec_dp_p1
-fib_rec_dp_p1:
-	# Pushing in the function environments (Creating the stack frame)
-	# Return address:
-	sw $ra, -0($sp)
-	# Dynamic linking:
-	sw $s7, -4($sp)
-	# No bloc:
-	li $t8, 4
-	sw $t8, -8($sp)
-	# Reserve the space for variables: 
-	addi $sp, $sp, -12
-	move $s7, $sp
-	# Function instructions 
-
-	# Condition Instruction:
-	# Get value of the variable 'n':
-	li $t2, 4
-	jal search_var
-	lw $v0, 16($t1)
-
-	# Get the address of the array 'f':
-	move $a0, $v0 	# Save the index in $a0
-	li $t2, 0
-	jal search_var
-	lw $v0, 0($t1)
-	jal get_arr_element_value
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '0':
-	li $v0, 0
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Equal:
-	seq $v0, $t8, $v0
-	beq $v0, $zero, sinon_3267104211	 # Skip the condition if v0 is equal to zero
-	# Begin of the instruction inside SI branch:
-
-	# Condition Instruction:
-	# Get value of the variable 'n':
-	li $t2, 4
-	jal search_var
-	lw $v0, 16($t1)
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '1':
-	li $v0, 1
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Less:
-	slt $v0, $t8, $v0
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Get value of the variable 'n':
-	li $t2, 4
-	jal search_var
-	lw $v0, 16($t1)
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '1':
-	li $v0, 1
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Equal:
-	seq $v0, $t8, $v0
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Or:
-	or $v0, $t8, $v0
-	beq $v0, $zero, sinon_540891317	 # Skip the condition if v0 is equal to zero
-	# Begin of the instruction inside SI branch:
-
-	# Get value of the variable 'n':
-	li $t2, 4
-	jal search_var
-	lw $v0, 16($t1)
-
-	# Assignement for the variable 'f':
-	li $t2, 0
-	jal search_var
-	move $t3, $v0
-	lw $v0, 0($t1)
-	move $t4, $v0
-
-	# Get value of the variable 'n':
-	li $t2, 4
-	jal search_var
-	lw $v0, 16($t1)
-	move $a0, $v0
-	move $v0, $t4
-	jal get_arr_element_address
-	sw $t3, ($v0)
-
-	j fsi_540891317
-
-sinon_540891317:
-	# Begin of the SINON branch
-
-	# Get value of the variable 'n':
-	li $t2, 4
-	jal search_var
-	lw $v0, 16($t1)
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '1':
-	li $v0, 1
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Substraction:
-	sub $v0, $t8, $v0
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal fib_rec_dp_p1
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Get value of the variable 'n':
-	li $t2, 4
-	jal search_var
-	lw $v0, 16($t1)
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '2':
-	li $v0, 2
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Substraction:
-	sub $v0, $t8, $v0
-	sw $v0, -0($sp)
-	addi $sp, $sp, -4
-
-	jal fib_rec_dp_p1
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Addition:
-	add $v0, $t8, $v0
-
-	# Assignement for the variable 'f':
-	li $t2, 0
-	jal search_var
-	move $t3, $v0
-	lw $v0, 0($t1)
-	move $t4, $v0
-
-	# Get value of the variable 'n':
-	li $t2, 4
-	jal search_var
-	lw $v0, 16($t1)
-	move $a0, $v0
-	move $v0, $t4
-	jal get_arr_element_address
-	sw $t3, ($v0)
-	# End of the branch
-fsi_540891317:
-
-	j fsi_3267104211
-
-sinon_3267104211:
-	# End of the branch
-fsi_3267104211:
-
-	# Get value of the variable 'n':
-	li $t2, 4
-	jal search_var
-	lw $v0, 16($t1)
-
-	# Get the address of the array 'f':
-	move $a0, $v0 	# Save the index in $a0
-	li $t2, 0
-	jal search_var
-	lw $v0, 0($t1)
-	jal get_arr_element_value
-	j fib_rec_dp_p1_fin
-	# End of the function routine :
-fib_rec_dp_p1_fin:
-	# Popping out the function environments (Popping the stack frame): 
-	addi $sp, $sp, 16
-	lw $ra, -4($sp)
-	lw $s7, -8($sp)
-	jr $ra
-
+	# Compare two arrays ($v0 first array and $t8 second array)
+compare_arr:
+	lw $t3, 0($v0)
+	lw $a1, 0($t8)
+	bne $a1, $t3, not_eq
+	add $a1, $a1, $t8
+compare_loop:
+	addi $v0, $v0, 4
+	addi $t8, $t8, 4
+	lw $t3, 0($t8)
+	lw $t4, 0($v0)
+	bne $t3, $t4, not_eq
+	bne $t8, $a1, compare_loop
+	li $v0, 1 	# Both arrays are equal
+	jr $ra 	#Resume normal execution
+not_eq:
+	li $v0, 0 	# Both arrays aren't equal
+	jr $ra 	#Resume normal execution
 

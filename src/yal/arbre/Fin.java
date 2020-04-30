@@ -32,6 +32,25 @@ public class Fin extends ArbreAbstrait
                 "\tsyscall\n"+
                 "\tj exit\n\n"+
 
+                "\t # Write logical expression\n"+
+                "write_logical:"+
+                "\tbeq $v0, $zero, false_lbl\n"+
+                "true_lbl:\n"+
+                "\tla $a0, true_str\n" +
+                "\tli $v0, 4\n" +
+                "\tsyscall\n"+
+                "\tjr $ra\n"+
+                "false_lbl:\n"+
+                "\tla $a0, false_str\n" +
+                "\tli $v0, 4\n" +
+                "\tsyscall\n"+
+                 "jr $ra\n\n"+
+
+                 "\t # Normalise logical expression\n"+
+                 "nrml_logical:\n"+
+                 "\tsne $v0, $v0, $zero \t# ($v0 != $zero) ? 1 : 0\n"+
+                 "jr $ra\n\n"+
+
                 "\t # Handle division by 0 error\n"+
                 "div_by_zero:\n"+
                 "\tla $a0, div_by0\n" +
@@ -137,8 +156,27 @@ public class Fin extends ArbreAbstrait
                 "\tlw $t3, 0($a0)\n"+
                 "\tsw $t3, 0($t0)\n"+
                 "\tbne $a0, $a1, memcpy_loop\n"+
+                "\tjr $ra \t#Resume normal execution\n\n"+
+
+                "\t# Compare two arrays ($v0 first array and $t8 second array)\n"+
+                "compare_arr:\n"+
+                "\tlw $t3, 0($v0)\n"+
+                "\tlw $a1, 0($t8)\n"+
+                "\tbne $a1, $t3, not_eq\n"+
+                "\tadd $a1, $a1, $t8\n"+
+                "compare_loop:\n"+
+                "\taddi $v0, $v0, 4\n"+
+                "\taddi $t8, $t8, 4\n"+
+                "\tlw $t3, 0($t8)\n"+
+                "\tlw $t4, 0($v0)\n"+
+                "\tbne $t3, $t4, not_eq\n"+
+                "\tbne $t8, $a1, compare_loop\n"+
+                "\tli $v0, 1 \t# Both arrays are equal\n"+
+                "\tjr $ra \t#Resume normal execution\n"+
+                "not_eq:\n"+
+                "\tli $v0, 0 \t# Both arrays aren't equal\n"+
                 "\tjr $ra \t#Resume normal execution\n"
-                ;
+        ;
 
         for (FonctionSymbole fnSymbol : TDS.Instance().fnSymbolMap.values()) {
             code_mips += "\n"+fnSymbol.getFonction().toMIPS()+"\n";

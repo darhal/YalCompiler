@@ -1,6 +1,9 @@
-package yal.arbre.expressions;
+package yal.arbre.expressions.binary;
 
 import yal.arbre.OperatorsTypes;
+import yal.arbre.expressions.Expression;
+import yal.arbre.expressions.ExpressionType;
+import yal.arbre.expressions.Variable;
 import yal.declaration.Decltype;
 import yal.declaration.TDS;
 import yal.declaration.entries.Entry;
@@ -45,16 +48,16 @@ public class BinaryOperation extends Expression
             Symbole varSymbole = TDS.Instance().Identify(varEntry);
 
             if (varSymbole.getType() == Decltype.ARRAY){
-                throw new AnalyseSemantiqueException(noLigne, "Can't perform arithmetic/logical operations on the array '"+varEntry.getIdentifier()+"'");
+                throw new AnalyseSemantiqueException(noLigne, "Can't perform arithmetic/logical or comparison operation on the array '"+varEntry.getIdentifier()+"'");
             }
         }
 
         if (exp2.getVariableType() == VariableType.IDENTIFIANT) {
-            Entry varEntry = ((Variable)exp1).getEntree();
+            Entry varEntry = ((Variable)exp2).getEntree();
             Symbole varSymbole = TDS.Instance().Identify(varEntry);
 
             if (varSymbole.getType() == Decltype.ARRAY){
-                throw new AnalyseSemantiqueException(noLigne, "Can't perform arithmetic/logical operations on the array '"+varEntry.getIdentifier()+"'");
+                throw new AnalyseSemantiqueException(noLigne, "Can't perform arithmetic/logical comparison on the array '"+varEntry.getIdentifier()+"'");
             }
         }
     }
@@ -69,53 +72,6 @@ public class BinaryOperation extends Expression
         mips += "\taddi $sp, $sp, 4\n"; // Clear stack
 
         // t8 and v0 now contain exp1 and exp2 respectively
-        switch(op){
-            case PLUS:
-                mips += "\t# Addition:\n";
-                mips += "\tadd $v0, $t8, $v0\n"; // Addition
-                break;
-            case MINUS:
-                mips += "\t# Substraction:\n";
-                mips += "\tsub $v0, $t8, $v0\n"; // Subtraction
-                break;
-            case MULTIPLY:
-                mips += "\t# Multiplication:\n";
-                mips += "\tmul $v0, $t8, $v0\n"; // Multiplication (No overflow!)
-                break;
-            case DIVIDE:
-                mips += "\t# Division:\n";
-                mips += "\t# test si on divise par 0\n";
-                mips += "\tbeqz $v0, div_by_zero\n";
-                mips += "\tdiv $t8, $v0\n"; // Division
-                mips += "\tmflo $v0\n"; // Get quotient
-                break;
-            case GREATER:
-                mips += "\tslt $v0, $v0, $t8\n"; // Greater then ($v0 is set to 1 if $t8 > $v0, 0 otherwise)
-                break;
-            case LESS:
-                mips += "\t# Less:\n";
-                mips += "\tslt $v0, $t8, $v0\n"; // Less then ($v0 is set to 1 if $t8 < $v0, 0 otherwise)
-                break;
-            case EQUAL:
-                mips += "\t# Equal:\n";
-                mips += "\tseq $v0, $t8, $v0\n"; // If t8 == v0 then put 1 in v0 otherwise 0
-                break;
-            case NEQUAL:
-                mips += "\t# Not Equal:\n";
-                mips += "\tsub $v0, $t8, $v0\n"; // Simulate not equal operation with subtraction (0 if $t8 == $v0, 1 otherwise)
-                break;
-            case AND:
-                mips += "\t# And:\n";
-                mips += "\tand $v0, $t8, $v0\n"; // AND
-                break;
-            case OR:
-                mips += "\t# Or:\n";
-                mips += "\tor $v0, $t8, $v0\n"; // OR
-                break;
-            default:
-                break;
-        }
-
         return mips;
     }
 

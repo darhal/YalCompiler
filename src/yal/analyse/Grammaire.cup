@@ -4,6 +4,11 @@ import java.util.*;
 import yal.arbre.* ;
 import yal.arbre.expressions.* ;
 import yal.arbre.instructions.* ;
+import yal.arbre.expressions.unary.*;
+import yal.arbre.expressions.binary.*;
+import yal.arbre.expressions.binary.arithmetic.*;
+import yal.arbre.expressions.binary.comparison.*;
+import yal.arbre.expressions.binary.logical.*;
 import yal.declaration.*;
 import yal.declaration.entries.*;
 import yal.declaration.symbols.*;
@@ -285,11 +290,11 @@ EXP         ::=
             IDF:idf{: RESULT = new Variable(new VariableEntry(idf, idfleft + 1), idfleft + 1); :}
             |CSTENTIERE:c{: RESULT = new ConstanteEntiere(c, cleft + 1); :}
             |PARA_OPEN EXP:e PARA_CLOSE{: RESULT = e; :}
-            |OP_MINUS EXP:e{: RESULT = new UnaryOperation(e, OperatorsTypes.MINUS, ExpressionType.ARITHMETIC, eleft + 1); :}
-            |EXP:e1 OP_PLUS EXP:e2{:RESULT = new BinaryOperation(e1, e2, OperatorsTypes.PLUS, ExpressionType.ARITHMETIC, e1left + 1);:}
-            |EXP:e1 OP_MINUS EXP:e2{:RESULT = new BinaryOperation(e1, e2, OperatorsTypes.MINUS, ExpressionType.ARITHMETIC, e1left + 1);:}
-            |EXP:e1 OP_MULTIPLY EXP:e2{:RESULT = new BinaryOperation(e1, e2, OperatorsTypes.MULTIPLY, ExpressionType.ARITHMETIC, e1left + 1);:}
-            |EXP:e1 OP_DIVIDE EXP:e2{:RESULT = new BinaryOperation(e1, e2, OperatorsTypes.DIVIDE, ExpressionType.ARITHMETIC, e1left + 1);:}
+            |OP_MINUS EXP:e{: RESULT = new UnaryMinus(e, eleft + 1); :}
+            |EXP:e1 OP_PLUS EXP:e2{:RESULT = new Plus(e1, e2, e1left + 1);:}
+            |EXP:e1 OP_MINUS EXP:e2{:RESULT = new Minus(e1, e2, e1left + 1);:}
+            |EXP:e1 OP_MULTIPLY EXP:e2{: RESULT = new Multiply(e1, e2, e1left + 1);:}
+            |EXP:e1 OP_DIVIDE EXP:e2{: RESULT = new Divide(e1, e2, e1left + 1);:}
             |LOGIC_EXP:lexp {: RESULT = lexp; :}
             |FUNC_CALL:func_call {: RESULT = func_call; :}
             |IDF:idf CRO_OPEN EXP:e CRO_CLOSE {: RESULT = new ArrayElement(new VariableEntry(idf, idfleft + 1), e, idfleft + 1); :}
@@ -297,11 +302,11 @@ EXP         ::=
             ;
 
 LOGIC_EXP   ::=
-            OP_NOT EXP:e{: RESULT = new UnaryOperation(e, OperatorsTypes.NOT, ExpressionType.LOGIC, eleft + 1); :}
-            |EXP:e1 OP_GREATER EXP:e2{:RESULT = new BinaryOperation(e1, e2, OperatorsTypes.GREATER, ExpressionType.LOGIC, e1left + 1);:}
-            |EXP:e1 OP_LESS EXP:e2{:RESULT = new BinaryOperation(e1, e2, OperatorsTypes.LESS, ExpressionType.LOGIC, e1left + 1);:}
-            |EXP:e1 OP_EQUAL EXP:e2{:RESULT = new BinaryOperation(e1, e2, OperatorsTypes.EQUAL, ExpressionType.LOGIC, e1left + 1);:}
-            |EXP:e1 OP_NEQUAL EXP:e2{:RESULT = new BinaryOperation(e1, e2, OperatorsTypes.NEQUAL, ExpressionType.LOGIC, e1left + 1);:}
-            |EXP:e1 OP_AND EXP:e2{:RESULT = new BinaryOperation(e1, e2, OperatorsTypes.AND, ExpressionType.LOGIC, e1left + 1);:}
-            |EXP:e1 OP_OR EXP:e2{:RESULT = new BinaryOperation(e1, e2, OperatorsTypes.OR, ExpressionType.LOGIC, e1left + 1);:}
+            OP_NOT EXP:e{: RESULT = new LogicalNot(e, eleft + 1); :}
+            |EXP:e1 OP_GREATER EXP:e2{:RESULT = new Greater(e1, e2, e1left + 1);:}
+            |EXP:e1 OP_LESS EXP:e2{:RESULT = new Less(e1, e2, e1left + 1);:}
+            |EXP:e1 OP_EQUAL EXP:e2{:RESULT = new Equal(e1, e2, e1left + 1);:}
+            |EXP:e1 OP_NEQUAL EXP:e2{:RESULT = new NotEqual(e1, e2, e1left + 1);:}
+            |EXP:e1 OP_AND EXP:e2{:RESULT = new And(e1, e2, e1left + 1);:}
+            |EXP:e1 OP_OR EXP:e2{:RESULT = new Or(e1, e2, e1left + 1);:}
             ;

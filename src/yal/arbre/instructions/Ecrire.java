@@ -46,10 +46,6 @@ public class Ecrire extends Instruction
 
     @Override
     public String toMIPS() {
-        long random = TDS.Instance().uniqueString(); // generation d'un UUID unique
-        String wtrue_lbl = "wtrue_"+random;
-        String wfalse_lbl = "wfalse_"+random;
-        String skip_lbl = "wend_"+random;
         String mips = "";
 
         if (exp.getType() == ExpressionType.ARITHMETIC) {
@@ -62,22 +58,12 @@ public class Ecrire extends Instruction
                     "\tli $v0, 11 \t# Syscall code for printing one char\n" +
                     "\tli $a0, '\\n' \t# print new line char\n" +
                     "\tsyscall\n";
-        }else if (exp.getType() == ExpressionType.LOGIC){
+        } else if (exp.getType() == ExpressionType.LOGIC) {
             return  mips + exp.toMIPS() +
-                    "\n\t # Evalue if the expression is true or false\n"+
-                    "\tbeq $v0, $zero, "+wfalse_lbl+"\n"+
-                    wtrue_lbl+":\n"+
-                    "\tla $a0, true_str\n" +
-                    "\tli $v0, 4\n" +
-                    "\tsyscall\n"+
-                    "\tj "+skip_lbl+"\n"+
-                    wfalse_lbl+":\n"+
-                    "\tla $a0, false_str\n" +
-                    "\tli $v0, 4\n" +
-                    "\tsyscall\n"+
-                    skip_lbl+":\n"
+                    "\n\t # Call write routine for logical expressions\n"+
+                    "\tjal write_logical\n"
                     ;
-        }else{
+        } else {
             return mips+exp.toMIPS() +
                     "\n\t# Call write sys call:\n" +
                     "\tmove $a0, $v0\n" +

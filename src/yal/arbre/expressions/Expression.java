@@ -10,7 +10,7 @@ public abstract class Expression extends ArbreAbstrait
         EXPRESSION
     }
 
-    protected ExpressionType type;
+    public ExpressionType type;
 
     protected Expression(ExpressionType type, int n) {
         super(n) ;

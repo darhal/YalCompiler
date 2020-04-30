@@ -1,7 +1,10 @@
-package yal.arbre.expressions;
+package yal.arbre.expressions.unary;
 
 import yal.analyse.CodesLexicaux;
 import yal.arbre.OperatorsTypes;
+import yal.arbre.expressions.Expression;
+import yal.arbre.expressions.ExpressionType;
+import yal.arbre.expressions.Variable;
 import yal.declaration.Decltype;
 import yal.declaration.TDS;
 import yal.declaration.entries.Entry;
@@ -47,19 +50,6 @@ public class UnaryOperation extends Expression
     @Override
     public String toMIPS() {
         String mips = exp.toMIPS();
-
-        // Do the unary operation:
-        switch(op){
-            case NOT:
-                mips += "\tnot $v0, $v0\n"; // Non
-                break;
-            case MINUS:
-                mips += "\tsub $v0, $zero, $v0\n"; // -
-                break;
-            default:
-                break;
-        }
-
         return mips;
     }
 

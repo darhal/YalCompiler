@@ -1,76 +1,45 @@
-// OUTPUT: vrai vrai vrai vrai
-// Program that calculate the fibonacci sequence using the recursive, iterative and dynamic programming way: (It might take a while to calculate the results)
-programme fib_test debut
-	fonction fib_rec(entier n) debut
-      	si n == 1 ou n == 0 alors
-			retourne n;
-		finsi
-	
-		retourne fib_rec(n-1) + fib_rec(n-2);
-	fin
-	
-	fonction fib_itr(entier n) debut
-		entier i; entier j; entier k; entier t;
-		
-		si n == 0 alors
-			retourne 0;
-		finsi
-		
-		i = 0;
-		j = 1;
-		k = 1;
-		
-		tantque (k < n) repeter
-			t = i + j;
-			i = j;
-			j = t;
-			
-			k = k + 1;
-		fintantque
-		
-		retourne j;
-	fin
-	
-	fonction fib_itr_dp(entier n) debut
-		entier i; 
-		entier[n + 2] f;
-		
-		f[0] = 0;
-		f[1] = 1;
-		i = 2;
-		
-		tantque (i < n ou i == n) repeter
-			f[i] = f[i-1] + f[i-2];
-			i = i + 1;
-		fintantque
-		
-		retourne f[n];
-	fin
-	
-	fonction fib_rec_dp(entier n) debut
-		si (f[n] == 0) alors
-			si (n < 1 ou n == 1) alors
-				f[n] = n;
-			sinon
-				f[n] = fib_rec_dp(n - 1) + fib_rec_dp(n - 2);  
-			finsi
-		finsi
-		
-		retourne f[n];
-	fin
-	
-	//// Global table declaration:
-	entier[100] f;
-	
-	////////////////// Iterative //////////////////
-	ecrire fib_itr(0) == 0 et fib_itr(1) == 1 et fib_itr(3) == 2 et fib_itr(5) == 5 et fib_itr(8) == 21 et fib_itr(10) == 55 et fib_itr(18) == 2584 et fib_itr(23) == 28657;
-		
-	////////////////// Iterative using DP //////////////////
-	ecrire fib_itr_dp(0) == 0 et fib_itr_dp(1) == 1 et fib_itr_dp(3) == 2 et fib_itr_dp(5) == 5 et fib_itr_dp(8) == 21 et fib_itr_dp(10) == 55 et fib_itr_dp(18) == 2584 et fib_itr_dp(23) == 28657;
-	
-	////////////////// Recursive using DP //////////////////
-	ecrire fib_rec_dp(0) == 0 et fib_rec_dp(1) == 1 et fib_rec_dp(3) == 2 et fib_rec_dp(5) == 5 et fib_rec_dp(8) == 21 et fib_rec_dp(10) == 55 et fib_rec_dp(18) == 2584 et fib_rec_dp(23) == 28657;
-	
-	////////////////// Recursive //////////////////
-	ecrire fib_rec(0) == 0 et fib_rec(1) == 1 et fib_rec(3) == 2 et fib_rec(5) == 5 et fib_rec(8) == 21 et fib_rec(10) == 55 et fib_rec(18) == 2584 et fib_rec(23) == 28657;
+programme op
+debut
+
+entier a;
+
+ecrire (25 / 25); //1
+
+ecrire (5 * 5 / 25) + 13; // 1 + 13 = 14
+
+ecrire (5 * 5 / 25) + (13 + 5 - 5); // 25/25 + 13 = 14
+
+ecrire (5 * 5 - 5 * 2 - 1); // 25 - 10 - 1 = 14
+
+ecrire (5 * 5 - 5 / 2 - 5 * 5 + 16); //25 - 2 - 25 + 16 = 14
+
+ecrire (5 / 2 + 5 / 2 + 5 / 2 + 5 * 2 - 2); //2 + 2 + 2 + 10 - 2 = 14
+
+ecrire 100 / 2 / 2 / 2 + 2; // 14
+
+ecrire 2 + 100 / 2 / 2 / 2; // 14
+
+ecrire (5*5 == 25) == (25 == 25); //vrai
+
+ecrire non (non (5*5 == 25) == (25 == 25)); //vrai
+
+ecrire non ( 5 * 5 > 26); //vrai
+
+ecrire non ( 5 * 5 < 24); //vrai
+
+ecrire non (1 == 2 ou 5 > 3 et 5 > 6); //vrai
+
+ecrire (1 == 1 ou 5 > 3 et 5 > 6); //vrai
+
+ecrire (5 > 3 et 5 < 6 ou 1 == 1); //vrai
+
+ecrire (5 > 6 ou 1 == 1); //vrai
+
+a = 5;
+//((a*a)/a)*a + ((a*a)/a)*a - ((a*a)/a)*a < ((a*a)/a)*a
+ecrire a != a ou a == a et a * a / a * a + a * a / a * a - a * a / a * a < a * a / a * a  == a < 6 et a == a ou a == a; //vrai
+ecrire a != a ou a == a et a * a / a * a + a * a / a * a - a * a / a * a < a * a / a * a  == a < 6 et a != a ou a == a; //vrai
+ecrire a == a ou a == a et a * a / a * a + a * a / a * a - a * a / a * a < a * a / a * a  == a < 6 et a != a ou a != a; //vrai
+ecrire a != a ou a == a et a * a / a * a + a * a / a * a - a * a / a * a < a * a / a * a  == a < 6 et a == a ou a != a; //faux
+
 fin
