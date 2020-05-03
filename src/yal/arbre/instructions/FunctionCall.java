@@ -15,6 +15,9 @@ import yal.exceptions.IdentifiantNonDeclarerException;
 
 import java.util.ArrayList;
 
+/**
+ * Class FunctionCall
+ */
 public class FunctionCall extends Expression
 {
     private FonctionEntry entree;
@@ -27,6 +30,7 @@ public class FunctionCall extends Expression
         this.args = new ArrayList<>();
         this.entree.setNbParam(this.args.size());
     }
+
 
     public FunctionCall(FonctionEntry entree, ArrayList<Expression> args, int ligne)
     {
@@ -52,7 +56,7 @@ public class FunctionCall extends Expression
             e.verifier();
 
             if (e.getType() != ExpressionType.ARITHMETIC){
-                throw new AnalyseSemantiqueException(e.getNoLigne(), entree.getFunctionName()+" arguments must be of the type 'entier'");
+                throw new AnalyseSemantiqueException(e.getNoLigne(), entree.getFunctionName()+"les arguments doivent être de type 'entier'");
             }
 
             // verify that the argument is not an array
@@ -62,12 +66,16 @@ public class FunctionCall extends Expression
                 Symbole symbol = TDS.Instance().Identify(entry);
 
                 if (symbol.getType() == Decltype.ARRAY){
-                    throw new AnalyseSemantiqueException(this.noLigne, "arguments must be of the type 'entier' and can't be an array");
+                    throw new AnalyseSemantiqueException(this.noLigne, "les arguments doivent être de type 'entier' et ne peuvent pas être un tableau");
                 }
             }
         }
     }
 
+    /**
+     * Fonction toMips pour générer le code toMips
+     * @return
+     */
     @Override
     public String toMIPS() {
         String mips = "";

@@ -2,6 +2,9 @@ package yal.declaration.symbols;
 
 import yal.declaration.Decltype;
 
+/**
+ * Class Abstraite Symbole
+ */
 public abstract class Symbole
 {
     protected int offset;

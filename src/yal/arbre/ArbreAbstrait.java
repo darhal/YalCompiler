@@ -1,5 +1,9 @@
 package yal.arbre;
 
+/**
+ * Class Abstraite ArbreAbstrait
+ */
+
 public abstract class ArbreAbstrait {
     
     // numéro de ligne du début de l'instruction

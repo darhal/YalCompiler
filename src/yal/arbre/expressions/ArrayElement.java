@@ -6,6 +6,9 @@ import yal.declaration.entries.Entry;
 import yal.declaration.symbols.Symbole;
 import yal.exceptions.AnalyseSemantiqueException;
 
+/**
+ * Class ArrayElement
+ */
 public class ArrayElement extends Variable
 {
     protected Expression exp;
@@ -24,11 +27,11 @@ public class ArrayElement extends Variable
         Symbole s = TDS.Instance().Identify(entree);
 
         if (s.getType() != Decltype.ARRAY){
-            throw new AnalyseSemantiqueException(noLigne, "Attempt to access an array element while '"+ entree.getIdentifier()+"' is a not an array");
+            throw new AnalyseSemantiqueException(noLigne, "Tentative d'accéder à un élément du tableau alors que '"+ entree.getIdentifier()+"' n'est pas un tableau.");
         }
 
         if (exp.getType() != ExpressionType.ARITHMETIC){
-            throw new AnalyseSemantiqueException(exp.getNoLigne(), "Index of the array '"+entree.getIdentifier()+"' is a non arithmetic value");
+            throw new AnalyseSemantiqueException(exp.getNoLigne(), "L'indice du tableau '"+entree.getIdentifier()+"'est une valeur non arithmétique.");
         }
 
         if (exp.getVariableType() == Expression.VariableType.IDENTIFIANT) {
@@ -37,11 +40,16 @@ public class ArrayElement extends Variable
             Symbole varSymbole = TDS.Instance().Identify(varEntry);
 
             if (varSymbole.getType() == Decltype.ARRAY){
-                throw new AnalyseSemantiqueException(noLigne, "Index of the array '"+entree.getIdentifier()+"' is a non arithmetic value");
+                throw new AnalyseSemantiqueException(noLigne, "L'indice du tableau '"+entree.getIdentifier()+"' est une valeur non arithmétique.");
             }
         }
     }
 
+
+    /**
+     * Fonction toMips pour générer le code toMips
+     * @return
+     */
     @Override
     public String toMIPS()
     {
@@ -62,6 +70,7 @@ public class ArrayElement extends Variable
     public Expression getExpression() {
         return exp;
     }
+
 
     @Override
     public VariableType getVariableType() { return VariableType.ARRAY_ELEMENT; }

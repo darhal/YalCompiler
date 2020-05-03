@@ -4,6 +4,9 @@ import yal.declaration.Decltype;
 
 import java.util.Objects;
 
+/**
+ * Class Abstraite Entry
+ */
 public abstract class Entry
 {
     protected String idf;

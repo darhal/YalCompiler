@@ -7,6 +7,6 @@ public class TypeMismatchException extends AnalyseSemantiqueException
     }
 
     public TypeMismatchException(int ligne){
-        super(ligne, "TYPE MISMATCH: operands types doesn't match");
+        super(ligne, "TYPE MISMATCH: les types d'opérandes ne correspondent pas");
     }
 }

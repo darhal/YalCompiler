@@ -15,6 +15,9 @@ import yal.exceptions.AnalyseSemantiqueException;
 
 import java.util.Map;
 
+/**
+ * Class Debut
+ */
 public class Debut extends BlocDInstructions
 {
     public Debut(int n) {
@@ -41,18 +44,22 @@ public class Debut extends BlocDInstructions
                 Expression exp = as.getExpression();
 
                 if (!exp.isConst()) {
-                    throw new AnalyseSemantiqueException(e.getLine(), "The array '"+e.getIdentifier()+"' is defined in main program with non-const size, arrays that are defined in main must have a constant length");
+                    throw new AnalyseSemantiqueException(e.getLine(), "Le tableau '"+e.getIdentifier()+"' est défini dans le programme principal avec une taille non constante, les tableaux définis dans main doivent avoir une longueur constante");
                 } else {
                     ConstanteEntiere cte = (ConstanteEntiere) exp;
 
                     if (cte.getCste().equals("0")){
-                        throw new AnalyseSemantiqueException(e.getLine(), "The array '"+e.getIdentifier()+"' can't have a length of 0 (array size must be strictly positive > 0)");
+                        throw new AnalyseSemantiqueException(e.getLine(), "Le tableau '"+e.getIdentifier()+"' ne peut pas avoir une longueur de 0 (la taille du tableau doit être strictement positive> 0)");
                     }
                 }
             }
         }
     }
 
+    /**
+     * Fonction toMips pour générer le code toMips
+     * @return
+     */
     @Override
     public String toMIPS()
     {

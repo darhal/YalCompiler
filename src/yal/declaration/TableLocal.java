@@ -10,6 +10,9 @@ import yal.exceptions.IdentifiantNonDeclarerException;
 
 import java.util.HashMap;
 
+/**
+ * Class TableLocal
+ */
 public class TableLocal
 {
     protected HashMap<Entry, Symbole> symbolMap;
@@ -25,6 +28,13 @@ public class TableLocal
         fnEntry = new FonctionEntry();
     }
 
+    /**
+     * AddEntry
+     * @param e
+     * @param s
+     * @param line
+     * @throws DoubleDeclarationException
+     */
     public void AddEntry(Entry e, Symbole s, int line) throws DoubleDeclarationException
     {
         if (symbolMap.get(e) != null){
@@ -41,6 +51,12 @@ public class TableLocal
         symbolMap.put(e, s);
     }
 
+    /**
+     * Identify
+     * @param e
+     * @return
+     * @throws IdentifiantNonDeclarerException
+     */
     public Symbole Identify(Entry e) throws IdentifiantNonDeclarerException
     {
         Symbole s = symbolMap.get(e);

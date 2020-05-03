@@ -3,6 +3,10 @@ package yal.declaration.symbols;
 import yal.arbre.ArbreAbstrait;
 import yal.declaration.Decltype;
 
+/**
+ * Class FonctionSymbole
+ */
+
 public class FonctionSymbole extends Symbole
 {
     protected Fonction fonction;

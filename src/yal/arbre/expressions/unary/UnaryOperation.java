@@ -12,6 +12,9 @@ import yal.declaration.symbols.Symbole;
 import yal.exceptions.AnalyseSemantiqueException;
 import yal.exceptions.TypeMismatchException;
 
+/**
+ * Class UnaryOperation
+ */
 public class UnaryOperation extends Expression
 {
     protected Expression exp;
@@ -28,25 +31,29 @@ public class UnaryOperation extends Expression
     public void verifier() {
         exp.verifier();
 
-        // Verify that there is no plain arrays involved in our expression:
+        // Verifie qu'il n'y a pas de plain arrays  impliqués dans notre expression:
         if (exp.getVariableType() == VariableType.IDENTIFIANT) {
             Entry varEntry = ((Variable)exp).getEntree();
             Symbole varSymbole = TDS.Instance().Identify(varEntry);
 
             if (varSymbole.getType() == Decltype.ARRAY){
-                throw new AnalyseSemantiqueException(noLigne, "Can't perform arithmetic/logical operations on the array '"+varEntry.getIdentifier()+"'");
+                throw new AnalyseSemantiqueException(noLigne, "Impossible d'effectuer des opérations arithmétiques/logiques sur le tableau '"+varEntry.getIdentifier()+"'");
             }
         }
 
         if (type == ExpressionType.ARITHMETIC && exp.type != ExpressionType.ARITHMETIC){
             throw new TypeMismatchException(this.getNoLigne(),
-                    "Attempt to perform an arithmetic unary operation on non arithmetic expression.");
+                    "Tentative d'effectuer une opération unaire arithmétique sur une expression non arithmétique.");
         }else if (type == ExpressionType.LOGIC && exp.type != ExpressionType.LOGIC){
             throw new TypeMismatchException(this.getNoLigne(),
-                    "Attempt to perform a logical unary operation on non logical expression.");
+                    "Tentative d'effectuer une opération unaire logique sur une expression non logique.");
         }
     }
 
+/**
+* Fonction toMips pour générer le code toMips
+* @return
+*/
     @Override
     public String toMIPS() {
         String mips = exp.toMIPS();

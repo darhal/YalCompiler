@@ -1,5 +1,9 @@
 package yal.arbre.expressions;
 
+
+/**
+ * Class Abstraite Constante
+ */
 public abstract class Constante extends Expression {
 
     protected String cste ;

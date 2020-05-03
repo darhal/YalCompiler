@@ -6,6 +6,9 @@ import yal.declaration.entries.VariableEntry;
 import yal.declaration.symbols.Symbole;
 import yal.exceptions.AnalyseSemantiqueException;
 
+/**
+ * Class ArrayLongeur
+ */
 public class ArrayLongeur extends Expression
 {
     private VariableEntry entree;
@@ -21,10 +24,15 @@ public class ArrayLongeur extends Expression
         Symbole s = TDS.Instance().Identify(entree);
 
         if (s.getType() != Decltype.ARRAY){
-            throw new AnalyseSemantiqueException(noLigne, "Attempt to measure the length of a non array variable '"+ entree.getIdentifier()+"', 'longeur' operator can only be performed on an arrays");
+            throw new AnalyseSemantiqueException(noLigne, "Tentative de mesurer la longueur d'une variable qui n'es pas un tableau '"+ entree.getIdentifier()+"', 'longeur' l'opérateur ne peut être exécuté que sur un tableau.");
         }
     }
 
+
+    /**
+     * Fonction toMips pour générer le code toMips
+     * @return
+     */
     @Override
     public String toMIPS() {
         Symbole s = TDS.Instance().Identify(entree);

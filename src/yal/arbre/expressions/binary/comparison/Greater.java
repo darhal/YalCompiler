@@ -3,11 +3,18 @@ package yal.arbre.expressions.binary.comparison;
 import yal.arbre.OperatorsTypes;
 import yal.arbre.expressions.Expression;
 
+/**
+ * Class Greater
+ */
 public class Greater extends ComparisonOperation {
     public Greater(Expression e1, Expression e2, int n) {
         super(e1, e2, OperatorsTypes.GREATER, n);
     }
 
+    /**
+     * Fonction toMips pour générer le code toMips avec Greater qui est la comparaison  "plus grand"
+     * @return
+     */
     @Override
     public String toMIPS() {
         String mips = super.toMIPS();

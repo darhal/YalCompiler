@@ -1,5 +1,8 @@
 package yal.arbre;
 
+/**
+ * Enum OperatorsTypes
+ */
 public enum OperatorsTypes
 {
     PLUS,

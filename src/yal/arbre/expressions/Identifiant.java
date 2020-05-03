@@ -1,5 +1,8 @@
 package yal.arbre.expressions;
 
+/**
+ * Class Abstraite Identifiant
+ */
 public abstract class Identifiant extends Expression
 {
     protected String idf;

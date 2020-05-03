@@ -4,6 +4,9 @@ import yal.declaration.Decltype;
 
 import java.util.Objects;
 
+/**
+ * Class FonctionEntry
+ */
 public class FonctionEntry extends Entry
 {
     public int nbReturn;
@@ -44,6 +47,10 @@ public class FonctionEntry extends Entry
         return idf+"_p"+nbParam;
     }
 
+    /**
+     * Fonction getFunctionName
+     * @return
+     */
     public String getFunctionName()
     {
         String type = "entier,";

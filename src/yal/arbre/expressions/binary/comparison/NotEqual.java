@@ -11,6 +11,9 @@ import yal.declaration.symbols.Symbole;
 import yal.exceptions.AnalyseSemantiqueException;
 import yal.exceptions.TypeMismatchException;
 
+/**
+ * Class NotEqual
+ */
 public class NotEqual extends ComparisonOperation {
     public NotEqual(Expression e1, Expression e2, int n) {
         super(e1, e2, OperatorsTypes.NEQUAL, n);
@@ -22,7 +25,7 @@ public class NotEqual extends ComparisonOperation {
         exp2.verifier();
 
         if (exp1.type != exp2.type) {
-            throw new TypeMismatchException(this.getNoLigne(), "Attempt to perform a comparison operation two different types, or expression is ambiguous please use parentheses ()");
+            throw new TypeMismatchException(this.getNoLigne(), "Tentative d'effectuer une opération de comparaison de deux types différents ou l'expression est ambiguë, veuillez utiliser des parenthèses ()");
         }
 
         // Verify that there is no arrays involved in our expression:
@@ -34,11 +37,15 @@ public class NotEqual extends ComparisonOperation {
 
             if ((varSymbole1.getType() == Decltype.ARRAY && varSymbole2.getType() != Decltype.ARRAY) ||
                     (varSymbole1.getType() != Decltype.ARRAY && varSymbole2.getType() == Decltype.ARRAY)) {
-                throw new AnalyseSemantiqueException(noLigne, "Attempt to perform a comparison operation two different types, or expression is ambiguous please use parentheses ()");
+                throw new AnalyseSemantiqueException(noLigne, "Tentative d'effectuer une opération de comparaison de deux types différents, ou l'expression est ambiguë, veuillez utiliser des parenthèses ()");
             }
         }
     }
 
+    /**
+     * Fonction toMips pour générer le code toMips avec NotEqual
+     * @return
+     */
     @Override
     public String toMIPS() {
         String mips = super.toMIPS();

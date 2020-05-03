@@ -12,6 +12,9 @@ import yal.declaration.symbols.Symbole;
 import yal.exceptions.AnalyseSemantiqueException;
 import yal.exceptions.TypeMismatchException;
 
+/**
+ * Class ComparisonOperation
+ */
 public class ComparisonOperation extends BinaryOperation {
     public ComparisonOperation(Expression e1, Expression e2, OperatorsTypes op, int n) {
         super(e1, e2, op, ExpressionType.LOGIC, n);
@@ -23,16 +26,16 @@ public class ComparisonOperation extends BinaryOperation {
         exp2.verifier();
 
         if (exp1.type != ExpressionType.ARITHMETIC || exp2.type != ExpressionType.ARITHMETIC) {
-            throw new TypeMismatchException(this.getNoLigne(), "Attempt to perform a comparison operation on non arithmetic operands");
+            throw new TypeMismatchException(this.getNoLigne(), "Tentative d'effectuer une opération de comparaison sur des opérandes non arithmétiques");
         }
 
-        // Verify that there is no arrays involved in our expression:
+        // Vérifiez qu'aucun tableau n'est impliqué dans notre expression:
         if (exp1.getVariableType() == VariableType.IDENTIFIANT) {
             Entry varEntry = ((Variable)exp1).getEntree();
             Symbole varSymbole = TDS.Instance().Identify(varEntry);
 
             if (varSymbole.getType() == Decltype.ARRAY){
-                throw new AnalyseSemantiqueException(noLigne, "Can't perform arithmetic/logical or comparison operation on the array '"+varEntry.getIdentifier()+"'");
+                throw new AnalyseSemantiqueException(noLigne, "Impossible d'effectuer une opération arithmétique/logique ou de comparaison sur le tableau '"+varEntry.getIdentifier()+"'");
             }
         }
 
@@ -41,7 +44,7 @@ public class ComparisonOperation extends BinaryOperation {
             Symbole varSymbole = TDS.Instance().Identify(varEntry);
 
             if (varSymbole.getType() == Decltype.ARRAY){
-                throw new AnalyseSemantiqueException(noLigne, "Can't perform arithmetic/logical comparison on the array '"+varEntry.getIdentifier()+"'");
+                throw new AnalyseSemantiqueException(noLigne, "Impossible d'effectuer une opération arithmétique/logique ou de comparaison sur le tableau '"+varEntry.getIdentifier()+"'");
             }
         }
     }

@@ -11,6 +11,10 @@ import yal.declaration.symbols.Symbole;
 import yal.exceptions.AnalyseSemantiqueException;
 import yal.exceptions.TypeMismatchException;
 
+/**
+ * Class Equal
+ */
+
 public class Equal extends ComparisonOperation {
     public Equal(Expression e1, Expression e2, int n) {
         super(e1, e2, OperatorsTypes.EQUAL, n);
@@ -22,10 +26,10 @@ public class Equal extends ComparisonOperation {
         exp2.verifier();
 
         if (exp1.type != exp2.type) {
-            throw new TypeMismatchException(this.getNoLigne(), "Attempt to perform a comparison operation two different types, or expression is ambiguous please use parentheses ()");
+            throw new TypeMismatchException(this.getNoLigne(), "Tentative d'effectuer une opération de comparaison de deux types différents ou l'expression est ambiguë, veuillez utiliser des parenthèses ()");
         }
 
-        // Verify that there is no arrays involved in our expression:
+        // Vérifiez qu'aucun tableau n'est impliqué dans notre expression:
         if (exp1.getVariableType() == VariableType.IDENTIFIANT && exp2.getVariableType() == VariableType.IDENTIFIANT) {
             Entry varEntry1 = ((Variable)exp1).getEntree();
             Symbole varSymbole1 = TDS.Instance().Identify(varEntry1);
@@ -34,11 +38,15 @@ public class Equal extends ComparisonOperation {
 
             if ((varSymbole1.getType() == Decltype.ARRAY && varSymbole2.getType() != Decltype.ARRAY) ||
                 (varSymbole1.getType() != Decltype.ARRAY && varSymbole2.getType() == Decltype.ARRAY)) {
-                throw new AnalyseSemantiqueException(noLigne, "Attempt to perform a comparison operation two different types, or expression is ambiguous please use parentheses ()");
+                throw new AnalyseSemantiqueException(noLigne, "Tentative d'effectuer une opération de comparaison de deux types différents, ou l'expression est ambiguë, veuillez utiliser des parenthèses ()");
             }
         }
     }
 
+    /**
+     * Fonction toMips pour générer le code toMips avec Equal
+     * @return
+     */
     @Override
     public String toMIPS() {
         String mips = super.toMIPS();

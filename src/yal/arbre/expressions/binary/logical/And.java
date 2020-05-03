@@ -3,11 +3,18 @@ package yal.arbre.expressions.binary.logical;
 import yal.arbre.OperatorsTypes;
 import yal.arbre.expressions.Expression;
 
+/**
+ * Class And
+ */
 public class And extends LogicalOperation {
     public And(Expression e1, Expression e2, int n) {
         super(e1, e2, OperatorsTypes.AND, n);
     }
 
+    /**
+     * Fonction toMips pour générer le code toMips avec And
+     * @return
+     */
     @Override
     public String toMIPS() {
         String mips = super.toMIPS();

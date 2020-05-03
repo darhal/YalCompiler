@@ -14,6 +14,9 @@ import yal.exceptions.AnalyseSemantiqueException;
 
 import java.util.Map;
 
+/**
+ * Class Fonction
+ */
 public class Fonction extends ArbreAbstrait
 {
     protected BlocDInstructions inst;
@@ -42,7 +45,7 @@ public class Fonction extends ArbreAbstrait
 
         if (entree.getNbReturn() == 0){
             throw new AnalyseSemantiqueException(entree.getLine(),
-                    "Functions must have at least one return statement, the function '"+entree.getIdentifier()+"' doesn't have any return statement"
+                    "Les fonctions doivent avoir au moins une instruction de retour, la fonction '"+entree.getIdentifier()+"' n'a pas une instruction de retour"
             );
         } else{
             boolean haveReturnInBody = false;
@@ -55,7 +58,7 @@ public class Fonction extends ArbreAbstrait
 
             if (!haveReturnInBody){
                 throw new AnalyseSemantiqueException(entree.getLine(),
-                        "Functions must have at least one return statement in their main instruction bloc, the function '"+entree.getIdentifier()+"' doesn't have any"
+                        "Les fonctions doivent avoir au moins une instruction de retour dans leur bloc d'instructions principal, la fonction '"+entree.getIdentifier()+"' n'en a pas"
                 );
             }
         }
@@ -72,6 +75,10 @@ public class Fonction extends ArbreAbstrait
         TDS.Instance().LeaveBloc();
     }
 
+    /**
+     * Fonction toMips pour générer le code toMips
+     * @return
+     */
     @Override
     public String toMIPS() {
         TDS.Instance().EnterBloc(noBloc);

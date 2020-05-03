@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
+/**
+ * Class TDS
+ */
 public class TDS
 {
     private static TDS instance = new TDS();
@@ -32,16 +35,34 @@ public class TDS
         return instance;
     }
 
+    /**
+     * Ajout Entry
+     * @param e
+     * @param s
+     * @param line
+     */
     public void AddEntry(Entry e, Symbole s, int line)
     {
         this.getBloc(currentBloc).AddEntry(e, s, line);
     }
 
+    /**
+     * Identify
+     * @param e
+     * @return
+     * @throws IdentifiantNonDeclarerException
+     */
     public Symbole Identify(Entry e) throws IdentifiantNonDeclarerException
     {
         return this.getBloc(currentBloc).Identify(e);
     }
 
+    /**
+     * Ajout FonctionEntry
+     * @param e
+     * @param s
+     * @param line
+     */
     public void addFunctionEntry(FonctionEntry e, FonctionSymbole s, int line)
     {
         if (fnSymbolMap.get(e) != null){
@@ -52,6 +73,12 @@ public class TDS
         fnSymbolMap.put(e, s);
     }
 
+    /**
+     * IdentifyFunction
+     * @param e
+     * @return
+     * @throws IdentifiantNonDeclarerException
+     */
     public FonctionSymbole IdentifyFunction(FonctionEntry e) throws IdentifiantNonDeclarerException
     {
         FonctionSymbole s = fnSymbolMap.get(e);
@@ -62,6 +89,7 @@ public class TDS
 
         return s;
     }
+
 
     public void EnterBloc()
     {
@@ -118,6 +146,7 @@ public class TDS
     public HashMap<Entry, Symbole> getSymbolMap() {
         return this.getBloc(currentBloc).getSymbolMap();
     }
+
 
     public long uniqueString() {
         return UUID.randomUUID().hashCode() & 0xffffffffl;

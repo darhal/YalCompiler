@@ -4,6 +4,9 @@ import yal.declaration.TDS;
 import yal.declaration.entries.Entry;
 import yal.declaration.symbols.Symbole;
 
+/**
+ * Class Variable
+ */
 public class Variable extends Identifiant
 {
     protected Entry entree;
@@ -20,6 +23,10 @@ public class Variable extends Identifiant
         Symbole s = TDS.Instance().Identify(entree);
     }
 
+    /**
+     * Fonction toMips pour générer le code toMips
+     * @return
+     */
     @Override
     public String toMIPS()
     {

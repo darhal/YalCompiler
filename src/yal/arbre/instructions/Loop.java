@@ -7,6 +7,9 @@ import yal.declaration.TDS;
 import yal.exceptions.AnalyseSemantiqueException;
 import java.util.UUID;
 
+/**
+ * Class Loop
+ */
 public class Loop extends Instruction
 {
     protected ArbreAbstrait inst;
@@ -25,10 +28,14 @@ public class Loop extends Instruction
         inst.verifier();
 
         if (exp.getType() != ExpressionType.LOGIC){
-            throw new AnalyseSemantiqueException(this.noLigne, "Loop condition should be a logical expression.");
+            throw new AnalyseSemantiqueException(this.noLigne, "La condition de boucle doit être une expression logique.");
         }
     }
 
+    /**
+     * Fonction toMips pour générer le code toMips pour les boucles
+     * @return
+     */
     public String toMIPS()
     {
         long random = TDS.Instance().uniqueString(); // generation d'un UUID unique

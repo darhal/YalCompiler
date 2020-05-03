@@ -9,6 +9,9 @@ import yal.declaration.entries.Entry;
 import yal.declaration.symbols.Symbole;
 import yal.exceptions.InvalidArgumentException;
 
+/**
+ * Class Ecrire
+ */
 public class Ecrire extends Instruction
 {
     protected Expression exp ;
@@ -24,8 +27,8 @@ public class Ecrire extends Instruction
 
         if (exp.getType() == ExpressionType.FUNCTION){
             throw new InvalidArgumentException(noLigne,
-                    "Invalid argument supplied to the function 'ecrire', " +
-                    "expected an arithmetic or logic expression while function call has been given with no return value"
+                    "Argument non valide fourni à la fonction  'ecrire', " +
+                    "attendait une expression arithmétique ou logique alors qu'un appel de fonction a été donné sans valeur de retour"
             );
         }
 
@@ -37,13 +40,17 @@ public class Ecrire extends Instruction
 
             if (s.getType() == Decltype.ARRAY){
                 throw new InvalidArgumentException(noLigne,
-                        "Invalid argument supplied to the function 'ecrire', " +
-                        "expected an arithmetic or logic expression an array has been given"
+                        "Argument non valide fourni à la fonction 'ecrire', " +
+                         "attendait une expression arithmétique ou logique un tableau a été donné"
                 );
             }
         }
     }
 
+    /**
+     * Fonction toMips pour générer le code toMips
+     * @return
+     */
     @Override
     public String toMIPS() {
         String mips = "";

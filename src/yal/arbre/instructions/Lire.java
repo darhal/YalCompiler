@@ -30,11 +30,15 @@ public class Lire extends Instruction
 
         if (s.getType() == Decltype.ARRAY && idf.getVariableType() == Expression.VariableType.IDENTIFIANT){
             throw new InvalidArgumentException(noLigne,
-                    "Invalid argument supplied to the function 'lire', expected a variable but an array has been given"
+                    "Argument non valide fourni à la fonction 'lire', une variable attendue mais reçu un tableau"
             );
         }
     }
 
+    /**
+     * Fonction toMips pour générer le code toMips
+     * @return
+     */
     @Override
     public String toMIPS()
     {

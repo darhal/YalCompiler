@@ -2,6 +2,9 @@ package yal.arbre.expressions;
 
 import yal.arbre.ArbreAbstrait;
 
+/**
+ * Class Abstraite Expression
+ */
 public abstract class Expression extends ArbreAbstrait
 {
     public enum VariableType {

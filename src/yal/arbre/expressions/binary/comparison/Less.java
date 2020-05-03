@@ -5,11 +5,19 @@ import yal.arbre.expressions.binary.BinaryOperation;
 import yal.arbre.expressions.Expression;
 import yal.arbre.expressions.ExpressionType;
 
+/**
+ * Class Less
+ */
 public class Less extends ComparisonOperation {
     public Less(Expression e1, Expression e2, int n) {
         super(e1, e2, OperatorsTypes.LESS, n);
     }
 
+
+    /**
+     * Fonction toMips pour générer le code toMips avec Less qui est la comparaison  "plus petit"
+     * @return
+     */
     @Override
     public String toMIPS() {
         String mips = super.toMIPS();

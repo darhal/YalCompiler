@@ -3,6 +3,9 @@ package yal.declaration.symbols;
 import yal.arbre.expressions.Expression;
 import yal.declaration.Decltype;
 
+/**
+ * Class ArraySymbole
+ */
 public class ArraySymbole extends Symbole
 {
     private Expression exp;
@@ -12,6 +15,7 @@ public class ArraySymbole extends Symbole
         super(Decltype.ARRAY);
         this.exp = exp;
     }
+
 
     public Expression getExpression()
     {

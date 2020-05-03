@@ -3,11 +3,18 @@ package yal.arbre.expressions.binary.arithmetic;
 import yal.arbre.OperatorsTypes;
 import yal.arbre.expressions.Expression;
 
+/**
+ * Class Divide pour la division
+ */
 public class Divide extends ArithmeticOperation {
     public Divide(Expression e1, Expression e2, int n) {
         super(e1, e2, OperatorsTypes.DIVIDE, n);
     }
 
+    /**
+     * Fonction toMips pour générer le code toMips de la division
+     * @return
+     */
     @Override
     public String toMIPS() {
         String mips = super.toMIPS();

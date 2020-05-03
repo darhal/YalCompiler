@@ -6,6 +6,9 @@ import yal.arbre.expressions.ExpressionType;
 import yal.declaration.TDS;
 import yal.exceptions.AnalyseSemantiqueException;
 
+/**
+ * Class Condition
+ */
 public class Condition extends Instruction
 {
     protected ArbreAbstrait inst;
@@ -33,10 +36,14 @@ public class Condition extends Instruction
         }
 
         if (exp.getType() != ExpressionType.LOGIC){
-            throw new AnalyseSemantiqueException(this.noLigne, "Condition statement should be a logical expression.");
+            throw new AnalyseSemantiqueException(this.noLigne, "Declaration de condition doit être une expression logique.");
         }
     }
 
+    /**
+     * Fonction toMips pour générer le code toMips
+     * @return
+     */
     public String toMIPS()
     {
         String mips = "\n\t# Condition Instruction:";

@@ -7,6 +7,9 @@ import yal.declaration.entries.Entry;
 import yal.declaration.symbols.Symbole;
 import yal.exceptions.AnalyseSemantiqueException;
 
+/**
+ * Class Affectation
+ */
 public class Affectation extends Instruction
 {
     protected Variable idf ;
@@ -22,7 +25,7 @@ public class Affectation extends Instruction
     public void verifier() {
         // Verify that entry is declared
         if (idf == null){
-            throw new AnalyseSemantiqueException(noLigne, "Attempt to affect a non variable identifier to an expression");
+            throw new AnalyseSemantiqueException(noLigne, "Tentative d'affecter un identifiant non variable à une expression");
         }
 
         // Verify that expression is valid
@@ -40,10 +43,10 @@ public class Affectation extends Instruction
                 Symbole varSymbole = TDS.Instance().Identify(varEntry);
 
                 if (varSymbole.getType() != Decltype.ARRAY) {
-                    throw new AnalyseSemantiqueException(noLigne, "Attempt to assign a non array variable '" + varEntry.getIdentifier() + "', to an array variable '" + idfEntry.getIdentifier() + "'");
+                    throw new AnalyseSemantiqueException(noLigne, "Tentative d'affecter une variable non tableau '" + varEntry.getIdentifier() + "', à une variable de tableau '" + idfEntry.getIdentifier() + "'");
                 }
             } else {
-                throw new AnalyseSemantiqueException(noLigne, "Attempt to assign a non array expression, to an array variable '" + idfEntry.getIdentifier() + "'");
+                throw new AnalyseSemantiqueException(noLigne, "Tentative d'affecter une expression non tableau à une variable tableau '" + idfEntry.getIdentifier() + "'");
             }
         } else {
             if (exp.getVariableType() == Expression.VariableType.IDENTIFIANT) {
@@ -52,12 +55,16 @@ public class Affectation extends Instruction
                 Symbole varSymbole = TDS.Instance().Identify(varEntry);
 
                 if (varSymbole.getType() == Decltype.ARRAY){
-                    throw new AnalyseSemantiqueException(noLigne, "Attempt to assign the array '"+varEntry.getIdentifier()+"' to the variable '"+idfEntry.getIdentifier()+"'");
+                    throw new AnalyseSemantiqueException(noLigne, "Tentative d'attribution du tableau '"+varEntry.getIdentifier()+"' à la variable '"+idfEntry.getIdentifier()+"'");
                 }
             }
         }
     }
 
+    /**
+     * Fonction toMips pour générer le code toMips
+     * @return
+     */
     @Override
     public String toMIPS() {
         String mips = "";

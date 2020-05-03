@@ -18,6 +18,10 @@ public class Fin extends ArbreAbstrait
     public void verifier() {
     }
 
+    /**
+     * Fonction toMips pour générer le code toMips
+     * @return
+     */
     @Override
     public String toMIPS() {
         String code_mips =
