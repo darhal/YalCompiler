@@ -31,11 +31,11 @@ public class ReturnInstruction extends Instruction
         exp.verifier();
 
         if (fnBloc == 0){ // return dans main function
-            throw new AnalyseSemantiqueException(this.noLigne, "la déclaration de retour ne peut pas être utilisée dans le programme principal.");
+            throw new AnalyseSemantiqueException(this.noLigne, "la déclaration de retour ne peut pas être utilisée dans le programme principal");
         }
 
         if (exp.getType() != ExpressionType.ARITHMETIC){
-            throw new AnalyseSemantiqueException(this.noLigne, "le type de retour doit être une expression arithmétique.");
+            throw new AnalyseSemantiqueException(this.noLigne, "le type de retour doit être une expression arithmétique");
         }
 
         // verify that the return expression is not an array (idf is an array)!
@@ -45,7 +45,7 @@ public class ReturnInstruction extends Instruction
             Symbole s = TDS.Instance().Identify(e);
 
             if (s.getType() == Decltype.ARRAY){
-                throw new AnalyseSemantiqueException(this.noLigne, "le type de retour doit être un 'entier' et ne peut pas être un tableau.");
+                throw new AnalyseSemantiqueException(this.noLigne, "le type de retour doit être un 'entier' et ne peut pas être un tableau");
             }
         }
     }

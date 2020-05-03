@@ -27,11 +27,11 @@ public class ArrayElement extends Variable
         Symbole s = TDS.Instance().Identify(entree);
 
         if (s.getType() != Decltype.ARRAY){
-            throw new AnalyseSemantiqueException(noLigne, "Tentative d'accéder à un élément du tableau alors que '"+ entree.getIdentifier()+"' n'est pas un tableau.");
+            throw new AnalyseSemantiqueException(noLigne, "Tentative d'accéder à un élément du tableau alors que '"+ entree.getIdentifier()+"' n'est pas un tableau");
         }
 
         if (exp.getType() != ExpressionType.ARITHMETIC){
-            throw new AnalyseSemantiqueException(exp.getNoLigne(), "L'indice du tableau '"+entree.getIdentifier()+"'est une valeur non arithmétique.");
+            throw new AnalyseSemantiqueException(exp.getNoLigne(), "L'indice du tableau '"+entree.getIdentifier()+"'est une valeur non arithmétique");
         }
 
         if (exp.getVariableType() == Expression.VariableType.IDENTIFIANT) {
@@ -40,7 +40,7 @@ public class ArrayElement extends Variable
             Symbole varSymbole = TDS.Instance().Identify(varEntry);
 
             if (varSymbole.getType() == Decltype.ARRAY){
-                throw new AnalyseSemantiqueException(noLigne, "L'indice du tableau '"+entree.getIdentifier()+"' est une valeur non arithmétique.");
+                throw new AnalyseSemantiqueException(noLigne, "L'indice du tableau '"+entree.getIdentifier()+"' est une valeur non arithmétique");
             }
         }
     }

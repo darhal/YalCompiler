@@ -53,9 +53,14 @@ public class FonctionEntry extends Entry
      */
     public String getFunctionName()
     {
-        String type = "entier,";
-        type = type.repeat(nbParam);
-        type = type.substring(0, type.length() - 1);
+        String type = "";
+
+        if (nbParam != 0){
+            type = "entier,";
+            type = type.repeat(nbParam);
+            type = type.substring(0, type.length() - 1);
+        }
+
         return idf+"("+type+")";
     }
 

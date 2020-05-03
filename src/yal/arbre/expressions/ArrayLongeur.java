@@ -24,7 +24,7 @@ public class ArrayLongeur extends Expression
         Symbole s = TDS.Instance().Identify(entree);
 
         if (s.getType() != Decltype.ARRAY){
-            throw new AnalyseSemantiqueException(noLigne, "Tentative de mesurer la longueur d'une variable qui n'es pas un tableau '"+ entree.getIdentifier()+"', 'longeur' l'opérateur ne peut être exécuté que sur un tableau.");
+            throw new AnalyseSemantiqueException(noLigne, "Tentative de mesurer la longueur d'une variable '"+ entree.getIdentifier()+"' qui n'es pas un tableau, l'opérateur 'longeur' ne peut être exécuté que sur un tableau");
         }
     }
 

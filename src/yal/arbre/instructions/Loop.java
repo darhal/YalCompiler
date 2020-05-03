@@ -28,7 +28,7 @@ public class Loop extends Instruction
         inst.verifier();
 
         if (exp.getType() != ExpressionType.LOGIC){
-            throw new AnalyseSemantiqueException(this.noLigne, "La condition de boucle doit être une expression logique.");
+            throw new AnalyseSemantiqueException(this.noLigne, "La condition de boucle doit être une expression logique");
         }
     }
 

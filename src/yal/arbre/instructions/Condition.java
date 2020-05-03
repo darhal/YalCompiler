@@ -36,7 +36,7 @@ public class Condition extends Instruction
         }
 
         if (exp.getType() != ExpressionType.LOGIC){
-            throw new AnalyseSemantiqueException(this.noLigne, "Declaration de condition doit être une expression logique.");
+            throw new AnalyseSemantiqueException(this.noLigne, "La condition doit être une expression logique");
         }
     }
 

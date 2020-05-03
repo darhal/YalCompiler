@@ -43,10 +43,10 @@ public class UnaryOperation extends Expression
 
         if (type == ExpressionType.ARITHMETIC && exp.type != ExpressionType.ARITHMETIC){
             throw new TypeMismatchException(this.getNoLigne(),
-                    "Tentative d'effectuer une opération unaire arithmétique sur une expression non arithmétique.");
+                    "Tentative d'effectuer une opération unaire arithmétique sur une expression non arithmétique");
         }else if (type == ExpressionType.LOGIC && exp.type != ExpressionType.LOGIC){
             throw new TypeMismatchException(this.getNoLigne(),
-                    "Tentative d'effectuer une opération unaire logique sur une expression non logique.");
+                    "Tentative d'effectuer une opération unaire logique sur une expression non logique");
         }
     }
 

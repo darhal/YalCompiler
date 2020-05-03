@@ -1,9 +1,9 @@
 .data
-	div_by0: .asciiz "[RUNTIME ERROR]:SEMANTICS: Division by zero is forbidden.\n"
-	arr_sz_err: .asciiz "[RUNTIME ERROR]:SEMANTICS: Array size can't be zero or negative.\n"
-	out_of_bound: .asciiz "[RUNTIME ERROR]:SEMANTICS: Array index is out of bound.\n"
-	negative_index: .asciiz "[RUNTIME ERROR]:SEMANTICS: Array index can't be negative.\n"
-	arr_cpy_err: .asciiz "[RUNTIME ERROR]:SEMANTICS: Attempt to perform an array copy on an array that doesn't have the same size as the source.\n"
+	div_by0: .asciiz "[RUNTIME ERROR]:SEMANTICS: La division par zero est interdite.\n"
+	arr_sz_err: .asciiz "[RUNTIME ERROR]:SEMANTICS: La taille du tableau ne peut pas etre nulle ou negative.\n"
+	out_of_bound: .asciiz "[RUNTIME ERROR]:SEMANTICS: L'indice est en dehors des bornes du tableau.\n"
+	negative_index: .asciiz "[RUNTIME ERROR]:SEMANTICS: L'indice du tableau ne peut pas etre négatif.\n"
+	arr_cpy_err: .asciiz "[RUNTIME ERROR]:SEMANTICS: Tentative d'effectuer une copie de tableau sur un tableau qui n'a pas la meme taille que celui de source.\n"
 	true_str: .asciiz "vrai\n"
 	false_str: .asciiz "faux\n"
 .text
@@ -15,77 +15,62 @@ main:
 	sw $zero, 0($sp)
 	sw $zero, -4($sp)
 	sw $zero, -8($sp)
-	sw $zero, -12($sp)
 	# Allocate for the declared variables:
-	addi $sp, $sp, -16
+	addi $sp, $sp, -12
 
-	# Calculating the size of the array 'a' (size in $v0): 
+	# Integer Constant '4':
+	li $v0, 4
+
+	# Assignement for the variable 'a':
+	li $t2, 0
+	jal search_var
+	sw $v0, 0($t1)
+
 	# Integer Constant '5':
 	li $v0, 5
-	move $a0, $v0
-	jal allocate_array
-	sw $v0, 0($s7)
 
-	# Calculating the size of the array 'b' (size in $v0): 
-	# Integer Constant '6':
-	li $v0, 6
-	move $a0, $v0
-	jal allocate_array
-	sw $v0, -4($s7)
+	# Assignement for the variable 'b':
+	li $t2, 0
+	jal search_var
+	sw $v0, -4($t1)
+	addi $sp, $sp, -0
 
-	# Integer Constant '0':
-	li $v0, 0
+	jal AB_p0
 
-	# Assignement for the variable 'i':
+	# Assignement for the variable 'c':
 	li $t2, 0
 	jal search_var
 	sw $v0, -8($t1)
-start_loop_334340608:
 
-	# Get value of the variable 'i':
+	# Get value of the variable 'a':
 	li $t2, 0
 	jal search_var
-	lw $v0, -8($t1)
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
+	lw $v0, 0($t1)
 
-	# Integer Constant '5':
-	li $v0, 5
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Less:
-	slt $v0, $t8, $v0
-	# Branch Instruction:
-	beq $v0, $zero, end_loop_334340608
-	# Loop instructions:
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
 
-	# Integer Constant '0':
-	li $v0, 0
-
-	# Assignement for the variable 'j':
+	# Get value of the variable 'b':
 	li $t2, 0
 	jal search_var
-	sw $v0, -12($t1)
-start_loop_4221493818:
+	lw $v0, -4($t1)
 
-	# Get value of the variable 'j':
-	li $t2, 0
-	jal search_var
-	lw $v0, -12($t1)
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
 
-	# Integer Constant '5':
-	li $v0, 5
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Less:
-	slt $v0, $t8, $v0
-	# Branch Instruction:
-	beq $v0, $zero, end_loop_4221493818
-	# Loop instructions:
-
-	# Get value of the variable 'i':
+	# Get value of the variable 'c':
 	li $t2, 0
 	jal search_var
 	lw $v0, -8($t1)
@@ -98,62 +83,6 @@ start_loop_4221493818:
 	li $v0, 11 	# Syscall code for printing one char
 	li $a0, '\n' 	# print new line char
 	syscall
-
-	# Get value of the variable 'j':
-	li $t2, 0
-	jal search_var
-	lw $v0, -12($t1)
-
-	# Call write sys call:
-	move $a0, $v0
-	li $v0, 1
-	syscall
-	# Return to line:
-	li $v0, 11 	# Syscall code for printing one char
-	li $a0, '\n' 	# print new line char
-	syscall
-
-	# Get value of the variable 'j':
-	li $t2, 0
-	jal search_var
-	lw $v0, -12($t1)
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '1':
-	li $v0, 1
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Addition:
-	add $v0, $t8, $v0
-
-	# Assignement for the variable 'j':
-	li $t2, 0
-	jal search_var
-	sw $v0, -12($t1)
-	bne $v0, $zero, start_loop_4221493818
-end_loop_4221493818:
-
-	# Get value of the variable 'i':
-	li $t2, 0
-	jal search_var
-	lw $v0, -8($t1)
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
-
-	# Integer Constant '1':
-	li $v0, 1
-	lw $t8, 4($sp)
-	addi $sp, $sp, 4
-	# Addition:
-	add $v0, $t8, $v0
-
-	# Assignement for the variable 'i':
-	li $t2, 0
-	jal search_var
-	sw $v0, -8($t1)
-	bne $v0, $zero, start_loop_334340608
-end_loop_334340608:
 
 
 ###################################################################################
@@ -315,8 +244,8 @@ not_eq:
 	li $v0, 0 	# Both arrays aren't equal
 	jr $ra 	#Resume normal execution
 
-	# Declaration of function: a_p1
-a_p1:
+	# Declaration of function: AB_p0
+AB_p0:
 	# Pushing in the function environments (Creating the stack frame)
 	# Return address:
 	sw $ra, -0($sp)
@@ -330,78 +259,76 @@ a_p1:
 	move $s7, $sp
 	# Initialize local variables to 0:
 	sw $zero, 0($sp)
-	addi $sp, $sp, -4
-
-	# Calculating the size of the array 'a' (size in $v0): 
-	# Integer Constant '5':
-	li $v0, 5
-	move $a0, $v0
-	jal allocate_array
-	sw $v0, 0($s7)
+	sw $zero, -4($sp)
+	addi $sp, $sp, -8
 	# Function instructions 
 
-	# Get value of the variable 'b':
-	li $t2, 1
-	jal search_var
-	lw $v0, 16($t1)
+	# Integer Constant '2':
+	li $v0, 2
 
 	# Assignement for the variable 'a':
 	li $t2, 1
 	jal search_var
-	move $t3, $v0
-	lw $v0, 0($t1)
-	addi $sp, $sp, -4
-	sw $v0, 4($sp)
+	sw $v0, 0($t1)
 
-	# Integer Constant '0':
-	li $v0, 0
-	move $a0, $v0
-	lw $v0, 4($sp)
-	addi $sp, $sp, 4
-	jal get_arr_element_address
-	sw $t3, ($v0)
+	# Integer Constant '3':
+	li $v0, 3
 
-	# Condition Instruction:
-	# Integer Constant '0':
-	li $v0, 0
+	# Assignement for the variable 'b':
+	li $t2, 1
+	jal search_var
+	sw $v0, -4($t1)
 
-	# Get the address of the array 'a':
-	move $a0, $v0 	# Save the index in $a0
+	# Get value of the variable 'a':
 	li $t2, 1
 	jal search_var
 	lw $v0, 0($t1)
-	jal get_arr_element_value
+
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Get value of the variable 'b':
+	li $t2, 1
+	jal search_var
+	lw $v0, -4($t1)
+
+	# Call write sys call:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	# Return to line:
+	li $v0, 11 	# Syscall code for printing one char
+	li $a0, '\n' 	# print new line char
+	syscall
+
+	# Get value of the variable 'a':
+	li $t2, 1
+	jal search_var
+	lw $v0, 0($t1)
 	addi $sp, $sp, -4
 	sw $v0, 4($sp)
 
-	# Integer Constant '1':
-	li $v0, 1
+	# Get value of the variable 'b':
+	li $t2, 1
+	jal search_var
+	lw $v0, -4($t1)
 	lw $t8, 4($sp)
 	addi $sp, $sp, 4
-	# Equal:
-	seq $v0, $t8, $v0
-	beq $v0, $zero, sinon_2319868434	 # Skip the condition if v0 is equal to zero
-	# Begin of the instruction inside SI branch:
-
-	# Integer Constant '1':
-	li $v0, 1
-	j a_p1_fin
-
-	j fsi_2319868434
-
-sinon_2319868434:
-	# End of the branch
-fsi_2319868434:
-
-	# Integer Constant '0':
-	li $v0, 0
-	j a_p1_fin
+	# Addition:
+	add $v0, $t8, $v0
+	j AB_p0_fin
 	# End of the function routine :
-a_p1_fin:
+AB_p0_fin:
 	# Popping out the function environments (Popping the stack frame): 
 	addi $sp, $sp, 20
-	lw $ra, -4($sp)
-	lw $s7, -8($sp)
+	lw $ra, -0($sp)
+	lw $s7, -4($sp)
 	jr $ra
 
 
