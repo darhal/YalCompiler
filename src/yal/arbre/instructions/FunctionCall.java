@@ -2,8 +2,10 @@ package yal.arbre.instructions;
 
 import yal.arbre.expressions.Expression;
 import yal.arbre.expressions.ExpressionType;
+import yal.arbre.expressions.Variable;
 import yal.declaration.Decltype;
 import yal.declaration.TDS;
+import yal.declaration.entries.Entry;
 import yal.declaration.entries.FonctionEntry;
 import yal.declaration.symbols.Fonction;
 import yal.declaration.symbols.FonctionSymbole;
@@ -51,6 +53,17 @@ public class FunctionCall extends Expression
 
             if (e.getType() != ExpressionType.ARITHMETIC){
                 throw new AnalyseSemantiqueException(e.getNoLigne(), entree.getFunctionName()+" arguments must be of the type 'entier'");
+            }
+
+            // verify that the argument is not an array
+            if (e.getVariableType() == Expression.VariableType.IDENTIFIANT){
+                Variable var = (Variable)e;
+                Entry entry = var.getEntree();
+                Symbole symbol = TDS.Instance().Identify(entry);
+
+                if (symbol.getType() == Decltype.ARRAY){
+                    throw new AnalyseSemantiqueException(this.noLigne, "arguments must be of the type 'entier' and can't be an array");
+                }
             }
         }
     }

@@ -40,7 +40,7 @@ public class Debut extends BlocDInstructions
                 ArraySymbole as = (ArraySymbole)s;
                 Expression exp = as.getExpression();
 
-                if (!exp.isConst()) { // TODO: Should we consider const expressions too ?
+                if (!exp.isConst()) {
                     throw new AnalyseSemantiqueException(e.getLine(), "The array '"+e.getIdentifier()+"' is defined in main program with non-const size, arrays that are defined in main must have a constant length");
                 } else {
                     ConstanteEntiere cte = (ConstanteEntiere) exp;

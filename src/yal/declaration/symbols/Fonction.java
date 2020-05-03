@@ -3,6 +3,7 @@ package yal.declaration.symbols;
 import yal.arbre.ArbreAbstrait;
 import yal.arbre.BlocDInstructions;
 import yal.arbre.expressions.ExpressionType;
+import yal.arbre.instructions.Instruction;
 import yal.arbre.instructions.ReturnInstruction;
 import yal.declaration.Decltype;
 import yal.declaration.TDS;
@@ -43,6 +44,20 @@ public class Fonction extends ArbreAbstrait
             throw new AnalyseSemantiqueException(entree.getLine(),
                     "Functions must have at least one return statement, the function '"+entree.getIdentifier()+"' doesn't have any return statement"
             );
+        } else{
+            boolean haveReturnInBody = false;
+
+            for (ArbreAbstrait aa : inst.getProgramme()){
+                if (aa.isReturnStatment()){
+                    haveReturnInBody = true;
+                }
+            }
+
+            if (!haveReturnInBody){
+                throw new AnalyseSemantiqueException(entree.getLine(),
+                        "Functions must have at least one return statement in their main instruction bloc, the function '"+entree.getIdentifier()+"' doesn't have any"
+                );
+            }
         }
 
         inst.verifier();

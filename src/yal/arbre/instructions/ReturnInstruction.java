@@ -28,7 +28,7 @@ public class ReturnInstruction extends Instruction
         exp.verifier();
 
         if (fnBloc == 0){ // return dans main function
-            throw new AnalyseSemantiqueException(this.noLigne, "return statement is being used in the main program");
+            throw new AnalyseSemantiqueException(this.noLigne, "return statement can't be used in the main program");
         }
 
         if (exp.getType() != ExpressionType.ARITHMETIC){
@@ -58,4 +58,6 @@ public class ReturnInstruction extends Instruction
         mips += "\tj "+entry.getIdentifier()+"_fin\n"; // Go back from where we finish
         return mips;
     }
+
+    public boolean isReturnStatment() { return true; }
 }

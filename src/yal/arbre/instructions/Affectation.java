@@ -77,10 +77,12 @@ public class Affectation extends Instruction
                 ArrayElement ae = (ArrayElement) idf;
                 mips += "\tmove $t3, $v0\n" +
                         "\tlw $v0, " + offset + "($t1)\n" +
-                        "\tmove $t4, $v0\n"+
+                        "\taddi $sp, $sp, -4\n" + // Reserve stack
+                        "\tsw $v0, "+ 4 +"($sp)\n" +
                         ae.getExpression().toMIPS() +
                         "\tmove $a0, $v0\n" +
-                        "\tmove $v0, $t4\n"+
+                        "\tlw $v0, "+ 4 +"($sp)\n" +
+                        "\taddi $sp, $sp, 4\n" +
                         "\tjal get_arr_element_address\n" +
                         "\tsw $t3, ($v0)\n";
             } else { // array = array scenario

@@ -39,7 +39,7 @@ public class Loop extends Instruction
         mips += exp.toMIPS();
         mips += "\t# Branch Instruction:\n";
         mips += "\tbeq $v0, $zero, "+end+"\n";
-        mips += "\t# Loop instructions:";
+        mips += "\t# Loop instructions:\n";
         mips += inst.toMIPS();
         mips += "\tbne $v0, $zero, "+start+"\n";
         mips += end+":\n";

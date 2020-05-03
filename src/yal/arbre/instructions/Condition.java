@@ -33,7 +33,7 @@ public class Condition extends Instruction
         }
 
         if (exp.getType() != ExpressionType.LOGIC){
-            throw new AnalyseSemantiqueException(this.noLigne, "Loop condition should be a logical expression.");
+            throw new AnalyseSemantiqueException(this.noLigne, "Condition statement should be a logical expression.");
         }
     }
 

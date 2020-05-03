@@ -30,6 +30,16 @@ public class ArrayElement extends Variable
         if (exp.getType() != ExpressionType.ARITHMETIC){
             throw new AnalyseSemantiqueException(exp.getNoLigne(), "Index of the array '"+entree.getIdentifier()+"' is a non arithmetic value");
         }
+
+        if (exp.getVariableType() == Expression.VariableType.IDENTIFIANT) {
+            Variable var = (Variable) exp;
+            Entry varEntry = var.getEntree();
+            Symbole varSymbole = TDS.Instance().Identify(varEntry);
+
+            if (varSymbole.getType() == Decltype.ARRAY){
+                throw new AnalyseSemantiqueException(noLigne, "Index of the array '"+entree.getIdentifier()+"' is a non arithmetic value");
+            }
+        }
     }
 
     @Override

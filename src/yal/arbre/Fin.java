@@ -21,6 +21,9 @@ public class Fin extends ArbreAbstrait
     @Override
     public String toMIPS() {
         String code_mips =
+                "\n\n###################################################################################\n"+
+                "############################### HELPER SUB-ROUTINES ###############################\n"+
+                "###################################################################################\n"+
                 "\n\t# Handle program exit\n"+
                 "exit:\n"+
                 "\tli $v0, 10\n"+
